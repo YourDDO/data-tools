@@ -103,7 +103,7 @@ func (p *Publisher) Activate(ctx context.Context, release manifest.Manifest) err
 		ReleaseIdentity: release.ReleaseIdentity,
 		BaseURL:         "/" + baseKey,
 	}
-	pointerData, err := json.MarshalIndent(pointer, "", "  ")
+	pointerData, err := json.Marshal(pointer)
 	if err != nil {
 		return fmt.Errorf("encode latest pointer: %w", err)
 	}
@@ -120,7 +120,7 @@ func releaseBaseKey(release manifest.Manifest) string {
 
 func (p *Publisher) publishManifest(ctx context.Context, release manifest.Manifest) error {
 	baseKey := releaseBaseKey(release)
-	manifestData, err := json.MarshalIndent(release, "", "  ")
+	manifestData, err := json.Marshal(release)
 	if err != nil {
 		return fmt.Errorf("encode release manifest: %w", err)
 	}

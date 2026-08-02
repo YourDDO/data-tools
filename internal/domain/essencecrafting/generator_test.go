@@ -1,9 +1,12 @@
 package essencecrafting
 
 import (
+	"bytes"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"yourddo-data-tools/internal/dataset"
 )
 
 func TestGenerateAndWrite(t *testing.T) {
@@ -30,6 +33,13 @@ func TestGenerateAndWrite(t *testing.T) {
 		}
 		if len(data) == 0 || data[len(data)-1] != '\n' {
 			t.Fatalf("%s does not end in newline", name)
+		}
+		compact, err := dataset.CompactJSON(data)
+		if err != nil {
+			t.Fatalf("%s is not valid JSON: %v", name, err)
+		}
+		if !bytes.Equal(compact, data) {
+			t.Fatalf("%s is not minified", name)
 		}
 	}
 }

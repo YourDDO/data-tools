@@ -175,6 +175,7 @@ func ReleaseReport(root string, value manifest.Manifest, options Options) Report
 	report.merge(manualPayloadsReport(root, value.ManualPayloads, "manifest.json"))
 	report.merge(validateDomainSummaries(value.Domains, value.GeneratedFiles, "manifest.json"))
 	report.merge(validateCandidateContents(root, value.MasterDatasetSHA256, value.ReleaseFingerprint, value.GeneratedFiles, value.ManualPayloads, options))
+	report.merge(compactJSONFileReport(root, "manifest.json", "release"))
 	report.sort()
 	return report
 }
@@ -266,6 +267,13 @@ func generatedFilesReport(root string, files []manifest.File, payloads []contrac
 		if size != entry.SizeBytes {
 			report.add(Error, datasetName, entry.Path, "<file>", "file-size-agreement", "file size does not match the manifest")
 		}
+		data, readErr := os.ReadFile(filepath.Join(root, cleaned))
+		if readErr == nil {
+			compact, compactErr := dataset.CompactJSON(data)
+			if compactErr == nil && !bytes.Equal(compact, data) {
+				report.add(Error, datasetName, entry.Path, "<file>", "compact-json", "published JSON must be minified")
+			}
+		}
 	}
 	for _, payload := range payloads {
 		cleaned, ok := cleanRelative(payload.Path)
@@ -289,6 +297,19 @@ func generatedFilesReport(root string, files []manifest.File, payloads []contrac
 		}
 	}
 	report.merge(jsonDirectoryReport(root))
+	return report
+}
+
+func compactJSONFileReport(root, relative, datasetName string) Report {
+	var report Report
+	data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(relative)))
+	if err != nil {
+		return report
+	}
+	compact, err := dataset.CompactJSON(data)
+	if err == nil && !bytes.Equal(compact, data) {
+		report.add(Error, datasetName, relative, "<file>", "compact-json", "published JSON must be minified")
+	}
 	return report
 }
 

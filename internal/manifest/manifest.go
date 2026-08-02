@@ -164,4 +164,4 @@ func domainForPath(path string) (string, error) {
 	return first, nil
 }
 
-func WriteCandidate(path string, value Candidate) error { return dataset.WriteJSON(path, value, true) }
+func WriteCandidate(path string, value Candidate) error { return dataset.WriteJSON(path, value) }

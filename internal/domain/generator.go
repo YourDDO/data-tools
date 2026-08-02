@@ -35,19 +35,23 @@ func WriteJSON(outputRoot, domainName, relative string, value any) (contracts.Ge
 	if err != nil {
 		return contracts.GeneratedFileMetadata{}, err
 	}
-	if err := dataset.WriteJSON(path, value, false); err != nil {
+	if err := dataset.WriteJSON(path, value); err != nil {
 		return contracts.GeneratedFileMetadata{}, err
 	}
 	return metadata(domainName, relativePath, path)
 }
 
-// WriteCanonical writes canonical bytes without reinterpreting their schema.
+// WriteCanonical compacts canonical JSON bytes before writing and hashing them.
 func WriteCanonical(outputRoot, domainName, relative string, data []byte) (contracts.GeneratedFileMetadata, error) {
 	path, relativePath, err := outputPath(outputRoot, domainName, relative)
 	if err != nil {
 		return contracts.GeneratedFileMetadata{}, err
 	}
-	if err := dataset.WriteData(path, data); err != nil {
+	compact, err := dataset.CompactJSON(data)
+	if err != nil {
+		return contracts.GeneratedFileMetadata{}, fmt.Errorf("compact canonical JSON %s: %w", relativePath, err)
+	}
+	if err := dataset.WriteData(path, compact); err != nil {
 		return contracts.GeneratedFileMetadata{}, err
 	}
 	return metadata(domainName, relativePath, path)

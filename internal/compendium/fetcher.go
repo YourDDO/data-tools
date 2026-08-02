@@ -177,7 +177,7 @@ func (g *Generator) generate(ctx context.Context, categories []string, outputRoo
 		if err := removeWorkingFile(working, relative); err != nil {
 			return Result{}, fmt.Errorf("prepare category %q output: %w", category, err)
 		}
-		entry, err := writeCanonicalJSON(filepath.Join(working, filepath.FromSlash(relative)), value, false)
+		entry, err := writeCanonicalJSON(filepath.Join(working, filepath.FromSlash(relative)), value)
 		if err != nil {
 			return Result{}, fmt.Errorf("write category %q: %w", category, err)
 		}
@@ -195,7 +195,7 @@ func (g *Generator) generate(ctx context.Context, categories []string, outputRoo
 	if err := removeWorkingFile(working, dataset.MasterIndexName); err != nil {
 		return Result{}, fmt.Errorf("prepare master index output: %w", err)
 	}
-	indexEntry, err := writeCanonicalJSON(filepath.Join(working, dataset.MasterIndexName), index, true)
+	indexEntry, err := writeCanonicalJSON(filepath.Join(working, dataset.MasterIndexName), index)
 	if err != nil {
 		return Result{}, fmt.Errorf("write master index: %w", err)
 	}
@@ -443,7 +443,7 @@ func (w *countingWriter) Write(data []byte) (int, error) {
 	return n, err
 }
 
-func writeCanonicalJSON(path string, value any, indent bool) (entry writtenFile, returnErr error) {
+func writeCanonicalJSON(path string, value any) (entry writtenFile, returnErr error) {
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return writtenFile{}, fmt.Errorf("create parent for %s: %w", path, err)
 	}
@@ -459,9 +459,6 @@ func writeCanonicalJSON(path string, value any, indent bool) (entry writtenFile,
 	digest := sha256.New()
 	counter := &countingWriter{w: io.MultiWriter(file, digest)}
 	encoder := json.NewEncoder(counter)
-	if indent {
-		encoder.SetIndent("", "  ")
-	}
 	if err := encoder.Encode(value); err != nil {
 		return writtenFile{}, fmt.Errorf("encode %s: %w", path, err)
 	}

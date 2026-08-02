@@ -54,7 +54,7 @@ func Assemble(candidateRoot, releaseRoot string, candidate Candidate, dataVersio
 			return Manifest{}, fmt.Errorf("assemble manual payload %s: %w", payload.Path, err)
 		}
 	}
-	manifestData, err := json.MarshalIndent(result, "", "  ")
+	manifestData, err := json.Marshal(result)
 	if err != nil {
 		return Manifest{}, fmt.Errorf("encode release manifest: %w", err)
 	}

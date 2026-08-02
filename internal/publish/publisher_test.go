@@ -12,6 +12,7 @@ import (
 	"testing"
 	"time"
 
+	"yourddo-data-tools/internal/dataset"
 	"yourddo-data-tools/internal/hashing"
 	"yourddo-data-tools/internal/manifest"
 	"yourddo-data-tools/internal/manual"
@@ -75,6 +76,15 @@ func TestPublisherAssignsDataVersionAndUpdatesLatestLast(t *testing.T) {
 	}
 	if latest.BaseURL != "/releases/81.3.0/1785175200" {
 		t.Fatalf("latest = %#v", latest)
+	}
+	for key, data := range store.values {
+		compact, err := dataset.CompactJSON(data)
+		if err != nil {
+			t.Fatalf("published object %s is not JSON: %v", key, err)
+		}
+		if !bytes.Equal(compact, data) {
+			t.Fatalf("published object %s is not minified: %q", key, data)
+		}
 	}
 }
 
