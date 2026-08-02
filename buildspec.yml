@@ -1,0 +1,41 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.26
+    commands:
+      - |
+        cd "$CODEBUILD_SRC_DIR"
+        go version
+        go mod download
+        go install github.com/go-task/task/v3/cmd/task@v3.45.4
+  build:
+    commands:
+      - |
+        cd "$CODEBUILD_SRC_DIR"
+        export PATH="$(go env GOPATH)/bin:$PATH"
+
+        task verify
+
+        pipeline_result="/tmp/yourddo-pipeline-result.json"
+        case "$PUBLISH_ENABLED" in
+          true)
+            go run ./cmd/pipeline \
+              --backend=s3 \
+              --region="$AWS_REGION" \
+              --bucket="$DATA_BUCKET" \
+              --publish=true \
+              > "$pipeline_result"
+            ;;
+          false)
+            go run ./cmd/pipeline \
+              --publish=false \
+              --dry-run \
+              > "$pipeline_result"
+            ;;
+          *)
+            echo "PUBLISH_ENABLED must be true or false" >&2
+            exit 1
+            ;;
+        esac
