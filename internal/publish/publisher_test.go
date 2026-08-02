@@ -153,6 +153,9 @@ func TestPublishedManualPayloadHashMatchesExactObjectBytes(t *testing.T) {
 	if !bytes.Equal(object, staged) {
 		t.Fatalf("published bytes differ from staged canonical bytes:\n%s\n%s", object, staged)
 	}
+	if want := "{\"a\":[3,1],\"z\":2}\n"; string(object) != want {
+		t.Fatalf("published manual payload = %q, want compact canonical bytes %q", object, want)
+	}
 	digest := sha256.Sum256(object)
 	metadata := release.ManualPayloads[0]
 	if metadata.SHA256 != hex.EncodeToString(digest[:]) || metadata.SizeBytes != int64(len(object)) {

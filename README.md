@@ -45,7 +45,7 @@ Stable JSON structures live in `internal/contracts`. JSON field names are lower 
 
 Manifest schema version 2 adds `releaseFingerprint` and sorted `manualPayloads` while retaining `masterDatasetSha256` as a separate diagnostic field. Each manual entry contains its logical `name`, release-relative `path`, canonical byte size, and SHA-256. The release fingerprint combines the canonical master hash with every sorted manual name, path, and hash. Existing schema-version-1 manifests have no fingerprint and therefore cause one changed release when first encountered.
 
-Manual JSON object keys are serialized deterministically and source formatting does not affect hashes. Array order is always preserved because arrays may be semantically ordered. The exact canonical bytes that are hashed are assembled and published without reserialization.
+Manual JSON object keys are serialized deterministically as compact JSON, and source formatting does not affect hashes. Array order is always preserved because arrays may be semantically ordered. The exact compact canonical bytes that are hashed are assembled and published without reserialization.
 
 Published objects use this layout:
 
