@@ -144,9 +144,6 @@ func (c *Client) FetchCategoryContent(ctx context.Context, categoryName string) 
 		if continuation == "" {
 			return contents, nil
 		}
-		if err := c.sleep(ctx, 495*time.Millisecond); err != nil {
-			return nil, fmt.Errorf("fetch category %q: pagination delay: %w", categoryName, err)
-		}
 	}
 }
 

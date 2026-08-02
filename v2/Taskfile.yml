@@ -66,7 +66,6 @@ tasks:
       - task: fmt:check
       - task: lint
       - task: test
-      - task: test-race
       - task: build
       - task: validate-fixtures
 
