@@ -244,7 +244,7 @@ variable "schedule_timezone" {
 variable "schedule_enabled" {
   description = "Whether EventBridge Scheduler may automatically start production builds."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "tags" {
