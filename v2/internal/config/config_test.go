@@ -1,6 +1,7 @@
 package config
 
 import (
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -36,6 +37,9 @@ func TestLoadUsesSafeLocalDefaults(t *testing.T) {
 	}
 	if cfg.OutputDir != defaultOutputDir || cfg.CompendiumAPIPath != defaultCompendiumAPIPath {
 		t.Fatalf("local defaults = %#v", cfg)
+	}
+	if want := []string{"All"}; !reflect.DeepEqual(cfg.Categories, want) {
+		t.Fatalf("default categories = %v, want %v", cfg.Categories, want)
 	}
 }
 

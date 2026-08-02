@@ -61,7 +61,7 @@ func Defaults() Config {
 		CompendiumBaseURL: defaultCompendiumBaseURL,
 		CompendiumAPIPath: defaultCompendiumAPIPath,
 		OutputDir:         defaultOutputDir,
-		Categories:        []string{"Items", "Augment", "Filigrees"},
+		Categories:        []string{"All"},
 		Domains:           registry.Names(),
 	}
 }
