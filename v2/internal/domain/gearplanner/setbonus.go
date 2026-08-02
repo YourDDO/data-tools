@@ -60,6 +60,12 @@ type SetItem struct {
 
 type SetBonusIndex map[string][]SetItem
 
+type setItemCandidate struct {
+	name      string
+	pageTitle string
+	minLevel  int
+}
+
 func GenerateSetBonusIndex(items []dataset.ItemData) SetBonusIndex {
 	records := make([]dataset.ItemRecord, len(items))
 	for index, item := range items {
@@ -71,30 +77,60 @@ func GenerateSetBonusIndex(items []dataset.ItemData) SetBonusIndex {
 // GenerateSetBonusIndexFromRecords uses the canonical page title for
 // filigrees. Compendium filigree templates contain a number of incorrect or
 // duplicated name fields; using those names would collapse distinct pages and
-// silently remove entries from the index.
+// silently remove entries from the index. Other item types keep their display
+// name unless multiple canonical records in the same set share it, in which
+// case their page titles disambiguate the variants without dropping data.
 func GenerateSetBonusIndexFromRecords(records []dataset.ItemRecord) SetBonusIndex {
-	result := make(SetBonusIndex)
+	candidates := make(map[string][]setItemCandidate)
 	seen := make(map[string]struct{})
 	for _, record := range records {
 		item := record.Item
 		itemName := strings.TrimSpace(item.Name)
-		identity := itemName
-		if pageTitle := strings.TrimSpace(item.PageTitle); strings.EqualFold(strings.TrimSpace(record.Category), "Filigrees") && pageTitle != "" {
+		pageTitle := strings.TrimSpace(item.PageTitle)
+		if strings.EqualFold(strings.TrimSpace(record.Category), "Filigrees") && pageTitle != "" {
 			itemName = pageTitle
-			identity = pageTitle
+		}
+		level := ParseMinimumLevel(item.MinLevel)
+		identity := pageTitle
+		if identity == "" {
+			identity = itemName + "\x00" + strconv.Itoa(level)
 		}
 		for _, bonus := range item.SetBonus {
 			name := strings.TrimSpace(bonus.Name)
 			if name == "" || itemName == "" {
 				continue
 			}
-			level := ParseMinimumLevel(item.MinLevel)
-			key := name + "\x00" + identity + "\x00" + strconv.Itoa(level)
+			key := name + "\x00" + identity
 			if _, exists := seen[key]; exists {
 				continue
 			}
 			seen[key] = struct{}{}
-			result[name] = append(result[name], SetItem{Name: itemName, MinLevel: level})
+			candidates[name] = append(candidates[name], setItemCandidate{
+				name: itemName, pageTitle: pageTitle, minLevel: level,
+			})
+		}
+	}
+
+	result := make(SetBonusIndex, len(candidates))
+	for setName, setCandidates := range candidates {
+		nameCounts := make(map[string]int, len(setCandidates))
+		for _, candidate := range setCandidates {
+			nameCounts[candidate.name]++
+		}
+		items := make(map[string]SetItem, len(setCandidates))
+		for _, candidate := range setCandidates {
+			name := candidate.name
+			if nameCounts[name] > 1 && candidate.pageTitle != "" {
+				name = candidate.pageTitle
+			}
+			item := SetItem{Name: name, MinLevel: candidate.minLevel}
+			if existing, exists := items[name]; !exists || item.MinLevel < existing.MinLevel {
+				items[name] = item
+			}
+		}
+		result[setName] = make([]SetItem, 0, len(items))
+		for _, item := range items {
+			result[setName] = append(result[setName], item)
 		}
 	}
 	for name := range result {
