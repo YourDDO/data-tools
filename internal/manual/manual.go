@@ -20,7 +20,7 @@ import (
 )
 
 // Prepare discovers JSON payloads beneath sourceRoot, validates and
-// canonicalizes them, and writes the exact bytes to destinationRoot.
+// canonicalizes them as compact JSON, and writes the exact bytes to destinationRoot.
 func Prepare(sourceRoot, destinationRoot string) ([]contracts.ManualPayloadMetadata, error) {
 	if strings.TrimSpace(sourceRoot) == "" {
 		return nil, fmt.Errorf("manual input directory is required")
@@ -94,8 +94,8 @@ func Prepare(sourceRoot, destinationRoot string) ([]contracts.ManualPayloadMetad
 }
 
 // Canonicalize decodes exactly one JSON value, rejects duplicate object keys,
-// sorts object keys through encoding/json, preserves array order, and appends
-// the repository-standard trailing newline.
+// emits compact JSON with object keys sorted through encoding/json, preserves
+// array order, and appends the repository-standard trailing newline.
 func Canonicalize(data []byte) ([]byte, error) {
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.UseNumber()
@@ -116,7 +116,7 @@ func Canonicalize(data []byte) ([]byte, error) {
 	if err := scanValue(duplicateDecoder); err != nil {
 		return nil, err
 	}
-	canonical, err := json.MarshalIndent(value, "", "  ")
+	canonical, err := json.Marshal(value)
 	if err != nil {
 		return nil, err
 	}

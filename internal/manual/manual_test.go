@@ -25,7 +25,7 @@ func TestPrepareDiscoversAndCanonicalizesDeterministically(t *testing.T) {
 	if names := []string{payloads[0].Name, payloads[1].Name}; !reflect.DeepEqual(names, []string{"nested/a", "z"}) {
 		t.Fatalf("logical names = %v", names)
 	}
-	want := "{\n  \"a\": [\n    3,\n    1\n  ],\n  \"b\": 2\n}\n"
+	want := "{\"a\":[3,1],\"b\":2}\n"
 	data, err := os.ReadFile(filepath.Join(destination, "z.json"))
 	if err != nil {
 		t.Fatal(err)
