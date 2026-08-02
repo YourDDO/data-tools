@@ -42,3 +42,36 @@ func TestGenerateSetBonusIndexUsesFiligreePageTitleToPreventDataLoss(t *testing.
 		t.Fatalf("Enlightened Step index = %#v", got)
 	}
 }
+
+func TestGenerateSetBonusIndexUsesPageTitlesForSameNamedLevelVariants(t *testing.T) {
+	t.Parallel()
+	records := []dataset.ItemRecord{
+		{Category: "Helmet", Item: dataset.ItemData{
+			PageTitle: "Helm of the Black Dragon (Level 14)", Name: "Helm of the Black Dragon", MinLevel: "14",
+			SetBonus: []dataset.SetBonusOut{{Name: "Draconic Ferocity"}},
+		}},
+		{Category: "Helmet", Item: dataset.ItemData{
+			PageTitle: "Helm of the Black Dragon (Level 25)", Name: "Helm of the Black Dragon", MinLevel: "25",
+			SetBonus: []dataset.SetBonusOut{{Name: "Draconic Ferocity"}},
+		}},
+		{Category: "Helmet", Item: dataset.ItemData{
+			PageTitle: "Helm of the Black Dragon (Level 31)", Name: "Helm of the Black Dragon", MinLevel: "31",
+			SetBonus: []dataset.SetBonusOut{{Name: "Draconic Ferocity"}},
+		}},
+	}
+
+	got := GenerateSetBonusIndexFromRecords(records)["Draconic Ferocity"]
+	want := []SetItem{
+		{Name: "Helm of the Black Dragon (Level 14)", MinLevel: 14},
+		{Name: "Helm of the Black Dragon (Level 25)", MinLevel: 25},
+		{Name: "Helm of the Black Dragon (Level 31)", MinLevel: 31},
+	}
+	if len(got) != len(want) {
+		t.Fatalf("Draconic Ferocity index = %#v, want %#v", got, want)
+	}
+	for index := range want {
+		if got[index] != want[index] {
+			t.Fatalf("Draconic Ferocity index = %#v, want %#v", got, want)
+		}
+	}
+}

@@ -171,7 +171,9 @@ schemas. Its additional `setBonusIndex.json` contains only item `name` and
 `minLevel`, the two fields needed to display and level-sort set members.
 Filigree names come from their canonical page titles because the Compendium's
 filigree template `name` fields are not reliably unique and can otherwise
-cause distinct common or rare records to be deduplicated.
+cause distinct common or rare records to be deduplicated. Other items retain
+their display names unless multiple records in the same set share one; those
+variants use their canonical page titles so every set member remains unique.
 
 Fountain of Necrotic Might, Stormreaver Monument, and Zhentarim Attuned emit
 `upgrades.json`. Each entry includes the item `name` to identify the upgrade,
