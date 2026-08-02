@@ -78,12 +78,15 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 		err := fmt.Errorf("publication backend %q is not available", *backend)
 		return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
 	}
-	var store *publish.LocalStore
+	var active pipelinepkg.ActiveHashReader
+	var store publish.ObjectStore
 	if strings.TrimSpace(publishRoot) != "" {
-		store, err = publish.NewLocalStore(publishRoot)
-		if err != nil {
-			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
+		localStore, storeErr := publish.NewLocalStore(publishRoot)
+		if storeErr != nil {
+			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, storeErr)
 		}
+		active = localStore
+		store = localStore
 	}
 	if requestedPublish && store == nil {
 		err := fmt.Errorf("--publish-root is required when publication is enabled")
@@ -102,7 +105,7 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 	result, pipelineErr := pipelinepkg.Execute(ctx, cfg, pipelinepkg.ExecuteOptions{
 		DryRun: *dryRun, Publish: requestedPublish, PreserveWork: *preserveWork || *preserveWorkAlias || *debugAlias,
 	}, pipelinepkg.OrchestratorDependencies{
-		Source: client, Active: store, Store: store, Clock: dependencies.clock, Logger: logger,
+		Source: client, Active: active, Store: store, Clock: dependencies.clock, Logger: logger,
 	})
 	if encodeErr := json.NewEncoder(dependencies.stdout).Encode(result.PipelineResult); encodeErr != nil {
 		if pipelineErr != nil {

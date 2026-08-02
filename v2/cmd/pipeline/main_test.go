@@ -112,6 +112,40 @@ func TestPipelineDryRunCleansWorkAndDoesNotPublish(t *testing.T) {
 	}
 }
 
+func TestPipelineDryRunWithoutPublishRootPreservesCandidate(t *testing.T) {
+	setSafeEnvironment(t)
+	source := &fixtureSource{pages: readSourceFixture(t)}
+	server := newCompendiumServer(t, source)
+	defer server.Close()
+	workRoot := filepath.Join(t.TempDir(), "work")
+	args := []string{
+		"--base-url=" + server.URL, "--api-path=/api.php", "--game-version=81.3.0",
+		"--output-dir=" + workRoot, "--categories=Test", "--domains=gear-planner,zhentarim-attuned",
+		"--publish=false", "--dry-run", "--debug-preserve",
+	}
+	var stdout bytes.Buffer
+	if err := run(context.Background(), args, commandDependencies{
+		stdout: &stdout, stderr: &bytes.Buffer{}, clock: func() time.Time { return time.Unix(1785175200, 0) },
+	}); err != nil {
+		t.Fatal(err)
+	}
+	result := decodePipelineResult(t, stdout.Bytes())
+	if result.Outcome != contracts.PipelineOutcomeDryRun || !result.Changed || result.Published {
+		t.Fatalf("dry-run result = %#v", result)
+	}
+	candidateData, err := os.ReadFile(filepath.Join(result.OutputDir, "candidate", "candidate.json"))
+	if err != nil {
+		t.Fatalf("read preserved candidate: %v", err)
+	}
+	var candidate manifest.Candidate
+	if err := json.Unmarshal(candidateData, &candidate); err != nil {
+		t.Fatalf("decode preserved candidate: %v", err)
+	}
+	if candidate.GameVersion != "81.3.0" || candidate.MasterDatasetSHA256 == "" {
+		t.Fatalf("candidate = %#v", candidate)
+	}
+}
+
 func TestFailedValidationCannotAlterLatest(t *testing.T) {
 	setSafeEnvironment(t)
 	source := &fixtureSource{pages: readSourceFixture(t)}

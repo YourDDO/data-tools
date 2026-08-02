@@ -35,9 +35,10 @@ func response(status int, body string) *http.Response {
 	return &http.Response{StatusCode: status, Body: io.NopCloser(strings.NewReader(body)), Header: make(http.Header)}
 }
 
-func TestFetchCategoryContentPaginatesWithoutAuthentication(t *testing.T) {
+func TestFetchCategoryContentPaginatesWithoutDelayOrAuthentication(t *testing.T) {
 	t.Parallel()
 	var requests atomic.Int32
+	var sleepCalls atomic.Int32
 	doer := doerFunc(func(r *http.Request) (*http.Response, error) {
 		requests.Add(1)
 		if got := r.Header.Get("Authorization"); got != "" {
@@ -55,7 +56,10 @@ func TestFetchCategoryContentPaginatesWithoutAuthentication(t *testing.T) {
 		return response(http.StatusOK, `{"query":{"pages":[{"title":"Two","revisions":[{"slots":{"main":{"content":"second"}}}]}]}}`), nil
 	})
 
-	client, err := NewClient("http://private.example/api.php", WithHTTPClient(doer), WithSleeper(func(context.Context, time.Duration) error { return nil }))
+	client, err := NewClient("http://private.example/api.php", WithHTTPClient(doer), WithSleeper(func(context.Context, time.Duration) error {
+		sleepCalls.Add(1)
+		return nil
+	}))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -65,6 +69,9 @@ func TestFetchCategoryContentPaginatesWithoutAuthentication(t *testing.T) {
 	}
 	if requests.Load() != 2 || contents["One"] != "first" || contents["Two"] != "second" {
 		t.Fatalf("requests = %d, contents = %#v", requests.Load(), contents)
+	}
+	if sleepCalls.Load() != 0 {
+		t.Fatalf("pagination invoked sleeper %d times", sleepCalls.Load())
 	}
 }
 
