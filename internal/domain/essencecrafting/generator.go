@@ -69,7 +69,7 @@ func Write(outputRoot string, outputs Outputs) error {
 		{"indexes.json", outputs.Indexes},
 	}
 	for _, file := range files {
-		if err := dataset.WriteJSON(filepath.Join(outputRoot, file.name), file.value, true); err != nil {
+		if err := dataset.WriteJSON(filepath.Join(outputRoot, file.name), file.value); err != nil {
 			return err
 		}
 	}

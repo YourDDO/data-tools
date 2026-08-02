@@ -1,4 +1,1 @@
-[
-  {"pageTitle":"Electrocution: PRR","name":"Electrocution: PRR","type":"Common","grouping":"Electrocution","enchantments":[{"name":"Physical Resistance Rating","modifier":"3","bonus":"Filigree"}],"setBonus":[{"name":"Electrocution"}]},
-  {"pageTitle":"Electrocution: PRR (Rare)","name":"Electrocution: PRR","type":"Rare","grouping":"Electrocution","enchantments":[{"name":"Physical Resistance Rating","modifier":"3","bonus":"Filigree"},{"name":"Magical Resistance Rating","modifier":"2","bonus":"Filigree"}],"setBonus":[{"name":"Electrocution"}]}
-]
+[{"pageTitle":"Electrocution: PRR","name":"Electrocution: PRR","type":"Common","grouping":"Electrocution","enchantments":[{"name":"Physical Resistance Rating","modifier":"3","bonus":"Filigree"}],"setBonus":[{"name":"Electrocution"}]},{"pageTitle":"Electrocution: PRR (Rare)","name":"Electrocution: PRR","type":"Rare","grouping":"Electrocution","enchantments":[{"name":"Physical Resistance Rating","modifier":"3","bonus":"Filigree"},{"name":"Magical Resistance Rating","modifier":"2","bonus":"Filigree"}],"setBonus":[{"name":"Electrocution"}]}]

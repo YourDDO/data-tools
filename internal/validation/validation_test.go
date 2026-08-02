@@ -45,6 +45,26 @@ func TestCandidateReportAcceptsValidFixture(t *testing.T) {
 	}
 }
 
+func TestReleaseReportRejectsFormattedManifest(t *testing.T) {
+	t.Parallel()
+	candidateRoot, candidate := candidateFixture(t, []map[string]any{domainItem("Master Item")})
+	releaseRoot := filepath.Join(t.TempDir(), "release")
+	release, err := manifest.Assemble(candidateRoot, releaseRoot, candidate, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	formatted, err := json.MarshalIndent(release, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, filepath.Join(releaseRoot, "manifest.json"), string(append(formatted, '\n')))
+
+	report := ReleaseReport(releaseRoot, release, Options{})
+	if issue := findIssue(report, "compact-json"); issue == nil || issue.File != "manifest.json" {
+		t.Fatalf("issues = %#v, want compact manifest error", report.Issues)
+	}
+}
+
 func TestCandidateValidationFailureModes(t *testing.T) {
 	t.Parallel()
 	tests := []struct {
@@ -65,6 +85,18 @@ func TestCandidateValidationFailureModes(t *testing.T) {
 				writeTestJSON(t, filepath.Join(root, "example", "items.json"), []map[string]any{domainItem("Master Item"), domainItem("Another Item")})
 			},
 			rule: "file-hash-agreement",
+		},
+		{
+			name: "formatted generated file",
+			edit: func(t *testing.T, root string, candidate *manifest.Candidate) {
+				data, err := json.MarshalIndent([]map[string]any{domainItem("Master Item")}, "", "  ")
+				if err != nil {
+					t.Fatal(err)
+				}
+				writeTestFile(t, filepath.Join(root, "example", "items.json"), string(append(data, '\n')))
+				refreshCandidate(t, root, candidate)
+			},
+			rule: "compact-json",
 		},
 		{
 			name: "missing master reference",

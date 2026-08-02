@@ -1,6 +1,7 @@
 package dataset
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -33,21 +34,25 @@ func ReadJSON(path string, destination any) error {
 	return nil
 }
 
-func WriteJSON(path string, value any, indent bool) error {
-	var (
-		data []byte
-		err  error
-	)
-	if indent {
-		data, err = json.MarshalIndent(value, "", "  ")
-	} else {
-		data, err = json.Marshal(value)
-	}
+// WriteJSON writes compact deterministic JSON with one trailing newline.
+func WriteJSON(path string, value any) error {
+	data, err := json.Marshal(value)
 	if err != nil {
 		return fmt.Errorf("encode %s: %w", path, err)
 	}
 	data = append(data, '\n')
 	return WriteData(path, data)
+}
+
+// CompactJSON removes insignificant JSON whitespace and returns bytes with
+// exactly one trailing newline. Whitespace inside JSON strings is preserved.
+func CompactJSON(data []byte) ([]byte, error) {
+	var compact bytes.Buffer
+	if err := json.Compact(&compact, data); err != nil {
+		return nil, fmt.Errorf("compact JSON: %w", err)
+	}
+	compact.WriteByte('\n')
+	return compact.Bytes(), nil
 }
 
 // WriteData atomically writes already-serialized deterministic dataset bytes.
@@ -93,7 +98,7 @@ func WriteMasterIndex(root string, index MasterIndex) error {
 		}
 		return index.Files[i].Path < index.Files[j].Path
 	})
-	return WriteJSON(filepath.Join(root, MasterIndexName), index, true)
+	return WriteJSON(filepath.Join(root, MasterIndexName), index)
 }
 
 func LoadItems(root string) ([]ItemData, error) {
