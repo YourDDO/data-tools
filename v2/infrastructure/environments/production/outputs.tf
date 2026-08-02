@@ -53,11 +53,42 @@ output "codebuild_security_group_id" {
   value       = module.codebuild.codebuild_security_group_id
 }
 
+output "nat_gateway_id" {
+  description = "ID of the single public NAT Gateway used for CodeBuild internet egress."
+  value       = aws_nat_gateway.codebuild.id
+}
+
+output "nat_gateway_elastic_ip" {
+  description = "Elastic IPv4 address associated with the CodeBuild NAT Gateway."
+  value       = aws_eip.nat.public_ip
+}
+
+output "nat_gateway_public_subnet_id" {
+  description = "ID of the existing public subnet containing the NAT Gateway."
+  value       = data.aws_subnet.public.id
+}
+
+output "codebuild_private_route_table_id" {
+  description = "ID of the existing private route table whose default route targets the NAT Gateway."
+  value       = data.aws_route_table.codebuild_private.id
+}
+
+output "codebuild_private_subnet_id" {
+  description = "ID of the existing private subnet selected for CodeBuild."
+  value       = local.codebuild_private_subnet_id
+}
+
+output "schedule_arn" {
+  description = "EventBridge Scheduler schedule that starts the production CodeBuild project."
+  value       = module.scheduler.schedule_arn
+}
+
 output "referenced_shared_infrastructure" {
   description = "Existing resources read, but not owned, by this stack."
   value = {
     account_id                   = data.aws_caller_identity.current.account_id
     vpc_id                       = data.aws_vpc.shared.id
+    public_subnet_id             = data.aws_subnet.public.id
     private_subnet_ids           = sort([for subnet in data.aws_subnet.private : subnet.id])
     route53_zone_id              = data.aws_route53_zone.shared.zone_id
     compendium_security_group_id = data.aws_security_group.compendium.id

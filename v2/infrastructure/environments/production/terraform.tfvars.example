@@ -4,6 +4,7 @@ data_bucket_name = "replace-with-globally-unique-production-data-bucket"
 
 # Existing shared infrastructure: referenced by data sources, never owned here.
 vpc_id                      = "vpc-0123456789abcdef0"
+public_subnet_id             = "subnet-0a1b2c3d4e5f67890"
 private_subnet_ids           = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
 route53_zone_id              = "Z0123456789ABCDEFGHIJ"
 compendium_security_group_id = "sg-0123456789abcdef0"
@@ -19,6 +20,12 @@ source_version            = "main"
 codebuild_buildspec       = "v2/buildspec.yml"
 game_version              = "81.3.0"
 publish_enabled           = true
+
+# The example runs every day at 06:00 in New York. Keep disabled until the
+# infrastructure and one manual production build have been verified.
+schedule_expression = "cron(0 6 ? * * *)"
+schedule_timezone   = "America/New_York"
+schedule_enabled    = false
 
 # Plaintext values only. Reference Parameter Store or Secrets Manager from the
 # CodeBuild module before adding any secret runtime configuration.
