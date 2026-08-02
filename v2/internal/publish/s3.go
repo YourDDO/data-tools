@@ -5,11 +5,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"path"
 	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"github.com/aws/smithy-go"
 )
 
@@ -19,19 +21,20 @@ const (
 	jsonContentType       = "application/json"
 )
 
-// s3PutObjectAPI is the least-privilege subset of the AWS S3 client used by
+// s3ObjectAPI is the least-privilege subset of the AWS S3 client used by
 // publication. The SDK client satisfies this interface, and tests can replace
 // it without AWS credentials or network access.
-type s3PutObjectAPI interface {
+type s3ObjectAPI interface {
+	GetObject(context.Context, *s3.GetObjectInput, ...func(*s3.Options)) (*s3.GetObjectOutput, error)
 	PutObject(context.Context, *s3.PutObjectInput, ...func(*s3.Options)) (*s3.PutObjectOutput, error)
 }
 
 type S3Store struct {
-	client s3PutObjectAPI
+	client s3ObjectAPI
 	bucket string
 }
 
-func NewS3Store(client s3PutObjectAPI, bucket string) (*S3Store, error) {
+func NewS3Store(client s3ObjectAPI, bucket string) (*S3Store, error) {
 	if client == nil {
 		return nil, fmt.Errorf("S3 client is required")
 	}
@@ -39,6 +42,28 @@ func NewS3Store(client s3PutObjectAPI, bucket string) (*S3Store, error) {
 		return nil, fmt.Errorf("S3 bucket is required")
 	}
 	return &S3Store{client: client, bucket: bucket}, nil
+}
+
+func (s *S3Store) get(ctx context.Context, key string) ([]byte, error) {
+	if err := validateS3Key(key); err != nil {
+		return nil, err
+	}
+	output, err := s.client.GetObject(ctx, &s3.GetObjectInput{Bucket: aws.String(s.bucket), Key: aws.String(key)})
+	if err != nil {
+		return nil, fmt.Errorf("get S3 object %s: %w", key, err)
+	}
+	if output.Body == nil {
+		return nil, fmt.Errorf("get S3 object %s: response body is missing", key)
+	}
+	data, readErr := io.ReadAll(output.Body)
+	closeErr := output.Body.Close()
+	if readErr != nil {
+		return nil, fmt.Errorf("read S3 object %s: %w", key, readErr)
+	}
+	if closeErr != nil {
+		return nil, fmt.Errorf("close S3 object %s: %w", key, closeErr)
+	}
+	return data, nil
 }
 
 func (s *S3Store) Put(ctx context.Context, key string, data []byte, options PutOptions) error {
@@ -80,4 +105,16 @@ func validateS3Key(key string) error {
 func isPreconditionFailed(err error) bool {
 	var apiError smithy.APIError
 	return errors.As(err, &apiError) && apiError.ErrorCode() == "PreconditionFailed"
+}
+
+func isNoSuchKey(err error) bool {
+	if err == nil {
+		return false
+	}
+	var noSuchKey *types.NoSuchKey
+	if errors.As(err, &noSuchKey) {
+		return true
+	}
+	var apiError smithy.APIError
+	return errors.As(err, &apiError) && apiError.ErrorCode() == "NoSuchKey"
 }

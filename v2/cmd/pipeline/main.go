@@ -12,6 +12,9 @@ import (
 	"strings"
 	"time"
 
+	awsconfig "github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+
 	"yourddo-data-tools/v2/internal/compendium"
 	"yourddo-data-tools/v2/internal/config"
 	"yourddo-data-tools/v2/internal/contracts"
@@ -59,7 +62,9 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 	domains := flags.String("domains", strings.Join(cfg.Domains, ","), "comma-separated domains or all")
 	dryRun := flags.Bool("dry-run", false, "generate, validate, and assemble without publication writes")
 	publishEnabled := flags.Bool("publish", cfg.PublishEnabled, "publish and activate the validated release")
-	backend := flags.String("backend", "local", "publication backend (local)")
+	backend := flags.String("backend", "local", "publication backend: local or s3")
+	region := flags.String("region", cfg.AWSRegion, "AWS region for S3 publication")
+	bucket := flags.String("bucket", cfg.DataBucket, "S3 bucket for publication")
 	var publishRoot string
 	flags.StringVar(&publishRoot, "publish-root", "", "local filesystem publication root")
 	flags.StringVar(&publishRoot, "destination", "", "alias for --publish-root")
@@ -74,23 +79,43 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 	requestedPublish := *publishEnabled
 	cfg.PublishEnabled = false // The selected command backend owns publication validation.
 
-	if strings.ToLower(strings.TrimSpace(*backend)) != "local" {
+	selectedBackend := strings.ToLower(strings.TrimSpace(*backend))
+	if selectedBackend != "local" && selectedBackend != "s3" {
 		err := fmt.Errorf("publication backend %q is not available", *backend)
 		return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
 	}
 	var active pipelinepkg.ActiveHashReader
 	var store publish.ObjectStore
-	if strings.TrimSpace(publishRoot) != "" {
-		localStore, storeErr := publish.NewLocalStore(publishRoot)
+	switch selectedBackend {
+	case "local":
+		if strings.TrimSpace(publishRoot) != "" {
+			localStore, storeErr := publish.NewLocalStore(publishRoot)
+			if storeErr != nil {
+				return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, storeErr)
+			}
+			active = localStore
+			store = localStore
+		}
+		if requestedPublish && store == nil {
+			err := fmt.Errorf("--publish-root is required when local publication is enabled")
+			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
+		}
+	case "s3":
+		cfg.AWSRegion = strings.TrimSpace(*region)
+		cfg.DataBucket = strings.TrimSpace(*bucket)
+		if err := cfg.ValidateS3Publication(); err != nil {
+			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
+		}
+		awsConfig, loadErr := awsconfig.LoadDefaultConfig(ctx, awsconfig.WithRegion(cfg.AWSRegion))
+		if loadErr != nil {
+			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, fmt.Errorf("load AWS configuration: %w", loadErr))
+		}
+		s3Store, storeErr := publish.NewS3Store(s3.NewFromConfig(awsConfig), cfg.DataBucket)
 		if storeErr != nil {
 			return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, storeErr)
 		}
-		active = localStore
-		store = localStore
-	}
-	if requestedPublish && store == nil {
-		err := fmt.Errorf("--publish-root is required when publication is enabled")
-		return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
+		active = s3Store
+		store = s3Store
 	}
 
 	// Validate before constructing the client so malformed or credential-bearing

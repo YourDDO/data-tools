@@ -34,7 +34,7 @@ const (
 )
 
 type ActiveHashReader interface {
-	ActiveMasterHash(context.Context) (hash string, available bool, err error)
+	ActiveMasterHash(context.Context) (active publish.ActiveMaster, available bool, err error)
 }
 
 type ExecuteOptions struct {
@@ -121,6 +121,9 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	if options.Publish && dependencies.Store == nil {
 		return result, fail(StageConfiguration, fmt.Errorf("publication store is required when publishing is enabled"))
 	}
+	if options.Publish && dependencies.Active == nil {
+		return result, fail(StageConfiguration, fmt.Errorf("active release reader is required when publishing is enabled"))
+	}
 	if err := os.MkdirAll(cfg.OutputDir, 0o755); err != nil {
 		return result, fail(StageConfiguration, fmt.Errorf("create work directory: %w", err))
 	}
@@ -171,16 +174,24 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageCompare, "game_version", cfg.GameVersion, "master_sha256", masterHash)
 	if dependencies.Active != nil {
-		activeHash, available, err := dependencies.Active.ActiveMasterHash(ctx)
+		active, available, err := dependencies.Active.ActiveMasterHash(ctx)
 		if err != nil {
+			logger.ErrorContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "error")
 			return result, fail(StageCompare, err)
 		}
-		if available && activeHash == masterHash {
+		if !available {
+			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "initial-publication")
+		} else if active.MasterSHA256 == masterHash {
+			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "no-change")
 			complete(StageCompare, false, "active master dataset is unchanged")
 			result.Outcome = contracts.PipelineOutcomeNoChange
 			result.Changed = false
 			return result, nil
+		} else {
+			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "changed")
 		}
+	} else {
+		logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", "", "activeManifestKey", "", "activeMasterHash", "", "generatedMasterHash", masterHash, "comparisonResult", "changed")
 	}
 	complete(StageCompare, true, "master dataset changed")
 	result.Changed = true

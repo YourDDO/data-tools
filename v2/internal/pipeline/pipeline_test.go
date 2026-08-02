@@ -1,6 +1,7 @@
 package pipeline
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"io"
@@ -11,15 +12,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/types"
+	"github.com/aws/smithy-go"
+
 	"yourddo-data-tools/v2/internal/config"
 	"yourddo-data-tools/v2/internal/contracts"
+	"yourddo-data-tools/v2/internal/publish"
 )
-
-type activeHash string
-
-func (h activeHash) ActiveMasterHash(context.Context) (string, bool, error) {
-	return string(h), true, nil
-}
 
 type fakeSource struct {
 	pages map[string]string
@@ -150,23 +151,160 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	client := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256)}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
 	clockCalls := 0
-	dependencies.Active = activeHash(first.Candidate.MasterDatasetSHA256)
+	dependencies.Active = store
+	dependencies.Store = store
 	dependencies.Clock = func() time.Time {
 		clockCalls++
 		return time.Unix(2, 0)
 	}
-	second, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true}, dependencies)
+	var logs bytes.Buffer
+	dependencies.Logger = slog.New(slog.NewJSONHandler(&logs, nil))
+	cfg.Domains = []string{"must-not-be-resolved"}
+	second, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, dependencies)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if second.Outcome != contracts.PipelineOutcomeNoChange || clockCalls != 0 || second.Release != nil {
-		t.Fatalf("result = %#v, clock calls = %d", second, clockCalls)
+	if second.Outcome != contracts.PipelineOutcomeNoChange || clockCalls != 0 || second.Release != nil || len(client.puts) != 0 {
+		t.Fatalf("result = %#v, clock calls = %d, PutObject calls = %d", second, clockCalls, len(client.puts))
 	}
 	for _, stage := range second.Stages {
 		if stage.Name == StageGenerateDomains || stage.Name == StageAssembleRelease {
 			t.Fatalf("unchanged pipeline executed stage %s", stage.Name)
 		}
+	}
+	for _, field := range []string{
+		`"latestObjectKey":"latest.json"`,
+		`"activeManifestKey":"releases/81.3.0/1/manifest.json"`,
+		`"activeMasterHash":"` + first.Candidate.MasterDatasetSHA256 + `"`,
+		`"generatedMasterHash":"` + first.Candidate.MasterDatasetSHA256 + `"`,
+		`"comparisonResult":"no-change"`,
+	} {
+		if !strings.Contains(logs.String(), field) {
+			t.Fatalf("comparison logs do not contain %s:\n%s", field, logs.String())
+		}
+	}
+}
+
+func TestExecutePublishesChangedAndInitialMasterToS3(t *testing.T) {
+	t.Parallel()
+	tests := []struct {
+		name    string
+		objects map[string]string
+	}{
+		{name: "changed", objects: activeS3Objects(strings.Repeat("a", 64))},
+		{name: "initial publication", objects: map[string]string{}},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+			cfg := testConfig(t.TempDir(), []string{"gear-planner"})
+			client := &pipelineS3Client{objects: test.objects}
+			store, err := publish.NewS3Store(client, "yourddo-data-prod")
+			if err != nil {
+				t.Fatal(err)
+			}
+			result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+				Source: fakeSource{pages: map[string]string{
+					"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+				}},
+				Active: store,
+				Store:  store,
+				Clock:  func() time.Time { return time.Unix(2, 0) },
+				Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if result.Outcome != contracts.PipelineOutcomePublished || !result.Published || !result.Changed {
+				t.Fatalf("result = %#v", result)
+			}
+			if len(client.puts) == 0 || aws.ToString(client.puts[len(client.puts)-1].Key) != "latest.json" {
+				t.Fatalf("PutObject calls = %#v", client.puts)
+			}
+		})
+	}
+}
+
+func TestExecuteFailsActiveS3LookupWithoutPublishing(t *testing.T) {
+	t.Parallel()
+	const latest = `{"gameVersion":"81.3.0","dataVersion":1,"baseUrl":"/releases/81.3.0/1"}`
+	tests := []struct {
+		name      string
+		objects   map[string]string
+		getErrors map[string]error
+	}{
+		{name: "malformed latest", objects: map[string]string{"latest.json": "{"}},
+		{name: "missing manifest", objects: map[string]string{"latest.json": latest}},
+		{name: "malformed manifest", objects: map[string]string{"latest.json": latest, "releases/81.3.0/1/manifest.json": "{"}},
+		{name: "permission error", getErrors: map[string]error{"latest.json": &smithy.GenericAPIError{Code: "AccessDenied", Message: "denied", Fault: smithy.FaultClient}}},
+		{name: "network error", getErrors: map[string]error{"latest.json": errors.New("connection reset")}},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+			cfg := testConfig(t.TempDir(), []string{"must-not-be-resolved"})
+			client := &pipelineS3Client{objects: test.objects, getErrors: test.getErrors}
+			store, err := publish.NewS3Store(client, "yourddo-data-prod")
+			if err != nil {
+				t.Fatal(err)
+			}
+			clockCalls := 0
+			result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+				Source: fakeSource{pages: map[string]string{
+					"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+				}},
+				Active: store,
+				Store:  store,
+				Clock: func() time.Time {
+					clockCalls++
+					return time.Unix(2, 0)
+				},
+				Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+			})
+			if err == nil || !strings.Contains(err.Error(), "pipeline stage compare failed") {
+				t.Fatalf("error = %v", err)
+			}
+			if result.Outcome != contracts.PipelineOutcomeFailed || len(client.puts) != 0 || clockCalls != 0 {
+				t.Fatalf("result = %#v, PutObject calls = %d, clock calls = %d", result, len(client.puts), clockCalls)
+			}
+		})
+	}
+}
+
+type pipelineS3Client struct {
+	objects   map[string]string
+	getErrors map[string]error
+	puts      []*s3.PutObjectInput
+}
+
+func (c *pipelineS3Client) GetObject(_ context.Context, input *s3.GetObjectInput, _ ...func(*s3.Options)) (*s3.GetObjectOutput, error) {
+	key := aws.ToString(input.Key)
+	if err := c.getErrors[key]; err != nil {
+		return nil, err
+	}
+	value, exists := c.objects[key]
+	if !exists {
+		return nil, &types.NoSuchKey{}
+	}
+	return &s3.GetObjectOutput{Body: io.NopCloser(strings.NewReader(value))}, nil
+}
+
+func (c *pipelineS3Client) PutObject(_ context.Context, input *s3.PutObjectInput, _ ...func(*s3.Options)) (*s3.PutObjectOutput, error) {
+	copy := *input
+	c.puts = append(c.puts, &copy)
+	return &s3.PutObjectOutput{}, nil
+}
+
+func activeS3Objects(masterHash string) map[string]string {
+	return map[string]string{
+		"latest.json":                     `{"gameVersion":"81.3.0","dataVersion":1,"baseUrl":"/releases/81.3.0/1"}`,
+		"releases/81.3.0/1/manifest.json": `{"schemaVersion":1,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"` + masterHash + `","domains":[],"generatedFiles":[]}`,
 	}
 }
 
