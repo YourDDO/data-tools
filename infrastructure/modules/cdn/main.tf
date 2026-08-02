@@ -2,6 +2,10 @@ locals {
   origin_id = "s3-${var.bucket_id}"
 }
 
+data "aws_caller_identity" "current" {}
+
+data "aws_partition" "current" {}
+
 resource "aws_cloudfront_origin_access_control" "this" {
   name                              = "${var.bucket_id}-oac"
   description                       = "Access from the YourDDO data CDN to its private S3 origin"
@@ -75,22 +79,24 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   default_cache_behavior {
-    allowed_methods        = ["GET", "HEAD"]
-    cache_policy_id        = aws_cloudfront_cache_policy.data.id
-    cached_methods         = ["GET", "HEAD"]
-    compress               = true
-    target_origin_id       = local.origin_id
-    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods            = ["GET", "HEAD"]
+    cache_policy_id            = aws_cloudfront_cache_policy.data.id
+    cached_methods             = ["GET", "HEAD"]
+    compress                   = true
+    response_headers_policy_id = "60669652-455b-4ae9-85a4-c4c02393f86c"
+    target_origin_id           = local.origin_id
+    viewer_protocol_policy     = "redirect-to-https"
   }
 
   ordered_cache_behavior {
-    path_pattern           = "latest.json"
-    allowed_methods        = ["GET", "HEAD"]
-    cache_policy_id        = aws_cloudfront_cache_policy.latest.id
-    cached_methods         = ["GET", "HEAD"]
-    compress               = true
-    target_origin_id       = local.origin_id
-    viewer_protocol_policy = "redirect-to-https"
+    path_pattern               = "latest.json"
+    allowed_methods            = ["GET", "HEAD"]
+    cache_policy_id            = aws_cloudfront_cache_policy.latest.id
+    cached_methods             = ["GET", "HEAD"]
+    compress                   = true
+    response_headers_policy_id = "60669652-455b-4ae9-85a4-c4c02393f86c"
+    target_origin_id           = local.origin_id
+    viewer_protocol_policy     = "redirect-to-https"
   }
 
   restrictions {
@@ -106,44 +112,37 @@ resource "aws_cloudfront_distribution" "this" {
   }
 }
 
-data "aws_iam_policy_document" "origin" {
-  statement {
-    sid       = "DenyInsecureTransport"
-    effect    = "Deny"
-    actions   = ["s3:*"]
-    resources = [var.bucket_arn, "${var.bucket_arn}/*"]
-
-    principals {
-      type        = "*"
-      identifiers = ["*"]
-    }
-
-    condition {
-      test     = "Bool"
-      variable = "aws:SecureTransport"
-      values   = ["false"]
-    }
-  }
-
-  statement {
-    sid       = "AllowCloudFrontReadOnly"
-    actions   = ["s3:GetObject"]
-    resources = ["${var.bucket_arn}/*"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["cloudfront.amazonaws.com"]
-    }
-
-    condition {
-      test     = "StringEquals"
-      variable = "AWS:SourceArn"
-      values   = [aws_cloudfront_distribution.this.arn]
-    }
-  }
-}
-
 resource "aws_s3_bucket_policy" "origin" {
   bucket = var.bucket_id
-  policy = data.aws_iam_policy_document.origin.json
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid       = "DenyInsecureTransport"
+        Effect    = "Deny"
+        Action    = "s3:*"
+        Resource  = [var.bucket_arn, "${var.bucket_arn}/*"]
+        Principal = "*"
+        Condition = {
+          Bool = {
+            "aws:SecureTransport" = "false"
+          }
+        }
+      },
+      {
+        Sid      = "AllowCloudFrontReadOnly"
+        Effect   = "Allow"
+        Action   = "s3:GetObject"
+        Resource = "${var.bucket_arn}/*"
+        Principal = {
+          Service = "cloudfront.amazonaws.com"
+        }
+        Condition = {
+          StringEquals = {
+            "AWS:SourceArn" = "arn:${data.aws_partition.current.partition}:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.this.id}"
+          }
+        }
+      },
+    ]
+  })
 }

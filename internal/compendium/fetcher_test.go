@@ -316,6 +316,45 @@ func TestGeneratorReplacingMergesMasterIndexAcrossCategoryRuns(t *testing.T) {
 	}
 }
 
+func TestGeneratorEmitsCollarAndRuneArmCategories(t *testing.T) {
+	t.Parallel()
+	source := fixtureSource{categories: map[string]map[string]string{
+		"Collar": {
+			"Test Collar": "{{Template:Armor\n|name=Test Collar\n|type=Collar\n|minlevel=1\n}}",
+		},
+		"Rune Arm": {
+			"Test Rune Arm": "{{Template:RuneArm\n|name=Test Rune Arm\n|type=Rune Arm\n|minlevel=5\n}}",
+		},
+	}}
+	generator, err := NewGenerator(source)
+	if err != nil {
+		t.Fatal(err)
+	}
+	root := filepath.Join(t.TempDir(), "master")
+	result, err := generator.Generate(context.Background(), []string{"Collar", "Rune Arm"}, root)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	wantFiles := []dataset.MasterFile{
+		{Category: "Collar", Kind: "items", Path: "collar.json"},
+		{Category: "Rune Arm", Kind: "items", Path: "runeArm.json"},
+	}
+	if !reflect.DeepEqual(result.Master.Index.Files, wantFiles) {
+		t.Fatalf("master files = %#v, want %#v", result.Master.Index.Files, wantFiles)
+	}
+	wantTypes := map[string]string{"collar.json": "Collar", "runeArm.json": "Rune Arm"}
+	for relative, wantType := range wantTypes {
+		var items []dataset.ItemData
+		if err := dataset.ReadJSON(filepath.Join(root, relative), &items); err != nil {
+			t.Fatal(err)
+		}
+		if len(items) != 1 || items[0].Type != wantType {
+			t.Fatalf("%s items = %#v, want one item with type %q", relative, items, wantType)
+		}
+	}
+}
+
 func TestExpandCategoriesAllUsesEveryConcreteSourceCategory(t *testing.T) {
 	t.Parallel()
 	got := expandCategories([]string{"all"})
@@ -332,7 +371,7 @@ func TestExpandCategoriesAllUsesEveryConcreteSourceCategory(t *testing.T) {
 		seen[category] = true
 	}
 	for _, required := range []string{
-		"Augment", "Docent", "Ring", "Falchion", "Dart", "Quiver", "Filigrees", "Filigree Sets",
+		"Augment", "Collar", "Rune Arm", "Docent", "Ring", "Falchion", "Dart", "Quiver", "Filigrees", "Filigree Sets",
 	} {
 		if !seen[required] {
 			t.Errorf("All does not include %q", required)

@@ -34,6 +34,8 @@ var aggregateCategories = map[string][]string{
 	"Filigrees": {"Filigrees", "Filigree Sets"},
 }
 
+var standaloneSourceCategories = []string{"Augment", "Collar", "Rune Arm"}
+
 // Result describes a complete canonical master dataset. SHA256 is a stable
 // digest over the relative paths, byte sizes, and hashes of every output file.
 type Result struct {
@@ -622,7 +624,7 @@ func allSourceCategories() []string {
 		groups = append(groups, group)
 	}
 	sort.Strings(groups)
-	categories := []string{"Augment"}
+	categories := append([]string(nil), standaloneSourceCategories...)
 	for _, group := range groups {
 		categories = append(categories, aggregateCategories[group]...)
 	}
