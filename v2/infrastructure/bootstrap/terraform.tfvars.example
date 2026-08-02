@@ -1,0 +1,8 @@
+aws_region        = "us-east-2"
+state_bucket_name = "replace-with-globally-unique-terraform-state-bucket"
+
+tags = {
+  Environment = "shared"
+  ManagedBy   = "Terraform"
+  Project     = "yourddo-data-tools"
+}

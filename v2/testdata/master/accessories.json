@@ -1,0 +1,17 @@
+[
+  {"pageTitle":"Nearly Ring 10","name":"Nearly Ring 10","type":"Ring","minLevel":"10","enchantments":[{"name":"Nearly Complete: Ability Score"}],"setBonus":[{"name":"Fixture Set"}]},
+  {"pageTitle":"Fountain Relic","name":"Fountain Relic","type":"Trinket","minLevel":"10","enchantments":[{"name":"Upgradeable Item (Black Abbot)"},{"name":"Wisdom","modifier":"2"}]},
+  {"pageTitle":"Fountain Relic (Upgraded)","name":"Fountain Relic","type":"Trinket","minLevel":"10","enchantments":[{"name":"Wisdom","modifier":"3"}]},
+  {"pageTitle":"Zhentarim Relic","name":"Zhentarim Relic","type":"Necklace","minLevel":"15","enchantments":[{"name":"Zhentarim Attuned"},{"name":"Intelligence","modifier":"4"}]},
+  {"pageTitle":"Zhentarim Relic (Upgraded)","name":"Zhentarim Relic","type":"Necklace","minLevel":"15","enchantments":[{"name":"Intelligence","modifier":"5"}]},
+  {"pageTitle":"Nearly Finished Boots","name":"Nearly Finished Boots","type":"Boots","minLevel":"5","enchantments":[{"name":"Nearly Finished"}]},
+  {"pageTitle":"Almost There Gloves","name":"Almost There Gloves","type":"Gloves","minLevel":"7","enchantments":[{"name":"Almost There"}]},
+  {"pageTitle":"Finishing Touch Cloak","name":"Finishing Touch Cloak","type":"Cloak","minLevel":"7","enchantments":[{"name":"Finishing Touch"}]},
+  {"pageTitle":"Mad Helm","name":"Mad Helm","type":"Helmet","minLevel":"11","enchantments":[{"name":"Trace of Madness"}]},
+  {"pageTitle":"Suppressed Helm","name":"Suppressed Helm","type":"Helmet","minLevel":"13","enchantments":[{"name":"Suppressed Power"}]},
+  {"pageTitle":"Lost Helm","name":"Lost Helm","type":"Helmet","minLevel":"15","enchantments":[{"name":"Lost Purpose"}]},
+  {"pageTitle":"Heroic Relic","name":"Heroic Relic","type":"Trinket","minLevel":"25","enchantments":[{"name":"Attuned by Heroism: Tier 2"}]},
+  {"pageTitle":"Heroic Relic 10","name":"Heroic Relic 10","type":"Trinket","minLevel":"28","enchantments":[{"name":"Attuned to Heroism: Tier 10"}]},
+  {"pageTitle":"Dinosaur Bone Ring","name":"Dinosaur Bone Ring","type":"Ring","minLevel":"31","dropLocations":[{"sourceType":"AdventurePack","adventurePack":"Isle of Dread (Pack)"}],"enchantments":[{"name":"Empty Dinosaur Bone Item"}],"augments":[{"augmentType":"Isle of Dread: Scale Slot (Accessory)"}]},
+  {"pageTitle":"Unrelated Item","name":"Unrelated Item","type":"Ring","minLevel":"1","description":"Must not leak into filtered domains","enchantments":[]}
+]

@@ -1,0 +1,4 @@
+{
+  "Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1|enchantments={{ZhentarimAttuned}}}}",
+  "Test Item (Upgraded)": "{{Item|name=Test Item|type=Trinket|minlevel=2|enchantments={{Ability|Strength|2}}}}"
+}

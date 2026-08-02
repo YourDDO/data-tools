@@ -84,7 +84,7 @@ Published objects use this layout:
 | `scripts/` | Reserved for narrowly scoped automation that does not belong in Go or Task. |
 | `infrastructure/` | Terraform bootstrap, production composition, and reusable AWS modules. |
 | `Taskfile.yml` | Formatting, linting, testing, building, pipeline, and local-publication tasks. |
-| `buildspec.yml` | CodeBuild verification only; it does not deploy or publish. |
+| `buildspec.yml` | CodeBuild verification, generation, validation, and conditional S3 publication. |
 
 Generated production datasets are never committed. Local work defaults to `build/output/`, which is ignored.
 
@@ -266,7 +266,7 @@ Objects are written beneath `releases/<game-version>/<data-version>/` with creat
 Publish a validated candidate to S3 in production:
 
 ```bash
-AWS_REGION=us-east-1 \
+AWS_REGION=us-east-2 \
 DATA_BUCKET=yourddo-data-prod \
 task publish:s3
 ```
@@ -295,4 +295,4 @@ bytes currently published.
 
 ## Production infrastructure
 
-Production publication must use the `s3` backend and is never allowed to fall back to local storage. Terraform under `infrastructure/` defines the private data bucket, CDN, CodeBuild project, and schedule while referencing the existing shared network, DNS, certificate, and Compendium resources. See `infrastructure/README.md` for the state bootstrap, ownership boundaries, initialization, and validation workflow. Terraform is never applied automatically.
+Production publication must use the `s3` backend and is never allowed to fall back to local storage. Terraform under `infrastructure/` defines the private data bucket, CDN, and manually started CodeBuild project while referencing the existing shared network, DNS, certificate, and Compendium resources. See `infrastructure/README.md` for the state bootstrap, ownership boundaries, initialization, and validation workflow. Terraform is never applied automatically.

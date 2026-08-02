@@ -1,0 +1,5 @@
+bucket       = "replace-with-bootstrap-state-bucket"
+key          = "yourddo-data-tools/production/terraform.tfstate"
+region       = "us-east-2"
+encrypt      = true
+use_lockfile = true

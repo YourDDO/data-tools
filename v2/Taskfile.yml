@@ -1,0 +1,131 @@
+version: "3"
+
+set: [errexit, nounset, pipefail]
+
+vars:
+  GO_FILES:
+    sh: find cmd internal -type f -name '*.go' -print | sort | tr '\n' ' '
+
+env:
+  GOCACHE: /tmp/yourddo-data-tools-v2-go-build
+
+tasks:
+  default:
+    desc: Run every verification check
+    cmds:
+      - task: verify
+
+  fmt:
+    desc: Format Go source files
+    cmds:
+      - gofmt -w {{.GO_FILES}}
+
+  fmt:check:
+    desc: Check Go source formatting without modifying files
+    cmds:
+      - |
+        unformatted="$(gofmt -l {{.GO_FILES}})"
+        if [ -n "$unformatted" ]; then
+          echo "$unformatted"
+          exit 1
+        fi
+
+  lint:
+    desc: Run static analysis
+    cmds:
+      - go vet ./...
+
+  test:
+    desc: Run all unit and integration tests
+    cmds:
+      - go test ./...
+
+  test-race:
+    desc: Run all tests with the race detector
+    cmds:
+      - go test -race ./...
+
+  build:
+    desc: Build every command
+    cmds:
+      - go build ./cmd/...
+
+  generate-fixtures:
+    desc: Regenerate reviewed domain golden files
+    cmds:
+      - UPDATE_GOLDEN=1 go test ./internal/domain/registry -run TestGeneratorsMatchGoldenFilesAndAreByteDeterministic -count=1
+
+  validate-fixtures:
+    desc: Validate golden files and the fixture pipeline
+    cmds:
+      - go test ./internal/domain/registry ./internal/pipeline -count=1
+
+  verify:
+    desc: Run the complete local quality gate
+    cmds:
+      - task: fmt:check
+      - task: lint
+      - task: test
+      - task: test-race
+      - task: build
+      - task: validate-fixtures
+
+  check:
+    desc: Compatibility alias for the complete local quality gate
+    cmds:
+      - task: verify
+
+  pipeline:
+    desc: Run the complete local data pipeline
+    requires:
+      vars: [GAME_VERSION]
+    cmds:
+      - go run ./cmd/pipeline
+
+  publish:local:
+    desc: Publish the current candidate to a local filesystem
+    aliases: [publish-local]
+    requires:
+      vars: [PUBLISH_ROOT]
+    cmds:
+      - >-
+        go run ./cmd/publish-release
+        --backend=local
+        --destination="{{.PUBLISH_ROOT}}"
+
+  publish:s3:
+    desc: Publish the current candidate to the production S3 bucket
+    aliases: [publish-s3]
+    requires:
+      vars: [AWS_REGION, DATA_BUCKET]
+    cmds:
+      - >-
+        go run ./cmd/publish-release
+        --environment=production
+        --backend=s3
+        --region="{{.AWS_REGION}}"
+        --bucket="{{.DATA_BUCKET}}"
+
+  terraform:fmt:
+    desc: Format Terraform configuration
+    cmds:
+      - terraform fmt -recursive infrastructure
+
+  terraform:fmt:check:
+    desc: Check Terraform formatting without modifying files
+    cmds:
+      - terraform fmt -check -recursive infrastructure
+
+  terraform:validate:
+    desc: Initialize without a backend and validate both Terraform roots
+    cmds:
+      - terraform -chdir=infrastructure/bootstrap init -backend=false
+      - terraform -chdir=infrastructure/bootstrap validate
+      - terraform -chdir=infrastructure/environments/production init -backend=false
+      - terraform -chdir=infrastructure/environments/production validate
+
+  terraform:lock:
+    desc: Intentionally update pinned provider lock files
+    cmds:
+      - terraform -chdir=infrastructure/bootstrap init -backend=false -upgrade
+      - terraform -chdir=infrastructure/environments/production init -backend=false -upgrade

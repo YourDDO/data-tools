@@ -1,0 +1,11 @@
+{
+  "categories": {
+    "Broken Items": {
+      "Broken Source Record": "{{Item|name=Broken Source Record|type=Ring|minlevel=1"
+    },
+    "Augment": {
+      "Broken Augment Record": "{{Augment|name=Broken Augment Record|color=Red|minlevel=not-a-number}}"
+    }
+  },
+  "pages": {}
+}

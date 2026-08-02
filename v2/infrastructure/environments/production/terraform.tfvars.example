@@ -1,0 +1,34 @@
+aws_region       = "us-east-2"
+project_name     = "yourddo-data-tools"
+data_bucket_name = "replace-with-globally-unique-production-data-bucket"
+
+# Existing shared infrastructure: referenced by data sources, never owned here.
+vpc_id                      = "vpc-0123456789abcdef0"
+private_subnet_ids           = ["subnet-0123456789abcdef0", "subnet-0fedcba9876543210"]
+route53_zone_id              = "Z0123456789ABCDEFGHIJ"
+compendium_security_group_id = "sg-0123456789abcdef0"
+compendium_base_url          = "http://10.0.0.10"
+compendium_api_path          = "/api.php"
+compendium_port              = 80
+
+cdn_domain_name           = "cdn.yourddo.com"
+repository_url            = "https://github.com/example/yourddo-data-tools.git"
+repository_connection_arn = "arn:aws:codeconnections:us-east-2:123456789012:connection/00000000-0000-0000-0000-000000000000"
+repository_type           = "GITHUB"
+source_version            = "main"
+codebuild_buildspec       = "v2/buildspec.yml"
+game_version              = "81.3.0"
+publish_enabled           = true
+
+# Plaintext values only. Reference Parameter Store or Secrets Manager from the
+# CodeBuild module before adding any secret runtime configuration.
+codebuild_environment_variables = {}
+
+# Optional secrets are referenced, not created. IAM access is granted only to
+# the exact ARN paired with each CodeBuild environment value.
+codebuild_parameter_store_environment_variables = {}
+codebuild_secrets_manager_environment_variables = {}
+
+tags = {
+  Owner = "data-platform"
+}
