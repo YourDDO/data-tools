@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "category": "Test",
+      "kind": "items",
+      "path": "test.json"
+    }
+  ]
+}

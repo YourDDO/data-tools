@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Mighty Effect",
+    "enchantments": [{"name": "Strength", "bonus": "Enhancement"}],
+    "prefix": ["Ring"],
+    "group": "Ability Scores",
+    "stat": [2, 4]
+  }
+]

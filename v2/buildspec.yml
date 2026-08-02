@@ -1,0 +1,49 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - |
+        cd "$CODEBUILD_SRC_DIR/v2"
+        go version
+        go mod download
+        go install github.com/go-task/task/v3/cmd/task@v3.45.4
+  build:
+    commands:
+      - |
+        cd "$CODEBUILD_SRC_DIR/v2"
+        export PATH="$(go env GOPATH)/bin:$PATH"
+
+        task verify
+
+        pipeline_result="/tmp/yourddo-pipeline-result.json"
+        go run ./cmd/pipeline \
+          --publish=false \
+          --dry-run \
+          --debug-preserve \
+          > "$pipeline_result"
+
+        candidate_file="$(find "$OUTPUT_DIR" -type f -path '*/candidate/candidate.json' -print -quit)"
+        if [ -z "$candidate_file" ]; then
+          echo "pipeline did not produce candidate.json" >&2
+          exit 1
+        fi
+        candidate_root="${candidate_file%/candidate.json}"
+
+        case "$PUBLISH_ENABLED" in
+          true)
+            go run ./cmd/publish-release \
+              --environment=production \
+              --backend=s3 \
+              --region="$AWS_REGION" \
+              --bucket="$DATA_BUCKET" \
+              --release-root="$candidate_root"
+            ;;
+          false)
+            echo "publication disabled; validated candidate retained at $candidate_root"
+            ;;
+          *)
+            echo "PUBLISH_ENABLED must be true or false" >&2
+            exit 1
+            ;;
+        esac

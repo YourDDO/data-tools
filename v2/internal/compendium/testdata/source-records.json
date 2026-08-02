@@ -1,0 +1,22 @@
+{
+  "categories": {
+    "Test Items": {
+      "Item 10": "{{Item|name=Item 10|type=Ring|minlevel=10|droplocation={{DropLocation|Quest Z|Chest B}}{{DropLocation|Quest A|Chest A}}|enchantments={{Ability|Strength|2}}{{Ability|Dexterity|1}}}}",
+      "Item 2": "{{Item|name=Item 2|type=Ring|minlevel=2|droplocation={{DropLocation|Quest B|Chest B}}{{DropLocation|Quest A|Chest A}}|enchantments={{Ability|Wisdom|1}}}}",
+      "Legacy Item (Pre U10)": "{{Item|name=Legacy Item|type=Trinket|minlevel=1|enchantments={{Ability|Constitution|1}}}}",
+      "Discontinued Item": "{{Item|name=Discontinued Item|type=Trinket|minlevel=1}}{{Discontinued}}",
+      "Drop Discontinued Item": "{{Item|name=Drop Discontinued Item|type=Trinket|minlevel=1|droplocation={{Discontinued |legacy}}}}",
+      "Starter Item": "{{Item|name=Starter Item|type=Trinket|minlevel=1}}{{Starter}}"
+    },
+    "Augment": {
+      "Ruby of Testing 10": "{{Augment|name=Ruby of Testing 10|color=Red|minlevel=10|weight=0.01|enchantments={{Ability|Strength|2}}}}",
+      "Ruby of Testing 2": "{{Augment|name=Ruby of Testing 2|color=Red|minlevel=2|weight=0.01|enchantments={{Ability|Dexterity|1}}}}",
+      "Old Ruby (Pre U10)": "{{Augment|name=Old Ruby|color=Red|minlevel=1}}",
+      "Starter Ruby": "{{Augment|name=Starter Ruby|color=Red|minlevel=1}}{{Starter}}",
+      "Discontinued Ruby": "{{Augment|name=Discontinued Ruby|color=Red|minlevel=1}}{{Discontinued}}"
+    }
+  },
+  "pages": {
+    "Filigree_Item_Sets": "{| class=\"compendiumtable\"\n|-\n|{{FiligreeTitle|Fixture Set 10}}\n|\n: 3 Pieces Equipped: +3 Constitution\n: 2 Pieces Equipped: +2 Strength\n|-\n|{{FiligreeTitle|Fixture Set 2}}\n|\n: 2 Pieces Equipped: +1 Wisdom\n|}"
+  }
+}
