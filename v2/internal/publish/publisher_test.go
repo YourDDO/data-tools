@@ -1,7 +1,10 @@
 package publish
 
 import (
+	"bytes"
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"os"
@@ -11,6 +14,7 @@ import (
 
 	"yourddo-data-tools/v2/internal/hashing"
 	"yourddo-data-tools/v2/internal/manifest"
+	"yourddo-data-tools/v2/internal/manual"
 )
 
 type recordingStore struct {
@@ -114,6 +118,51 @@ func TestPublisherDoesNotCallStoreWhenValidationFails(t *testing.T) {
 	}
 }
 
+func TestPublishedManualPayloadHashMatchesExactObjectBytes(t *testing.T) {
+	t.Parallel()
+	root, baseCandidate := testCandidate(t)
+	source := t.TempDir()
+	if err := os.WriteFile(filepath.Join(source, "settings.json"), []byte(`{"z":2,"a":[3,1]}`), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	payloads, err := manual.Prepare(source, filepath.Join(root, "manual"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	candidate, err := manifest.BuildCandidate("81.3.0", "source", baseCandidate.MasterDatasetSHA256, root, payloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	store := &recordingStore{}
+	publisher, err := New(store, func() time.Time { return time.Unix(10, 0) })
+	if err != nil {
+		t.Fatal(err)
+	}
+	release, err := publisher.Publish(context.Background(), root, candidate)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(release.ManualPayloads) != 1 {
+		t.Fatalf("manual payloads = %#v", release.ManualPayloads)
+	}
+	object := store.values["releases/81.3.0/10/manual/settings.json"]
+	staged, err := os.ReadFile(filepath.Join(root, "manual", "settings.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(object, staged) {
+		t.Fatalf("published bytes differ from staged canonical bytes:\n%s\n%s", object, staged)
+	}
+	digest := sha256.Sum256(object)
+	metadata := release.ManualPayloads[0]
+	if metadata.SHA256 != hex.EncodeToString(digest[:]) || metadata.SizeBytes != int64(len(object)) {
+		t.Fatalf("metadata = %#v, object size = %d", metadata, len(object))
+	}
+	if store.keys[len(store.keys)-1] != "latest.json" {
+		t.Fatalf("last publication write = %q", store.keys[len(store.keys)-1])
+	}
+}
+
 func TestLocalStoreEnforcesImmutability(t *testing.T) {
 	t.Parallel()
 	store, err := NewLocalStore(t.TempDir())
@@ -173,7 +222,7 @@ func testCandidate(t *testing.T) (string, manifest.Candidate) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	candidate, err := manifest.BuildCandidate("81.3.0", "source", masterHash, root)
+	candidate, err := manifest.BuildCandidate("81.3.0", "source", masterHash, root, nil)
 	if err != nil {
 		t.Fatal(err)
 	}

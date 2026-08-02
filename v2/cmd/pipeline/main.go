@@ -57,6 +57,7 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 	flags.StringVar(&cfg.CompendiumBaseURL, "base-url", cfg.CompendiumBaseURL, "Compendium base URL")
 	flags.StringVar(&cfg.CompendiumAPIPath, "api-path", cfg.CompendiumAPIPath, "Compendium API path")
 	flags.StringVar(&cfg.OutputDir, "output-dir", cfg.OutputDir, "parent directory for isolated pipeline work")
+	flags.StringVar(&cfg.ManualInputDir, "manual-input-dir", cfg.ManualInputDir, "directory containing manually maintained JSON payloads")
 	flags.StringVar(&cfg.GameVersion, "game-version", cfg.GameVersion, "numeric game version")
 	categories := flags.String("categories", strings.Join(cfg.Categories, ","), "comma-separated Compendium categories")
 	domains := flags.String("domains", strings.Join(cfg.Domains, ","), "comma-separated domains or all")
@@ -84,7 +85,7 @@ func run(ctx context.Context, args []string, dependencies commandDependencies) e
 		err := fmt.Errorf("publication backend %q is not available", *backend)
 		return configurationFailure(ctx, logger, dependencies.stdout, cfg.GameVersion, err)
 	}
-	var active pipelinepkg.ActiveHashReader
+	var active pipelinepkg.ActiveReleaseReader
 	var store publish.ObjectStore
 	switch selectedBackend {
 	case "local":

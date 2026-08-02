@@ -226,6 +226,7 @@ func setSafeEnvironment(t *testing.T) {
 	}
 	t.Setenv(config.PublishEnabledEnv, "false")
 	t.Setenv(config.WarningsAsErrorsEnv, "false")
+	t.Setenv(config.ManualInputDirEnv, filepath.Join(t.TempDir(), "manual"))
 }
 
 func readSourceFixture(t *testing.T) map[string]string {

@@ -18,6 +18,7 @@ const (
 	CompendiumBaseURLEnv = "COMPENDIUM_BASE_URL"
 	CompendiumAPIPathEnv = "COMPENDIUM_API_PATH"
 	OutputDirEnv         = "OUTPUT_DIR"
+	ManualInputDirEnv    = "MANUAL_INPUT_DIR"
 	AWSRegionEnv         = "AWS_REGION"
 	DataBucketEnv        = "DATA_BUCKET"
 	CDNBaseURLEnv        = "CDN_BASE_URL"
@@ -30,6 +31,7 @@ const (
 	defaultCompendiumBaseURL = "https://ddocompendium.com"
 	defaultCompendiumAPIPath = "/api.php"
 	defaultOutputDir         = "build/output"
+	defaultManualInputDir    = "inputs/manual"
 )
 
 var (
@@ -42,6 +44,7 @@ type Config struct {
 	CompendiumBaseURL string
 	CompendiumAPIPath string
 	OutputDir         string
+	ManualInputDir    string
 	AWSRegion         string
 	DataBucket        string
 	CDNBaseURL        string
@@ -61,6 +64,7 @@ func Defaults() Config {
 		CompendiumBaseURL: defaultCompendiumBaseURL,
 		CompendiumAPIPath: defaultCompendiumAPIPath,
 		OutputDir:         defaultOutputDir,
+		ManualInputDir:    defaultManualInputDir,
 		Categories:        []string{"All"},
 		Domains:           registry.Names(),
 	}
@@ -94,6 +98,7 @@ func readEnvironment(lookup func(string) (string, bool)) (Config, error) {
 	setString(lookup, CompendiumBaseURLEnv, &cfg.CompendiumBaseURL)
 	setString(lookup, CompendiumAPIPathEnv, &cfg.CompendiumAPIPath)
 	setString(lookup, OutputDirEnv, &cfg.OutputDir)
+	setString(lookup, ManualInputDirEnv, &cfg.ManualInputDir)
 	setString(lookup, AWSRegionEnv, &cfg.AWSRegion)
 	setString(lookup, DataBucketEnv, &cfg.DataBucket)
 	setString(lookup, CDNBaseURLEnv, &cfg.CDNBaseURL)
@@ -132,6 +137,9 @@ func (c Config) Validate() error {
 	}
 	if strings.TrimSpace(c.OutputDir) == "" {
 		failures = append(failures, OutputDirEnv+" must not be empty")
+	}
+	if strings.TrimSpace(c.ManualInputDir) == "" {
+		failures = append(failures, ManualInputDirEnv+" must not be empty")
 	}
 	if !gameVersionPattern.MatchString(c.GameVersion) {
 		failures = append(failures, GameVersionEnv+" must use numeric major.minor.patch form (for example 81.3.0)")

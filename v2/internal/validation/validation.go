@@ -16,6 +16,7 @@ import (
 	"yourddo-data-tools/v2/internal/domain/registry"
 	"yourddo-data-tools/v2/internal/hashing"
 	"yourddo-data-tools/v2/internal/manifest"
+	"yourddo-data-tools/v2/internal/manual"
 )
 
 const (
@@ -116,7 +117,7 @@ func MasterReport(root string) Report {
 }
 
 func GeneratedFiles(root string, files []contracts.GeneratedFileMetadata) error {
-	report := generatedFilesReport(root, files, false)
+	report := generatedFilesReport(root, files, nil, false)
 	report.merge(validateRecordFiles(root, files, nil))
 	report.sort()
 	return report.Err(false)
@@ -167,12 +168,13 @@ func Release(root string, value manifest.Manifest) error {
 func ReleaseReport(root string, value manifest.Manifest, options Options) Report {
 	var report Report
 	options = normalizeOptions(options)
-	if value.SchemaVersion != contracts.ReleaseManifestSchemaVersion || value.GameVersion == "" || value.DataVersion <= 0 || value.MasterDatasetSHA256 == "" {
-		report.add(Error, "release", "manifest.json", "<file>", "required-fields", "release identity, schema version, and master hash must be complete")
+	if value.SchemaVersion != contracts.ReleaseManifestSchemaVersion || value.GameVersion == "" || value.DataVersion <= 0 || value.MasterDatasetSHA256 == "" || value.ReleaseFingerprint == "" {
+		report.add(Error, "release", "manifest.json", "<file>", "required-fields", "release identity, schema version, master hash, and release fingerprint must be complete")
 	}
-	report.merge(generatedFilesReport(root, value.GeneratedFiles, true))
+	report.merge(generatedFilesReport(root, value.GeneratedFiles, value.ManualPayloads, true))
+	report.merge(manualPayloadsReport(root, value.ManualPayloads, "manifest.json"))
 	report.merge(validateDomainSummaries(value.Domains, value.GeneratedFiles, "manifest.json"))
-	report.merge(validateCandidateContents(root, value.MasterDatasetSHA256, value.GeneratedFiles, options))
+	report.merge(validateCandidateContents(root, value.MasterDatasetSHA256, value.ReleaseFingerprint, value.GeneratedFiles, value.ManualPayloads, options))
 	report.sort()
 	return report
 }
@@ -185,23 +187,29 @@ func Candidate(root string, value manifest.Candidate) error {
 func CandidateReport(root string, value manifest.Candidate, options Options) Report {
 	var report Report
 	options = normalizeOptions(options)
-	if value.SchemaVersion != contracts.ReleaseManifestSchemaVersion || value.GameVersion == "" || value.SourceSHA256 == "" || value.MasterDatasetSHA256 == "" {
-		report.add(Error, "release", "candidate.json", "<file>", "required-fields", "candidate identity, schema version, source hash, and master hash must be complete")
+	if value.SchemaVersion != contracts.ReleaseManifestSchemaVersion || value.GameVersion == "" || value.SourceSHA256 == "" || value.MasterDatasetSHA256 == "" || value.ReleaseFingerprint == "" {
+		report.add(Error, "release", "candidate.json", "<file>", "required-fields", "candidate identity, schema version, source hash, master hash, and release fingerprint must be complete")
 	}
-	report.merge(generatedFilesReport(root, value.GeneratedFiles, true))
+	report.merge(generatedFilesReport(root, value.GeneratedFiles, value.ManualPayloads, true))
+	report.merge(manualPayloadsReport(root, value.ManualPayloads, "candidate.json"))
 	report.merge(validateDomainSummaries(value.Domains, value.GeneratedFiles, "candidate.json"))
-	report.merge(validateCandidateContents(root, value.MasterDatasetSHA256, value.GeneratedFiles, options))
+	report.merge(validateCandidateContents(root, value.MasterDatasetSHA256, value.ReleaseFingerprint, value.GeneratedFiles, value.ManualPayloads, options))
 	report.sort()
 	return report
 }
 
-func validateCandidateContents(root, expectedMasterHash string, files []manifest.File, options Options) Report {
+func validateCandidateContents(root, expectedMasterHash, expectedReleaseFingerprint string, files []manifest.File, payloads []contracts.ManualPayloadMetadata, options Options) Report {
 	var report Report
 	masterRoot := filepath.Join(root, "master")
 	if hash, err := hashing.Directory(masterRoot); err != nil {
 		report.add(Error, "master", "master", "<file>", "master-hash-agreement", err.Error())
 	} else if hash != expectedMasterHash {
 		report.add(Error, "master", "master", "<file>", "master-hash-agreement", "master dataset hash does not match candidate metadata")
+	}
+	if fingerprint, err := manifest.ReleaseFingerprint(expectedMasterHash, payloads); err != nil {
+		report.add(Error, "release", "manifest.json", "<file>", "release-fingerprint-agreement", err.Error())
+	} else if fingerprint != expectedReleaseFingerprint {
+		report.add(Error, "release", "manifest.json", "<file>", "release-fingerprint-agreement", "release fingerprint does not match master and manual payload metadata")
 	}
 	report.merge(MasterReport(masterRoot))
 	master, err := dataset.LoadMaster(masterRoot)
@@ -216,7 +224,7 @@ func validateCandidateContents(root, expectedMasterHash string, files []manifest
 	return report
 }
 
-func generatedFilesReport(root string, files []manifest.File, exact bool) Report {
+func generatedFilesReport(root string, files []manifest.File, payloads []contracts.ManualPayloadMetadata, exact bool) Report {
 	var report Report
 	seen := make(map[string]struct{}, len(files))
 	expected := make(map[string]struct{}, len(files))
@@ -259,6 +267,12 @@ func generatedFilesReport(root string, files []manifest.File, exact bool) Report
 			report.add(Error, datasetName, entry.Path, "<file>", "file-size-agreement", "file size does not match the manifest")
 		}
 	}
+	for _, payload := range payloads {
+		cleaned, ok := cleanRelative(payload.Path)
+		if ok {
+			expected[filepath.ToSlash(cleaned)] = struct{}{}
+		}
+	}
 	paths, err := hashing.Files(root)
 	if err != nil {
 		report.add(Error, "release", "<directory>", "<file>", "readable-files", err.Error())
@@ -275,6 +289,60 @@ func generatedFilesReport(root string, files []manifest.File, exact bool) Report
 		}
 	}
 	report.merge(jsonDirectoryReport(root))
+	return report
+}
+
+func manualPayloadsReport(root string, payloads []contracts.ManualPayloadMetadata, metadataFile string) Report {
+	var report Report
+	seenNames := make(map[string]struct{}, len(payloads))
+	seenPaths := make(map[string]struct{}, len(payloads))
+	for position, payload := range payloads {
+		recordID := fmt.Sprintf("manualPayloads[%d]", position)
+		if payload.Name == "" || payload.Path == "" || payload.SHA256 == "" || payload.SizeBytes <= 0 {
+			report.add(Error, "manual", metadataFile, recordID, "required-fields", "name, path, positive sizeBytes, and sha256 are required")
+		}
+		if _, exists := seenNames[payload.Name]; exists {
+			report.add(Error, "manual", metadataFile, payload.Name, "unique-identifier", "manual payload name is duplicated")
+		}
+		seenNames[payload.Name] = struct{}{}
+		if _, exists := seenPaths[payload.Path]; exists {
+			report.add(Error, "manual", metadataFile, payload.Path, "unique-identifier", "manual payload path is duplicated")
+		}
+		seenPaths[payload.Path] = struct{}{}
+		cleaned, ok := cleanRelative(payload.Path)
+		if !ok || !strings.HasPrefix(filepath.ToSlash(cleaned), "manual/") || filepath.Ext(cleaned) != ".json" {
+			report.add(Error, "manual", payload.Path, "<file>", "safe-path", "manual payload path must be a JSON file beneath manual/")
+			continue
+		}
+		relativeName := strings.TrimSuffix(strings.TrimPrefix(filepath.ToSlash(cleaned), "manual/"), ".json")
+		if payload.Name != relativeName {
+			report.add(Error, "manual", payload.Path, "<file>", "manifest-file-agreement", "logical name does not agree with the release path")
+		}
+		if !validSHA256(payload.SHA256) {
+			report.add(Error, "manual", payload.Path, "<file>", "file-hash-agreement", "sha256 must be a 64-character hexadecimal digest")
+		}
+		data, err := os.ReadFile(filepath.Join(root, cleaned))
+		if err != nil {
+			report.add(Error, "manual", payload.Path, "<file>", "manifest-file-agreement", err.Error())
+			continue
+		}
+		canonical, err := manual.Canonicalize(data)
+		if err != nil {
+			report.add(Error, "manual", payload.Path, "<file>", "valid-json", err.Error())
+		} else if !bytes.Equal(canonical, data) {
+			report.add(Error, "manual", payload.Path, "<file>", "canonical-json", "manual payload bytes are not canonical")
+		}
+		hash, size, err := hashing.File(filepath.Join(root, cleaned))
+		if err != nil {
+			continue
+		}
+		if hash != payload.SHA256 {
+			report.add(Error, "manual", payload.Path, "<file>", "file-hash-agreement", "file SHA-256 does not match the manifest")
+		}
+		if size != payload.SizeBytes {
+			report.add(Error, "manual", payload.Path, "<file>", "file-size-agreement", "file size does not match the manifest")
+		}
+	}
 	return report
 }
 

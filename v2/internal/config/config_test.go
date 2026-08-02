@@ -11,6 +11,7 @@ func TestLoadValidConfiguration(t *testing.T) {
 		CompendiumBaseURLEnv: "http://compendium.internal",
 		CompendiumAPIPathEnv: "/w/api.php",
 		OutputDirEnv:         "/tmp/output",
+		ManualInputDirEnv:    "/tmp/manual",
 		AWSRegionEnv:         "us-east-2",
 		DataBucketEnv:        "yourddo-data-prod",
 		CDNBaseURLEnv:        "https://data.example.com",
@@ -35,7 +36,7 @@ func TestLoadUsesSafeLocalDefaults(t *testing.T) {
 	if cfg.PublishEnabled || cfg.DataBucket != "" || cfg.AWSRegion != "" || cfg.CDNBaseURL != "" {
 		t.Fatalf("unsafe publication defaults = %#v", cfg)
 	}
-	if cfg.OutputDir != defaultOutputDir || cfg.CompendiumAPIPath != defaultCompendiumAPIPath {
+	if cfg.OutputDir != defaultOutputDir || cfg.ManualInputDir != defaultManualInputDir || cfg.CompendiumAPIPath != defaultCompendiumAPIPath {
 		t.Fatalf("local defaults = %#v", cfg)
 	}
 	if want := []string{"All"}; !reflect.DeepEqual(cfg.Categories, want) {
@@ -53,6 +54,7 @@ func TestLoadRejectsInvalidConfigurations(t *testing.T) {
 		{name: "invalid game version", values: map[string]string{GameVersionEnv: "Update 81"}, wantInError: GameVersionEnv},
 		{name: "invalid boolean", values: map[string]string{GameVersionEnv: "81.3.0", PublishEnabledEnv: "sometimes"}, wantInError: PublishEnabledEnv},
 		{name: "invalid warning policy", values: map[string]string{GameVersionEnv: "81.3.0", WarningsAsErrorsEnv: "sometimes"}, wantInError: WarningsAsErrorsEnv},
+		{name: "empty manual input", values: map[string]string{GameVersionEnv: "81.3.0", ManualInputDirEnv: ""}, wantInError: ManualInputDirEnv},
 		{name: "relative API path", values: map[string]string{GameVersionEnv: "81.3.0", CompendiumAPIPathEnv: "api.php"}, wantInError: CompendiumAPIPathEnv},
 		{name: "publish fields required", values: map[string]string{GameVersionEnv: "81.3.0", PublishEnabledEnv: "true"}, wantInError: AWSRegionEnv},
 		{name: "invalid bucket", values: map[string]string{GameVersionEnv: "81.3.0", DataBucketEnv: "Not_A_Bucket"}, wantInError: DataBucketEnv},

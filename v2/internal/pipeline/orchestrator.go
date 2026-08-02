@@ -15,6 +15,7 @@ import (
 	"yourddo-data-tools/v2/internal/contracts"
 	"yourddo-data-tools/v2/internal/hashing"
 	"yourddo-data-tools/v2/internal/manifest"
+	"yourddo-data-tools/v2/internal/manual"
 	"yourddo-data-tools/v2/internal/publish"
 	"yourddo-data-tools/v2/internal/validation"
 )
@@ -25,6 +26,7 @@ const (
 	StageNormalize       = "normalize"
 	StageWriteMaster     = "write-master"
 	StageHashMaster      = "hash-master"
+	StagePrepareManual   = "prepare-manual"
 	StageCompare         = "compare"
 	StageGenerateDomains = "generate-domains"
 	StageValidate        = "validate"
@@ -33,8 +35,8 @@ const (
 	StageActivateRelease = "activate-release"
 )
 
-type ActiveHashReader interface {
-	ActiveMasterHash(context.Context) (active publish.ActiveMaster, available bool, err error)
+type ActiveReleaseReader interface {
+	ActiveReleaseFingerprint(context.Context) (active publish.ActiveRelease, available bool, err error)
 }
 
 type ExecuteOptions struct {
@@ -45,7 +47,7 @@ type ExecuteOptions struct {
 
 type OrchestratorDependencies struct {
 	Source    compendium.Source
-	Active    ActiveHashReader
+	Active    ActiveReleaseReader
 	Store     publish.ObjectStore
 	Clock     func() time.Time
 	Logger    *slog.Logger
@@ -76,7 +78,7 @@ func (e *StageError) Unwrap() error { return e.Err }
 // one isolated directory, which is retained only when PreserveWork is set.
 func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dependencies OrchestratorDependencies) (result Result, returnErr error) {
 	result.PipelineResult.Outcome = contracts.PipelineOutcomeFailed
-	result.PipelineResult.Stages = make([]contracts.PipelineStageResult, 0, 11)
+	result.PipelineResult.Stages = make([]contracts.PipelineStageResult, 0, 12)
 	logger := dependencies.Logger
 	if logger == nil {
 		logger = slog.New(slog.NewJSONHandler(os.Stderr, nil))
@@ -172,28 +174,41 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	result.Candidate.MasterDatasetSHA256 = masterHash
 	complete(StageHashMaster, true, "")
 
-	logger.InfoContext(ctx, "pipeline stage started", "stage", StageCompare, "game_version", cfg.GameVersion, "master_sha256", masterHash)
+	logger.InfoContext(ctx, "pipeline stage started", "stage", StagePrepareManual, "game_version", cfg.GameVersion, "master_sha256", masterHash)
+	manualPayloads, err := manual.Prepare(cfg.ManualInputDir, filepath.Join(candidateRoot, "manual"))
+	if err != nil {
+		return result, fail(StagePrepareManual, err)
+	}
+	releaseFingerprint, err := manifest.ReleaseFingerprint(masterHash, manualPayloads)
+	if err != nil {
+		return result, fail(StagePrepareManual, err)
+	}
+	result.Candidate.ReleaseFingerprint = releaseFingerprint
+	result.Candidate.ManualPayloads = manualPayloads
+	complete(StagePrepareManual, true, "")
+
+	logger.InfoContext(ctx, "pipeline stage started", "stage", StageCompare, "game_version", cfg.GameVersion, "master_sha256", masterHash, "release_fingerprint", releaseFingerprint)
 	if dependencies.Active != nil {
-		active, available, err := dependencies.Active.ActiveMasterHash(ctx)
+		active, available, err := dependencies.Active.ActiveReleaseFingerprint(ctx)
 		if err != nil {
-			logger.ErrorContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "error")
+			logger.ErrorContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "error")
 			return result, fail(StageCompare, err)
 		}
 		if !available {
-			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "initial-publication")
-		} else if active.MasterSHA256 == masterHash {
-			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "no-change")
-			complete(StageCompare, false, "active master dataset is unchanged")
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "initial-publication")
+		} else if active.ReleaseFingerprint == releaseFingerprint {
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "no-change")
+			complete(StageCompare, false, "active release inputs are unchanged")
 			result.Outcome = contracts.PipelineOutcomeNoChange
 			result.Changed = false
 			return result, nil
 		} else {
-			logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "comparisonResult", "changed")
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
 		}
 	} else {
-		logger.InfoContext(ctx, "master dataset comparison", "stage", StageCompare, "latestObjectKey", "", "activeManifestKey", "", "activeMasterHash", "", "generatedMasterHash", masterHash, "comparisonResult", "changed")
+		logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", "", "activeManifestKey", "", "activeMasterHash", "", "generatedMasterHash", masterHash, "activeReleaseFingerprint", "", "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
 	}
-	complete(StageCompare, true, "master dataset changed")
+	complete(StageCompare, true, "release inputs changed")
 	result.Changed = true
 
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageGenerateDomains, "game_version", cfg.GameVersion, "master_sha256", masterHash)
@@ -210,11 +225,11 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	if err := validation.GeneratedFiles(candidateRoot, generated.Files); err != nil {
 		return result, fail(StageValidate, fmt.Errorf("validate domain datasets: %w", err))
 	}
-	sourceHash, err := sourceFingerprint(masterHash, cfg)
+	sourceHash, err := sourceFingerprint(releaseFingerprint, cfg)
 	if err != nil {
 		return result, fail(StageValidate, err)
 	}
-	candidate, err := manifest.BuildCandidate(cfg.GameVersion, sourceHash, masterHash, candidateRoot)
+	candidate, err := manifest.BuildCandidate(cfg.GameVersion, sourceHash, masterHash, candidateRoot, manualPayloads)
 	if err != nil {
 		return result, fail(StageValidate, err)
 	}

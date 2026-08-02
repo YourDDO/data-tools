@@ -207,7 +207,7 @@ func candidateFixture(t *testing.T, domainItems []map[string]any) (string, manif
 	if err != nil {
 		t.Fatal(err)
 	}
-	candidate, err := manifest.BuildCandidate("81.3.0", strings.Repeat("a", 64), masterHash, root)
+	candidate, err := manifest.BuildCandidate("81.3.0", strings.Repeat("a", 64), masterHash, root, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -220,7 +220,7 @@ func refreshCandidate(t *testing.T, root string, candidate *manifest.Candidate) 
 	if err != nil {
 		t.Fatal(err)
 	}
-	updated, err := manifest.BuildCandidate(candidate.GameVersion, candidate.SourceSHA256, masterHash, root)
+	updated, err := manifest.BuildCandidate(candidate.GameVersion, candidate.SourceSHA256, masterHash, root, candidate.ManualPayloads)
 	if err != nil {
 		t.Fatal(err)
 	}

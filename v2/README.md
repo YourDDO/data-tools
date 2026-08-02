@@ -1,6 +1,6 @@
 # YourDDO Data Tools v2
 
-This Go 1.26 module is the new home of the complete YourDDO data pipeline. It fetches source pages from the DDO Compendium MediaWiki `api.php`, converts them into canonical master datasets, generates domain-specific data, validates and hashes every output, and prepares immutable releases for publication.
+This Go 1.26 module is the new home of the complete YourDDO data pipeline. It fetches source pages from the DDO Compendium MediaWiki `api.php`, converts them into canonical master datasets, incorporates manually maintained JSON payloads, generates domain-specific data, validates and hashes every output, and prepares immutable releases for publication.
 
 The module currently lives under `v2/` so the existing Amplify deployment tools remain unchanged. It will move to the repository root after the staged migration is accepted.
 
@@ -21,6 +21,7 @@ Deployment settings are read from environment variables and validated before the
 | `COMPENDIUM_BASE_URL` | `https://ddocompendium.com` | Absolute HTTP(S) URL with no credentials, query, or fragment. |
 | `COMPENDIUM_API_PATH` | `/api.php` | Absolute URL path with no query or fragment. |
 | `OUTPUT_DIR` | `build/output` | Non-empty pipeline output path. |
+| `MANUAL_INPUT_DIR` | `inputs/manual` | Directory recursively containing manually maintained lowercase `.json` payloads; a missing or empty directory is allowed. |
 | `AWS_REGION` | None | Required when publication is enabled; must be a valid AWS region name. |
 | `DATA_BUCKET` | None | Required when publication is enabled; must be a valid S3 bucket name. |
 | `CDN_BASE_URL` | None | Required when publication is enabled; must be an absolute HTTPS URL. |
@@ -44,7 +45,9 @@ Stable JSON structures live in `internal/contracts`. JSON field names are lower 
 - `dataVersion` is a Unix timestamp assigned by the publisher only when it publishes a changed candidate snapshot.
 - Candidate metadata contains hashes and file metadata but no `dataVersion` or generation time, so repeated generation from identical inputs is deterministic.
 
-`manifest.json` contains `schemaVersion`, the release identity, `masterDatasetSha256`, sorted domain summaries, and sorted generated-file entries. Each file entry identifies its domain, relative path, byte size, and SHA-256 hash. Domain summaries include their name, file count, total bytes, and a deterministic SHA-256 hash. Pipeline and per-stage result contracts contain statuses and messages but no clock-derived duration or generation timestamp.
+Manifest schema version 2 adds `releaseFingerprint` and sorted `manualPayloads` while retaining `masterDatasetSha256` as a separate diagnostic field. Each manual entry contains its logical `name`, release-relative `path`, canonical byte size, and SHA-256. The release fingerprint combines the canonical master hash with every sorted manual name, path, and hash. Existing schema-version-1 manifests have no fingerprint and therefore cause one changed release when first encountered.
+
+Manual JSON object keys are serialized deterministically and source formatting does not affect hashes. Array order is always preserved because arrays may be semantically ordered. The exact canonical bytes that are hashed are assembled and published without reserialization.
 
 Published objects use this layout:
 
@@ -52,6 +55,7 @@ Published objects use this layout:
 /latest.json
 /releases/{gameVersion}/{dataVersion}/manifest.json
 /releases/{gameVersion}/{dataVersion}/master/
+/releases/{gameVersion}/{dataVersion}/manual/
 /releases/{gameVersion}/{dataVersion}/{domain}/
 /releases/{gameVersion}/{dataVersion}/essence-crafting/
 ```
@@ -77,10 +81,12 @@ Published objects use this layout:
 | `internal/domain/` | Pure, canonical-input-only generators and their single registration point. |
 | `internal/hashing/` | Stable SHA-256 file and directory hashing. |
 | `internal/manifest/` | Candidate release manifests and the production-pointer contract. |
+| `internal/manual/` | Manual JSON discovery, strict decoding, canonicalization, and hashing. |
 | `internal/pipeline/` | Fetch, change detection, generation, validation, and candidate orchestration. |
 | `internal/publish/` | Backend-neutral publication and the development filesystem backend. |
 | `internal/validation/` | Master, domain, JSON, and release-manifest validation. |
 | `testdata/` | Small, non-production fixtures used by tests and local examples. |
+| `inputs/manual/` | Manually maintained JSON payloads included directly in releases. |
 | `scripts/` | Reserved for narrowly scoped automation that does not belong in Go or Task. |
 | `infrastructure/` | Terraform bootstrap, production composition, and reusable AWS modules. |
 | `Taskfile.yml` | Formatting, linting, testing, building, pipeline, and local-publication tasks. |
@@ -231,8 +237,9 @@ task pipeline \
 ```
 
 `cmd/pipeline` is the primary executable. It creates an isolated work
-directory, fetches and normalizes the master dataset, hashes it, compares that
-hash with the active local or S3 release when one is configured, generates domains
+directory, fetches and normalizes the master dataset, canonicalizes and hashes
+manual payloads, compares the complete release fingerprint with the active local
+or S3 release when one is configured, generates domains
 only for changed data, validates and locally assembles the immutable release,
 then cleans the work directory. Its JSON result reports one of `published`,
 `no-change`, `failed`, or `dry-run`; structured JSON logs are written to
@@ -248,7 +255,7 @@ go run ./cmd/pipeline \
   --publish-root=/tmp/yourddo-published
 ```
 
-The local publisher reads `latest.json` and its manifest for change detection.
+The local publisher reads `latest.json` and its manifest for complete-release change detection.
 All immutable release files and `manifest.json` are uploaded before the
 separate activation stage replaces `latest.json`. A validation or upload
 failure therefore cannot move the active pointer. Validation checks JSON and
@@ -274,7 +281,7 @@ task publish:s3
 ```
 
 The S3 backend uses the AWS SDK for Go v2 default credential chain and retryer.
-It reads `latest.json` and the active manifest before domain generation, and
+It reads `latest.json` and the active manifest after canonicalizing release inputs but before domain generation, and
 requires `s3:GetObject` and `s3:PutObject` for the configured bucket keys. Immutable
 objects are sent with `If-None-Match: *`, so an existing snapshot cannot be
 replaced without a separate read operation or a check-then-write race. No ACL

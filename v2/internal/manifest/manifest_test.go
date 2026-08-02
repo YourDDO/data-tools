@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"yourddo-data-tools/v2/internal/contracts"
 )
 
 func TestCandidateIsDeterministicAndHasNoPublicationTimestamp(t *testing.T) {
@@ -22,11 +24,11 @@ func TestCandidateIsDeterministicAndHasNoPublicationTimestamp(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	first, err := BuildCandidate("81.3.0", "source", "master", root)
+	first, err := BuildCandidate("81.3.0", "source", "master", root, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-	second, err := BuildCandidate("81.3.0", "source", "master", root)
+	second, err := BuildCandidate("81.3.0", "source", "master", root, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -49,9 +51,37 @@ func TestCandidateIsDeterministicAndHasNoPublicationTimestamp(t *testing.T) {
 	}
 }
 
+func TestReleaseFingerprintIsIndependentOfPayloadDiscoveryOrder(t *testing.T) {
+	t.Parallel()
+	payloads := []contracts.ManualPayloadMetadata{
+		{Name: "z", Path: "manual/z.json", SHA256: strings.Repeat("b", 64), SizeBytes: 20},
+		{Name: "a", Path: "manual/a.json", SHA256: strings.Repeat("a", 64), SizeBytes: 10},
+	}
+	first, err := ReleaseFingerprint(strings.Repeat("c", 64), payloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	payloads[0], payloads[1] = payloads[1], payloads[0]
+	second, err := ReleaseFingerprint(strings.Repeat("c", 64), payloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if first != second {
+		t.Fatalf("fingerprints differ by input order: %s != %s", first, second)
+	}
+	payloads = payloads[:1]
+	removed, err := ReleaseFingerprint(strings.Repeat("c", 64), payloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if removed == first {
+		t.Fatal("removing a manual payload did not change the fingerprint")
+	}
+}
+
 func TestReleaseRequiresPositiveDataVersion(t *testing.T) {
 	t.Parallel()
-	_, err := Release(Candidate{SchemaVersion: 1, GameVersion: "81.3.0", MasterDatasetSHA256: "master"}, 0)
+	_, err := Release(Candidate{SchemaVersion: 2, GameVersion: "81.3.0", MasterDatasetSHA256: "master", ReleaseFingerprint: "fingerprint"}, 0)
 	if err == nil {
 		t.Fatal("Release succeeded with zero data version")
 	}

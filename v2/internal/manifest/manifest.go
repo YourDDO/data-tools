@@ -22,11 +22,13 @@ type Candidate struct {
 	GameVersion         string                            `json:"gameVersion"`
 	SourceSHA256        string                            `json:"sourceSha256"`
 	MasterDatasetSHA256 string                            `json:"masterDatasetSha256"`
+	ReleaseFingerprint  string                            `json:"releaseFingerprint"`
+	ManualPayloads      []contracts.ManualPayloadMetadata `json:"manualPayloads"`
 	Domains             []contracts.DatasetMetadata       `json:"domains"`
 	GeneratedFiles      []contracts.GeneratedFileMetadata `json:"generatedFiles"`
 }
 
-func BuildCandidate(gameVersion, sourceHash, masterHash, root string) (Candidate, error) {
+func BuildCandidate(gameVersion, sourceHash, masterHash, root string, manualPayloads []contracts.ManualPayloadMetadata) (Candidate, error) {
 	if strings.TrimSpace(gameVersion) == "" || sourceHash == "" || masterHash == "" {
 		return Candidate{}, fmt.Errorf("game version, source hash, and master dataset hash are required")
 	}
@@ -35,24 +37,43 @@ func BuildCandidate(gameVersion, sourceHash, masterHash, root string) (Candidate
 		return Candidate{}, err
 	}
 	files := make([]contracts.GeneratedFileMetadata, 0, len(paths))
-	for _, path := range paths {
-		hash, size, err := hashing.File(filepath.Join(root, filepath.FromSlash(path)))
+	for _, filePath := range paths {
+		if strings.HasPrefix(filePath, "manual/") {
+			continue
+		}
+		hash, size, err := hashing.File(filepath.Join(root, filepath.FromSlash(filePath)))
 		if err != nil {
 			return Candidate{}, err
 		}
-		domain, err := domainForPath(path)
+		domain, err := domainForPath(filePath)
 		if err != nil {
 			return Candidate{}, err
 		}
 		files = append(files, contracts.GeneratedFileMetadata{
-			Domain: domain, Path: path, SHA256: hash, SizeBytes: size,
+			Domain: domain, Path: filePath, SHA256: hash, SizeBytes: size,
 		})
+	}
+	payloads := append([]contracts.ManualPayloadMetadata{}, manualPayloads...)
+	sort.Slice(payloads, func(i, j int) bool {
+		if payloads[i].Name != payloads[j].Name {
+			return payloads[i].Name < payloads[j].Name
+		}
+		if payloads[i].Path != payloads[j].Path {
+			return payloads[i].Path < payloads[j].Path
+		}
+		return payloads[i].SHA256 < payloads[j].SHA256
+	})
+	releaseFingerprint, err := ReleaseFingerprint(masterHash, payloads)
+	if err != nil {
+		return Candidate{}, err
 	}
 	return Candidate{
 		SchemaVersion:       contracts.ReleaseManifestSchemaVersion,
 		GameVersion:         gameVersion,
 		SourceSHA256:        sourceHash,
 		MasterDatasetSHA256: masterHash,
+		ReleaseFingerprint:  releaseFingerprint,
+		ManualPayloads:      payloads,
 		Domains:             summarize(files),
 		GeneratedFiles:      files,
 	}, nil
@@ -62,16 +83,45 @@ func Release(candidate Candidate, dataVersion int64) (Manifest, error) {
 	if dataVersion <= 0 {
 		return Manifest{}, fmt.Errorf("data version must be a positive Unix timestamp")
 	}
-	if strings.TrimSpace(candidate.GameVersion) == "" || candidate.MasterDatasetSHA256 == "" {
-		return Manifest{}, fmt.Errorf("candidate game version and master dataset hash are required")
+	if strings.TrimSpace(candidate.GameVersion) == "" || candidate.MasterDatasetSHA256 == "" || candidate.ReleaseFingerprint == "" {
+		return Manifest{}, fmt.Errorf("candidate game version, master dataset hash, and release fingerprint are required")
 	}
 	return Manifest{
 		SchemaVersion:       candidate.SchemaVersion,
 		ReleaseIdentity:     contracts.ReleaseIdentity{GameVersion: candidate.GameVersion, DataVersion: dataVersion},
 		MasterDatasetSHA256: candidate.MasterDatasetSHA256,
+		ReleaseFingerprint:  candidate.ReleaseFingerprint,
+		ManualPayloads:      append([]contracts.ManualPayloadMetadata(nil), candidate.ManualPayloads...),
 		Domains:             append([]contracts.DatasetMetadata(nil), candidate.Domains...),
 		GeneratedFiles:      append([]contracts.GeneratedFileMetadata(nil), candidate.GeneratedFiles...),
 	}, nil
+}
+
+// ReleaseFingerprint hashes the canonical master hash and sorted manual
+// payload identity tuples. Size is deliberately diagnostic rather than part of
+// release identity.
+func ReleaseFingerprint(masterHash string, payloads []contracts.ManualPayloadMetadata) (string, error) {
+	if strings.TrimSpace(masterHash) == "" {
+		return "", fmt.Errorf("master dataset hash is required")
+	}
+	ordered := append([]contracts.ManualPayloadMetadata(nil), payloads...)
+	sort.Slice(ordered, func(i, j int) bool {
+		if ordered[i].Name != ordered[j].Name {
+			return ordered[i].Name < ordered[j].Name
+		}
+		if ordered[i].Path != ordered[j].Path {
+			return ordered[i].Path < ordered[j].Path
+		}
+		return ordered[i].SHA256 < ordered[j].SHA256
+	})
+	parts := []string{masterHash}
+	for _, payload := range ordered {
+		if strings.TrimSpace(payload.Name) == "" || strings.TrimSpace(payload.Path) == "" || strings.TrimSpace(payload.SHA256) == "" {
+			return "", fmt.Errorf("manual payload name, path, and hash are required")
+		}
+		parts = append(parts, hashing.Combine(payload.Name, payload.Path, payload.SHA256))
+	}
+	return hashing.Combine(parts...), nil
 }
 
 func summarize(files []contracts.GeneratedFileMetadata) []contracts.DatasetMetadata {

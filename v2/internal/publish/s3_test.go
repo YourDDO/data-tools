@@ -137,25 +137,26 @@ func TestS3StoreRejectsUnsafeKeyBeforeCallingAWS(t *testing.T) {
 	}
 }
 
-func TestS3StoreReadsActiveMaster(t *testing.T) {
+func TestS3StoreReadsActiveReleaseFingerprint(t *testing.T) {
 	t.Parallel()
 	const (
 		latestKey    = "latest.json"
 		manifestKey  = "releases/81.3.0/1/manifest.json"
 		masterHash   = "76e7e35aa6cd2ae8620667b5ab1dd275a67cb6138208dd97e5c2c1e5e80ddb5e"
+		fingerprint  = "86e7e35aa6cd2ae8620667b5ab1dd275a67cb6138208dd97e5c2c1e5e80ddb5e"
 		latestJSON   = `{"gameVersion":"81.3.0","dataVersion":1,"baseUrl":"/releases/81.3.0/1"}`
-		manifestJSON = `{"schemaVersion":1,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"` + masterHash + `","domains":[],"generatedFiles":[]}`
+		manifestJSON = `{"schemaVersion":2,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"` + masterHash + `","releaseFingerprint":"` + fingerprint + `","manualPayloads":[],"domains":[],"generatedFiles":[]}`
 	)
 	client := &recordingS3Client{objects: map[string]string{latestKey: latestJSON, manifestKey: manifestJSON}}
 	store, err := NewS3Store(client, "yourddo-data-prod")
 	if err != nil {
 		t.Fatal(err)
 	}
-	active, available, err := store.ActiveMasterHash(context.Background())
+	active, available, err := store.ActiveReleaseFingerprint(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !available || active.LatestObjectKey != latestKey || active.ActiveManifestKey != manifestKey || active.MasterSHA256 != masterHash {
+	if !available || active.LatestObjectKey != latestKey || active.ActiveManifestKey != manifestKey || active.MasterSHA256 != masterHash || active.ReleaseFingerprint != fingerprint {
 		t.Fatalf("active = %#v, available = %t", active, available)
 	}
 	if len(client.getInputs) != 2 || aws.ToString(client.getInputs[0].Key) != latestKey || aws.ToString(client.getInputs[1].Key) != manifestKey {
@@ -163,7 +164,7 @@ func TestS3StoreReadsActiveMaster(t *testing.T) {
 	}
 }
 
-func TestS3StoreActiveMasterFailureHandling(t *testing.T) {
+func TestS3StoreActiveReleaseFailureHandling(t *testing.T) {
 	t.Parallel()
 	const (
 		latestKey   = "latest.json"
@@ -191,7 +192,7 @@ func TestS3StoreActiveMasterFailureHandling(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			_, available, err := store.ActiveMasterHash(context.Background())
+			_, available, err := store.ActiveReleaseFingerprint(context.Background())
 			if test.wantError == "" {
 				if err != nil || available {
 					t.Fatalf("available = %t, error = %v", available, err)

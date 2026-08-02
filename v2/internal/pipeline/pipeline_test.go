@@ -151,7 +151,7 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	client := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256)}
+	client := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256, first.Candidate.ReleaseFingerprint)}
 	store, err := publish.NewS3Store(client, "yourddo-data-prod")
 	if err != nil {
 		t.Fatal(err)
@@ -188,6 +188,165 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 		if !strings.Contains(logs.String(), field) {
 			t.Fatalf("comparison logs do not contain %s:\n%s", field, logs.String())
 		}
+	}
+}
+
+func TestExecuteManualPayloadChangeDetection(t *testing.T) {
+	t.Parallel()
+	root := t.TempDir()
+	cfg := testConfig(root, []string{"gear-planner"})
+	cfg.ManualInputDir = filepath.Join(root, "inputs", "manual")
+	writeManualPayload(t, cfg.ManualInputDir, "settings.json", `{"value":1,"ordered":[2,1]}`)
+	dependencies := OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{
+			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+		}},
+		Clock:  func() time.Time { return time.Unix(1, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	}
+	first, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(first.Candidate.ManualPayloads) != 1 {
+		t.Fatalf("manual payloads = %#v", first.Candidate.ManualPayloads)
+	}
+
+	writeManualPayload(t, cfg.ManualInputDir, "settings.json", "{\n  \"ordered\": [2, 1],\n  \"value\": 1\n}\n")
+	unchangedClient := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256, first.Candidate.ReleaseFingerprint)}
+	unchangedStore, err := publish.NewS3Store(unchangedClient, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	clockCalls := 0
+	formattedConfig := cfg
+	formattedConfig.Domains = []string{"must-not-be-resolved"}
+	formatted, err := Execute(context.Background(), formattedConfig, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: dependencies.Source, Active: unchangedStore, Store: unchangedStore,
+		Clock:  func() time.Time { clockCalls++; return time.Unix(2, 0) },
+		Logger: dependencies.Logger,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if formatted.Outcome != contracts.PipelineOutcomeNoChange || clockCalls != 0 || len(unchangedClient.puts) != 0 {
+		t.Fatalf("formatted result = %#v, clock calls = %d, writes = %d", formatted, clockCalls, len(unchangedClient.puts))
+	}
+
+	writeManualPayload(t, cfg.ManualInputDir, "settings.json", `{"value":2,"ordered":[2,1]}`)
+	changedClient := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256, first.Candidate.ReleaseFingerprint)}
+	changedStore, err := publish.NewS3Store(changedClient, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	changed, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: dependencies.Source, Active: changedStore, Store: changedStore,
+		Clock: func() time.Time { return time.Unix(2, 0) }, Logger: dependencies.Logger,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if changed.Outcome != contracts.PipelineOutcomePublished || changed.Candidate.MasterDatasetSHA256 != first.Candidate.MasterDatasetSHA256 || changed.Candidate.ReleaseFingerprint == first.Candidate.ReleaseFingerprint {
+		t.Fatalf("changed result = %#v", changed)
+	}
+	wantManualKey := "releases/81.3.0/2/manual/settings.json"
+	foundManual := false
+	for _, input := range changedClient.puts {
+		if aws.ToString(input.Key) == wantManualKey {
+			foundManual = true
+		}
+	}
+	if !foundManual {
+		t.Fatalf("manual object %s was not uploaded", wantManualKey)
+	}
+}
+
+func TestExecuteAddingOrRemovingManualPayloadCreatesRelease(t *testing.T) {
+	t.Parallel()
+	for _, mutation := range []string{"add", "remove"} {
+		t.Run(mutation, func(t *testing.T) {
+			root := t.TempDir()
+			cfg := testConfig(root, []string{"gear-planner"})
+			cfg.ManualInputDir = filepath.Join(root, "inputs", "manual")
+			writeManualPayload(t, cfg.ManualInputDir, "first.json", `{"value":1}`)
+			dependencies := OrchestratorDependencies{
+				Source: fakeSource{pages: map[string]string{"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}"}},
+				Clock:  func() time.Time { return time.Unix(1, 0) }, Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+			}
+			first, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true}, dependencies)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if mutation == "add" {
+				writeManualPayload(t, cfg.ManualInputDir, "nested/second.json", `{"value":2}`)
+			} else if err := os.Remove(filepath.Join(cfg.ManualInputDir, "first.json")); err != nil {
+				t.Fatal(err)
+			}
+			client := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256, first.Candidate.ReleaseFingerprint)}
+			store, err := publish.NewS3Store(client, "yourddo-data-prod")
+			if err != nil {
+				t.Fatal(err)
+			}
+			result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+				Source: dependencies.Source, Active: store, Store: store,
+				Clock: func() time.Time { return time.Unix(2, 0) }, Logger: dependencies.Logger,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if result.Outcome != contracts.PipelineOutcomePublished || result.Candidate.ReleaseFingerprint == first.Candidate.ReleaseFingerprint {
+				t.Fatalf("result = %#v", result)
+			}
+		})
+	}
+}
+
+func TestExecuteRejectsMalformedManualJSONBeforePublication(t *testing.T) {
+	t.Parallel()
+	root := t.TempDir()
+	cfg := testConfig(root, []string{"gear-planner"})
+	cfg.ManualInputDir = filepath.Join(root, "inputs", "manual")
+	writeManualPayload(t, cfg.ManualInputDir, "broken.json", `{"value":`)
+	client := &pipelineS3Client{objects: map[string]string{}}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	clockCalls := 0
+	result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}"}},
+		Active: store, Store: store, Clock: func() time.Time { clockCalls++; return time.Unix(2, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	})
+	if err == nil || !strings.Contains(err.Error(), "pipeline stage prepare-manual failed") {
+		t.Fatalf("error = %v", err)
+	}
+	if result.Outcome != contracts.PipelineOutcomeFailed || clockCalls != 0 || len(client.puts) != 0 {
+		t.Fatalf("result = %#v, clock calls = %d, writes = %d", result, clockCalls, len(client.puts))
+	}
+}
+
+func TestExecuteTreatsLegacyManifestWithoutFingerprintAsChanged(t *testing.T) {
+	t.Parallel()
+	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
+	client := &pipelineS3Client{objects: map[string]string{
+		"latest.json":                     `{"gameVersion":"81.3.0","dataVersion":1,"baseUrl":"/releases/81.3.0/1"}`,
+		"releases/81.3.0/1/manifest.json": `{"schemaVersion":1,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","domains":[],"generatedFiles":[]}`,
+	}}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}"}},
+		Active: store, Store: store, Clock: func() time.Time { return time.Unix(2, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Outcome != contracts.PipelineOutcomePublished || len(client.puts) == 0 {
+		t.Fatalf("result = %#v, writes = %d", result, len(client.puts))
 	}
 }
 
@@ -301,14 +460,29 @@ func (c *pipelineS3Client) PutObject(_ context.Context, input *s3.PutObjectInput
 	return &s3.PutObjectOutput{}, nil
 }
 
-func activeS3Objects(masterHash string) map[string]string {
+func activeS3Objects(masterHash string, releaseFingerprints ...string) map[string]string {
+	releaseFingerprint := masterHash
+	if len(releaseFingerprints) != 0 {
+		releaseFingerprint = releaseFingerprints[0]
+	}
 	return map[string]string{
 		"latest.json":                     `{"gameVersion":"81.3.0","dataVersion":1,"baseUrl":"/releases/81.3.0/1"}`,
-		"releases/81.3.0/1/manifest.json": `{"schemaVersion":1,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"` + masterHash + `","domains":[],"generatedFiles":[]}`,
+		"releases/81.3.0/1/manifest.json": `{"schemaVersion":2,"gameVersion":"81.3.0","dataVersion":1,"masterDatasetSha256":"` + masterHash + `","releaseFingerprint":"` + releaseFingerprint + `","manualPayloads":[],"domains":[],"generatedFiles":[]}`,
 	}
 }
 
 type failingSource struct{ err error }
+
+func writeManualPayload(t *testing.T, root, relative, data string) {
+	t.Helper()
+	filePath := filepath.Join(root, filepath.FromSlash(relative))
+	if err := os.MkdirAll(filepath.Dir(filePath), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filePath, []byte(data), 0o644); err != nil {
+		t.Fatal(err)
+	}
+}
 
 func (f failingSource) FetchCategoryContent(context.Context, string) (map[string]string, error) {
 	return nil, f.err

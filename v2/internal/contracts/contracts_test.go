@@ -11,6 +11,10 @@ func TestReleaseManifestJSONContract(t *testing.T) {
 		SchemaVersion:       ReleaseManifestSchemaVersion,
 		ReleaseIdentity:     ReleaseIdentity{GameVersion: "81.3.0", DataVersion: 1785175200},
 		MasterDatasetSHA256: "master-hash",
+		ReleaseFingerprint:  "release-fingerprint",
+		ManualPayloads: []ManualPayloadMetadata{{
+			Name: "example", Path: "manual/example.json", SizeBytes: 18, SHA256: "manual-hash",
+		}},
 		Domains: []DatasetMetadata{{
 			Domain: "gear-planner", FileCount: 1, SizeBytes: 42, SHA256: "domain-hash",
 		}},
@@ -22,7 +26,7 @@ func TestReleaseManifestJSONContract(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := `{"schemaVersion":1,"gameVersion":"81.3.0","dataVersion":1785175200,"masterDatasetSha256":"master-hash","domains":[{"domain":"gear-planner","fileCount":1,"sizeBytes":42,"sha256":"domain-hash"}],"generatedFiles":[{"domain":"gear-planner","path":"gear-planner/items.json","sizeBytes":42,"sha256":"file-hash"}]}`
+	want := `{"schemaVersion":2,"gameVersion":"81.3.0","dataVersion":1785175200,"masterDatasetSha256":"master-hash","releaseFingerprint":"release-fingerprint","manualPayloads":[{"name":"example","path":"manual/example.json","sizeBytes":18,"sha256":"manual-hash"}],"domains":[{"domain":"gear-planner","fileCount":1,"sizeBytes":42,"sha256":"domain-hash"}],"generatedFiles":[{"domain":"gear-planner","path":"gear-planner/items.json","sizeBytes":42,"sha256":"file-hash"}]}`
 	if string(data) != want {
 		t.Fatalf("manifest JSON = %s\nwant          = %s", data, want)
 	}

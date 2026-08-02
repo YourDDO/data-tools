@@ -13,6 +13,7 @@ import (
 	"yourddo-data-tools/v2/internal/contracts"
 	"yourddo-data-tools/v2/internal/hashing"
 	"yourddo-data-tools/v2/internal/manifest"
+	"yourddo-data-tools/v2/internal/manual"
 	"yourddo-data-tools/v2/internal/validation"
 )
 
@@ -61,7 +62,15 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 	}
 	stages = append(stages, contracts.PipelineStageResult{Name: "validate-master", Status: "succeeded"})
 	masterHash := master.SHA256
-	sourceHash, err := sourceFingerprint(masterHash, cfg)
+	manualPayloads, err := manual.Prepare(cfg.ManualInputDir, filepath.Join(staging, "manual"))
+	if err != nil {
+		return Result{}, fmt.Errorf("prepare manual payloads: %w", err)
+	}
+	releaseFingerprint, err := manifest.ReleaseFingerprint(masterHash, manualPayloads)
+	if err != nil {
+		return Result{}, err
+	}
+	sourceHash, err := sourceFingerprint(releaseFingerprint, cfg)
 	if err != nil {
 		return Result{}, err
 	}
@@ -88,7 +97,7 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 		return Result{}, fmt.Errorf("validate domain datasets: %w", err)
 	}
 	stages = append(stages, contracts.PipelineStageResult{Name: "validate-domains", Status: "succeeded"})
-	candidate, err := manifest.BuildCandidate(cfg.GameVersion, sourceHash, masterHash, staging)
+	candidate, err := manifest.BuildCandidate(cfg.GameVersion, sourceHash, masterHash, staging, manualPayloads)
 	if err != nil {
 		return Result{}, err
 	}
@@ -122,12 +131,12 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 	}, nil
 }
 
-func sourceFingerprint(masterHash string, cfg config.Config) (string, error) {
+func sourceFingerprint(releaseFingerprint string, cfg config.Config) (string, error) {
 	domains := append([]string(nil), cfg.Domains...)
 	for index := range domains {
 		domains[index] = strings.ToLower(strings.TrimSpace(domains[index]))
 	}
 	sort.Strings(domains)
-	parts := []string{"pipeline-schema:3", "game-version:" + cfg.GameVersion, "master:" + masterHash, "domains:" + strings.Join(domains, ",")}
+	parts := []string{"pipeline-schema:4", "game-version:" + cfg.GameVersion, "release:" + releaseFingerprint, "domains:" + strings.Join(domains, ",")}
 	return hashing.Combine(parts...), nil
 }

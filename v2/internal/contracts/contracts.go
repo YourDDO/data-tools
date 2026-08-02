@@ -2,7 +2,7 @@
 // stages and consumed by dataset clients.
 package contracts
 
-const ReleaseManifestSchemaVersion = 1
+const ReleaseManifestSchemaVersion = 2
 
 type PipelineOutcome string
 
@@ -35,12 +35,22 @@ type GeneratedFileMetadata struct {
 	SHA256    string `json:"sha256"`
 }
 
+// ManualPayloadMetadata describes one canonical manually maintained payload.
+type ManualPayloadMetadata struct {
+	Name      string `json:"name"`
+	Path      string `json:"path"`
+	SizeBytes int64  `json:"sizeBytes"`
+	SHA256    string `json:"sha256"`
+}
+
 // ReleaseManifest is written to manifest.json in an immutable release.
 // It deliberately contains no generation timestamp.
 type ReleaseManifest struct {
 	SchemaVersion int `json:"schemaVersion"`
 	ReleaseIdentity
 	MasterDatasetSHA256 string                  `json:"masterDatasetSha256"`
+	ReleaseFingerprint  string                  `json:"releaseFingerprint"`
+	ManualPayloads      []ManualPayloadMetadata `json:"manualPayloads"`
 	Domains             []DatasetMetadata       `json:"domains"`
 	GeneratedFiles      []GeneratedFileMetadata `json:"generatedFiles"`
 }

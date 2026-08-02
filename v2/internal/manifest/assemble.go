@@ -45,6 +45,15 @@ func Assemble(candidateRoot, releaseRoot string, candidate Candidate, dataVersio
 			return Manifest{}, fmt.Errorf("assemble release file %s: %w", file.Path, err)
 		}
 	}
+	for _, payload := range result.ManualPayloads {
+		relative, err := safeRelative(payload.Path)
+		if err != nil {
+			return Manifest{}, err
+		}
+		if err := copyCreateOnly(filepath.Join(candidateRoot, relative), filepath.Join(releaseRoot, relative)); err != nil {
+			return Manifest{}, fmt.Errorf("assemble manual payload %s: %w", payload.Path, err)
+		}
+	}
 	manifestData, err := json.MarshalIndent(result, "", "  ")
 	if err != nil {
 		return Manifest{}, fmt.Errorf("encode release manifest: %w", err)

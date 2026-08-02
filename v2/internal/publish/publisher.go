@@ -82,6 +82,16 @@ func (p *Publisher) uploadGeneratedFiles(ctx context.Context, root string, relea
 			return fmt.Errorf("publish release file %s: %w", file.Path, err)
 		}
 	}
+	for _, payload := range release.ManualPayloads {
+		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(payload.Path)))
+		if err != nil {
+			return fmt.Errorf("read manual payload %s: %w", payload.Path, err)
+		}
+		key := path.Join(baseKey, payload.Path)
+		if err := p.store.Put(ctx, key, data, PutOptions{Immutable: true}); err != nil {
+			return fmt.Errorf("publish manual payload %s: %w", payload.Path, err)
+		}
+	}
 	return nil
 }
 

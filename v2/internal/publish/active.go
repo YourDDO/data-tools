@@ -15,15 +15,17 @@ import (
 	"yourddo-data-tools/v2/internal/manifest"
 )
 
-type ActiveMaster struct {
-	LatestObjectKey   string
-	ActiveManifestKey string
-	MasterSHA256      string
+type ActiveRelease struct {
+	LatestObjectKey    string
+	ActiveManifestKey  string
+	MasterSHA256       string
+	ReleaseFingerprint string
 }
 
-// ActiveMasterHash returns the hash named by the active release, or available
-// false when this publication root has not been activated yet.
-func (s *LocalStore) ActiveMasterHash(ctx context.Context) (active ActiveMaster, available bool, returnErr error) {
+// ActiveReleaseFingerprint returns the identity hashes named by the active
+// release, or available false when this publication root has not been
+// activated yet.
+func (s *LocalStore) ActiveReleaseFingerprint(ctx context.Context) (active ActiveRelease, available bool, returnErr error) {
 	active.LatestObjectKey = "latest.json"
 	if err := ctx.Err(); err != nil {
 		return active, false, err
@@ -63,10 +65,11 @@ func (s *LocalStore) ActiveMasterHash(ctx context.Context) (active ActiveMaster,
 		return active, false, fmt.Errorf("active release manifest has no master dataset hash")
 	}
 	active.MasterSHA256 = release.MasterDatasetSHA256
+	active.ReleaseFingerprint = release.ReleaseFingerprint
 	return active, true, nil
 }
 
-func (s *S3Store) ActiveMasterHash(ctx context.Context) (active ActiveMaster, available bool, returnErr error) {
+func (s *S3Store) ActiveReleaseFingerprint(ctx context.Context) (active ActiveRelease, available bool, returnErr error) {
 	active.LatestObjectKey = "latest.json"
 	pointerData, err := s.get(ctx, active.LatestObjectKey)
 	if isNoSuchKey(err) {
@@ -99,6 +102,7 @@ func (s *S3Store) ActiveMasterHash(ctx context.Context) (active ActiveMaster, av
 		return active, false, fmt.Errorf("active release manifest has no master dataset hash")
 	}
 	active.MasterSHA256 = release.MasterDatasetSHA256
+	active.ReleaseFingerprint = release.ReleaseFingerprint
 	return active, true, nil
 }
 
