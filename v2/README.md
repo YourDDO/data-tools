@@ -25,7 +25,7 @@ Deployment settings are read from environment variables and validated before the
 | `DATA_BUCKET` | None | Required when publication is enabled; must be a valid S3 bucket name. |
 | `CDN_BASE_URL` | None | Required when publication is enabled; must be an absolute HTTPS URL. |
 | `GAME_VERSION` | None | Required numeric `major.minor.patch` DDO version, such as `81.3.0`. |
-| `PUBLISH_ENABLED` | `false` | Go boolean controlling publication in the complete pipeline. Production candidate publication uses the explicit S3 command below. |
+| `PUBLISH_ENABLED` | `false` | Go boolean controlling publication in the complete pipeline. |
 
 No region, bucket, CDN endpoint, or game version is guessed. Those values identify a deployment or a release and therefore have no safe local default.
 
@@ -232,7 +232,7 @@ task pipeline \
 
 `cmd/pipeline` is the primary executable. It creates an isolated work
 directory, fetches and normalizes the master dataset, hashes it, compares that
-hash with the active local release when one is configured, generates domains
+hash with the active local or S3 release when one is configured, generates domains
 only for changed data, validates and locally assembles the immutable release,
 then cleans the work directory. Its JSON result reports one of `published`,
 `no-change`, `failed`, or `dry-run`; structured JSON logs are written to
@@ -265,7 +265,7 @@ task publish:local PUBLISH_ROOT=/tmp/yourddo-published
 
 Objects are written beneath `releases/<game-version>/<data-version>/` with create-only semantics. The publisher assigns `dataVersion` at that point; `latest.json` is replaced only after every data file and the release manifest succeed.
 
-Publish a validated candidate to S3 in production:
+Run the complete pipeline and publish changed data to S3 in production:
 
 ```bash
 AWS_REGION=us-east-2 \
@@ -274,7 +274,8 @@ task publish:s3
 ```
 
 The S3 backend uses the AWS SDK for Go v2 default credential chain and retryer.
-It requires only `s3:PutObject` for the configured bucket keys. Immutable
+It reads `latest.json` and the active manifest before domain generation, and
+requires `s3:GetObject` and `s3:PutObject` for the configured bucket keys. Immutable
 objects are sent with `If-None-Match: *`, so an existing snapshot cannot be
 replaced without a separate read operation or a check-then-write race. No ACL
 is set and the bucket remains private. Release objects use

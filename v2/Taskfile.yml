@@ -93,17 +93,17 @@ tasks:
         --destination="{{.PUBLISH_ROOT}}"
 
   publish:s3:
-    desc: Publish the current candidate to the production S3 bucket
+    desc: Run the complete pipeline and publish changed data to S3
     aliases: [publish-s3]
     requires:
       vars: [AWS_REGION, DATA_BUCKET]
     cmds:
       - >-
-        go run ./cmd/publish-release
-        --environment=production
+        go run ./cmd/pipeline
         --backend=s3
         --region="{{.AWS_REGION}}"
         --bucket="{{.DATA_BUCKET}}"
+        --publish=true
 
   terraform:fmt:
     desc: Format Terraform configuration
