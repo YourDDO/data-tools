@@ -88,7 +88,7 @@ module "codebuild" {
   project_name                          = var.project_name
   aws_region                            = var.aws_region
   vpc_id                                = data.aws_vpc.shared.id
-  private_subnet_ids                    = [for subnet in data.aws_subnet.private : subnet.id]
+  private_subnet_ids                    = [local.codebuild_private_subnet_id]
   compendium_security_group_id          = data.aws_security_group.compendium.id
   compendium_port                       = var.compendium_port
   compendium_api_path                   = var.compendium_api_path
@@ -108,4 +108,15 @@ module "codebuild" {
   secrets_manager_environment_variables = var.codebuild_secrets_manager_environment_variables
   build_timeout_minutes                 = var.codebuild_build_timeout_minutes
   log_retention_days                    = var.codebuild_log_retention_days
+}
+
+module "scheduler" {
+  source = "../../modules/scheduler"
+
+  name                   = "${var.project_name}-schedule"
+  codebuild_project_arn  = module.codebuild.codebuild_project_arn
+  codebuild_project_name = module.codebuild.codebuild_project_name
+  schedule_expression    = var.schedule_expression
+  schedule_timezone      = var.schedule_timezone
+  enabled                = var.schedule_enabled
 }

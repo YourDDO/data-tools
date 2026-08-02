@@ -45,7 +45,14 @@ resource "aws_scheduler_schedule" "this" {
   target {
     arn      = "arn:aws:scheduler:::aws-sdk:codebuild:startBuild"
     role_arn = aws_iam_role.this.arn
-    input    = jsonencode({ ProjectName = var.codebuild_project_name })
+    input = jsonencode({
+      ProjectName = var.codebuild_project_name
+      EnvironmentVariablesOverride = [{
+        Name  = "TRIGGER_SOURCE"
+        Type  = "PLAINTEXT"
+        Value = "scheduled"
+      }]
+    })
 
     retry_policy {
       maximum_event_age_in_seconds = 3600

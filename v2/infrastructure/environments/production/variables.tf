@@ -40,8 +40,13 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "public_subnet_id" {
+  description = "ID of the existing public subnet in which the production NAT Gateway is created."
+  type        = string
+}
+
 variable "private_subnet_ids" {
-  description = "IDs of existing private subnets used by CodeBuild."
+  description = "IDs of existing private subnets eligible for CodeBuild; one in the NAT Gateway Availability Zone is preferred."
   type        = list(string)
 
   validation {
@@ -72,12 +77,15 @@ variable "compendium_port" {
 }
 
 variable "compendium_base_url" {
-  description = "HTTP(S) base URL of the existing Compendium service reachable from CodeBuild."
+  description = "HTTP(S) base URL containing the existing Compendium service's private RFC1918 IPv4 address."
   type        = string
 
   validation {
-    condition     = can(regex("^https?://[^/]+", var.compendium_base_url))
-    error_message = "compendium_base_url must be an absolute HTTP(S) URL."
+    condition = can(regex(
+      "^https?://(?:10(?:\\.[0-9]{1,3}){3}|172\\.(?:1[6-9]|2[0-9]|3[01])(?:\\.[0-9]{1,3}){2}|192\\.168(?:\\.[0-9]{1,3}){2})(?::[0-9]{1,5})?/?$",
+      var.compendium_base_url,
+    ))
+    error_message = "compendium_base_url must use the Compendium's private RFC1918 IPv4 address, not a public hostname."
   }
 }
 
@@ -209,6 +217,34 @@ variable "publish_enabled" {
   description = "Whether successful CodeBuild runs publish and activate an S3 release."
   type        = bool
   default     = true
+}
+
+variable "schedule_expression" {
+  description = "EventBridge Scheduler rate or cron expression used to start the production CodeBuild project."
+  type        = string
+  default     = "cron(0 6 ? * * *)"
+
+  validation {
+    condition     = can(regex("^(cron|rate)\\(.+\\)$", var.schedule_expression))
+    error_message = "schedule_expression must be an EventBridge Scheduler cron(...) or rate(...) expression."
+  }
+}
+
+variable "schedule_timezone" {
+  description = "IANA timezone used to evaluate schedule_expression."
+  type        = string
+  default     = "UTC"
+
+  validation {
+    condition     = length(trimspace(var.schedule_timezone)) > 0
+    error_message = "schedule_timezone must not be empty."
+  }
+}
+
+variable "schedule_enabled" {
+  description = "Whether EventBridge Scheduler may automatically start production builds."
+  type        = bool
+  default     = false
 }
 
 variable "tags" {

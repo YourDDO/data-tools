@@ -27,5 +27,5 @@ variable "schedule_timezone" {
 variable "enabled" {
   description = "Whether the schedule is enabled."
   type        = bool
-  default     = true
+  default     = false
 }
