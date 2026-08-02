@@ -116,13 +116,13 @@ Fetch a master dataset:
 go run ./cmd/fetch-master \
   --base-url=http://10.0.0.10 \
   --api-path=/api.php \
-  --categories=Items,Augment,Filigrees \
+  --categories=All \
   --output=build/output/master
 ```
 
-Pass `--categories=All` to fetch every configured concrete item category,
-Augments, Filigrees, and Filigree Sets in one run. Each source category is
-queried separately and receives its own JSON file.
+`All` is the default category selection. It fetches every configured concrete
+item category, Augments, Filigrees, and Filigree Sets in one run. Each source
+category is queried separately and receives its own JSON file.
 
 The master generator parses every returned source record strictly, normalizes
 set-like collections, writes through a streaming JSON encoder and SHA-256
