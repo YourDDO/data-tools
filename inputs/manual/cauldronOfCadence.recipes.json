@@ -1,0 +1,956 @@
+[
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Perfect Silence",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Perfect Silence set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Vestments of Ravenloft",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Perfect Silence",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Sneak Attack Dice",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Arcane Barrier",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Arcane Barrier set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Mantle of Escher",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Arcane Barrier",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Magical Resistance Rating Cap",
+            "modifier": 30
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Paragon Guard",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Paragon Guard set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Platemail of Strahd",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Paragon Guard",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Armor Class",
+            "modifier": "15%",
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Dusk Raider",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Dusk Raider set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Coat of Van Richten",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Dusk Raider",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Melee Power",
+            "modifier": 15,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Ranged Power",
+            "modifier": 15,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Piercing Mind",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Piercing Mind set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Staggershockers",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Piercing Mind",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Intelligence",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Touch of Power",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Touch of Power set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Attunement's Gaze",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Touch of Power",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Spell Power: Universal",
+            "modifier": 25,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Alluring Elocution",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Alluring Elocution set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Tattered Scrolls of the Broken One",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Alluring Elocution",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Charisma",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Arcane Guardian",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Arcane Guardian set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Citadel's Gaze",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Arcane Guardian",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Magical Resistance",
+            "modifier": 30,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Visions of the Beyond",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Visions of the Beyond set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Crystalline Gauntlets",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Visions of the Beyond",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Wisdom",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Cruel Cut",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Cruel Cut set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "The Family's Blessing",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Cruel Cut",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Damage vs Helpless",
+            "modifier": "15%",
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Truthful Blow",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Truthful Blow set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Helm of the Final Watcher",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Truthful Blow",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Fortification Bypass Chance",
+            "modifier": "15%",
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Tough Shields",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Tough Shields set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Dumathoin's Bracers",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Tough Shields",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Physical Resistance",
+            "modifier": 30,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Esoterica",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Esoterica set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Cloak of the Mountain",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Esoterica",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Spell DCs",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Quickblade",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Quickblade set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Guided Sight",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Quickblade",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Doublestrike Chance",
+            "modifier": "15%",
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Doubleshot Chance",
+            "modifier": "15%",
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Brutal Blows",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Brutal Blows set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Mail of the Mroranon",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Brutal Blows",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Strength",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Cunning Impact",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Cunning Impact set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Strange Tidings",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Cunning Impact",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Dexterity",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Wild Fortitude",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Wild Fortitude set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Quori-Infused Core",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Wild Fortitude",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Constitution",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Legendary Bulwark",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Legendary Bulwark set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "The Stablestone",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Legendary Bulwark",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Maximum Hit Points",
+            "modifier": "10%",
+            "bonus": "Legendary"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Imbued Infusion",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Imbued Infusion set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Kelas' Volatile Mixture",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Imbued Infusion",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Imbue Dice",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Bold Tactician",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Bold Tactician set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Page Regalia: Exiled Tactica",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Bold Tactician",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Tactical DCs",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "image": "cauldronOfCadenceAugment",
+    "quantity": 1,
+    "augmentType": "Colorless",
+    "baseValue": {
+      "platinum": 500
+    },
+    "weight": 0.01,
+    "minimumLevel": 30,
+    "craftedIn": "Cauldron of Cadence",
+    "binding": {
+      "type": "Bound",
+      "to": "Account",
+      "from": "Acquisition"
+    },
+    "name": "Set Augment: Subtle Blade",
+    "description": "Slotting this Augment in any Augment Slot will override its Set Bonus to the Subtle Blade set.",
+    "requirements": [
+      {
+        "name": "Thread of Fate",
+        "quantity": 50
+      },
+      {
+        "name": "Empty Soul Vessel",
+        "quantity": 1
+      },
+      {
+        "name": "Page Regalia: Unsanctioned Arcana",
+        "quantity": 1
+      }
+    ],
+    "setBonus": [
+      {
+        "name": "Subtle Blade",
+        "numPiecesEquipped": 3,
+        "enhancements": [
+          {
+            "name": "Assassinate DC",
+            "modifier": 3,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  }
+]
