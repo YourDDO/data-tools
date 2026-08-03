@@ -224,6 +224,25 @@ func TestMasterRejectsFormattedJSON(t *testing.T) {
 	}
 }
 
+func TestMasterRejectsFormattedIndex(t *testing.T) {
+	t.Parallel()
+	root := t.TempDir()
+	writeMaster(t, root, []map[string]any{masterItem("Formatted")})
+	formatted, err := json.MarshalIndent(dataset.MasterIndex{
+		SchemaVersion: 1,
+		Files:         []dataset.MasterFile{{Category: "Test", Kind: "items", Path: "items.json"}},
+	}, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, filepath.Join(root, dataset.MasterIndexName), string(append(formatted, '\n')))
+
+	report := MasterReport(root)
+	if issue := findIssue(report, "compact-json"); issue == nil || issue.File != dataset.MasterIndexName {
+		t.Fatalf("issues = %#v, want compact master index error", report.Issues)
+	}
+}
+
 func TestCountDriftUsesRelativeBaselines(t *testing.T) {
 	t.Parallel()
 	baselineRoot := t.TempDir()
