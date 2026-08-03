@@ -101,6 +101,9 @@ func MasterReport(root string) Report {
 		report.add(Error, "master", "<directory>", "<file>", "readable-files", err.Error())
 	} else {
 		for _, path := range paths {
+			if filepath.Ext(path) == ".json" {
+				report.merge(compactJSONFileReport(root, path, "master"))
+			}
 			if path == dataset.MasterIndexName {
 				continue
 			}
