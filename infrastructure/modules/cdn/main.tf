@@ -6,6 +6,10 @@ data "aws_caller_identity" "current" {}
 
 data "aws_partition" "current" {}
 
+data "aws_cloudfront_origin_request_policy" "cors_s3_origin" {
+  name = "Managed-CORS-S3Origin"
+}
+
 resource "aws_cloudfront_origin_access_control" "this" {
   name                              = "${var.bucket_id}-oac"
   description                       = "Access from the YourDDO data CDN to its private S3 origin"
@@ -64,6 +68,30 @@ resource "aws_cloudfront_cache_policy" "latest" {
   }
 }
 
+resource "aws_cloudfront_response_headers_policy" "public_read_cors" {
+  name    = "${var.bucket_id}-public-read-cors"
+  comment = "Public read-only CORS for the YourDDO data CDN"
+
+  cors_config {
+    access_control_allow_credentials = false
+
+    access_control_allow_headers {
+      items = ["*"]
+    }
+
+    access_control_allow_methods {
+      items = ["GET", "HEAD", "OPTIONS"]
+    }
+
+    access_control_allow_origins {
+      items = ["*"]
+    }
+
+    access_control_max_age_sec = 86400
+    origin_override            = true
+  }
+}
+
 resource "aws_cloudfront_distribution" "this" {
   aliases         = [var.domain_name]
   enabled         = true
@@ -79,22 +107,24 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   default_cache_behavior {
-    allowed_methods            = ["GET", "HEAD"]
+    allowed_methods            = ["GET", "HEAD", "OPTIONS"]
     cache_policy_id            = aws_cloudfront_cache_policy.data.id
-    cached_methods             = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD", "OPTIONS"]
     compress                   = true
-    response_headers_policy_id = "60669652-455b-4ae9-85a4-c4c02393f86c"
+    origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.cors_s3_origin.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.public_read_cors.id
     target_origin_id           = local.origin_id
     viewer_protocol_policy     = "redirect-to-https"
   }
 
   ordered_cache_behavior {
     path_pattern               = "latest.json"
-    allowed_methods            = ["GET", "HEAD"]
+    allowed_methods            = ["GET", "HEAD", "OPTIONS"]
     cache_policy_id            = aws_cloudfront_cache_policy.latest.id
-    cached_methods             = ["GET", "HEAD"]
+    cached_methods             = ["GET", "HEAD", "OPTIONS"]
     compress                   = true
-    response_headers_policy_id = "60669652-455b-4ae9-85a4-c4c02393f86c"
+    origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.cors_s3_origin.id
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.public_read_cors.id
     target_origin_id           = local.origin_id
     viewer_protocol_policy     = "redirect-to-https"
   }
