@@ -15,6 +15,7 @@ import (
 	"yourddo-data-tools/internal/domain/finishingtouch"
 	"yourddo-data-tools/internal/domain/fountain"
 	"yourddo-data-tools/internal/domain/gearplanner"
+	"yourddo-data-tools/internal/domain/incrediblepotential"
 	"yourddo-data-tools/internal/domain/lostpurpose"
 	"yourddo-data-tools/internal/domain/nearlycomplete"
 	"yourddo-data-tools/internal/domain/nearlyfinished"
@@ -40,6 +41,7 @@ var registrations = []Registration{
 	{Generator: almostthere.New()},
 	{Generator: finishingtouch.New()},
 	{Generator: alchemical.New()},
+	{Generator: incrediblepotential.New()},
 	{Generator: catalystcrafting.New()},
 	{Generator: traceofmadness.New()},
 	{Generator: suppressedpower.New()},

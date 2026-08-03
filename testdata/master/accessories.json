@@ -7,6 +7,7 @@
   {"pageTitle":"Nearly Finished Boots","name":"Nearly Finished Boots","type":"Boots","minLevel":"5","enchantments":[{"name":"Nearly Finished"}]},
   {"pageTitle":"Almost There Gloves","name":"Almost There Gloves","type":"Gloves","minLevel":"7","enchantments":[{"name":"Almost There"}]},
   {"pageTitle":"Finishing Touch Cloak","name":"Finishing Touch Cloak","type":"Cloak","minLevel":"7","enchantments":[{"name":"Finishing Touch"}]},
+  {"pageTitle":"Incredible Potential Ring","name":"Incredible Potential Ring","type":"Ring","minLevel":"18","enchantments":[{"name":"Incredible Potential"}]},
   {"pageTitle":"Mad Helm","name":"Mad Helm","type":"Helmet","minLevel":"11","enchantments":[{"name":"Trace of Madness"}]},
   {"pageTitle":"Suppressed Helm","name":"Suppressed Helm","type":"Helmet","minLevel":"13","enchantments":[{"name":"Suppressed Power"}]},
   {"pageTitle":"Lost Helm","name":"Lost Helm","type":"Helmet","minLevel":"15","enchantments":[{"name":"Lost Purpose"}]},
