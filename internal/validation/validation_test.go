@@ -208,6 +208,22 @@ func TestMasterRejectsDuplicateJSONObjectKeys(t *testing.T) {
 	}
 }
 
+func TestMasterRejectsFormattedJSON(t *testing.T) {
+	t.Parallel()
+	root := t.TempDir()
+	writeMaster(t, root, []map[string]any{masterItem("Formatted")})
+	formatted, err := json.MarshalIndent([]map[string]any{masterItem("Formatted")}, "", "  ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	writeTestFile(t, filepath.Join(root, "items.json"), string(append(formatted, '\n')))
+
+	report := MasterReport(root)
+	if issue := findIssue(report, "compact-json"); issue == nil || issue.File != "items.json" {
+		t.Fatalf("issues = %#v, want compact master JSON error", report.Issues)
+	}
+}
+
 func TestCountDriftUsesRelativeBaselines(t *testing.T) {
 	t.Parallel()
 	baselineRoot := t.TempDir()
