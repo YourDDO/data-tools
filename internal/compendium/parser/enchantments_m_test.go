@@ -74,8 +74,8 @@ func TestParseEnchantmentsMemoryOfAnimatedObjects(t *testing.T) {
 	want := []dataset.Enchantment{
 		{Name: "Spell Power: Repair", Amount: "171", BonusType: "Equipment"},
 		{Name: "Spell Power: Rust", Amount: "171", BonusType: "Equipment"},
-		{Name: "Repair Spell Critical Chance", Amount: "24", BonusType: "Equipment"},
-		{Name: "Rust Spell Critical Chance", Amount: "24", BonusType: "Equipment"},
+		{Name: "Spell Critical Chance: Repair", Amount: "24", BonusType: "Equipment"},
+		{Name: "Spell Critical Chance: Rust", Amount: "24", BonusType: "Equipment"},
 		{Name: "Spell Critical Damage: Repair", Amount: "25", BonusType: "Enhancement", Element: "Repair"},
 		{Name: "Spell Critical Damage: Rust", Amount: "25", BonusType: "Enhancement", Element: "Rust"},
 	}
