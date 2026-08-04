@@ -53,15 +53,29 @@ func New(name string, match Matcher) Generator {
 func (g Generator) Name() string { return g.name }
 
 func (g Generator) Generate(ctx context.Context, master dataset.Master, outputRoot string) (domain.Result, error) {
-	selected := Filter(master.Items, g.match)
+	items, err := Select(ctx, g.name, master.Items, g.match)
+	if err != nil {
+		return domain.Result{}, err
+	}
+	file, err := Write(outputRoot, g.name, "items.json", items)
+	if err != nil {
+		return domain.Result{}, fmt.Errorf("domain %s: %w", g.name, err)
+	}
+	return domain.Result{Domain: g.name, Files: []contracts.GeneratedFileMetadata{file}}, nil
+}
+
+// Select is the single item-selection path used by every filtered item-list
+// domain, including domains that also generate additional files.
+func Select(ctx context.Context, domainName string, records []dataset.ItemRecord, match Matcher) ([]Item, error) {
+	selected := Filter(records, match)
 	items := make([]Item, 0, len(selected))
 	for _, record := range selected {
 		if err := ctx.Err(); err != nil {
-			return domain.Result{}, err
+			return nil, err
 		}
 		item, err := Transform(record)
 		if err != nil {
-			return domain.Result{}, fmt.Errorf("domain %s record %s: %w", g.name, record.Source(), err)
+			return nil, fmt.Errorf("domain %s record %s: %w", domainName, record.Source(), err)
 		}
 		items = append(items, item)
 	}
@@ -71,11 +85,7 @@ func (g Generator) Generate(ctx context.Context, master dataset.Master, outputRo
 		}
 		return items[i].PageTitle < items[j].PageTitle
 	})
-	file, err := Write(outputRoot, g.name, "items.json", items)
-	if err != nil {
-		return domain.Result{}, fmt.Errorf("domain %s: %w", g.name, err)
-	}
-	return domain.Result{Domain: g.name, Files: []contracts.GeneratedFileMetadata{file}}, nil
+	return items, nil
 }
 
 // Write emits an array while copying every selected item's original JSON value

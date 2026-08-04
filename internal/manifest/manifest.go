@@ -15,6 +15,11 @@ type File = contracts.GeneratedFileMetadata
 type Manifest = contracts.ReleaseManifest
 type Latest = contracts.Latest
 
+// releaseFingerprintSchemaVersion changes whenever domain-generation behavior
+// changes without changing the canonical master or manual inputs. Bumping it
+// forces existing releases to be regenerated with the current output contract.
+const releaseFingerprintSchemaVersion = 2
+
 // Candidate is deterministic, unpublished metadata. DataVersion is
 // intentionally absent and is added only when Publisher publishes it.
 type Candidate struct {
@@ -97,9 +102,9 @@ func Release(candidate Candidate, dataVersion int64) (Manifest, error) {
 	}, nil
 }
 
-// ReleaseFingerprint hashes the canonical master hash and sorted manual
-// payload identity tuples. Size is deliberately diagnostic rather than part of
-// release identity.
+// ReleaseFingerprint hashes the output-contract version, canonical master
+// hash, and sorted manual payload identity tuples. Size is deliberately
+// diagnostic rather than part of release identity.
 func ReleaseFingerprint(masterHash string, payloads []contracts.ManualPayloadMetadata) (string, error) {
 	if strings.TrimSpace(masterHash) == "" {
 		return "", fmt.Errorf("master dataset hash is required")
@@ -114,7 +119,7 @@ func ReleaseFingerprint(masterHash string, payloads []contracts.ManualPayloadMet
 		}
 		return ordered[i].SHA256 < ordered[j].SHA256
 	})
-	parts := []string{masterHash}
+	parts := []string{fmt.Sprintf("release-fingerprint-schema:%d", releaseFingerprintSchemaVersion), masterHash}
 	for _, payload := range ordered {
 		if strings.TrimSpace(payload.Name) == "" || strings.TrimSpace(payload.Path) == "" || strings.TrimSpace(payload.SHA256) == "" {
 			return "", fmt.Errorf("manual payload name, path, and hash are required")

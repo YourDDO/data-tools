@@ -19,6 +19,7 @@ import (
 
 	"yourddo-data-tools/internal/config"
 	"yourddo-data-tools/internal/contracts"
+	"yourddo-data-tools/internal/hashing"
 	"yourddo-data-tools/internal/publish"
 )
 
@@ -191,6 +192,39 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 		if !strings.Contains(logs.String(), field) {
 			t.Fatalf("comparison logs do not contain %s:\n%s", field, logs.String())
 		}
+	}
+}
+
+func TestExecuteTreatsPreviousOutputContractAsChanged(t *testing.T) {
+	t.Parallel()
+	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
+	dependencies := OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{
+			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+		}},
+		Clock:  func() time.Time { return time.Unix(1, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	}
+	current, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	previousFingerprint := hashing.Combine(current.Candidate.MasterDatasetSHA256)
+	client := &pipelineS3Client{objects: activeS3Objects(current.Candidate.MasterDatasetSHA256, previousFingerprint)}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	dependencies.Active = store
+	dependencies.Store = store
+	dependencies.Clock = func() time.Time { return time.Unix(2, 0) }
+
+	result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Outcome != contracts.PipelineOutcomePublished || !result.Changed {
+		t.Fatalf("result = %#v", result)
 	}
 }
 
