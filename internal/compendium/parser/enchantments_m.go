@@ -168,33 +168,14 @@ func parseTemplateMemoryOfButchery() *dataset.Enchantment {
 }
 
 func parseTemplateMemoryOfAnimatedObjects() []*dataset.Enchantment {
-	var enchantments []*dataset.Enchantment
-
-	// 1. Rust and Repair Spell Power Bonus (Complex/Scaling)
-	enchantments = append(enchantments, &dataset.Enchantment{
-		Name: "Repair Spell Power",
-		// The Amount/Bonus/AdditionalText fields can be used to manually store the scaling info for post-processing:
-		Notes: new("+(Above 159) Equipment bonus to Repair Spell Power"),
-	})
-
-	enchantments = append(enchantments, &dataset.Enchantment{
-		Name: "Rust Spell Power",
-		// The Amount/Bonus/AdditionalText fields can be used to manually store the scaling info for post-processing:
-		Notes: new("+(Above 159) Equipment bonus to Rust Spell Power"),
-	})
-
-	// 2. Rust and Repair Spell Crit Damage Bonus (Complex/Scaling)
-	enchantments = append(enchantments, &dataset.Enchantment{
-		Name:  "Spell Critical Damage: Repair",
-		Notes: new("+(Above 23) Enhancement Bonus to Repair Spell Critical Damage"),
-	})
-
-	enchantments = append(enchantments, &dataset.Enchantment{
-		Name:  "Spell Critical Damage: Rust",
-		Notes: new("+(Above 23) Enhancement Bonus to Rust Spell Critical Damage"),
-	})
-
-	return enchantments
+	return []*dataset.Enchantment{
+		{Name: "Spell Power: Repair", Amount: "171", BonusType: "Equipment"},
+		{Name: "Spell Power: Rust", Amount: "171", BonusType: "Equipment"},
+		{Name: "Spell Critical Chance: Repair", Amount: "24", BonusType: "Equipment"},
+		{Name: "Spell Critical Chance: Rust", Amount: "24", BonusType: "Equipment"},
+		{Name: "Spell Critical Damage: Repair", Amount: "25", BonusType: "Enhancement", Element: "Repair"},
+		{Name: "Spell Critical Damage: Rust", Amount: "25", BonusType: "Enhancement", Element: "Rust"},
+	}
 }
 
 func parseTemplateMemoryOfBinding() *dataset.Enchantment {
