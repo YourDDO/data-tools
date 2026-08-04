@@ -1,0 +1,6104 @@
+[
+  {
+    "recipeId": 2030293218,
+    "name": "Calamitous Shortbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Shortbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293222,
+    "name": "Miserable Arcana: Cold",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Cold",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Cold Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293224,
+    "name": "Calamitous Club",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Club",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293226,
+    "name": "Calamitous Greatclub",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Greatclub",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293231,
+    "name": "Calamitous Warhammer",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Warhammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293243,
+    "name": "Calamitous Quarterstaff",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Quarterstaff",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293245,
+    "name": "Miserable: Spell Penetration",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Spell Penetration",
+    "productEffect": "Slotted Effect: +3 Equipment bonus to Spell Penetration.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293246,
+    "name": "Miserable: Trip",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Trip",
+    "productEffect": "Slotted Effect: +6 Enhancement bonus to Trip DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293248,
+    "name": "Calamitous Scimitar",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Scimitar",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293254,
+    "name": "Melancholic: Wisdom",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Wisdom",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Wisdom.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293256,
+    "name": "Calamitous Shortsword",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Shortsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293262,
+    "name": "Melancholic: Negative Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Negative Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Negative and Poison Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293269,
+    "name": "Miserable Flames",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Flames",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Strength.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293271,
+    "name": "Calamitous Sickle",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Sickle",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293272,
+    "name": "Calamitous Throwing Axe",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Throwing Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293277,
+    "name": "Melancholic: Repair Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Repair Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Repair Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293281,
+    "name": "Miserable: Acid Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Acid Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Acid Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293283,
+    "name": "Dolorous: Light Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Light Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Light and Alignment Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293285,
+    "name": "Dreadful Flames",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Flames",
+    "productEffect": "Slotted Effect: Adds Flaming. This effect causes the edges of this weapon to burn with enchanted flames, dealing 6d6 Fire damage on each critical hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293290,
+    "name": "Dolorous: Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Damage",
+    "productEffect": "Slotted Effect: +4 Competence bonus to Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293295,
+    "name": "Miserable Arcana: Light",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Light",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Light and Alignment Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293298,
+    "name": "Calamitous Dart",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Dart",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293299,
+    "name": "Calamitous Khopesh",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Khopesh",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293303,
+    "name": "Melancholic: Fire Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Fire Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Fire Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293306,
+    "name": "Calamitous Handwraps",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Handwraps",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293308,
+    "name": "Calamitous Heavy Crossbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Heavy Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293312,
+    "name": "Miserable Chill",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Chill",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Wisdom.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293321,
+    "name": "Miserable: Positive Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Positive Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Positive Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293328,
+    "name": "Melancholic: Intelligence",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Intelligence",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Intelligence.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293331,
+    "name": "Calamitous Rapier",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Rapier",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293333,
+    "name": "Melancholic: Positive Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Positive Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Positive Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293337,
+    "name": "Dreadful Chill",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Chill",
+    "productEffect": "Slotted Effect: Adds Freezing. This effect causes the edges of this weapon to become frozen to the touch, dealing 6d6 Ice damage on each critical hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293342,
+    "name": "Miserable: Physical Resistance Rating",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Physical Resistance Rating",
+    "productEffect": "Slotted Effect: +12 Enhancement bonus to Physical Resistance Rating.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293347,
+    "name": "Melancholic Flames",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Flames",
+    "productEffect": "Slotted Effect: Adds Adamantine material type. On hit: 2d6 Fire Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293349,
+    "name": "Miserable: Fire Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Fire Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Fire Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293352,
+    "name": "Dolorous: Force Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Force Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Force and Physical Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293354,
+    "name": "Miserable: Assassinate",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Assassinate",
+    "productEffect": "Slotted Effect: +6 Enhancement bonus to Assassinate DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293360,
+    "name": "Calamitous Kukri",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Kukri",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293369,
+    "name": "Miserable Arcana: Force",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Force",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Force and Physical Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293376,
+    "name": "Melancholic: Acid Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Acid Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Acid Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293377,
+    "name": "Miserable Dimlight",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Dimlight",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Intelligence.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293385,
+    "name": "Dolorous: Healing Amplification",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Healing Amplification",
+    "productEffect": "Slotted Effect: +19 Competence bonus to Positive Healing Amplification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293397,
+    "name": "Miserable Sparks",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Sparks",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Charisma.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293399,
+    "name": "Miserable: Negative Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Negative Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Negative and Poison Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293402,
+    "name": "Dolorous: Electric Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Electric Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Electric Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293404,
+    "name": "Calamitous Falchion",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Falchion",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293409,
+    "name": "Melancholic Arcana",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Arcana",
+    "productEffect": "Slotted Effect: +41 Equipment bonus to all Spellpowers. If this is slotted in a Quarterstaff, also grants a +1 Exceptional bonus to Spell DCs and makes the Quarterstaff an Implement.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293410,
+    "name": "Miserable: Stunning",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Stunning",
+    "productEffect": "Slotted Effect: +6 Enhancement bonus to Stunning DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293417,
+    "name": "Melancholic: Strength",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Strength",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Strength.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293421,
+    "name": "Calamitous Hand Axe",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Hand Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293422,
+    "name": "Miserable Arcana: Electric",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Electric",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Electric Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293423,
+    "name": "Melancholic: False Life",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: False Life",
+    "productEffect": "Slotted Effect: +18 Enhancement bonus to Maximum HP.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293426,
+    "name": "Calamitous Morningstar",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Morningstar",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293430,
+    "name": "Calamitous Greataxe",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Greataxe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293441,
+    "name": "Dolorous: Accuracy",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Accuracy",
+    "productEffect": "Slotted Effect: +8 Competence bonus to Attack.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293443,
+    "name": "Miserable Arcana: Repair",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Repair",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Repair Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293449,
+    "name": "Dolorous: Repair Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Repair Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Repair Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293456,
+    "name": "Calamitous Repeating Light Crossbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Repeating Light Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293460,
+    "name": "Miserable: Sunder",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Sunder",
+    "productEffect": "Slotted Effect: +6 Enhancement bonus to Sunder DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293464,
+    "name": "Melancholic: Sonic Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Sonic Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Sonic Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293469,
+    "name": "Melancholic: Charisma",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Charisma",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Charisma.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293471,
+    "name": "Miserable: Magical Resistance Rating",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Magical Resistance Rating",
+    "productEffect": "Slotted Effect: +12 Enhancement bonus to Magical Resistance Rating.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293476,
+    "name": "Woeful: Enhanced Ghostly",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Enhanced Ghostly",
+    "productEffect": "Slotted Effect: Enhanced Ghostly. Equipping this item causes you to become partially incorporeal.  Your melee and missile attacks do not roll a miss chance for Incorporeal targets.  Enemy attacks have a 15% chance to miss you due to your incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293481,
+    "name": "Calamitous Heavy Mace",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Heavy Mace",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293482,
+    "name": "Woeful: Profane DCs",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Profane DCs",
+    "productEffect": "Slotted Effect: You have a +1 Profane bonus to Spell DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293487,
+    "name": "Calamitous Battle Axe",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Battle Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293488,
+    "name": "Dreadful Acid",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Acid",
+    "productEffect": "Slotted Effect: Adds Corroding. This effect causes the edges of this weapon to drip with acid, dealing 6d6 Acid damage on each critical hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293489,
+    "name": "Calamitous Repeating Heavy Crossbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Repeating Heavy Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293491,
+    "name": "Calamitous Heavy Pick",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Heavy Pick",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293494,
+    "name": "Calamitous Maul",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Maul",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293495,
+    "name": "Miserable: Electric Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Electric Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Electric Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293496,
+    "name": "Calamitous Dwarven Waraxe",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Dwarven Waraxe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293498,
+    "name": "Dolorous: Negative Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Negative Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Negative and Poison Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293503,
+    "name": "Melancholic Acid",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Acid",
+    "productEffect": "Slotted Effect: Adds Crystal and Byeshk material type. On hit: 2d6 Acid Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293504,
+    "name": "Calamitous Kama",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Kama",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293505,
+    "name": "Melancholic Dimlight",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Dimlight",
+    "productEffect": "Slotted Effect: +9 Equipment bonus to Spell Penetration. If this is slotted in a Quarterstaff, also grants a +1 Exceptional bonus to Spell DCs and makes the Quarterstaff an Implement.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293510,
+    "name": "Dreadful Sparks",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Sparks",
+    "productEffect": "Slotted Effect: Adds Jolting. This effect causes the edges of this weapon to arc with electricity, dealing 6d6 Lightning damage on each critical hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293511,
+    "name": "Calamitous Greatsword",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Greatsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293513,
+    "name": "Miserable Arcana: Negative",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Negative",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Negative and Poison Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293519,
+    "name": "Melancholic: Cold Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Cold Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Cold Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293521,
+    "name": "Dolorous: Negative Amplification",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Negative Amplification",
+    "productEffect": "Slotted Effect: +19 Profane bonus to Negative Healing Amplification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293525,
+    "name": "Miserable Acid",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Acid",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Constitution.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293531,
+    "name": "Miserable Shadows",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Shadows",
+    "productEffect": "Slotted Effect: +1 Exceptional bonus to Dexterity.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293532,
+    "name": "Dolorous: Deception",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Deception",
+    "productEffect": "Slotted Effect: +3 Enhancement bonus to Sneak Attacks, +5 Enhancement bonus to Sneak Attack Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293533,
+    "name": "Miserable: Force Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Force Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Force and Physical Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293535,
+    "name": "Dolorous: Fire Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Fire Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Fire Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293538,
+    "name": "Calamitous Bastard Sword",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Bastard Sword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293539,
+    "name": "Calamitous Longbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Longbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293546,
+    "name": "Calamitous Light Crossbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Light Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293547,
+    "name": "Dreadful Arcana",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Focus",
+    "productEffect": "Slotted Effect: +2 Equipment bonus to all Spell DCs. If this is slotted in a Quarterstaff, also grants a +2% Exceptional bonus to Spell Critical Chance and makes the Quarterstaff an Implement.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293562,
+    "name": "Miserable Arcana: Fire",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Fire",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Fire Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293564,
+    "name": "Calamitous Light Hammer",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Light Hammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293575,
+    "name": "Dolorous: Positive Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Positive Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Positive Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293582,
+    "name": "Woeful: Relentless Fury",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Relentless Fury",
+    "productEffect": "Slotted Effect: Relentless Fury. While this item is equipped, any killing blows you strike against enemies may drive you into a furious rage, providing a 5% Enhancement damage bonus to your melee, ranged, and unarmed attacks for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293586,
+    "name": "Calamitous Great Crossbow",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Warden's Hand Turret",
+    "productEffect": "Unruly experiments will be put back in their place. With force.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293590,
+    "name": "Dolorous Voidwheel",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Voidwheel",
+    "productEffect": "Slotted Effect: +5 Exceptional bonus to Universal Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293594,
+    "name": "Melancholic Plating",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Plating",
+    "productEffect": "Slotted Effect: +70% Enhancement bonus to Fortification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293596,
+    "name": "Miserable Arcana: Positive",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Positive",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Positive Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293600,
+    "name": "Woeful: Wizardry",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Wizardry",
+    "productEffect": "Slotted Effect: +96 Enhancement bonus to Maximum SP.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293601,
+    "name": "Calamitous Longsword",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Longsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293609,
+    "name": "Melancholic Booster",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Booster",
+    "productEffect": "Slotted Effect: +3% Exceptional bonus to Universal Spell Lore",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293612,
+    "name": "Melancholic: Light Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Light Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Light and Alignment Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293615,
+    "name": "Melancholic: Dexterity",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Dexterity",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Dexterity.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293617,
+    "name": "Woeful: Sacred DCs",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Sacred DCs",
+    "productEffect": "Slotted Effect: You have a +1 Sacred bonus to Spell DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293623,
+    "name": "Miserable: Repair Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Repair Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Repair Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293634,
+    "name": "Dolorous Silencer",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Silencer",
+    "productEffect": "Slotted Effect: +1d6 Profane bonus to your Sneak Attack Dice.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293639,
+    "name": "Miserable: Light Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Light Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Light and Alignment Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293643,
+    "name": "Dolorous: Acid Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Acid Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Acid Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293664,
+    "name": "Woeful: Resistance",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Resistance",
+    "productEffect": "Slotted Effect: +4 Resistance bonus to all Saving Throws.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293668,
+    "name": "Miserable Arcana: Acid",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Acid",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Acid Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293671,
+    "name": "Calamitous Light Pick",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Light Pick",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293673,
+    "name": "Calamitous Throwing Dagger",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Throwing Dagger",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293688,
+    "name": "Woeful: Armor Piercing",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Armor-Piercing",
+    "productEffect": "Slotted Effect: +8% Enhancement bonus to Fortification Bypass.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293693,
+    "name": "Calamitous Throwing Hammer",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Throwing Hammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293698,
+    "name": "Dolorous: Seeker",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Seeker",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Critical Confirmation and Critical Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293704,
+    "name": "Melancholic: Force Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Force Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Force and Physical Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293708,
+    "name": "Calamitous Shuriken",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Shuriken",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293710,
+    "name": "Melancholic Chill",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Chill",
+    "productEffect": "Slotted Effect: Adds Cold Iron material type. On hit: 2d6 Cold Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293716,
+    "name": "Dolorous Invigorator",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Invigorator",
+    "productEffect": "Slotted Effect: +1 Profane bonus to Spell DCs, Tactical DCs, and Assassinate.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293217,
+        "name": "Bleak Transformer",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293717,
+    "name": "Melancholic Shadows",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Shadows",
+    "productEffect": "Slotted Effect: +5% Enhancement bonus to Spell Cost Reduction. If this is slotted in a Quarterstaff, also grants a +1 Exceptional bonus to Spell DCs and makes the Quarterstaff an Implement.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293728,
+    "name": "Miserable: Cold Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Cold Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Cold Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293729,
+    "name": "Dolorous: Sonic Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Sonic Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Sonic Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293745,
+    "name": "Calamitous Light Mace",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Light Mace",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293747,
+    "name": "Dolorous: Repair Amplification",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Repair Amplification",
+    "productEffect": "Slotted Effect: +19 Enhancement bonus to Repair Amplification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293748,
+    "name": "Calamitous Burning Sceptre",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Cruel Baton",
+    "productEffect": "Unruly experiments will be put back in their place. With force.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293749,
+    "name": "Melancholic Device",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Device",
+    "productEffect": "Slotted Effect: You have Deathblock and are Ghostly.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293753,
+    "name": "Miserable Arcana: Sonic",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Arcana: Sonic",
+    "productEffect": "Slotted Effect: +70 Equipment bonus to Sonic Spellpower.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293756,
+    "name": "Melancholic: Constitution",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Constitution",
+    "productEffect": "Slotted Effect: +5 Enhancement bonus to Constitution.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293761,
+    "name": "Melancholic: Electric Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Electric Spell Crit Damage",
+    "productEffect": "Slotted Effect: +10% Enhancement bonus to Electric Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293778,
+    "name": "Melancholic Sparks",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Sparks",
+    "productEffect": "Slotted Effect: Adds Silver material type. On hit: 2d6 Electric Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293780,
+    "name": "Miserable: Sonic Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Sonic Spell Crit Damage",
+    "productEffect": "Slotted Effect: +2% Quality bonus to Sonic Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293782,
+    "name": "Dolorous: Cold Spell Crit Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Cold Spell Crit Damage",
+    "productEffect": "Slotted Effect: +5% Insight bonus to Cold Spell Crit Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293784,
+    "name": "Melancholic Converter",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic Converter",
+    "productEffect": "Slotted Effect: +19 Competence bonus to Healing Amplification, +19 Enhancement bonus to Repair Amplification, and +19 Profane bonus to Negative Amplification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030293785,
+    "name": "Calamitous Dagger",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Calamitous Dagger",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294639,
+    "name": "Dolorous: Quality Wisdom",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Wisdom",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Wisdom.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294640,
+    "name": "Dolorous: Quality Accuracy",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Accuracy",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Attack.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294641,
+    "name": "Melancholic: Doublestrike",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Doublestrike",
+    "productEffect": "Slotted Effect: +6% Enhancement bonus to Doublestrike.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294643,
+    "name": "Miserable Destruction",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Destruction",
+    "productEffect": "Slotted Effect: Your attacks apply a stack of Armor Destruction. (-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration. Stacks up to 15 times.) This effect may trigger once every three seconds.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294644,
+    "name": "Miserable Undead Bane",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Undead Bane",
+    "productEffect": "Slotted Effect: Adds Undead Bane. Those that have died must return, and this weapon is attuned specifically to lay them to rest. This weapon deals an additional 2d10 bane damage vs. Undead",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294647,
+    "name": "Dolorous: Quality Dexterity",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Dexterity",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Dexterity.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294654,
+    "name": "Dolorous: Quality Constitution",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Constitution",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Constitution.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294656,
+    "name": "Miserable Armor-Piercing",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Armor-Piercing",
+    "productEffect": "Slotted Effect: Adds Armor-Piercing. +8% Enhancement bonus to bypass enemy Fortification",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294657,
+    "name": "Dolorous: Quality Combat Mastery",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Combat Mastery",
+    "productEffect": "Slotted Effect: +1 Quality bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294660,
+    "name": "Miserable Monstrous Humanoid Bane",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Monstrous Humanoid Bane",
+    "productEffect": "Slotted Effect: Adds Monstrous Humanoid Bane. This weapon is attuned specifically to hunt those who are descended from monsters, dealing an additional 2d10 bane damage vs. Monstrous Humanoids",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294662,
+    "name": "Miserable Maiming",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Maiming",
+    "productEffect": "Slotted Effect: Adds Maiming. When you score a critical hit with this weapon, it does an additional +2d8 damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294663,
+    "name": "Dolorous: Quality Strength",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Strength",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Strength.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294664,
+    "name": "Dolorous: Quality Charisma",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Charisma",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Charisma.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294665,
+    "name": "Dolorous: Quality Intelligence",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Intelligence",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Intelligence.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294668,
+    "name": "Miserable Humanoid Bane",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Humanoid Bane",
+    "productEffect": "Slotted Effect: Adds Humanoid Bane. This weapon is attuned specifically to those that walk among us, dealing an additional 2d10 bane damage vs. Humanoids",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294669,
+    "name": "Dolorous: Quality Damage",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous: Quality Damage",
+    "productEffect": "Slotted Effect: +1 Quality bonus to Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294671,
+    "name": "Miserable Vermin Bane",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Vermin Bane",
+    "productEffect": "Slotted Effect: Adds Vermin Bane. This weapon is ideal for clearing out rats and other annoying beasts. It deals an additional 2d10 bane damage vs. Vermin",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293705,
+        "name": "Bleak Wire",
+        "quantity": 20
+      }
+    ]
+  },
+  {
+    "recipeId": 2030294673,
+    "name": "Melancholic: Doubleshot",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Melancholic: Doubleshot",
+    "productEffect": "Slotted Effect: +3% Enhancement bonus to Doubleshot.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 5
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 5
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295325,
+    "name": "Dolorous Arcana: Acid",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Acid",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Acid Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295328,
+    "name": "Dolorous Arcana: Light",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Light",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Light and Alignment Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295330,
+    "name": "Dolorous Arcana: Negative",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Negative",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Negative and Poison Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295331,
+    "name": "Dolorous Arcana: Sonic",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Sonic",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Sonic Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295335,
+    "name": "Dolorous Arcana: Fire",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Fire",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Fire Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295336,
+    "name": "Dolorous Arcana: Force",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Force",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Force and Physical Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295337,
+    "name": "Dolorous Arcana: Cold",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Cold",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Cold Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295338,
+    "name": "Dolorous Arcana: Positive",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Positive",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Positive Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295342,
+    "name": "Dolorous Arcana: Electric",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Electric",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Electric Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295343,
+    "name": "Dolorous Arcana: Repair",
+    "deviceId": 2030293787,
+    "device": "Heroic Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Dolorous Arcana: Repair",
+    "productEffect": "Slotted Effect: +35 Insight bonus to Repair Spell Power.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293261,
+        "name": "Bleak Insulator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293332,
+        "name": "Bleak Conductor",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293374,
+        "name": "Bleak Alternator",
+        "quantity": 10
+      },
+      {
+        "ingredientId": 2030293465,
+        "name": "Bleak Resistor",
+        "quantity": 10
+      }
+    ]
+  }
+]
