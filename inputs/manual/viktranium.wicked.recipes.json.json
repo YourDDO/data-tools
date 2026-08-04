@@ -1,0 +1,3446 @@
+[
+  {
+    "recipeId": 2030295415,
+    "name": "Miserable: Legendary Armor Piercing",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Legendary Armor Piercing",
+    "productEffect": "Slotted Effect: +5 Legendary bonus to bypass enemy Fortification.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295417,
+    "name": "Legendary Cataclysmic Kama",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Kama",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295418,
+    "name": "Woeful: Fire Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Fire Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Fire spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295419,
+    "name": "Legendary Cataclysmic Repeating Heavy Crossbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Repeating Heavy Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295420,
+    "name": "Legendary Cataclysmic Quarterstaff",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Quarterstaff",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295426,
+    "name": "Legendary Cataclysmic Shortsword",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Shortsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295427,
+    "name": "Woeful Magma",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Magma",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong fire damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295428,
+    "name": "Legendary Cataclysmic Rapier",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Rapier",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295429,
+    "name": "Miserable: Cold Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Cold Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Cold spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295430,
+    "name": "Legendary Cataclysmic Greatsword",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Greatsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295432,
+    "name": "Legendary Cataclysmic Shortbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Shortbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295433,
+    "name": "Miserable: Electric Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Electric Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Electric spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295434,
+    "name": "Legendary Cataclysmic Kukri",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Kukri",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295437,
+    "name": "Legendary Cataclysmic Light Hammer",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Light Hammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295438,
+    "name": "Legendary Cataclysmic Dagger",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Dagger",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295439,
+    "name": "Woeful: Strength of Purpose",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Strength of Purpose",
+    "productEffect": "Slotted Effect: You gain a +128 Enhancement Bonus to Unconsciousness Range, and regenerate 16 Hit Points using Positive Healing every 10 seconds.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295440,
+    "name": "Legendary Cataclysmic Heavy Mace",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Heavy Mace",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295442,
+    "name": "Legendary Cataclysmic Morningstar",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Morningstar",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295443,
+    "name": "Woeful Frostbite",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Frostbite",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong cold damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295445,
+    "name": "Legendary Cataclysmic Heavy Pick",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Heavy Pick",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295446,
+    "name": "Miserable: Fire Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Fire Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Fire spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295447,
+    "name": "Legendary Cataclysmic Tower Shield",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Tower Shield",
+    "productEffect": "Augmentation slots line the back of this shield, allowing tinkerers to unlock its full potential.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295448,
+    "name": "Woeful: Exceptional Spell Focus Mastery",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Exceptional Spell Focus Mastery",
+    "productEffect": "Slotted Effect: +2 Exceptional Bonus to Spell DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295449,
+    "name": "Legendary Cataclysmic Greatclub",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Greatclub",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295450,
+    "name": "Legendary Cataclysmic Dwarven Waraxe",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Dwarven Waraxe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295451,
+    "name": "Woeful: Force Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Force Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Force and Physical spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295452,
+    "name": "Woeful: Quality Seeker",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Quality Seeker",
+    "productEffect": "Slotted Effect: +3 Quality bonus to confirm critical hits and damage (before multiplier) on critical hits.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295455,
+    "name": "Legendary Cataclysmic Khopesh",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Khopesh",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295457,
+    "name": "Woeful: Positive Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Positive Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Positive spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295458,
+    "name": "Woeful Salt",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Salt",
+    "productEffect": "Slotted Effect: Attacks and offensive spells have a chance to greatly reduce enemy movement speed and attack speed. This inflicts 8 stacks, which fade over time. <br><br>This effect has a short internal cooldown. Doesn't affect bosses.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295460,
+    "name": "Legendary Cataclysmic Warhammer",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Warhammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295461,
+    "name": "Miserable Metalline",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Metalline",
+    "productEffect": "Slotted Effect: This weapon bypasses metal based damage reduction.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295462,
+    "name": "Legendary Cataclysmic Heavy Crossbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Heavy Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295463,
+    "name": "Woeful: Negative Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Negative Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Negative and Poison spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295465,
+    "name": "Miserable: Rebellion",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Rebellion",
+    "productEffect": "Slotted Effect: -25% Insight Bonus to threat from all sources.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295467,
+    "name": "Woeful: Sonic Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Sonic Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Sonic spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295468,
+    "name": "Legendary Cataclysmic Repeating Light Crossbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Repeating Light Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295470,
+    "name": "Legendary Cataclysmic Throwing Dagger",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Throwing Dagger",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295471,
+    "name": "Legendary Cataclysmic Large Shield",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Large Shield",
+    "productEffect": "Augmentation slots line the back of this shield, allowing tinkerers to unlock its full potential.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295473,
+    "name": "Woeful: Acid Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Acid Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Acid spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295474,
+    "name": "Miserable: Force Absorption",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Force Absorption",
+    "productEffect": "Slotted Effect: +17% Enhancement Bonus to Force Absorption.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295478,
+    "name": "Miserable: Repair Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Repair Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Repair spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295479,
+    "name": "Woeful: Light Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Light Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Light and Alignment spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295482,
+    "name": "Legendary Cataclysmic Burning Sceptre",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Burning Sceptre",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295483,
+    "name": "Miserable: Force Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Force Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Force and Physical spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295484,
+    "name": "Legendary Cataclysmic Battle Axe",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Battle Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295485,
+    "name": "Miserable Planar",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable Planar",
+    "productEffect": "Slotted Effect: This weapon bypasses alignment based damage reduction.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295487,
+    "name": "Miserable: Positive Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Positive Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Positive spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295488,
+    "name": "Legendary Cataclysmic Greataxe",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Greataxe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295489,
+    "name": "Legendary Cataclysmic Hand Axe",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Hand Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295490,
+    "name": "Legendary Cataclysmic Falchion",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Falchion",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295491,
+    "name": "Woeful: Quality Spell Focus Mastery",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Quality Spell Focus Mastery",
+    "productEffect": "Slotted Effect: +2 Quality Bonus to Spell DCs.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295495,
+    "name": "Legendary Cataclysmic Light Mace",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Light Mace",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295496,
+    "name": "Miserable: Negative Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Negative Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Negative and Poison spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295499,
+    "name": "Miserable: Sonic Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Sonic Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Sonic spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295500,
+    "name": "Legendary Cataclysmic Club",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Club",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295502,
+    "name": "Woeful Energy",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Energy",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong force damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295504,
+    "name": "Miserable: Acid Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Acid Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Acid spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295506,
+    "name": "Legendary Cataclysmic Great Crossbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Great Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295507,
+    "name": "Legendary Cataclysmic Handwraps",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Handwraps",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295508,
+    "name": "Woeful Venom",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Venom",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong poison damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295510,
+    "name": "Miserable: Light Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Miserable: Light Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Light and Alignment spells have a +23% Equipment Bonus to their chance to Critical Hit..",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293408,
+        "name": "Legendary Bleak Transformer",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295512,
+    "name": "Legendary Cataclysmic Buckler",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Buckler",
+    "productEffect": "Augmentation slots line the back of this shield, allowing tinkerers to unlock its full potential.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295513,
+    "name": "Woeful Shadow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Shadow",
+    "productEffect": "Slotted Effect: +3% Profane Doublestrike and Doubleshot, +15% Enhancement bonus to Melee Alacrity, +20% Enhancement bonus to Ranged Alacrity.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295516,
+    "name": "Legendary Cataclysmic Bastard Sword",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Bastard Sword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295517,
+    "name": "Legendary Cataclysmic Longbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Longbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295518,
+    "name": "Legendary Cataclysmic Dart",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Dart",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295520,
+    "name": "Woeful: Repair Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Repair Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Repair spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295524,
+    "name": "Woeful Lightning",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Lightning",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong electric damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295526,
+    "name": "Legendary Cataclysmic Small Shield",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Small Shield",
+    "productEffect": "Augmentation slots line the back of this shield, allowing tinkerers to unlock its full potential.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295527,
+    "name": "Woeful: Cold Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Cold Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Cold spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295528,
+    "name": "Legendary Cataclysmic Shuriken",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Shuriken",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295529,
+    "name": "Legendary Cataclysmic Sickle",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Sickle",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295531,
+    "name": "Legendary Cataclysmic Throwing Axe",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Throwing Axe",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295533,
+    "name": "Woeful: Electric Spell Crit Chance",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Electric Spell Crit Chance",
+    "productEffect": "Slotted Effect: Your Electric spells have a +23% Equipment Bonus to their chance to Critical Hit.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295535,
+    "name": "Legendary Cataclysmic Light Pick",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Light Pick",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295536,
+    "name": "Woeful Echoes",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Echoes",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong sonic damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295537,
+    "name": "Legendary Cataclysmic Longsword",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Longsword",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295539,
+    "name": "Legendary Cataclysmic Light Crossbow",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Light Crossbow",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295540,
+    "name": "Legendary Cataclysmic Scimitar",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Scimitar",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295541,
+    "name": "Woeful: Greater Marksmanship",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful: Greater Marksmanship",
+    "productEffect": "Slotted Effect: You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295542,
+    "name": "Legendary Cataclysmic Maul",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Maul",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295543,
+    "name": "Legendary Cataclysmic Throwing Hammer",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Legendary Cataclysmic Throwing Hammer",
+    "productEffect": "Small slots in this weapon could easily fit small augmentation devices.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 25
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 25
+      }
+    ]
+  },
+  {
+    "recipeId": 2030295544,
+    "name": "Woeful Acidburn",
+    "deviceId": 2030295546,
+    "device": "Wicked Viktranium Experiment Crafting",
+    "removed": null,
+    "added": null,
+    "produces": "Woeful Acidburn",
+    "productEffect": "Slotted Effect: Your attacks and offensive spells have a high chance to deal very strong acid damage over time.",
+    "essenceCraftingLevel": null,
+    "craftingSchool": null,
+    "minItemLevel": null,
+    "grants": [],
+    "ingredients": [
+      {
+        "ingredientId": 2030293381,
+        "name": "Legendary Bleak Conductor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293394,
+        "name": "Legendary Bleak Alternator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293425,
+        "name": "Legendary Bleak Insulator",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030293559,
+        "name": "Legendary Bleak Resistor",
+        "quantity": 50
+      },
+      {
+        "ingredientId": 2030295369,
+        "name": "Legendary Bleak Memento",
+        "quantity": 50
+      }
+    ]
+  }
+]
