@@ -16,6 +16,7 @@ import (
 	"yourddo-data-tools/internal/domain/fountain"
 	"yourddo-data-tools/internal/domain/gearplanner"
 	"yourddo-data-tools/internal/domain/incrediblepotential"
+	"yourddo-data-tools/internal/domain/itemsets"
 	"yourddo-data-tools/internal/domain/lostpurpose"
 	"yourddo-data-tools/internal/domain/nearlycomplete"
 	"yourddo-data-tools/internal/domain/nearlyfinished"
@@ -32,6 +33,7 @@ type Registration struct {
 
 // registrations is the only list changed when a domain is added.
 var registrations = []Registration{
+	{Generator: itemsets.New(), Aliases: []string{"itemsets"}},
 	{Generator: gearplanner.New(), Aliases: []string{"gearplanner"}},
 	{Generator: zhentarim.New(), Aliases: []string{"zhentarim"}},
 	{Generator: nearlycomplete.New()},

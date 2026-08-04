@@ -1,9 +1,14 @@
 package gearplanner
 
 import (
+	"bytes"
+	"context"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"yourddo-data-tools/internal/dataset"
+	"yourddo-data-tools/internal/domain/itemsets"
 )
 
 func TestGenerateSetBonusIndexSortsAndDeduplicates(t *testing.T) {
@@ -15,6 +20,31 @@ func TestGenerateSetBonusIndexSortsAndDeduplicates(t *testing.T) {
 	index := GenerateSetBonusIndex(items)
 	if len(index["Set"]) != 2 || index["Set"][0].Name != "Earlier" || index["Set"][1].MinLevel != 20 {
 		t.Fatalf("index = %#v", index)
+	}
+}
+
+func TestCompatibilityIndexMatchesSharedItemSetsDomain(t *testing.T) {
+	t.Parallel()
+	master := dataset.Master{Items: []dataset.ItemRecord{{Item: dataset.ItemData{
+		Name: "Fixture", SetBonus: []dataset.SetBonusOut{{Name: "Fixture Set"}},
+	}}}}
+	root := t.TempDir()
+	if _, err := itemsets.New().Generate(context.Background(), master, root); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := New().Generate(context.Background(), master, root); err != nil {
+		t.Fatal(err)
+	}
+	shared, err := os.ReadFile(filepath.Join(root, itemsets.Name, "setBonusIndex.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	compatibility, err := os.ReadFile(filepath.Join(root, Name, "setBonusIndex.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(shared, compatibility) {
+		t.Fatalf("shared index differs from compatibility copy:\n%s\n%s", shared, compatibility)
 	}
 }
 

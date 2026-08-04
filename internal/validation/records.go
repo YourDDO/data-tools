@@ -221,8 +221,9 @@ func validateSetBonusIndex(path string, file contracts.GeneratedFileMetadata, id
 			if len(ids.pages) != 0 {
 				_, pageExists := ids.pages[name]
 				_, nameExists := ids.names[name]
-				if !pageExists && !nameExists {
-					report.add(Error, file.Domain, file.Path, recordID, "master-reference", "set item does not reference a master item")
+				_, augmentExists := ids.augments[name]
+				if !pageExists && !nameExists && !augmentExists {
+					report.add(Error, file.Domain, file.Path, recordID, "master-reference", "set member does not reference a master item or augment")
 				}
 			}
 		}

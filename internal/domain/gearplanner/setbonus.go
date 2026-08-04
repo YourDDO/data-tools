@@ -3,13 +3,11 @@ package gearplanner
 import (
 	"context"
 	"fmt"
-	"sort"
-	"strconv"
-	"strings"
 
 	"yourddo-data-tools/internal/contracts"
 	"yourddo-data-tools/internal/dataset"
 	"yourddo-data-tools/internal/domain"
+	"yourddo-data-tools/internal/domain/itemsets"
 )
 
 const Name = "gear-planner"
@@ -44,7 +42,7 @@ func (Generator) Generate(ctx context.Context, master dataset.Master, outputRoot
 		return domain.Result{}, fmt.Errorf("domain %s canonical master index: %w", Name, err)
 	}
 	result.Files = append(result.Files, metadata)
-	metadata, err = domain.WriteJSON(outputRoot, Name, "setBonusIndex.json", GenerateSetBonusIndexFromRecords(master.Items))
+	metadata, err = domain.WriteJSON(outputRoot, Name, "setBonusIndex.json", itemsets.GenerateSetBonusIndexFromMaster(master))
 	if err != nil {
 		return domain.Result{}, fmt.Errorf("domain %s set bonus index: %w", Name, err)
 	}
@@ -53,25 +51,11 @@ func (Generator) Generate(ctx context.Context, master dataset.Master, outputRoot
 	return result, nil
 }
 
-type SetItem struct {
-	Name     string `json:"name"`
-	MinLevel int    `json:"minLevel"`
-}
-
-type SetBonusIndex map[string][]SetItem
-
-type setItemCandidate struct {
-	name      string
-	pageTitle string
-	minLevel  int
-}
+type SetItem = itemsets.SetItem
+type SetBonusIndex = itemsets.SetBonusIndex
 
 func GenerateSetBonusIndex(items []dataset.ItemData) SetBonusIndex {
-	records := make([]dataset.ItemRecord, len(items))
-	for index, item := range items {
-		records[index].Item = item
-	}
-	return GenerateSetBonusIndexFromRecords(records)
+	return itemsets.GenerateSetBonusIndex(items)
 }
 
 // GenerateSetBonusIndexFromRecords uses the canonical page title for
@@ -81,78 +65,9 @@ func GenerateSetBonusIndex(items []dataset.ItemData) SetBonusIndex {
 // name unless multiple canonical records in the same set share it, in which
 // case their page titles disambiguate the variants without dropping data.
 func GenerateSetBonusIndexFromRecords(records []dataset.ItemRecord) SetBonusIndex {
-	candidates := make(map[string][]setItemCandidate)
-	seen := make(map[string]struct{})
-	for _, record := range records {
-		item := record.Item
-		itemName := strings.TrimSpace(item.Name)
-		pageTitle := strings.TrimSpace(item.PageTitle)
-		if strings.EqualFold(strings.TrimSpace(record.Category), "Filigrees") && pageTitle != "" {
-			itemName = pageTitle
-		}
-		level := ParseMinimumLevel(item.MinLevel)
-		identity := pageTitle
-		if identity == "" {
-			identity = itemName + "\x00" + strconv.Itoa(level)
-		}
-		for _, bonus := range item.SetBonus {
-			name := strings.TrimSpace(bonus.Name)
-			if name == "" || itemName == "" {
-				continue
-			}
-			key := name + "\x00" + identity
-			if _, exists := seen[key]; exists {
-				continue
-			}
-			seen[key] = struct{}{}
-			candidates[name] = append(candidates[name], setItemCandidate{
-				name: itemName, pageTitle: pageTitle, minLevel: level,
-			})
-		}
-	}
-
-	result := make(SetBonusIndex, len(candidates))
-	for setName, setCandidates := range candidates {
-		nameCounts := make(map[string]int, len(setCandidates))
-		for _, candidate := range setCandidates {
-			nameCounts[candidate.name]++
-		}
-		items := make(map[string]SetItem, len(setCandidates))
-		for _, candidate := range setCandidates {
-			name := candidate.name
-			if nameCounts[name] > 1 && candidate.pageTitle != "" {
-				name = candidate.pageTitle
-			}
-			item := SetItem{Name: name, MinLevel: candidate.minLevel}
-			if existing, exists := items[name]; !exists || item.MinLevel < existing.MinLevel {
-				items[name] = item
-			}
-		}
-		result[setName] = make([]SetItem, 0, len(items))
-		for _, item := range items {
-			result[setName] = append(result[setName], item)
-		}
-	}
-	for name := range result {
-		sort.Slice(result[name], func(i, j int) bool {
-			if result[name][i].MinLevel != result[name][j].MinLevel {
-				return result[name][i].MinLevel < result[name][j].MinLevel
-			}
-			return result[name][i].Name < result[name][j].Name
-		})
-	}
-	return result
+	return itemsets.GenerateSetBonusIndexFromRecords(records)
 }
 
 func ParseMinimumLevel(value string) int {
-	var digits strings.Builder
-	for _, r := range strings.TrimSpace(value) {
-		if r >= '0' && r <= '9' {
-			digits.WriteRune(r)
-		} else if digits.Len() > 0 {
-			break
-		}
-	}
-	level, _ := strconv.Atoi(digits.String())
-	return level
+	return itemsets.ParseMinimumLevel(value)
 }

@@ -150,7 +150,7 @@ go run ./cmd/generate-domains \
   --output=build/output
 ```
 
-The default selection is `gear-planner`, `zhentarim-attuned`,
+The default selection is `item-sets`, `gear-planner`, `zhentarim-attuned`,
 `nearly-complete`, `fountain-of-necrotic-might`, `stormreaver-monument`,
 `nearly-finished`, `almost-there`, `finishing-touch`, `alchemical`,
 `incredible-potential`, `catalyst-crafting`, `trace-of-madness`,
@@ -170,15 +170,21 @@ go run ./cmd/generate-domains \
 
 ## Domain output contracts
 
-Gear Planner receives byte-identical copies of every indexed master record
-file and `master-index.json`, because it consumes the complete canonical
-schemas. Its additional `setBonusIndex.json` contains only item `name` and
-`minLevel`, the two fields needed to display and level-sort set members.
+The shared Item Sets domain emits `item-sets/setBonusIndex.json`. It contains
+only member `name` and `minLevel`, the two fields needed to display and
+level-sort items and augments belonging to each set. Gear Planner receives
+byte-identical copies of every indexed master record file and
+`master-index.json`, because it consumes the complete canonical schemas. It
+also publishes an identical `gear-planner/setBonusIndex.json` compatibility
+copy for existing consumers.
 Filigree names come from their canonical page titles because the Compendium's
 filigree template `name` fields are not reliably unique and can otherwise
 cause distinct common or rare records to be deduplicated. Other items retain
 their display names unless multiple records in the same set share one; those
 variants use their canonical page titles so every set member remains unique.
+The maintained `manual/itemSets.enchantments.json` payload supplies set-effect
+definitions. Each pipeline run logs sorted warnings for generated index or
+filigree-set names that do not have a corresponding manual definition.
 
 Fountain of Necrotic Might, Stormreaver Monument, and Zhentarim Attuned emit
 `upgrades.json`. Each entry includes the item `name` to identify the upgrade,

@@ -179,6 +179,22 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	if err != nil {
 		return result, fail(StagePrepareManual, err)
 	}
+	coverageWarnings, err := itemSetDefinitionCoverage(masterResult.Master, filepath.Join(candidateRoot, "manual"))
+	if err != nil {
+		return result, fail(StagePrepareManual, err)
+	}
+	for _, warning := range coverageWarnings {
+		logger.WarnContext(ctx, "item-set definitions are missing from the manual payload",
+			"stage", StagePrepareManual,
+			"game_version", cfg.GameVersion,
+			"master_sha256", masterHash,
+			"source", warning.source,
+			"manual_payload", filepath.ToSlash(filepath.Join("manual", manual.ItemSetEnchantmentsFile)),
+			"manual_payload_found", warning.manualFound,
+			"missing_count", len(warning.missingSetNames),
+			"missing_sets", warning.missingSetNames,
+		)
+	}
 	releaseFingerprint, err := manifest.ReleaseFingerprint(masterHash, manualPayloads)
 	if err != nil {
 		return result, fail(StagePrepareManual, err)
