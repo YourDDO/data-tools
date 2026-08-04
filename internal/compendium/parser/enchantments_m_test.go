@@ -69,3 +69,19 @@ func TestParseEnchantmentsMagmaSurgeDamage(t *testing.T) {
 		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
 	}
 }
+
+func TestParseEnchantmentsMemoryOfAnimatedObjects(t *testing.T) {
+	want := []dataset.Enchantment{
+		{Name: "Spell Power: Repair", Amount: "171", BonusType: "Equipment"},
+		{Name: "Spell Power: Rust", Amount: "171", BonusType: "Equipment"},
+		{Name: "Repair Spell Critical Chance", Amount: "24", BonusType: "Equipment"},
+		{Name: "Rust Spell Critical Chance", Amount: "24", BonusType: "Equipment"},
+		{Name: "Spell Critical Damage: Repair", Amount: "25", BonusType: "Enhancement", Element: "Repair"},
+		{Name: "Spell Critical Damage: Rust", Amount: "25", BonusType: "Enhancement", Element: "Rust"},
+	}
+
+	got := ParseEnchantments("{{MemoryOfAnimatedObjects}}", "")
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
