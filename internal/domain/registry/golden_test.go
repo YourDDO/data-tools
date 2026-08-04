@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"yourddo-data-tools/internal/dataset"
+	"yourddo-data-tools/internal/domain"
 	"yourddo-data-tools/internal/domain/registry"
 	"yourddo-data-tools/internal/hashing"
 	"yourddo-data-tools/internal/validation"
@@ -25,11 +26,26 @@ func TestGeneratorsMatchGoldenFilesAndAreByteDeterministic(t *testing.T) {
 	secondRoot := filepath.Join(t.TempDir(), "second")
 	var firstFiles, secondFiles int
 	for _, registration := range registry.All() {
-		first, err := registration.Generator.Generate(context.Background(), master, firstRoot)
+		generatorMaster := master
+		manualRoot := ""
+		if _, ok := registration.Generator.(domain.ManualGenerator); ok {
+			generatorMaster, err = dataset.LoadMaster(filepath.Join(fixtureRoot, "viktranium", "master"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			manualRoot = filepath.Join(fixtureRoot, "viktranium", "manual")
+		}
+		generate := func(outputRoot string) (domain.Result, error) {
+			if generator, ok := registration.Generator.(domain.ManualGenerator); ok {
+				return generator.GenerateWithManual(context.Background(), generatorMaster, manualRoot, outputRoot)
+			}
+			return registration.Generator.Generate(context.Background(), generatorMaster, outputRoot)
+		}
+		first, err := generate(firstRoot)
 		if err != nil {
 			t.Fatalf("generate %s first run: %v", registration.Generator.Name(), err)
 		}
-		second, err := registration.Generator.Generate(context.Background(), master, secondRoot)
+		second, err := generate(secondRoot)
 		if err != nil {
 			t.Fatalf("generate %s second run: %v", registration.Generator.Name(), err)
 		}

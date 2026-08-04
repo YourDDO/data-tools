@@ -201,7 +201,7 @@ func parseDropAndCrafting(out *dataset.AugmentItem, fields map[string]string, pa
 				case dinosaurBoneCrafting:
 					out.CraftedIn = dinosaurBoneCrafting
 				case "CraftedAugment":
-					out.CraftedIn = firstNonEmpty(d.CraftLocation, "Crafted Augment")
+					out.CraftedIn = firstNonEmpty(d.VendorName, d.CraftLocation, "Crafted Augment")
 				case "Crafting":
 					ci := strings.TrimSpace(strings.Join(filterNonEmpty([]string{d.CraftingType, d.CraftingLocation}), " - "))
 					out.CraftedIn = firstNonEmpty(ci, d.CraftingType, d.CraftingLocation, "Crafting")
@@ -233,7 +233,7 @@ func parseDropAndCrafting(out *dataset.AugmentItem, fields map[string]string, pa
 		var reqItems []dataset.AugmentItem
 		for _, d := range drops {
 			switch d.SourceType {
-			case viktraniumCrafting:
+			case viktraniumCrafting, "CraftedAugment":
 				for _, r := range buildCraftRequirements(d, vikPrefix) {
 					reqItems = append(reqItems, dataset.AugmentItem{
 						Title:          r.Title,
@@ -529,7 +529,7 @@ func augmentTypeFromIcon(icon string) string {
 func mapEnchantmentsToPartial(in []dataset.Enchantment) []dataset.PartialEnhancementOut {
 	out := make([]dataset.PartialEnhancementOut, 0, len(in))
 	for _, e := range in {
-		var mod interface{}
+		var mod any
 		if e.Amount != "" {
 			// try parse number, otherwise keep string
 			if i, err := strconv.Atoi(e.Amount); err == nil {
@@ -747,6 +747,16 @@ func buildCraftRequirements(d dataset.DropSourceData, vikPrefix string) []datase
 		out = add(out, "Fossilized Ankylosaur Rib", dinosaurBone, d.BoneAnkylosaur)
 		out = add(out, "Fossilized Tyrannosaurus Tooth", dinosaurBone, d.BoneTyrannosaurus)
 		out = add(out, "Black Pearl", "Black Pearls", d.BlackPearls)
+	case "CraftedAugment":
+		for _, ingredient := range d.Ingredients {
+			if ingredient.Quantity == nil || strings.TrimSpace(ingredient.Name) == "" {
+				continue
+			}
+			out = append(out, dataset.CraftingIngredientOut{
+				Title:    strings.TrimSpace(ingredient.Name),
+				Quantity: ingredient.Quantity,
+			})
+		}
 	}
 	return out
 }
@@ -818,8 +828,8 @@ func augmentTypeFromColor(color string) string {
 	}
 	// Try long form like "Scale Armor"
 	for famKey, famName := range iodFamilies {
-		if strings.HasPrefix(upper, famKey+" ") {
-			rest := strings.TrimSpace(strings.TrimPrefix(upper, famKey+" "))
+		if after, ok := strings.CutPrefix(upper, famKey+" "); ok {
+			rest := strings.TrimSpace(after)
 			if it, ok := items[rest]; ok {
 				return fmt.Sprintf("Isle of Dread: %s (%s)", famName, it)
 			}
@@ -849,8 +859,8 @@ func augmentTypeFromColor(color string) string {
 		if len(mk) == 1 { // skip single-letter here
 			continue
 		}
-		if strings.HasPrefix(upper, mk+" ") {
-			rest := strings.TrimSpace(strings.TrimPrefix(upper, mk+" "))
+		if after, ok := strings.CutPrefix(upper, mk+" "); ok {
+			rest := strings.TrimSpace(after)
 			if it, ok := items[rest]; ok {
 				return fmt.Sprintf("Lamordia: %s (%s)", mv, it)
 			}

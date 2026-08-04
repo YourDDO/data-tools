@@ -196,6 +196,77 @@ func TestGreenSteelCraftingPurchaseDrop(t *testing.T) {
 	}
 }
 
+func TestCraftedAugment(t *testing.T) {
+	tests := []struct {
+		name            string
+		raw             string
+		wantCraftedIn   string
+		wantLocation    string
+		wantArea        string
+		wantRaidItems   []string
+		wantIngredients []dataset.CraftingRequirement
+	}{
+		{
+			name:          "Cadence",
+			raw:           "{{CraftedAugment|Cadence|Tattered Scrolls of the Broken One}}",
+			wantCraftedIn: "Cauldron of Cadence",
+			wantLocation:  "The Hut from Beyond",
+			wantArea:      "The Harbor",
+			wantRaidItems: []string{"Tattered Scrolls of the Broken One"},
+			wantIngredients: []dataset.CraftingRequirement{
+				{Name: "Thread of Fate", Quantity: new(50)},
+				{Name: "Empty Soul Vessel", Quantity: new(1)},
+				{Name: "Tattered Scrolls of the Broken One", Quantity: new(1)},
+			},
+		},
+		{
+			name:          "Soulforge",
+			raw:           "{{CraftedAugment|Soulforge|The Broken Blade of Constellation|The Shattered Hilt of Constellation}}",
+			wantCraftedIn: "Soulforge",
+			wantLocation:  "Hall of Heroes",
+			wantRaidItems: []string{"The Broken Blade of Constellation", "The Shattered Hilt of Constellation"},
+			wantIngredients: []dataset.CraftingRequirement{
+				{Name: "Thread of Fate", Quantity: new(50)},
+				{Name: "Empty Soul Vessel", Quantity: new(1)},
+				{Name: "The Broken Blade of Constellation", Quantity: new(1)},
+				{Name: "The Shattered Hilt of Constellation", Quantity: new(1)},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			drop := parseTemplateCraftedAugment(tt.raw)
+			if drop.CraftLocation != tt.wantCraftedIn || drop.VendorName != tt.wantCraftedIn {
+				t.Fatalf("crafting station = (%q, %q), want %q", drop.CraftLocation, drop.VendorName, tt.wantCraftedIn)
+			}
+			if drop.VendorLocation != tt.wantLocation || drop.VendorArea != tt.wantArea {
+				t.Fatalf("vendor location = (%q, %q), want (%q, %q)", drop.VendorLocation, drop.VendorArea, tt.wantLocation, tt.wantArea)
+			}
+			if !reflect.DeepEqual(drop.RaidItems, tt.wantRaidItems) {
+				t.Fatalf("raid items = %#v, want %#v", drop.RaidItems, tt.wantRaidItems)
+			}
+			if !reflect.DeepEqual(drop.Ingredients, tt.wantIngredients) {
+				t.Fatalf("ingredients = %#v, want %#v", drop.Ingredients, tt.wantIngredients)
+			}
+
+			augment := ConvertAugmentToJSON("Test Augment", map[string]string{"droplocation": tt.raw})
+			if augment.CraftedIn != tt.wantCraftedIn {
+				t.Fatalf("craftedIn = %q, want %q", augment.CraftedIn, tt.wantCraftedIn)
+			}
+			if len(augment.Requirements) != len(tt.wantIngredients) {
+				t.Fatalf("requirements = %#v, want %d entries", augment.Requirements, len(tt.wantIngredients))
+			}
+			for index, requirement := range augment.Requirements {
+				want := tt.wantIngredients[index]
+				if requirement.Title != want.Name || !reflect.DeepEqual(requirement.Quantity, want.Quantity) {
+					t.Fatalf("requirement %d = %#v, want title %q quantity %v", index, requirement, want.Name, *want.Quantity)
+				}
+			}
+		})
+	}
+}
+
 func TestExtractSetBonusesHonorsTemplateControlParameters(t *testing.T) {
 	t.Parallel()
 	item := ConvertItemToJSON("Mysterious Ring", map[string]string{

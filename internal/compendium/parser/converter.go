@@ -97,8 +97,8 @@ func stripWikitext(s string) string {
 
 		content := s[start+2 : end]
 		visible := content
-		if pipe := strings.Index(content, "|"); pipe != -1 {
-			visible = content[pipe+1:]
+		if _, after, ok := strings.Cut(content, "|"); ok {
+			visible = after
 		}
 
 		s = s[:start] + visible + s[end+2:]
@@ -642,9 +642,9 @@ func ConvertItemToJSON(pageTitle string, fields map[string]string) dataset.ItemD
 	return data
 }
 
-var filigreeSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?FiligreeSetList\|([^}]+)\}\}`)
-var itemSetRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSet\|([^}]+)\}\}`)
-var itemSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSetList\|([^}]+)\}\}`)
+var filigreeSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?FiligreeSetList\|([^}]+)}}`)
+var itemSetRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSet\|([^}]+)}}`)
+var itemSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSetList\|([^}]+)}}`)
 
 func extractSetBonusesFromText(text string) []dataset.SetBonusOut {
 	var sets []dataset.SetBonusOut
@@ -958,9 +958,9 @@ func parseTemplateViktraniumPurchase(rawVPValue string) dataset.DropSourceData {
 			continue
 		}
 		// Split on first '=' only if present at top level (safe because we split top-level earlier)
-		if eq := strings.Index(p, "="); eq != -1 {
-			key := strings.TrimSpace(p[:eq])
-			val := stripBrackets(p[eq+1:])
+		if before, after, ok := strings.Cut(p, "="); ok {
+			key := strings.TrimSpace(before)
+			val := stripBrackets(after)
 			switch strings.ToLower(key) {
 			case "t", "transformers":
 				drop.ViktraniumTransformers = val
@@ -1477,42 +1477,43 @@ func parseTemplateCraftedAugment(rawCAValue string) dataset.DropSourceData {
 	const prefix = "{{CraftedAugment|"
 	const suffix = "}}"
 
-	// Helper function to strip brackets (just in case they appear here)
-	stripBrackets := func(s string) string {
-		s = strings.ReplaceAll(s, "[", "")
-		s = strings.ReplaceAll(s, "]", "")
-		return strings.TrimSpace(s)
-	}
-
 	if !strings.HasPrefix(rawCAValue, prefix) || !strings.HasSuffix(rawCAValue, suffix) {
 		return dataset.DropSourceData{SourceType: "Unknown"}
 	}
 
 	paramList := rawCAValue[len(prefix) : len(rawCAValue)-len(suffix)]
-	// NOTE: Splitting by "|" will separate Location and all Raid Items.
-	parts := strings.Split(paramList, "|")
+	parts := splitParams(paramList)
 
-	drop := dataset.DropSourceData{SourceType: "CraftedAugment"} // Set Type
-	drop.RaidItems = make([]string, 0)
-
-	// Docs: (Location)|(Raid Item(s))
-
-	// 1. Location (Required, Index 0)
-	if len(parts) >= 1 {
-		drop.CraftLocation = stripBrackets(parts[0])
+	drop := dataset.DropSourceData{
+		SourceType: "CraftedAugment",
+		Ingredients: []dataset.CraftingRequirement{
+			{Name: "Thread of Fate", Quantity: new(50)},
+			{Name: "Empty Soul Vessel", Quantity: new(1)},
+		},
 	}
 
-	// 2. Raid Items (Indices 1 to N, up to 5 items)
-	for i := 1; i < len(parts) && i <= 5; i++ {
-		item := stripBrackets(parts[i])
-		if item != "" {
-			drop.RaidItems = append(drop.RaidItems, item)
+	// Docs: (Location)|(Raid Item(s))
+	if len(parts) >= 1 {
+		drop.CraftLocation = stripWikitext(parts[0])
+		switch strings.ToLower(drop.CraftLocation) {
+		case "cadence":
+			drop.CraftLocation = "Cauldron of Cadence"
+			drop.VendorName = "Cauldron of Cadence"
+			drop.VendorLocation = "The Hut from Beyond"
+			drop.VendorArea = "The Harbor"
+		case "soulforge":
+			drop.CraftLocation = "Soulforge"
+			drop.VendorName = "Soulforge"
+			drop.VendorLocation = "Hall of Heroes"
 		}
 	}
 
-	// Clean up empty slice if no items were found
-	if len(drop.RaidItems) == 0 {
-		drop.RaidItems = nil
+	for i := 1; i < len(parts) && i <= 5; i++ {
+		item := stripWikitext(parts[i])
+		if item != "" {
+			drop.RaidItems = append(drop.RaidItems, item)
+			drop.Ingredients = append(drop.Ingredients, dataset.CraftingRequirement{Name: item, Quantity: new(1)})
+		}
 	}
 
 	return drop
@@ -1759,13 +1760,13 @@ func ParseMultiTemplateDropLocation(rawContent string) []dataset.DropSourceData 
 		case "Ingredient":
 			dropData = parseTemplateIngredient(fullTemplate)
 		case "CraftOnlyItem":
-			dropData = parseTemplateCraftOnlyItem(fullTemplate)
+			dropData = parseTemplateCraftOnlyItem()
 		case "CommunityLootList":
-			dropData = parseTemplateCommunityLootList(fullTemplate)
+			dropData = parseTemplateCommunityLootList()
 		case "SoraKatraCrafting":
 			dropData = parseTemplateSoraKatraCrafting(fullTemplate)
 		case "TapestryPurchase":
-			dropData = parseTemplateTapestryPurchase(fullTemplate)
+			dropData = parseTemplateTapestryPurchase()
 		case "FeywildPurchase":
 			dropData = parseTemplateFeywildPurchase(fullTemplate)
 		case "RavenloftPurchase":
@@ -1812,8 +1813,8 @@ func parseTemplateNightRevelsPurchase(raw string) dataset.DropSourceData {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	drop := dataset.DropSourceData{SourceType: "NightRevelsPurchase"}
@@ -2466,14 +2467,14 @@ func parseTemplateVeteranReceived(rawVRValue string) dataset.DropSourceData {
 	return drop
 }
 
-func parseTemplateCraftOnlyItem(rawValue string) dataset.DropSourceData {
+func parseTemplateCraftOnlyItem() dataset.DropSourceData {
 	return dataset.DropSourceData{
 		SourceType:  "CraftOnlyItem",
 		IsCraftOnly: true,
 	}
 }
 
-func parseTemplateCommunityLootList(rawValue string) dataset.DropSourceData {
+func parseTemplateCommunityLootList() dataset.DropSourceData {
 	return dataset.DropSourceData{
 		SourceType:      "CommunityLootList",
 		IsCommunityLoot: true,
@@ -2583,7 +2584,7 @@ func parseTemplateSoraKatraCrafting(rawSKCValue string) dataset.DropSourceData {
 	return drop
 }
 
-func parseTemplateTapestryPurchase(raw string) dataset.DropSourceData {
+func parseTemplateTapestryPurchase() dataset.DropSourceData {
 	return dataset.DropSourceData{
 		SourceType:         "TapestryPurchase",
 		IsTapestryPurchase: true,
@@ -2871,10 +2872,6 @@ func parseTemplatePreslottedAugment(raw string) dataset.AugmentItem {
 	}
 }
 
-func ParseTemplateEmptyAugments(raw string) []dataset.AugmentItem {
-	return parseTemplateEmptyAugments(raw)
-}
-
 // parseTemplateEmptyAugments parses `{{EmptyAugments|...}}` and returns a slice of
 // up to 8 augment slot identifiers. Recognized simple values like core colors
 // and Sun/Moon are normalized via augmentTypeFromColor. If any parameter is a
@@ -3000,9 +2997,9 @@ func parseTemplateLGSAugments(raw string) []dataset.AugmentItem {
 	// {{LGSAugments}} or {{LGSAugments|1}} or {{LGSAugments|(Clothing)}}
 	// If any parameter is present, add the "Fangs of Shavarath" slot.
 	after := s[len("{{LGSAugments"):]
-	pipeIdx := strings.Index(after, "|")
-	if pipeIdx != -1 {
-		params := strings.TrimSuffix(after[pipeIdx+1:], "}}")
+	_, after0, ok := strings.Cut(after, "|")
+	if ok {
+		params := strings.TrimSuffix(after0, "}}")
 		parts := splitParams(params)
 		if len(parts) > 0 && strings.TrimSpace(parts[0]) != "" {
 			slotTypes = append(slotTypes, "Fangs of Shavarath")

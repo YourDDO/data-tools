@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateStrikethrough(rawSTValue string) *dataset.Enchantment {
@@ -131,8 +132,8 @@ func parseTemplateSteam(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var typ, title string
@@ -171,8 +172,8 @@ func parseTemplateStriding(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -424,8 +425,8 @@ func parseTemplateStumbling(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	magnitudeRaw := strings.ToUpper(strings.TrimSpace(inner))
@@ -467,8 +468,8 @@ func parseTemplateSundering(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	magnitudeRaw := strings.ToUpper(strings.TrimSpace(inner))
@@ -554,8 +555,8 @@ func parseTemplateStonePrison(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	prisonType := ""
-	if strings.HasPrefix(content, "|") {
-		prisonType = strings.TrimSpace(strings.TrimPrefix(content, "|"))
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		prisonType = strings.TrimSpace(after)
 	}
 
 	name := "Stone Prison"
@@ -591,8 +592,8 @@ func parseTemplateSunBurst(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	var sbType, dc, title string
-	if strings.HasPrefix(content, "|") {
-		parts := strings.Split(strings.TrimPrefix(content, "|"), "|")
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		parts := strings.Split(after, "|")
 		if len(parts) > 0 {
 			sbType = strings.TrimSpace(parts[0])
 		}

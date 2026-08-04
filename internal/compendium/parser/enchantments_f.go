@@ -254,8 +254,8 @@ func parseTemplateFiligreeItemEnchantment(raw string) *dataset.Enchantment {
 	}
 
 	// Fix for "False Life (Enchantment)" etc.
-	if strings.HasSuffix(name, " (Enchantment)") {
-		name = strings.TrimSuffix(name, " (Enchantment)")
+	if before, ok := strings.CutSuffix(name, " (Enchantment)"); ok {
+		name = before
 	}
 
 	// Handle case where amount might be embedded in the name or vice versa
@@ -343,8 +343,8 @@ func parseTemplateFireShield(raw string) *dataset.Enchantment {
 	}
 
 	inner := s[len(prefix) : len(s)-len(suffix)]
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -597,8 +597,8 @@ func parseTemplateFinesse(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	amount := "+2"
@@ -693,8 +693,8 @@ func parseTemplateFracturing(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	amount := "2"

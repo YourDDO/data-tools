@@ -302,8 +302,8 @@ func parseTemplateMetalline(raw string) []*dataset.Enchantment {
 	// Extract inner
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	// Split top-level params simply; Metalline params do not nest templates typically
@@ -399,8 +399,8 @@ func parseTemplateMagmaSurgeGuard(raw string) *dataset.Enchantment {
 	}
 
 	inner := s[len(prefix) : len(s)-len(suffix)]
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -538,8 +538,8 @@ func parseTemplateMotherNightsEmbrace(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	amount := ""
@@ -650,8 +650,8 @@ func parseTemplateMagmaSurge(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	var magmaType, enhancementAmount string
-	if strings.HasPrefix(content, "|") {
-		parts := strings.Split(strings.TrimPrefix(content, "|"), "|")
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		parts := strings.Split(after, "|")
 		magmaType = strings.TrimSpace(parts[0])
 		if len(parts) >= 2 {
 			enhancementAmount = strings.TrimSpace(parts[1])
@@ -734,8 +734,8 @@ func parseTemplateMonkPath(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	stance := ""
-	if strings.HasPrefix(content, "|") {
-		stance = strings.TrimSpace(strings.TrimPrefix(content, "|"))
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		stance = strings.TrimSpace(after)
 	}
 
 	var name, notes string

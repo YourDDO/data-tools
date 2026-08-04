@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateCombatMastery(rawCMValue string) []*dataset.Enchantment {
@@ -308,8 +309,8 @@ func parseTemplateCommand(raw string) []*dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -410,8 +411,8 @@ func parseTemplateCacophonicGuard(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -739,8 +740,8 @@ func parseTemplateCursespewing(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	curseType := ""
-	if strings.HasPrefix(content, "|") {
-		curseType = strings.TrimSpace(strings.TrimPrefix(content, "|"))
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		curseType = strings.TrimSpace(after)
 	}
 
 	name := "Cursespewing"

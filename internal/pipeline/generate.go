@@ -7,11 +7,13 @@ import (
 
 	"yourddo-data-tools/internal/contracts"
 	"yourddo-data-tools/internal/dataset"
+	"yourddo-data-tools/internal/domain"
 	"yourddo-data-tools/internal/domain/registry"
 )
 
 type GenerateOptions struct {
 	Master     dataset.Master
+	ManualRoot string
 	OutputRoot string
 	Domains    []string
 }
@@ -31,7 +33,12 @@ func GenerateDomains(ctx context.Context, options GenerateOptions) (GenerateResu
 		return GenerateResult{}, err
 	}
 	for _, generator := range generators {
-		generated, err := generator.Generate(ctx, options.Master, options.OutputRoot)
+		var generated domain.Result
+		if manualGenerator, ok := generator.(domain.ManualGenerator); ok {
+			generated, err = manualGenerator.GenerateWithManual(ctx, options.Master, options.ManualRoot, options.OutputRoot)
+		} else {
+			generated, err = generator.Generate(ctx, options.Master, options.OutputRoot)
+		}
 		if err != nil {
 			return GenerateResult{}, fmt.Errorf("generate domain %s: %w", generator.Name(), err)
 		}

@@ -28,6 +28,7 @@ func run(args []string) error {
 	flags := flag.NewFlagSet("generate-domains", flag.ContinueOnError)
 	masterRoot := flags.String("master", defaults.MasterDir(), "master dataset directory")
 	outputRoot := flags.String("output", defaults.DomainDir(), "domain output directory")
+	manualRoot := flags.String("manual", defaults.ManualInputDir, "canonical manual payload directory")
 	domainsValue := flags.String("domains", strings.Join(defaults.Domains, ","), "comma-separated domains or all")
 	if err := flags.Parse(args); err != nil {
 		return err
@@ -38,7 +39,7 @@ func run(args []string) error {
 		return err
 	}
 	result, err := pipelinepkg.GenerateDomains(context.Background(), pipelinepkg.GenerateOptions{
-		Master: master, OutputRoot: *outputRoot, Domains: domains,
+		Master: master, ManualRoot: *manualRoot, OutputRoot: *outputRoot, Domains: domains,
 	})
 	if err != nil {
 		return err

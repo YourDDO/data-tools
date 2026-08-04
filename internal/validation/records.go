@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -447,10 +448,8 @@ func validateTiers(report *Report, file contracts.GeneratedFileMetadata, recordI
 }
 
 func validateEnum(report *Report, datasetName, file, recordID, field, value string, allowed ...string) {
-	for _, candidate := range allowed {
-		if value == candidate {
-			return
-		}
+	if slices.Contains(allowed, value) {
+		return
 	}
 	if value != "" {
 		report.add(Error, datasetName, file, recordID, "valid-enum", fmt.Sprintf("%s %q is not one of %s", field, value, strings.Join(allowed, ", ")))
