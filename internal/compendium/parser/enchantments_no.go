@@ -38,7 +38,7 @@ func parseTemplateOrbBonus(rawOrbValue string) []*dataset.Enchantment {
 	// Add entry for the general Orb Bonus Saves
 	for _, save := range saves {
 		enchantments = append(enchantments, &dataset.Enchantment{
-			Name:      fmt.Sprintf("%s Saving Throws", save),
+			Name:      fmt.Sprintf("%s Save", save),
 			Amount:    amount,
 			BonusType: bonusType,
 		})

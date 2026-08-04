@@ -153,10 +153,11 @@ go run ./cmd/generate-domains \
 The default selection is `gear-planner`, `zhentarim-attuned`,
 `nearly-complete`, `fountain-of-necrotic-might`, `stormreaver-monument`,
 `nearly-finished`, `almost-there`, `finishing-touch`, `alchemical`,
-`catalyst-crafting`, `trace-of-madness`, `suppressed-power`, `lost-purpose`,
-`attuned-by-heroism`, and `dinosaur-bone`. Pass `--domains` to generate a
-subset. The command reads only files declared by the canonical
-`master-index.json`; it has no source client and performs no network calls.
+`incredible-potential`, `catalyst-crafting`, `trace-of-madness`,
+`suppressed-power`, `lost-purpose`, `attuned-by-heroism`, and `dinosaur-bone`.
+Pass `--domains` to generate a subset. The command reads only files declared
+by the canonical `master-index.json`; it has no source client and performs no
+network calls.
 
 To explicitly select every registered domain, use:
 
@@ -212,6 +213,7 @@ history are omitted because they are not used by this crafting domain.
 | `almost-there` | Has `Almost There`. |
 | `finishing-touch` | Has `Finishing Touch`. |
 | `alchemical` | Has `Alchemical (Prototype)`. |
+| `incredible-potential` | Has `Incredible Potential`. |
 | `trace-of-madness` | Has `Trace of Madness`. |
 | `suppressed-power` | Has `Suppressed Power`. |
 | `lost-purpose` | Has `Lost Purpose`. |
