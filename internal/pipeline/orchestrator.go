@@ -228,7 +228,10 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	result.Changed = true
 
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageGenerateDomains, "game_version", cfg.GameVersion, "master_sha256", masterHash)
-	generated, err := GenerateDomains(ctx, GenerateOptions{Master: masterResult.Master, OutputRoot: candidateRoot, Domains: cfg.Domains})
+	generated, err := GenerateDomains(ctx, GenerateOptions{
+		Master: masterResult.Master, ManualRoot: filepath.Join(candidateRoot, "manual"),
+		OutputRoot: candidateRoot, Domains: cfg.Domains,
+	})
 	if err != nil {
 		return result, fail(StageGenerateDomains, err)
 	}

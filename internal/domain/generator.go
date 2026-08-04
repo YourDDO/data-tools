@@ -31,6 +31,13 @@ type Generator interface {
 	Generate(context.Context, dataset.Master, string) (Result, error)
 }
 
+// ManualGenerator is implemented by domains whose authoritative inputs include
+// canonical manual payloads. ManualRoot is the prepared manual directory.
+type ManualGenerator interface {
+	Generator
+	GenerateWithManual(context.Context, dataset.Master, string, string) (Result, error)
+}
+
 // WriteJSON writes one deterministic domain file and returns its hash metadata.
 func WriteJSON(outputRoot, domainName, relative string, value any) (contracts.GeneratedFileMetadata, error) {
 	path, relativePath, err := outputPath(outputRoot, domainName, relative)

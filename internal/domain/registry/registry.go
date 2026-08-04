@@ -23,6 +23,7 @@ import (
 	"yourddo-data-tools/internal/domain/stormreaver"
 	"yourddo-data-tools/internal/domain/suppressedpower"
 	"yourddo-data-tools/internal/domain/traceofmadness"
+	"yourddo-data-tools/internal/domain/viktranium"
 	"yourddo-data-tools/internal/domain/zhentarim"
 )
 
@@ -50,6 +51,7 @@ var registrations = []Registration{
 	{Generator: lostpurpose.New()},
 	{Generator: attunedbyheroism.New(), Aliases: []string{"attuned to heroism"}},
 	{Generator: dinosaurbone.New()},
+	{Generator: viktranium.New()},
 }
 
 func All() []Registration { return append([]Registration(nil), registrations...) }
