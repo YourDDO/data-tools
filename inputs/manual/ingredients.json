@@ -1206,6 +1206,20 @@
     ]
   },
   {
+    "name": "Legendary Bleak Wire",
+    "image": "bleakWire",
+    "description": "This small piece of machinery can be used to create dreadful machinery in Lamordia.",
+    "binding": {
+      "type": "Unbound"
+    },
+    "baseValue": {
+      "platinum": 100
+    },
+    "foundIn": [
+      "Chill of Ravenloft Expansion"
+    ]
+  },
+  {
     "name": "Legendary Esoteric Relic",
     "description": "This tiny, handheld relic doesn't seem to hold much value on its own, but would likely be appreciated by the Morgrave Reliquary.",
     "foundIn": [
