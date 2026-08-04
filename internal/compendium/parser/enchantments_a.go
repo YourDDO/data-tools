@@ -2,12 +2,13 @@ package parser
 
 import (
 	"fmt"
-	"github.com/sirupsen/logrus"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"github.com/sirupsen/logrus"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateAbility(rawAbilityValue string) *dataset.Enchantment {
@@ -384,8 +385,8 @@ func parseTemplateAnger(raw string) *dataset.Enchantment {
 	}
 
 	// If there's a leading pipe, trim it
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	// Only first parameter matters per docs
@@ -622,8 +623,8 @@ func parseTemplateAlignmentDamage(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := []string{}
@@ -848,8 +849,8 @@ func parseTemplateAlignmentBypass(raw string) []*dataset.Enchantment {
 	// Extract inner content between name and closing
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var align string
@@ -923,8 +924,8 @@ func parseTemplateAligned(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	// Split simple params: (Alignment)|(Title)
@@ -975,8 +976,8 @@ func parseTemplateAlignmentAbsorb(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -1037,8 +1038,8 @@ func parseTemplateAttunedToHeroism(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -1084,8 +1085,8 @@ func parseTemplateAsh(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	// Use splitParams to handle potential nested templates/links
@@ -1129,8 +1130,8 @@ func parseTemplateArcaneCastingDexterity(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -1196,8 +1197,8 @@ func parseTemplateAnthem(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -1274,8 +1275,8 @@ func parseTemplateAlchemicalElementalAttuned(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -1664,8 +1665,8 @@ func parseTemplateAbilityDamage(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var ability, value, title, critical, rangeParam string
@@ -1729,8 +1730,8 @@ func parseTemplateAlchemical(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	typ := strings.ToLower(strings.TrimSpace(inner))
@@ -1801,8 +1802,8 @@ func parseTemplateAvalanche(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	bonusType := strings.ToLower(strings.TrimSpace(inner))

@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateItemFeat(rawIFValue string) *dataset.Enchantment {
@@ -337,8 +338,8 @@ func parseTemplateItemMaterialDR(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := []string{}
@@ -385,8 +386,8 @@ func parseTemplateIce(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var typ, title string
@@ -523,8 +524,8 @@ func parseTemplateIncineration(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	typ := strings.ToLower(strings.TrimSpace(inner))
@@ -577,8 +578,8 @@ func parseTemplateImpact(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	magnitude := "I"

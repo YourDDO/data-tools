@@ -2,11 +2,12 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateUnconsciousRange(rawURValue string) *dataset.Enchantment {
@@ -620,8 +621,8 @@ func parseTemplateVacuum(raw string) *dataset.Enchantment {
 	inner = strings.TrimSpace(inner)
 	var typ string
 	if inner != "" {
-		if strings.HasPrefix(inner, "|") {
-			inner = strings.TrimPrefix(inner, "|")
+		if after, ok := strings.CutPrefix(inner, "|"); ok {
+			inner = after
 		}
 		// Only the first parameter (Type) is considered
 		parts := strings.SplitN(inner, "|", 2)
@@ -769,8 +770,8 @@ func parseTemplateUnderwaterAction(raw string) []*dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -811,8 +812,8 @@ func parseTemplateUndeadGuard(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -1126,8 +1127,8 @@ func parseTemplateVileGrip(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	tier := "basic"
@@ -1165,8 +1166,8 @@ func parseTemplateWounding(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var typ, value, title string

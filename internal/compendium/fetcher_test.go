@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"maps"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -27,9 +28,7 @@ func (f fixtureSource) FetchCategoryContent(_ context.Context, category string) 
 		return nil, errors.New("unknown fixture category")
 	}
 	result := make(map[string]string, len(pages))
-	for title, content := range pages {
-		result[title] = content
-	}
+	maps.Copy(result, pages)
 	return result, nil
 }
 

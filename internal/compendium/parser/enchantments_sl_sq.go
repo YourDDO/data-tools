@@ -306,8 +306,8 @@ func parseTemplateSpellAugmentation(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := []string{}
@@ -977,8 +977,8 @@ func parseTemplateSneakAttackDamage(raw string) *dataset.Enchantment {
 			// No params → cannot infer amount; skip
 			return nil
 		}
-		if strings.HasPrefix(inner, "|") {
-			inner = strings.TrimPrefix(inner, "|")
+		if after, ok := strings.CutPrefix(inner, "|"); ok {
+			inner = after
 		}
 		params = inner
 	}
@@ -1037,8 +1037,8 @@ func parseTemplateSneakAttackDice(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -1083,8 +1083,8 @@ func parseTemplateSlayLiving(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -1138,8 +1138,8 @@ func parseTemplateSpellAbsorption(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 	parts := splitParams(inner)
 
@@ -1207,8 +1207,8 @@ func parseTemplateSneakAttack(raw string) []*dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -1576,8 +1576,8 @@ func parseTemplateSmiting(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var styleRaw string

@@ -34,7 +34,7 @@ func romanToInt(s string) int {
 	result := 0
 	n := len(s)
 
-	for i := 0; i < n; i++ {
+	for i := range n {
 		currentVal := romanMap[s[i]]
 
 		// Check for subtractive cases
@@ -56,7 +56,7 @@ func intToRoman(n int) string {
 	symbols := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}
 
 	var result strings.Builder
-	for i := 0; i < len(values); i++ {
+	for i := range values {
 		for n >= values[i] {
 			n -= values[i]
 			result.WriteString(symbols[i])
@@ -294,14 +294,8 @@ func templateNameAt(content string, offset int) string {
 
 func sourceExcerpt(content string, offset int) string {
 	const radius = 60
-	start := offset - radius
-	if start < 0 {
-		start = 0
-	}
-	end := offset + radius
-	if end > len(content) {
-		end = len(content)
-	}
+	start := max(offset-radius, 0)
+	end := min(offset+radius, len(content))
 	return strings.TrimSpace(content[start:end])
 }
 

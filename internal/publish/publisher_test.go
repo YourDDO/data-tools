@@ -94,7 +94,6 @@ func TestPublisherDoesNotUpdateLatestAfterFailure(t *testing.T) {
 		"releases/81.3.0/1/master/items.json",
 		"releases/81.3.0/1/manifest.json",
 	} {
-		failKey := failKey
 		t.Run(failKey, func(t *testing.T) {
 			t.Parallel()
 			root, candidate := testCandidate(t)

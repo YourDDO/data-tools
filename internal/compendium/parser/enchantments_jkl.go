@@ -115,8 +115,8 @@ func parseTemplateKeen(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var magnitude = "I" // default
@@ -170,8 +170,8 @@ func parseTemplateLinguistics(raw string) []*dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -213,8 +213,8 @@ func parseTemplateLitanyCombatBonus(raw string) []*dataset.Enchantment {
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)

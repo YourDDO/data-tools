@@ -284,7 +284,7 @@ type EnchantmentData struct {
 	Type string `json:"type"` // e.g., "Standard", "Damage", "SetBonus"
 
 	// Standard enchantments (Save, Skill, Resistance, etc.) will go here
-	Enchantments Enchantment `json:"enchantments,omitempty"`
+	Enchantments Enchantment `json:"enchantments"`
 
 	// Other specific enchantment structures (e.g., complex damage templates) will go here later
 	RawValue string `json:"rawValue,omitempty"` // For initial parsing/debugging of unknown templates

@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateTrueSeeing() *dataset.Enchantment {
@@ -215,8 +216,8 @@ func parseTemplateTaintOfShavarath(raw string) *dataset.Enchantment {
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
 	var typ string
-	if strings.HasPrefix(inner, "|") {
-		parts := strings.SplitN(strings.TrimPrefix(inner, "|"), "|", 2)
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		parts := strings.SplitN(after, "|", 2)
 		typ = strings.TrimSpace(parts[0])
 	}
 
@@ -256,8 +257,8 @@ func parseTemplateTurning(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := splitParams(inner)
@@ -669,8 +670,8 @@ func parseTemplateThunderforged(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	tier := strings.TrimSpace(inner)
@@ -813,8 +814,8 @@ func parseTemplateTelekinetic(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	var teleType, dc string
-	if strings.HasPrefix(content, "|") {
-		parts := strings.Split(strings.TrimPrefix(content, "|"), "|")
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		parts := strings.Split(after, "|")
 		if len(parts) > 0 {
 			teleType = strings.TrimSpace(parts[0])
 		}

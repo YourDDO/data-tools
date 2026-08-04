@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateBloodRage(rawBRValue string) *dataset.Enchantment {
@@ -175,8 +176,8 @@ func parseTemplateBodyfeeder(raw string) *dataset.Enchantment {
 	// Extract parameter section
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
 	inner = strings.TrimSpace(inner)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var parts []string
@@ -227,8 +228,8 @@ func parseTemplateBoonofUndeath(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix)
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	parts := strings.Split(inner, "|")
@@ -422,8 +423,8 @@ func parseTemplateBleed(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	var styleRaw, countParam string
@@ -496,8 +497,8 @@ func parseTemplateBloodletter(raw string) *dataset.Enchantment {
 	}
 
 	inner := strings.TrimSpace(strings.TrimSuffix(strings.TrimPrefix(s, prefix), suffix))
-	if strings.HasPrefix(inner, "|") {
-		inner = strings.TrimPrefix(inner, "|")
+	if after, ok := strings.CutPrefix(inner, "|"); ok {
+		inner = after
 	}
 
 	magnitude := strings.ToLower(strings.TrimSpace(inner))
@@ -649,8 +650,8 @@ func parseTemplateBoneshatter(raw string) *dataset.Enchantment {
 	content = strings.TrimSuffix(content, suffix)
 
 	boneType := ""
-	if strings.HasPrefix(content, "|") {
-		boneType = strings.TrimSpace(strings.TrimPrefix(content, "|"))
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		boneType = strings.TrimSpace(after)
 	}
 
 	name := "Boneshatter"

@@ -1,6 +1,7 @@
 package essencecrafting
 
 import (
+	"slices"
 	"sort"
 	"strings"
 )
@@ -74,10 +75,8 @@ func addUnique(m map[string][]string, key string, value string) {
 	}
 
 	existing := m[key]
-	for _, v := range existing {
-		if v == value {
-			return
-		}
+	if slices.Contains(existing, value) {
+		return
 	}
 
 	m[key] = append(m[key], value)

@@ -6,6 +6,7 @@ import (
 	"errors"
 	"io"
 	"log/slog"
+	"maps"
 	"os"
 	"path/filepath"
 	"strings"
@@ -69,9 +70,7 @@ func testConfig(root string, domains []string) config.Config {
 
 func (f fakeSource) FetchCategoryContent(context.Context, string) (map[string]string, error) {
 	copy := make(map[string]string, len(f.pages))
-	for key, value := range f.pages {
-		copy[key] = value
-	}
+	maps.Copy(copy, f.pages)
 	return copy, nil
 }
 

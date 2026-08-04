@@ -432,8 +432,8 @@ func parseVariantTemplate(raw, prefix, name, notes, variant, variantName, varian
 	resName := name
 	resNotes := notes
 
-	if strings.HasPrefix(content, "|") {
-		v := strings.TrimSpace(strings.TrimPrefix(content, "|"))
+	if after, ok := strings.CutPrefix(content, "|"); ok {
+		v := strings.TrimSpace(after)
 		if strings.EqualFold(v, variant) {
 			resName = variantName
 			resNotes = variantNotes
@@ -458,8 +458,8 @@ func ExtractSetBonus(in []dataset.Enchantment) (rest []dataset.Enchantment, sets
 		setName := e.SetBonusName
 		if setName == "" {
 			// Fallback for older callers: detect by name prefix
-			if strings.HasPrefix(e.Name, "Item Set: ") {
-				setName = strings.TrimSpace(strings.TrimPrefix(e.Name, "Item Set: "))
+			if after, ok := strings.CutPrefix(e.Name, "Item Set: "); ok {
+				setName = strings.TrimSpace(after)
 			}
 		}
 		if setName != "" {

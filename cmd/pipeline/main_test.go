@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"maps"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -257,9 +258,7 @@ func (s *fixtureSource) snapshot() map[string]string {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	result := make(map[string]string, len(s.pages))
-	for title, content := range s.pages {
-		result[title] = content
-	}
+	maps.Copy(result, s.pages)
 	return result
 }
 

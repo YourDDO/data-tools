@@ -56,7 +56,7 @@ type BindingOut struct {
 // PartialEnhancementOut is a minimal representation aligned with Partial<Enhancement>
 type PartialEnhancementOut struct {
 	Name              string               `json:"name,omitempty"`
-	Modifier          interface{}          `json:"modifier,omitempty"` // number or string
+	Modifier          any                  `json:"modifier,omitempty"` // number or string
 	Bonus             string               `json:"bonus,omitempty"`
 	Description       string               `json:"description,omitempty"`
 	Notes             string               `json:"notes,omitempty"`
