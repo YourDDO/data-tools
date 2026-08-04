@@ -81,7 +81,7 @@ func selectItems(ctx context.Context, records []dataset.ItemRecord) ([]itemlist.
 		if err := ctx.Err(); err != nil {
 			return nil, err
 		}
-		item, err := itemlist.Transform(record, true)
+		item, err := itemlist.Transform(record)
 		if err != nil {
 			return nil, fmt.Errorf("domain %s record %s: %w", Name, record.Source(), err)
 		}

@@ -13,37 +13,19 @@ import (
 	"yourddo-data-tools/internal/domain"
 )
 
-// Item is the compact contract used by crafting-selection datasets.
-//
-// PageTitle is the stable canonical record identity; Name is the player-facing
-// label; Type and MinLevel let clients place and level-gate the item; and
-// Enchantments contain both the crafting marker and the effects a crafting UI
-// presents. Augments is included only by Dinosaur Bone, whose recipes operate
-// on those slots. Source, history, prices, images, and durability are omitted
-// because none of these domain rules or consumers use them.
-type Item struct {
-	PageTitle    string                `json:"pageTitle"`
-	Name         string                `json:"name"`
-	Type         string                `json:"type"`
-	MinLevel     string                `json:"minLevel"`
-	Enchantments []dataset.Enchantment `json:"enchantments"`
-	Augments     []dataset.AugmentItem `json:"augments,omitempty"`
-}
+// Item is the complete canonical item contract. Domain lists select canonical
+// items but do not project them into a smaller, domain-specific shape.
+type Item = dataset.ItemData
 
 type Matcher func(dataset.ItemData) bool
 
 type Generator struct {
-	name            string
-	match           Matcher
-	includeAugments bool
+	name  string
+	match Matcher
 }
 
 func New(name string, match Matcher) Generator {
 	return Generator{name: name, match: match}
-}
-
-func NewWithAugments(name string, match Matcher) Generator {
-	return Generator{name: name, match: match, includeAugments: true}
 }
 
 func (g Generator) Name() string { return g.name }
@@ -55,7 +37,7 @@ func (g Generator) Generate(ctx context.Context, master dataset.Master, outputRo
 		if err := ctx.Err(); err != nil {
 			return domain.Result{}, err
 		}
-		item, err := Transform(record, g.includeAugments)
+		item, err := Transform(record)
 		if err != nil {
 			return domain.Result{}, fmt.Errorf("domain %s record %s: %w", g.name, record.Source(), err)
 		}
@@ -85,20 +67,13 @@ func Filter(records []dataset.ItemRecord, match Matcher) []dataset.ItemRecord {
 	return selected
 }
 
-// Transform projects a selected canonical record into the compact domain
-// contract. Canonical normalization is deliberately not repeated here.
-func Transform(record dataset.ItemRecord, includeAugments bool) (Item, error) {
+// Transform validates and copies a selected canonical record without dropping
+// fields. Canonical normalization is deliberately not repeated here.
+func Transform(record dataset.ItemRecord) (Item, error) {
 	if strings.TrimSpace(record.Item.PageTitle) == "" || strings.TrimSpace(record.Item.Name) == "" {
 		return Item{}, fmt.Errorf("pageTitle and name are required")
 	}
-	item := Item{
-		PageTitle: record.Item.PageTitle, Name: record.Item.Name, Type: record.Item.Type,
-		MinLevel: record.Item.MinLevel, Enchantments: append([]dataset.Enchantment(nil), record.Item.Enchantments...),
-	}
-	if includeAugments {
-		item.Augments = append([]dataset.AugmentItem(nil), record.Item.Augments...)
-	}
-	return item, nil
+	return record.Item, nil
 }
 
 func HasEnchantment(item dataset.ItemData, name string) bool {
