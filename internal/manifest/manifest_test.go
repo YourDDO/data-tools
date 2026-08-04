@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"yourddo-data-tools/internal/contracts"
+	"yourddo-data-tools/internal/hashing"
 )
 
 func TestCandidateIsDeterministicAndHasNoPublicationTimestamp(t *testing.T) {
@@ -76,6 +77,19 @@ func TestReleaseFingerprintIsIndependentOfPayloadDiscoveryOrder(t *testing.T) {
 	}
 	if removed == first {
 		t.Fatal("removing a manual payload did not change the fingerprint")
+	}
+}
+
+func TestReleaseFingerprintIncludesDomainOutputContractVersion(t *testing.T) {
+	t.Parallel()
+	masterHash := strings.Repeat("c", 64)
+	got, err := ReleaseFingerprint(masterHash, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := hashing.Combine("release-fingerprint-schema:2", masterHash)
+	if got != want {
+		t.Fatalf("release fingerprint = %s, want %s", got, want)
 	}
 }
 
