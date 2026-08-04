@@ -142,7 +142,7 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
 	dependencies := OrchestratorDependencies{
 		Source: fakeSource{pages: map[string]string{
-			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1|enchantments={{ItemSet|Missing Runtime Set}}}}",
 		}},
 		Clock:  func() time.Time { return time.Unix(1, 0) },
 		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
@@ -179,6 +179,9 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 		}
 	}
 	for _, field := range []string{
+		`"msg":"item-set definitions are missing from the manual payload"`,
+		`"source":"setBonusIndex"`,
+		`"missing_sets":["Missing Runtime Set"]`,
 		`"latestObjectKey":"latest.json"`,
 		`"activeManifestKey":"releases/81.3.0/1/manifest.json"`,
 		`"activeMasterHash":"` + first.Candidate.MasterDatasetSHA256 + `"`,

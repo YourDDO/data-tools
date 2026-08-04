@@ -128,11 +128,24 @@ func TestPublisherDoesNotCallStoreWhenValidationFails(t *testing.T) {
 	}
 }
 
-func TestPublishedManualPayloadHashMatchesExactObjectBytes(t *testing.T) {
+func TestPublishedItemSetArtifactsMatchExactObjectBytes(t *testing.T) {
 	t.Parallel()
 	root, baseCandidate := testCandidate(t)
+	indexData := []byte(`{"Fixture Set":[{"name":"Test Item","minLevel":1}]}` + "\n")
+	for _, relative := range []string{
+		"item-sets/setBonusIndex.json",
+		"gear-planner/setBonusIndex.json",
+	} {
+		path := filepath.Join(root, filepath.FromSlash(relative))
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(path, indexData, 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
 	source := t.TempDir()
-	if err := os.WriteFile(filepath.Join(source, "settings.json"), []byte(`{"z":2,"a":[3,1]}`), 0o644); err != nil {
+	if err := os.WriteFile(filepath.Join(source, "itemSets.enchantments.json"), []byte(`[{"name":"Fixture Set","bonuses":[]}]`), 0o644); err != nil {
 		t.Fatal(err)
 	}
 	payloads, err := manual.Prepare(source, filepath.Join(root, "manual"))
@@ -155,15 +168,15 @@ func TestPublishedManualPayloadHashMatchesExactObjectBytes(t *testing.T) {
 	if len(release.ManualPayloads) != 1 {
 		t.Fatalf("manual payloads = %#v", release.ManualPayloads)
 	}
-	object := store.values["releases/81.3.0/10/manual/settings.json"]
-	staged, err := os.ReadFile(filepath.Join(root, "manual", "settings.json"))
+	object := store.values["releases/81.3.0/10/manual/itemSets.enchantments.json"]
+	staged, err := os.ReadFile(filepath.Join(root, "manual", "itemSets.enchantments.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
 	if !bytes.Equal(object, staged) {
 		t.Fatalf("published bytes differ from staged canonical bytes:\n%s\n%s", object, staged)
 	}
-	if want := "{\"a\":[3,1],\"z\":2}\n"; string(object) != want {
+	if want := "[{\"bonuses\":[],\"name\":\"Fixture Set\"}]\n"; string(object) != want {
 		t.Fatalf("published manual payload = %q, want compact canonical bytes %q", object, want)
 	}
 	digest := sha256.Sum256(object)
@@ -171,8 +184,31 @@ func TestPublishedManualPayloadHashMatchesExactObjectBytes(t *testing.T) {
 	if metadata.SHA256 != hex.EncodeToString(digest[:]) || metadata.SizeBytes != int64(len(object)) {
 		t.Fatalf("metadata = %#v, object size = %d", metadata, len(object))
 	}
+	for _, key := range []string{
+		"releases/81.3.0/10/item-sets/setBonusIndex.json",
+		"releases/81.3.0/10/gear-planner/setBonusIndex.json",
+	} {
+		if !bytes.Equal(store.values[key], indexData) {
+			t.Fatalf("published index %s = %q, want %q", key, store.values[key], indexData)
+		}
+	}
 	if store.keys[len(store.keys)-1] != "latest.json" {
 		t.Fatalf("last publication write = %q", store.keys[len(store.keys)-1])
+	}
+
+	failKey := "releases/81.3.0/10/manual/itemSets.enchantments.json"
+	failingStore := &recordingStore{failKey: failKey}
+	failingPublisher, err := New(failingStore, func() time.Time { return time.Unix(10, 0) })
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := failingPublisher.Publish(context.Background(), root, candidate); err == nil {
+		t.Fatal("publication succeeded after item-set manual payload upload failure")
+	}
+	for _, key := range failingStore.keys {
+		if key == "latest.json" {
+			t.Fatal("latest pointer was updated after item-set payload upload failure")
+		}
 	}
 }
 

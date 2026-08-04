@@ -126,9 +126,9 @@ func resistanceEnchantments(amount, bonusType, resistanceType string) []*dataset
 	}
 	if resistanceType != "" {
 		names = []string{
-			"Fortitude Save vs" + resistanceType,
-			"Reflex Save vs" + resistanceType,
-			"Will Save vs" + resistanceType,
+			"Fortitude Save vs " + resistanceType,
+			"Reflex Save vs " + resistanceType,
+			"Will Save vs " + resistanceType,
 		}
 	}
 

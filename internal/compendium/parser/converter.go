@@ -405,10 +405,6 @@ func ConvertItemToJSON(pageTitle string, fields map[string]string) dataset.ItemD
 	if val, ok := fields["link"]; ok {
 		data.Link = val
 	}
-	if val, ok := fields["itemsets"]; ok {
-		data.ItemSetsRaw = val
-		data.SetBonus = append(data.SetBonus, extractSetBonusesFromText(val)...)
-	}
 	if val, ok := fields["icon"]; ok {
 		data.Icon = val
 	}
@@ -646,15 +642,16 @@ func ConvertItemToJSON(pageTitle string, fields map[string]string) dataset.ItemD
 	return data
 }
 
-var itemSetRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?FiligreeSetList\|([^}]+)\}\}`)
-var itemSetListRegex = regexp.MustCompile(`(?i)\{\{ItemSet(?:List)?\|([^}]+)\}\}`)
+var filigreeSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?FiligreeSetList\|([^}]+)\}\}`)
+var itemSetRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSet\|([^}]+)\}\}`)
+var itemSetListRegex = regexp.MustCompile(`(?i)\{\{(?:Template:)?ItemSetList\|([^}]+)\}\}`)
 
 func extractSetBonusesFromText(text string) []dataset.SetBonusOut {
 	var sets []dataset.SetBonusOut
 	seen := make(map[string]bool)
 
 	// Process FiligreeSetList
-	matches := itemSetRegex.FindAllStringSubmatch(text, -1)
+	matches := filigreeSetListRegex.FindAllStringSubmatch(text, -1)
 	for _, m := range matches {
 		paramList := m[1]
 		parts := splitParams(paramList)
@@ -667,13 +664,31 @@ func extractSetBonusesFromText(text string) []dataset.SetBonusOut {
 		}
 	}
 
-	// Process ItemSetList
+	// ItemSet accepts one set name followed by template control parameters.
+	matches = itemSetRegex.FindAllStringSubmatch(text, -1)
+	for _, m := range matches {
+		parts := splitParams(m[1])
+		if len(parts) == 0 {
+			continue
+		}
+		name := stripWikitext(parts[0])
+		if name != "" && !seen[name] {
+			seen[name] = true
+			sets = append(sets, dataset.SetBonusOut{Name: name})
+		}
+	}
+
+	// ItemSetList accepts multiple set names and may end in boolean display or
+	// categorization controls, which are not set names.
 	matches = itemSetListRegex.FindAllStringSubmatch(text, -1)
 	for _, m := range matches {
 		paramList := m[1]
 		parts := splitParams(paramList)
 		for _, p := range parts {
 			name := stripWikitext(p)
+			if isItemSetControl(name) {
+				continue
+			}
 			if name != "" && !seen[name] {
 				seen[name] = true
 				sets = append(sets, dataset.SetBonusOut{Name: name})
@@ -682,6 +697,10 @@ func extractSetBonusesFromText(text string) []dataset.SetBonusOut {
 	}
 
 	return sets
+}
+
+func isItemSetControl(value string) bool {
+	return strings.EqualFold(strings.TrimSpace(value), "true") || strings.EqualFold(strings.TrimSpace(value), "false")
 }
 
 // ... (include the unchanged parseTemplatePrice function here)

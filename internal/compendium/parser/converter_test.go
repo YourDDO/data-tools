@@ -195,3 +195,30 @@ func TestGreenSteelCraftingPurchaseDrop(t *testing.T) {
 		})
 	}
 }
+
+func TestExtractSetBonusesHonorsTemplateControlParameters(t *testing.T) {
+	t.Parallel()
+	item := ConvertItemToJSON("Mysterious Ring", map[string]string{
+		"name":     "Mysterious Ring",
+		"itemsets": "{{ItemSetList|The Desert's Biting Sands|The Desert's Burning Sun|The Desert's Starless Nights|The Desert's Writhing Storm|True}}",
+	})
+	want := []string{
+		"The Desert's Biting Sands",
+		"The Desert's Burning Sun",
+		"The Desert's Starless Nights",
+		"The Desert's Writhing Storm",
+	}
+	if len(item.SetBonus) != len(want) {
+		t.Fatalf("set bonuses = %#v, want %v", item.SetBonus, want)
+	}
+	for index, name := range want {
+		if item.SetBonus[index].Name != name {
+			t.Fatalf("set bonuses = %#v, want %v", item.SetBonus, want)
+		}
+	}
+
+	singular := extractSetBonusesFromText("{{ItemSet|Vol's Influence|True|False}}")
+	if len(singular) != 1 || singular[0].Name != "Vol's Influence" {
+		t.Fatalf("singular item set = %#v", singular)
+	}
+}

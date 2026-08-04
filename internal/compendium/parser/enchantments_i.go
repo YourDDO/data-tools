@@ -18,7 +18,7 @@ func parseTemplateItemFeat(rawIFValue string) *dataset.Enchantment {
 	}
 
 	paramList := rawIFValue[len(prefix) : len(rawIFValue)-len(suffix)]
-	parts := strings.Split(paramList, "|")
+	parts := splitParams(paramList)
 
 	// Docs: (Feat)|(bonus)|(title)|(link)
 

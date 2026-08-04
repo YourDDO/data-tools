@@ -182,6 +182,24 @@ func TestDuplicateSetItemsAndEssenceReferencesAreRejected(t *testing.T) {
 	}
 }
 
+func TestSetBonusIndexAcceptsMasterAugmentReferences(t *testing.T) {
+	t.Parallel()
+	root := t.TempDir()
+	setPath := filepath.Join(root, "item-sets", "setBonusIndex.json")
+	writeTestJSON(t, setPath, map[string]any{
+		"Augment Set": []map[string]any{{"name": "Set Augment", "minLevel": 30}},
+	})
+	setFile := contracts.GeneratedFileMetadata{Domain: "item-sets", Path: "item-sets/setBonusIndex.json"}
+	report := validateSetBonusIndex(setPath, setFile, masterIDs{
+		pages:    map[string]struct{}{"Some Item": {}},
+		names:    map[string]struct{}{},
+		augments: map[string]struct{}{"Set Augment": {}},
+	})
+	if issue := findIssue(report, "master-reference"); issue != nil {
+		t.Fatalf("unexpected augment reference issue = %#v", issue)
+	}
+}
+
 func TestMasterRejectsDuplicateIdentifiersAndMalformedRecords(t *testing.T) {
 	t.Parallel()
 	root := t.TempDir()
