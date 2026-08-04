@@ -1,36 +1,28 @@
 package itemlist
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"os"
 	"path/filepath"
-	"reflect"
 	"testing"
 
 	"yourddo-data-tools/internal/dataset"
 )
 
-func TestGenerateCopiesCompleteCanonicalItem(t *testing.T) {
+func TestGenerateCopiesExactCanonicalItem(t *testing.T) {
 	t.Parallel()
-	want := dataset.ItemData{
-		PageTitle:    "Complete Item",
-		Name:         "Complete Item",
-		Type:         "Trinket",
-		Description:  "Every canonical field belongs in a domain list.",
-		MinLevel:     "30",
-		ArtifactType: "Minor Artifact",
-		SetBonus:     []dataset.SetBonusOut{{Name: "Complete Set"}},
-		Augments:     []dataset.AugmentItem{{AugmentType: "Yellow"}},
-		Enchantments: []dataset.Enchantment{{Name: "Domain Marker"}},
-		Update:       "99",
-		Icon:         "Complete Item",
+	want := json.RawMessage(`{"pageTitle": "Complete Item", "name":"Complete Item","type":"Trinket","artifactType":"Minor","artifact":{"tier":"mythic"},"setBonus":[{"name":"Complete Set"}],"futureField":"<must&survive>","enchantments":[{"name":"Domain Marker"}]}`)
+	var typed dataset.ItemData
+	if err := json.Unmarshal(want, &typed); err != nil {
+		t.Fatal(err)
 	}
 
 	root := t.TempDir()
 	_, err := New("complete-items", func(dataset.ItemData) bool { return true }).Generate(
 		context.Background(),
-		dataset.Master{Items: []dataset.ItemRecord{{File: "trinkets.json", Item: want}}},
+		dataset.Master{Items: []dataset.ItemRecord{{File: "trinkets.json", Item: typed, Raw: want}}},
 		root,
 	)
 	if err != nil {
@@ -40,11 +32,11 @@ func TestGenerateCopiesCompleteCanonicalItem(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	var got []dataset.ItemData
+	var got []json.RawMessage
 	if err := json.Unmarshal(data, &got); err != nil {
 		t.Fatal(err)
 	}
-	if len(got) != 1 || !reflect.DeepEqual(got[0], want) {
-		t.Fatalf("generated items = %#v, want %#v", got, []dataset.ItemData{want})
+	if len(got) != 1 || !bytes.Equal(got[0], want) {
+		t.Fatalf("generated item = %s, want exact master item %s", got[0], want)
 	}
 }

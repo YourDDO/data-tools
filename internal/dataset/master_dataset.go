@@ -14,6 +14,7 @@ type ItemRecord struct {
 	Category string
 	File     string
 	Item     ItemData
+	Raw      json.RawMessage
 }
 
 func (r ItemRecord) Source() string { return recordSource(r.File, r.Item.PageTitle, r.Item.Name) }
@@ -96,11 +97,23 @@ func LoadMaster(root string) (Master, error) {
 		switch entry.Kind {
 		case "items":
 			var items []ItemData
-			if err := ReadJSON(path, &items); err != nil {
-				return Master{}, err
+			if err := json.Unmarshal(data, &items); err != nil {
+				return Master{}, fmt.Errorf("decode %s: %w", path, err)
 			}
-			for _, item := range items {
-				master.Items = append(master.Items, ItemRecord{Category: entry.Category, File: entry.Path, Item: item})
+			var rawItems []json.RawMessage
+			if err := json.Unmarshal(data, &rawItems); err != nil {
+				return Master{}, fmt.Errorf("decode raw items %s: %w", path, err)
+			}
+			if len(rawItems) != len(items) {
+				return Master{}, fmt.Errorf("decode %s: typed and raw item counts differ", path)
+			}
+			for index, item := range items {
+				master.Items = append(master.Items, ItemRecord{
+					Category: entry.Category,
+					File:     entry.Path,
+					Item:     item,
+					Raw:      append(json.RawMessage(nil), rawItems[index]...),
+				})
 			}
 		case "augments":
 			var augments []AugmentItem
