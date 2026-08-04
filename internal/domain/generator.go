@@ -3,7 +3,9 @@
 package domain
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"path/filepath"
 	"sort"
@@ -36,6 +38,23 @@ func WriteJSON(outputRoot, domainName, relative string, value any) (contracts.Ge
 		return contracts.GeneratedFileMetadata{}, err
 	}
 	if err := dataset.WriteJSON(path, value); err != nil {
+		return contracts.GeneratedFileMetadata{}, err
+	}
+	return metadata(domainName, relativePath, path)
+}
+
+// WriteRawJSON writes already-serialized JSON without re-marshalling or
+// compacting its values. It normalizes only the file's trailing newline.
+func WriteRawJSON(outputRoot, domainName, relative string, data []byte) (contracts.GeneratedFileMetadata, error) {
+	path, relativePath, err := outputPath(outputRoot, domainName, relative)
+	if err != nil {
+		return contracts.GeneratedFileMetadata{}, err
+	}
+	if !json.Valid(data) {
+		return contracts.GeneratedFileMetadata{}, fmt.Errorf("raw JSON %s is invalid", relativePath)
+	}
+	data = append(bytes.TrimRight(data, "\r\n"), '\n')
+	if err := dataset.WriteData(path, data); err != nil {
 		return contracts.GeneratedFileMetadata{}, err
 	}
 	return metadata(domainName, relativePath, path)

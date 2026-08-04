@@ -3,7 +3,9 @@
 package itemlist
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"sort"
 	"strings"
@@ -13,9 +15,29 @@ import (
 	"yourddo-data-tools/internal/domain"
 )
 
-// Item is the complete canonical item contract. Domain lists select canonical
-// items but do not project them into a smaller, domain-specific shape.
-type Item = dataset.ItemData
+// Item retains both the typed fields used for selection and sorting and the
+// exact canonical JSON value loaded from the master file.
+type Item struct {
+	dataset.ItemData
+	raw json.RawMessage
+}
+
+// MarshalJSON copies the original master entry without projecting it through
+// ItemData. Records constructed in memory fall back to the typed contract.
+func (item Item) MarshalJSON() ([]byte, error) {
+	if len(item.raw) != 0 {
+		return item.raw, nil
+	}
+	return json.Marshal(item.ItemData)
+}
+
+func (item *Item) UnmarshalJSON(data []byte) error {
+	if err := json.Unmarshal(data, &item.ItemData); err != nil {
+		return err
+	}
+	item.raw = append(item.raw[:0], data...)
+	return nil
+}
 
 type Matcher func(dataset.ItemData) bool
 
@@ -49,11 +71,34 @@ func (g Generator) Generate(ctx context.Context, master dataset.Master, outputRo
 		}
 		return items[i].PageTitle < items[j].PageTitle
 	})
-	file, err := domain.WriteJSON(outputRoot, g.name, "items.json", items)
+	file, err := Write(outputRoot, g.name, "items.json", items)
 	if err != nil {
 		return domain.Result{}, fmt.Errorf("domain %s: %w", g.name, err)
 	}
 	return domain.Result{Domain: g.name, Files: []contracts.GeneratedFileMetadata{file}}, nil
+}
+
+// Write emits an array while copying every selected item's original JSON value
+// byte-for-byte from the master. Only array separators and the trailing newline
+// are newly generated.
+func Write(outputRoot, domainName, relative string, items []Item) (contracts.GeneratedFileMetadata, error) {
+	var data bytes.Buffer
+	data.WriteByte('[')
+	for index, item := range items {
+		encoded, err := item.MarshalJSON()
+		if err != nil {
+			return contracts.GeneratedFileMetadata{}, fmt.Errorf("encode item %q: %w", item.PageTitle, err)
+		}
+		if !json.Valid(encoded) {
+			return contracts.GeneratedFileMetadata{}, fmt.Errorf("encode item %q: canonical JSON is invalid", item.PageTitle)
+		}
+		if index != 0 {
+			data.WriteByte(',')
+		}
+		data.Write(encoded)
+	}
+	data.WriteString("]\n")
+	return domain.WriteRawJSON(outputRoot, domainName, relative, data.Bytes())
 }
 
 // Filter performs selection only; it does not alter canonical records.
@@ -73,7 +118,7 @@ func Transform(record dataset.ItemRecord) (Item, error) {
 	if strings.TrimSpace(record.Item.PageTitle) == "" || strings.TrimSpace(record.Item.Name) == "" {
 		return Item{}, fmt.Errorf("pageTitle and name are required")
 	}
-	return record.Item, nil
+	return Item{ItemData: record.Item, raw: append(json.RawMessage(nil), record.Raw...)}, nil
 }
 
 func HasEnchantment(item dataset.ItemData, name string) bool {

@@ -58,7 +58,7 @@ func (Generator) Generate(ctx context.Context, master dataset.Master, outputRoot
 	if err != nil {
 		return domain.Result{}, err
 	}
-	itemFile, err := domain.WriteJSON(outputRoot, Name, "items.json", items)
+	itemFile, err := itemlist.Write(outputRoot, Name, "items.json", items)
 	if err != nil {
 		return domain.Result{}, fmt.Errorf("domain %s items: %w", Name, err)
 	}
