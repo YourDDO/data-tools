@@ -1,5 +1,19 @@
 [
   {
+    "name": "Air Savant",
+    "bonuses": [
+      {
+        "threshold": 2,
+        "enhancements": [
+          {
+            "name": "Spell Critical Chance: Electric",
+            "modifier": 0.02
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Alchemist's Lore",
     "bonuses": [
       {
@@ -48,7 +62,7 @@
         "enhancements": [
           {
             "name": "Spell Point Cost Reduction",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Enhancement"
           }
         ]
@@ -63,17 +77,17 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -104,6 +118,21 @@
           {
             "name": "Attack Rolls",
             "modifier": "2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Arcane Archer",
+    "bonuses": [
+      {
+        "threshold": 2,
+        "enhancements": [
+          {
+            "name": "Ranged Attack Speed",
+            "modifier": 0.10,
+            "bonus": "Competence"
           }
         ]
       }
@@ -169,6 +198,116 @@
     ]
   },
   {
+    "name": "Archmage",
+    "bonuses": [
+      {
+        "threshold": 2,
+        "enhancements": [
+          {
+            "name": "Spell Critical Chance: Electric",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Cold",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Electric",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Sonic",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Positive Energy",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Negative Energy",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Poison",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Fire",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Light",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Chaos",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Law",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Evil",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Good",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Force",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Bludgeoning",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Piercing",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Slashing",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Untyped",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Repair",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          },
+          {
+            "name": "Spell Critical Chance: Rust",
+            "modifier": 0.01,
+            "bonus": "Artifact"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Arcsteel Battlemage",
     "bonuses": [
       {
@@ -221,47 +360,47 @@
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -352,7 +491,7 @@
         "enhancements": [
           {
             "name": "Spell Point Cost Reduction",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Enhancement",
             "notes": "Must also be centered."
           }
@@ -403,7 +542,7 @@
         "enhancements": [
           {
             "name": "Offhand Strike Chance",
-            "modifier": "20%"
+            "modifier": 0.20
           }
         ]
       }
@@ -432,22 +571,22 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -482,22 +621,22 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -542,97 +681,97 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -652,97 +791,97 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -762,97 +901,97 @@
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           }
         ]
@@ -891,7 +1030,7 @@
         "enhancements": [
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -1037,107 +1176,107 @@
         "enhancements": [
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Universal Spell Power",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
@@ -1253,7 +1392,7 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -1313,22 +1452,22 @@
           },
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "15%",
+            "name": "Melee Threat",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -1373,32 +1512,32 @@
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           }
         ]
@@ -1426,7 +1565,7 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Artifact"
           },
           {
@@ -1530,17 +1669,17 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -1590,37 +1729,37 @@
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -1825,192 +1964,192 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           }
         ]
@@ -2040,7 +2179,7 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           }
         ]
@@ -2055,12 +2194,12 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Spell Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           }
         ]
@@ -2075,12 +2214,12 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Spell Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
@@ -2110,12 +2249,12 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Spell Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
@@ -2185,12 +2324,12 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Spell Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
@@ -2250,7 +2389,7 @@
           },
           {
             "name": "Universal Spell Critical Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           }
         ]
@@ -2265,7 +2404,7 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           }
         ]
@@ -2275,12 +2414,12 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2290,17 +2429,17 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Dodge Cap",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Legendary"
           }
         ]
@@ -2310,17 +2449,17 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Dodge Cap",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Legendary"
           },
           {
@@ -2334,17 +2473,17 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Dodge Cap",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Legendary"
           },
           {
@@ -2353,12 +2492,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2368,17 +2507,17 @@
         "enhancements": [
           {
             "name": "Missile Deflection",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Dodge Cap",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Legendary"
           },
           {
@@ -2387,12 +2526,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -2432,7 +2571,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           }
         ]
@@ -2447,7 +2586,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           }
         ]
@@ -2462,7 +2601,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -2502,7 +2641,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -2532,7 +2671,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2547,7 +2686,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -2577,17 +2716,17 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2602,7 +2741,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -2632,27 +2771,27 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Melee Power",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Power",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2722,7 +2861,7 @@
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           }
         ]
@@ -2752,22 +2891,22 @@
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "100%",
+            "name": "Melee Threat",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           }
         ]
@@ -2797,22 +2936,22 @@
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "100%",
+            "name": "Melee Threat",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
@@ -2847,22 +2986,22 @@
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "100%",
+            "name": "Melee Threat",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "100%",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
@@ -2872,7 +3011,7 @@
           },
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -2999,32 +3138,32 @@
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           }
         ]
@@ -3059,192 +3198,192 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           }
         ]
@@ -3264,17 +3403,17 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           }
         ]
@@ -3289,7 +3428,7 @@
         "enhancements": [
           {
             "name": "Movement Speed",
-            "modifier": "+30%",
+            "modifier": 0.30,
             "bonus": "Enhancement"
           },
           {
@@ -3574,7 +3713,7 @@
         "enhancements": [
           {
             "name": "Spell Crit Chance: Positive Energy",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -3584,7 +3723,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           }
         ]
@@ -3719,22 +3858,22 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -3769,7 +3908,7 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "20%",
+            "modifier": 0.20,
             "bonus": "Artifact"
           },
           {
@@ -3794,7 +3933,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -3938,8 +4077,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
@@ -3966,8 +4105,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "20%",
+            "name": "Melee Threat",
+            "modifier": 0.20,
             "bonus": "Artifact"
           },
           {
@@ -4002,7 +4141,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -4022,12 +4161,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -4181,7 +4320,7 @@
         "enhancements": [
           {
             "name": "Fortification",
-            "modifier": "+25%",
+            "modifier": 0.25,
             "bonus": "Stacking"
           },
           {
@@ -4214,7 +4353,7 @@
           },
           {
             "name": "Fortification",
-            "modifier": "25%",
+            "modifier": 0.25,
             "bonus": "Artifact"
           }
         ]
@@ -4289,62 +4428,62 @@
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -4464,62 +4603,62 @@
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -4834,7 +4973,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -4848,32 +4987,32 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "75%"
+            "name": "Melee Threat",
+            "modifier": 0.75
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "75%"
+            "modifier": 0.75
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "75%"
+            "modifier": 0.75
           },
           {
             "name": "Fire Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Cold Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Acid Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Electric Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           }
         ]
       }
@@ -4947,22 +5086,22 @@
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -5045,7 +5184,7 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -5059,12 +5198,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -5094,11 +5233,11 @@
         "enhancements": [
           {
             "name": "Melee Power",
-            "modifier": "5%"
+            "modifier": 0.05
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%"
+            "modifier": 0.05
           }
         ]
       }
@@ -5140,17 +5279,17 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -5180,7 +5319,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -5189,8 +5328,8 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "75%",
+            "name": "Melee Threat",
+            "modifier": 0.75,
             "bonus": "Artifact"
           }
         ]
@@ -5205,62 +5344,62 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Power: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           }
         ]
@@ -5275,17 +5414,17 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -5360,47 +5499,47 @@
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -5465,7 +5604,7 @@
         "enhancements": [
           {
             "name": "Maximum Hit Points",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Legendary"
           }
         ]
@@ -5485,97 +5624,97 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -5595,97 +5734,97 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -5705,97 +5844,97 @@
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           }
         ]
@@ -6002,32 +6141,32 @@
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           }
         ]
@@ -6097,37 +6236,37 @@
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -6192,192 +6331,192 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           }
         ]
@@ -6531,62 +6670,62 @@
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -6706,62 +6845,62 @@
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -7051,7 +7190,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -7065,32 +7204,32 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "75%"
+            "name": "Melee Threat",
+            "modifier": 0.75
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "75%"
+            "modifier": 0.75
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "75%"
+            "modifier": 0.75
           },
           {
             "name": "Fire Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Cold Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Acid Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Electric Absorption",
-            "modifier": "10%"
+            "modifier": 0.10
           }
         ]
       }
@@ -7124,22 +7263,22 @@
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -7209,11 +7348,11 @@
         "enhancements": [
           {
             "name": "Melee Power",
-            "modifier": "10%"
+            "modifier": 0.10
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%"
+            "modifier": 0.10
           }
         ]
       }
@@ -7232,17 +7371,17 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -7257,7 +7396,7 @@
         "enhancements": [
           {
             "name": "Movement Speed",
-            "modifier": "+30%",
+            "modifier": 0.30,
             "bonus": "Enhancement"
           },
           {
@@ -7577,7 +7716,7 @@
         "enhancements": [
           {
             "name": "Spell Crit Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -7587,7 +7726,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -7602,7 +7741,7 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -7612,12 +7751,12 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           }
         ]
@@ -7662,7 +7801,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -7682,12 +7821,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -7767,17 +7906,17 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -7792,17 +7931,17 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -7822,7 +7961,7 @@
           },
           {
             "name": "Damage vs. Helpless opponents",
-            "modifier": "+15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           }
         ]
@@ -7917,22 +8056,22 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -7967,7 +8106,7 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -7992,7 +8131,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -8067,7 +8206,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -8126,18 +8265,18 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "-20%",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "-20%",
+            "modifier": -0.20,
             "bonus": "Artifact"
           }
         ]
@@ -8196,8 +8335,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
@@ -8224,8 +8363,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "20%",
+            "name": "Melee Threat",
+            "modifier": 0.20,
             "bonus": "Artifact"
           },
           {
@@ -8274,12 +8413,12 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -8299,7 +8438,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -8319,12 +8458,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -8378,8 +8517,8 @@
             "bonus": "Insight"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "20%"
+            "name": "Melee Threat",
+            "modifier": 0.20
           }
         ]
       },
@@ -8392,8 +8531,8 @@
             "bonus": "Insight"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "30%"
+            "name": "Melee Threat",
+            "modifier": 0.30
           }
         ]
       }
@@ -8498,12 +8637,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -8518,7 +8657,7 @@
         "enhancements": [
           {
             "name": "Movement Speed",
-            "modifier": "+30%",
+            "modifier": 0.30,
             "bonus": "Enhancement"
           },
           {
@@ -8876,7 +9015,7 @@
         "enhancements": [
           {
             "name": "Spell Crit Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -8886,7 +9025,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -8927,7 +9066,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -8942,7 +9081,7 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -8952,12 +9091,12 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -9095,12 +9234,12 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -9130,7 +9269,7 @@
         "enhancements": [
           {
             "name": "Fortification",
-            "modifier": "+25%"
+            "modifier": 0.25
           },
           {
             "name": "Armor Class",
@@ -9148,12 +9287,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -9198,17 +9337,17 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -9223,17 +9362,17 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -9253,7 +9392,7 @@
           },
           {
             "name": "Damage vs. Helpless opponents",
-            "modifier": "+5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           }
         ]
@@ -9750,22 +9889,22 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -9800,7 +9939,7 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -9885,7 +10024,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -10004,18 +10143,18 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-10%",
+            "name": "Melee Threat",
+            "modifier": -0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "-10%",
+            "modifier": -0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Threat Generation",
-            "modifier": "-10%",
+            "modifier": -0.10,
             "bonus": "Artifact"
           }
         ]
@@ -10033,7 +10172,7 @@
           },
           {
             "name": "Melee Threat Geneneration",
-            "modifier": "-20%"
+            "modifier": -0.20
           }
         ]
       },
@@ -10045,7 +10184,7 @@
           },
           {
             "name": "Melee Threat Geneneration",
-            "modifier": "-20%"
+            "modifier": -0.20
           },
           {
             "name": "Feather Falling"
@@ -10062,27 +10201,27 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -10127,7 +10266,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -10152,12 +10291,12 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -10172,7 +10311,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -10187,7 +10326,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
@@ -10372,27 +10511,27 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -10437,7 +10576,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -10462,12 +10601,12 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -10482,7 +10621,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           }
         ]
@@ -10497,7 +10636,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "4%",
+            "modifier": 0.04,
             "bonus": "Artifact"
           },
           {
@@ -10522,7 +10661,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -10532,7 +10671,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -10547,27 +10686,27 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Untyped",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -10612,7 +10751,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -10637,12 +10776,12 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -10657,7 +10796,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -10672,7 +10811,7 @@
         "enhancements": [
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
@@ -10903,7 +11042,7 @@
         "enhancements": [
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -10928,7 +11067,7 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
@@ -11032,8 +11171,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
@@ -11060,8 +11199,8 @@
         "threshold": 2,
         "enhancements": [
           {
-            "name": "Melee Threat Generation",
-            "modifier": "20%",
+            "name": "Melee Threat",
+            "modifier": 0.20,
             "bonus": "Artifact"
           },
           {
@@ -11090,12 +11229,12 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -11115,7 +11254,7 @@
         "enhancements": [
           {
             "name": "Armor Class",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -11211,12 +11350,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -11494,7 +11633,7 @@
           },
           {
             "name": "Missile Deflection",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           }
         ]
@@ -11564,7 +11703,7 @@
           },
           {
             "name": "Missile Deflection",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -11588,18 +11727,18 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "50%",
+            "name": "Melee Threat",
+            "modifier": 0.50,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "50%",
+            "modifier": 0.50,
             "bonus": "Artifact"
           },
           {
             "name": "Armor Class",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           }
         ]
@@ -11623,18 +11762,18 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "50%",
+            "name": "Melee Threat",
+            "modifier": 0.50,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "50%",
+            "modifier": 0.50,
             "bonus": "Artifact"
           },
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -11673,13 +11812,13 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "-20%",
+            "modifier": -0.20,
             "bonus": "Artifact"
           }
         ]
@@ -11723,13 +11862,13 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "-20%",
+            "name": "Melee Threat",
+            "modifier": -0.20,
             "bonus": "Artifact"
           },
           {
             "name": "Ranged Threat Generation",
-            "modifier": "-20%",
+            "modifier": -0.20,
             "bonus": "Artifact"
           }
         ]
@@ -11744,12 +11883,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -11759,12 +11898,12 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -11779,12 +11918,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -11794,12 +11933,12 @@
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -11909,7 +12048,7 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Exceptional"
           }
         ]
@@ -11939,7 +12078,7 @@
           },
           {
             "name": "Strikethrough Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -11969,192 +12108,192 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           },
           {
@@ -12218,13 +12357,13 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "50%",
+            "name": "Melee Threat",
+            "modifier": 0.50,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -12254,197 +12393,197 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "2%",
+            "modifier": 0.02,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -12474,7 +12613,7 @@
           },
           {
             "name": "Dodge Chance",
-            "modifier": "3%",
+            "modifier": 0.03,
             "bonus": "Artifact"
           },
           {
@@ -12594,12 +12733,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
@@ -12679,7 +12818,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           }
         ]
@@ -12704,12 +12843,12 @@
           },
           {
             "name": "Armor Class",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Legendary"
           }
         ]
@@ -12754,17 +12893,17 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "5%",
+            "modifier": 0.05,
             "bonus": "Artifact"
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -12804,7 +12943,7 @@
           },
           {
             "name": "Strikethrough Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -12834,192 +12973,192 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           },
           {
@@ -13083,13 +13222,13 @@
             "bonus": "Artifact"
           },
           {
-            "name": "Melee Threat Generation",
-            "modifier": "100%",
+            "name": "Melee Threat",
+            "modifier": 1.00,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -13119,197 +13258,197 @@
           },
           {
             "name": "Spell Critical Chance: Acid",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Cold",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Electric",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Fire",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Force",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Piercing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Slashing",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Bludgeoning",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Light",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Chaos",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Evil",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Good",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Lawful",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Negative Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Poison",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Positive Energy",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Sonic",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Repair",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Chance: Rust",
-            "modifier": "6%",
+            "modifier": 0.06,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Acid",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Cold",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Electric",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Fire",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Force",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Piercing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Slashing",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Bludgeoning",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Light",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Chaos",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Evil",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Good",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Lawful",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Negative Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Poison",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Positive Energy",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Sonic",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Repair",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Spell Critical Damage: Rust",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -13339,7 +13478,7 @@
           },
           {
             "name": "Dodge Chance",
-            "modifier": "10%",
+            "modifier": 0.10,
             "bonus": "Artifact"
           },
           {
@@ -13459,12 +13598,12 @@
         "enhancements": [
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
@@ -13544,7 +13683,7 @@
           },
           {
             "name": "Damage vs Helpless Opponents",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           }
         ]
@@ -13569,12 +13708,12 @@
           },
           {
             "name": "Armor Class",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Maximum Hit Points",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Legendary"
           }
         ]
@@ -13619,17 +13758,17 @@
           },
           {
             "name": "Doublestrike Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Doubleshot Chance",
-            "modifier": "15%",
+            "modifier": 0.15,
             "bonus": "Artifact"
           },
           {
             "name": "Fortification Bypass Chance",
-            "modifier": "30%",
+            "modifier": 0.30,
             "bonus": "Artifact"
           },
           {
