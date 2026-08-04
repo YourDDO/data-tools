@@ -120,15 +120,15 @@ func TestParseTemplateResistance(t *testing.T) {
 
 func resistanceEnchantments(amount, bonusType, resistanceType string) []*dataset.Enchantment {
 	names := []string{
-		"Fortitude Saving Throws",
-		"Reflex Saving Throws",
-		"Will Saving Throws",
+		"Fortitude Save",
+		"Reflex Save",
+		"Will Save",
 	}
 	if resistanceType != "" {
 		names = []string{
-			"Fortitude (" + resistanceType + ") Saving Throws",
-			"Reflex (" + resistanceType + ") Saving Throws",
-			"Will (" + resistanceType + ") Saving Throws",
+			"Fortitude Save vs" + resistanceType,
+			"Reflex Save vs" + resistanceType,
+			"Will Save vs" + resistanceType,
 		}
 	}
 

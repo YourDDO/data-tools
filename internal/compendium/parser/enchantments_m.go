@@ -2,11 +2,12 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateMurderous(rawMValue string) *dataset.Enchantment {
@@ -513,7 +514,7 @@ func parseTemplateMindDrain(raw string) *dataset.Enchantment {
 		return nil
 	}
 
-	name := "Maximum Spell Points"
+	name := "Spell Points"
 	bonusType := "Penalty"
 	amount := "-5%"
 	notes := "This item reduces your maximum spell points by 5% while equipped."

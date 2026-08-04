@@ -200,7 +200,7 @@ func splitMultiNames(name string, setName string) []string {
 
 	// Handle "all Saving Throws"
 	if strings.Contains(strings.ToLower(trimmedName), "all saving throws") {
-		return []string{"Fortitude Saving Throws", "Reflex Saving Throws", "Will Saving Throws"}
+		return []string{"Fortitude Save", "Reflex Save", "Will Save"}
 	}
 
 	// Handle "Open Locks, Disable Device, Spot, Search"
@@ -273,7 +273,7 @@ func normalizeFiligreeName(name string, setName string) string {
 
 	// Touch of Grace 2 piece set gives a bonus to Maimum Spell Points
 	if setName == "Touch of Grace" && strings.Contains(lower, "spell points") {
-		return "Maximum Spell Points"
+		return "Spell Points"
 	}
 
 	if strings.Contains(lower, "uses of wild empathy") {

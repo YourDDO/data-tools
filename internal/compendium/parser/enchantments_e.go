@@ -2,11 +2,12 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateElementalAbsorb(rawAbsorbValue string) []*dataset.Enchantment {
@@ -1004,7 +1005,7 @@ func parseTemplateEmbraceoftheSpiderQueen(raw string) *dataset.Enchantment {
 	}
 
 	return &dataset.Enchantment{
-		Name:      "Fortitude (Poison) Saving Throws",
+		Name:      "Fortitude Save vs Poison",
 		Amount:    "-6",
 		BonusType: "Penalty",
 		Notes:     new("While Lolth protects her faithful from the venom of her spiders, non-evil beings who bear items sacred to her may feel her displeasure, suffering a -6 penalty to Fortitude saving throws versus Poison."),
@@ -1091,7 +1092,7 @@ func parseTemplateElementalEnergy(raw string) *dataset.Enchantment {
 	switch strings.ToLower(rawEnergy) {
 	case "spell points", "spellpoints", "sp":
 		energy = "spell points"
-		name = "Maximum Spell Points"
+		name = "Spell Points"
 	}
 
 	notes := fmt.Sprintf("This items gives you a %s bonus to your maximum %s. This stacks with all bonuses except %s.", value, energy, enchantmentName)

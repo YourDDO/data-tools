@@ -2,10 +2,11 @@ package parser
 
 import (
 	"fmt"
-	"github.com/sirupsen/logrus"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"github.com/sirupsen/logrus"
 )
 
 func parseTemplateHealingAmp(rawAmpValue string) *dataset.Enchantment {
@@ -121,7 +122,7 @@ func parseTemplateGoodluck(rawLuckValue string) []*dataset.Enchantment {
 	// --- 1. Generate entries for all three Saves ---
 	for _, save := range saves {
 		enchantments = append(enchantments, &dataset.Enchantment{
-			Name:      fmt.Sprintf("%s Saving Throws", save),
+			Name:      fmt.Sprintf("%s Save", save),
 			Amount:    amount,
 			BonusType: bonusType,
 		})

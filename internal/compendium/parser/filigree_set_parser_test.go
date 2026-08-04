@@ -257,9 +257,9 @@ func TestParseFiligreeSetsNormalization(t *testing.T) {
 				{
 					Threshold: 4,
 					Enhancements: []dataset.PartialEnhancementOut{
-						{Name: "Fortitude Saving Throws", Modifier: 2.0},
-						{Name: "Reflex Saving Throws", Modifier: 2.0},
-						{Name: "Will Saving Throws", Modifier: 2.0},
+						{Name: "Fortitude Save", Modifier: 2.0},
+						{Name: "Reflex Save", Modifier: 2.0},
+						{Name: "Will Save", Modifier: 2.0},
 					},
 				},
 			},
@@ -282,7 +282,7 @@ func TestParseFiligreeSetsNormalization(t *testing.T) {
 				{
 					Threshold: 2,
 					Enhancements: []dataset.PartialEnhancementOut{
-						{Name: "Maximum Spell Points", Modifier: 50.0},
+						{Name: "Spell Points", Modifier: 50.0},
 					},
 				},
 			},

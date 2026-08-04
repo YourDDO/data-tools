@@ -462,7 +462,7 @@ func parseTemplateSpellSchoolSave(rawSaveValue string) []*dataset.Enchantment {
 
 	for _, saveBase := range saves {
 		// Default Name: [Base Save] ([Display Type]) Saving Throws
-		name := fmt.Sprintf("%s (%s) Saving Throws", saveBase, saveDisplayType)
+		name := fmt.Sprintf("%s Save vs %s", saveBase, saveDisplayType)
 
 		// Use custom Title as the primary Name if provided, optionally appending the condition
 		if title != "" {

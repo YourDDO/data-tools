@@ -14,7 +14,7 @@ import (
 
 const (
 	legendaryPrefix    = "Legendary "
-	maximumSpellPoints = "Maximum Spell Points"
+	maximumSpellPoints = "Spell Points"
 )
 
 var spellSchools = []string{
@@ -398,7 +398,7 @@ func mapSaveTypeToName(saveType string) string {
 	// For now, we'll keep it simple.
 	switch strings.ToLower(saveType) {
 	case "reflex", "will", "fortitude":
-		return saveType + " Saving Throws"
+		return saveType + " Save"
 	default:
 		return saveType
 	}

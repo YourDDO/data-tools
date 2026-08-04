@@ -10,8 +10,8 @@ import (
 func parseTemplateProofAgainstPoison(rawProofValue string) *dataset.Enchantment {
 	const prefix = "{{ProofAgainstPoison|"
 	const suffix = "}}"
-	const defaultBonusType = "Enhancement"  // Assumed default based on common DDO patterns
-	const baseName = "Proof Against Poison" // TODO: Find the exact resistances from equipping item
+	const defaultBonusType = "Enhancement" // Assumed default based on common DDO patterns
+	const baseName = "Fortitude Save vs Poison"
 
 	if !strings.HasPrefix(rawProofValue, prefix) || !strings.HasSuffix(rawProofValue, suffix) {
 		return nil
@@ -145,7 +145,7 @@ func parseTemplateParrying(rawPValue string) []*dataset.Enchantment {
 	for _, effect := range saves {
 		// Save bonuses
 		enchantments = append(enchantments, &dataset.Enchantment{
-			Name:      fmt.Sprintf("%s Saving Throws", effect),
+			Name:      fmt.Sprintf("%s Save", effect),
 			Amount:    amount,
 			BonusType: bonusType,
 		})
@@ -276,7 +276,7 @@ func parseTemplateProofAgainstDisease(rawPDValue string) []*dataset.Enchantment 
 
 	// --- 1. Fortitude Save Bonus (Against Magical Disease) ---
 	enchantments = append(enchantments, &dataset.Enchantment{
-		Name:      "Fortitude (Disease) Saving Throws", // Required Name format
+		Name:      "Fortitude Save vs Disease", // Required Name format
 		Amount:    amount,
 		BonusType: bonusType,
 	})
@@ -388,7 +388,7 @@ func parseTemplatePowerDrain(raw string) *dataset.Enchantment {
 	}
 
 	return &dataset.Enchantment{
-		Name:      "Maximum Spell Points",
+		Name:      "Spell Points",
 		BonusType: "Penalty",
 		Amount:    "30",
 		Notes:     new("You lose 30 maximum spell points (or up to 60 if you are a Sorcerer or Favored Soul)."),

@@ -2,11 +2,12 @@ package parser
 
 import (
 	"fmt"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 func parseTemplateRuneArmBlast(rawBlastValue string) *dataset.Enchantment {
@@ -405,9 +406,9 @@ func parseTemplateResistance(rawResValue string) []*dataset.Enchantment {
 	var enchantments []*dataset.Enchantment
 
 	for _, save := range saves {
-		name := fmt.Sprintf("%s Saving Throws", save)
+		name := fmt.Sprintf("%s Save", save)
 		if resistanceType != "" {
-			name = fmt.Sprintf("%s (%s) Saving Throws", save, resistanceType)
+			name = fmt.Sprintf("%s Save vs %s", save, resistanceType)
 		}
 
 		enchantments = append(enchantments, &dataset.Enchantment{
@@ -611,7 +612,7 @@ func parseTemplateRiposte(raw string) []*dataset.Enchantment {
 	// Individual Saves
 	for _, save := range saves {
 		results = append(results, &dataset.Enchantment{
-			Name:      save + " Saving Throws",
+			Name:      save + " Save",
 			Amount:    saveAmount,
 			BonusType: bonusType,
 		})
@@ -871,7 +872,7 @@ func parseTemplateReaping(raw string) *dataset.Enchantment {
 
 func parseTemplateRagingResilience() *dataset.Enchantment {
 	return &dataset.Enchantment{
-		Name:      "Fortitude Saving Throws (While Raged)",
+		Name:      "Fortitude Save (While Raged)",
 		Amount:    "4",
 		BonusType: "Rage",
 		Notes:     new("While Raged, +4 Rage bonus to Fortitude Saves."),
