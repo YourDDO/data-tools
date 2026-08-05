@@ -70,3 +70,52 @@ func TestParseEnchantmentsDisintegrationDamage(t *testing.T) {
 		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
 	}
 }
+
+func TestParseTemplateDiversion(t *testing.T) {
+	tests := []struct {
+		name string
+		raw  string
+		want []*dataset.Enchantment
+	}{
+		{
+			name: "melee reduction is a negative decimal",
+			raw:  "{{Diversion|28|Melee}}",
+			want: []*dataset.Enchantment{{
+				Name: "Melee Threat", Amount: "-0.28", BonusType: "Enhancement",
+			}},
+		},
+		{
+			name: "spell reduction preserves decimal precision and bonus type",
+			raw:  "{{Diversion|6.5|Spell|Quality}}",
+			want: []*dataset.Enchantment{{
+				Name: "Spell Threat", Amount: "-0.065", BonusType: "Quality",
+			}},
+		},
+		{
+			name: "combined styles emit canonical threat names",
+			raw:  "{{Diversion|10|MeleeRange|Insight|Custom Diversion}}",
+			want: []*dataset.Enchantment{
+				{Name: "Melee Threat", Amount: "-0.1", BonusType: "Insight"},
+				{Name: "Ranged Threat", Amount: "-0.1", BonusType: "Insight"},
+			},
+		},
+		{
+			name: "a signed input remains a reduction",
+			raw:  "{{Diversion|-15|All}}",
+			want: []*dataset.Enchantment{
+				{Name: "Melee Threat", Amount: "-0.15", BonusType: "Enhancement"},
+				{Name: "Ranged Threat", Amount: "-0.15", BonusType: "Enhancement"},
+				{Name: "Spell Threat", Amount: "-0.15", BonusType: "Enhancement"},
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseTemplateDiversion(tt.raw)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Fatalf("parseTemplateDiversion(%q) = %#v, want %#v", tt.raw, got, tt.want)
+			}
+		})
+	}
+}

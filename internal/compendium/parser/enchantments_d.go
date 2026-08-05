@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
@@ -511,7 +512,6 @@ func parseTemplateDiversion(rawDivValue string) []*dataset.Enchantment {
 
 	var attackStyle string
 	var bonusType string
-	var title string
 
 	// 2. Attack Style (Index 1)
 	if len(parts) >= 2 {
@@ -532,36 +532,26 @@ func parseTemplateDiversion(rawDivValue string) []*dataset.Enchantment {
 		bonusType = defaultBonusType
 	}
 
-	// 4. Title (Index 3)
-	if len(parts) >= 4 {
-		title = stripBrackets(parts[3])
-	}
-
-	// --- CRITICAL PROCESSING ---
-
 	var enchantments []*dataset.Enchantment
-	normalizedStyle := strings.Title(strings.ToLower(attackStyle))
+	normalizedStyle := strings.ToLower(attackStyle)
 
-	// Determine the actual amount (negative percentage)
-	amountNum, err := strconv.Atoi(amountRaw)
+	// Diversion reduces threat generation. The dataset represents percentage
+	// modifiers as decimal values, so a 28% reduction is stored as -0.28.
+	amountNum, err := strconv.ParseFloat(amountRaw, 64)
 	if err != nil {
-		return nil
-	} // Amount must be convertible to number
-	amount := fmt.Sprintf("-%d%%", amountNum)
+		return nil // Amount must be convertible to a number.
+	}
+	amount := strconv.FormatFloat(-math.Abs(amountNum)/100, 'f', -1, 64)
 
 	styleFlags, exists := diversionStyles[normalizedStyle]
 	if !exists {
-		styleFlags = diversionStyles["All"] // Fallback to 'All' if unhandled style is passed
+		styleFlags = diversionStyles["all"] // Fallback to 'All' if unhandled style is passed
 	}
 
 	// Generator function for split enchantments
 	generateEnch := func(name string) *dataset.Enchantment {
-		finalName := title
-		if finalName == "" {
-			finalName = name
-		}
 		return &dataset.Enchantment{
-			Name:      finalName,
+			Name:      name,
 			Amount:    amount,
 			BonusType: bonusType,
 		}
@@ -569,15 +559,15 @@ func parseTemplateDiversion(rawDivValue string) []*dataset.Enchantment {
 
 	// 1. Melee
 	if styleFlags.Melee {
-		enchantments = append(enchantments, generateEnch("Melee Threat Generation"))
+		enchantments = append(enchantments, generateEnch("Melee Threat"))
 	}
 	// 2. Ranged
 	if styleFlags.Ranged {
-		enchantments = append(enchantments, generateEnch("Ranged Threat Generation"))
+		enchantments = append(enchantments, generateEnch("Ranged Threat"))
 	}
 	// 3. Spell
 	if styleFlags.Spell {
-		enchantments = append(enchantments, generateEnch("Spell Threat Generation"))
+		enchantments = append(enchantments, generateEnch("Spell Threat"))
 	}
 
 	return enchantments
