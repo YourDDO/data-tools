@@ -26,6 +26,24 @@ func TestGeneratorsMatchGoldenFilesAndAreByteDeterministic(t *testing.T) {
 	secondRoot := filepath.Join(t.TempDir(), "second")
 	var firstFiles, secondFiles int
 	for _, registration := range registry.All() {
+		if registration.Generator.Name() == "essence-crafting" {
+			// Essence Crafting has a dedicated production-source regression test.
+			// Keep its large canonical manual input out of the small shared golden
+			// tree while still exercising generator determinism and metadata here.
+			manualRoot := filepath.Join("..", "..", "..", "inputs", "manual")
+			first, err := registration.Generator.(domain.ManualGenerator).GenerateWithManual(context.Background(), master, manualRoot, t.TempDir())
+			if err != nil {
+				t.Fatalf("generate %s first run: %v", registration.Generator.Name(), err)
+			}
+			second, err := registration.Generator.(domain.ManualGenerator).GenerateWithManual(context.Background(), master, manualRoot, t.TempDir())
+			if err != nil {
+				t.Fatalf("generate %s second run: %v", registration.Generator.Name(), err)
+			}
+			if !reflect.DeepEqual(first.Files, second.Files) || !reflect.DeepEqual(first.Warnings, second.Warnings) {
+				t.Fatalf("domain %s returned nondeterministic results", registration.Generator.Name())
+			}
+			continue
+		}
 		generatorMaster := master
 		manualRoot := ""
 		if _, ok := registration.Generator.(domain.ManualGenerator); ok {

@@ -1,401 +1,357 @@
 package essencecrafting
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
+	"math"
 	"regexp"
 	"sort"
 	"strconv"
 	"strings"
+
+	"yourddo-data-tools/internal/contracts"
+	"yourddo-data-tools/internal/dataset"
 )
 
-var nonAlphaNum = regexp.MustCompile(`[^a-z0-9]+`)
-var trimDash = regexp.MustCompile(`(^-+|-+$)`)
-
-func slugify(s string) string {
-	s = strings.ToLower(strings.TrimSpace(s))
-	s = nonAlphaNum.ReplaceAllString(s, "-")
-	s = trimDash.ReplaceAllString(s, "")
-	return s
+var placementAliases = map[string]string{
+	"Weapon": "weapon", "Runearm": "rune-arm", "Orb": "orb", "Armor": "armor", "Belt": "belt", "Waist": "belt",
+	"Boots": "boots", "Feet": "boots", "Bracers": "bracers", "Wrists": "bracers", "Cloak": "cloak", "Gloves": "gloves",
+	"Hand": "gloves", "Hands": "gloves", "Goggles": "goggles", "Eyes": "goggles", "Head": "head", "Headgear": "head",
+	"Necklace": "necklace", "Neck": "necklace", "Ring": "ring", "Rings": "ring", "Fingers": "ring", "Trinket": "trinket", "Shield": "shield",
 }
 
-func normalizeSlot(slot string) string {
-	return slugify(slot)
+var percentEffects = map[string]struct{}{
+	"Acid Absorption": {}, "Acid Spell Critical Chance": {}, "Cold Absorption": {}, "Cold Spell Critical Chance": {}, "Concealment": {}, "Dodge": {},
+	"Doubleshot": {}, "Doublestrike": {}, "Electric Absorption": {}, "Electric Spell Critical Chance": {}, "Fire Absorption": {}, "Fire Spell Critical Chance": {},
+	"Force Absorption": {}, "Force Spell Critical Chance": {}, "Fortification": {}, "Fortification Bypass": {}, "Light Absorption": {}, "Light Spell Critical Chance": {},
+	"Melee Attack Speed": {}, "Melee Threat": {}, "Movement Speed": {}, "Negative Absorption": {}, "Negative Spell Critical Chance": {}, "Offhand Shield Bash Chance": {},
+	"Poison Absorption": {}, "Poison Spell Critical Chance": {}, "Positive Spell Critical Chance": {}, "Ranged Alacrity": {}, "Repair Spell Critical Chance": {},
+	"Sonic Absorption": {}, "Sonic Spell Critical Chance": {},
 }
 
-func normalizeGroup(group string) string {
-	return slugify(group)
-}
+var dicePattern = regexp.MustCompile(`^d([1-9][0-9]*)$`)
 
-func normalizeBonus(bonus string) string {
-	return slugify(bonus)
-}
-
-func uniqueSortedNormalized(values []string) []string {
-	seen := make(map[string]struct{}, len(values))
-	out := make([]string, 0, len(values))
-	for _, v := range values {
-		v = normalizeSlot(v)
-		if v == "" {
-			continue
-		}
-		if _, ok := seen[v]; ok {
-			continue
-		}
-		seen[v] = struct{}{}
-		out = append(out, v)
+func validateSourceEnhancement(context string, input sourceEnhancement) error {
+	if strings.TrimSpace(input.Name) == "" {
+		return fmt.Errorf("%s: name is required", context)
 	}
-	sort.Strings(out)
-	return out
+	if input.MinimumLevel < minimumItemLevel || input.MinimumLevel > maximumItemLevel {
+		return fmt.Errorf("%s: minItemLevel %d is outside %d-%d", context, input.MinimumLevel, minimumItemLevel, maximumItemLevel)
+	}
+	if input.Bound == nil || input.Unbound == nil {
+		return fmt.Errorf("%s: bound and unbound recipes are required", context)
+	}
+	if len(input.Prefix)+len(input.Suffix)+len(input.Extra) == 0 {
+		return fmt.Errorf("%s: at least one placement is required", context)
+	}
+	return nil
 }
 
-func intFromAny(v any) int {
-	switch t := v.(type) {
-	case nil:
-		return 0
-	case float64:
-		return int(t)
-	case int:
-		return t
-	case string:
-		n, _ := strconv.Atoi(strings.TrimSpace(t))
-		return n
+func normalizePlacements(input sourceEnhancement) ([]contracts.EssenceCraftingPlacement, error) {
+	values := []struct {
+		position string
+		slots    []string
+	}{{"prefix", input.Prefix}, {"suffix", input.Suffix}, {"extra", input.Extra}}
+	result := make([]contracts.EssenceCraftingPlacement, 0, 3)
+	seenTriples := map[string]struct{}{}
+	for _, value := range values {
+		if len(value.slots) == 0 {
+			continue
+		}
+		categories := make([]string, 0, len(value.slots))
+		for _, raw := range value.slots {
+			category, exists := placementAliases[strings.TrimSpace(raw)]
+			if !exists {
+				return nil, fmt.Errorf("unsupported %s position item category %q", value.position, raw)
+			}
+			triple := value.position + "\x00" + category
+			if _, exists := seenTriples[triple]; exists {
+				return nil, fmt.Errorf("duplicate normalized placement %s/%s", value.position, category)
+			}
+			seenTriples[triple] = struct{}{}
+			categories = append(categories, category)
+		}
+		sort.Strings(categories)
+		result = append(result, contracts.EssenceCraftingPlacement{Position: value.position, ItemCategoryIDs: categories})
+	}
+	if len(result) == 0 {
+		return nil, fmt.Errorf("at least one normalized placement is required")
+	}
+	return result, nil
+}
+
+func transformScaledEffect(parent sourceEnhancement, input sourceEffect) (contracts.EssenceCraftingEffect, error) {
+	name := strings.TrimSpace(input.Name)
+	if name == "" {
+		return contracts.EssenceCraftingEffect{}, fmt.Errorf("name is required")
+	}
+	bonus := strings.TrimSpace(input.Bonus)
+	result := contracts.EssenceCraftingEffect{ID: opaqueID("effect", strings.ToLower(bonus)+"\x00"+name), DisplayName: name, BonusTypeID: bonusID(bonus)}
+	if len(input.Modifiers) == 0 {
+		if (parent.Name != "Necromantic" || name != "Deathblock") && name != parent.Name {
+			return result, fmt.Errorf("missing modifier scale")
+		}
+		return result, nil
+	}
+	if input.ModifierDice != "" && !dicePattern.MatchString(strings.ToLower(input.ModifierDice)) {
+		return result, fmt.Errorf("modifierDice %q is not a canonical dN token", input.ModifierDice)
+	}
+	rows := append([]sourceModifier(nil), input.Modifiers...)
+	sort.Slice(rows, func(i, j int) bool { return rows[i].Level < rows[j].Level })
+	values := make([]float64, len(rows))
+	for index, row := range rows {
+		if row.Level != parent.MinimumLevel+index {
+			return result, fmt.Errorf("modifier levels must cover every item level from %d through %d", parent.MinimumLevel, maximumItemLevel)
+		}
+		value, err := strconv.ParseFloat(row.Value.String(), 64)
+		if err != nil || math.IsNaN(value) || math.IsInf(value, 0) {
+			return result, fmt.Errorf("modifier level %d has invalid finite numeric value %q", row.Level, row.Value)
+		}
+		if input.ModifierDice != "" && (math.Trunc(value) != value || value <= 0) {
+			return result, fmt.Errorf("dice modifier level %d must be a positive integer", row.Level)
+		}
+		if _, isPercent := percentEffects[name]; isPercent {
+			value = value * 100
+		}
+		values[index] = value
+	}
+	if rows[len(rows)-1].Level != maximumItemLevel {
+		return result, fmt.Errorf("modifier scale does not reach item level %d", maximumItemLevel)
+	}
+	unit := "number"
+	if input.ModifierDice != "" {
+		unit = "dice"
+	} else if _, isPercent := percentEffects[name]; isPercent {
+		unit = "percent"
+	}
+	result.Modifier = &contracts.EssenceCraftingModifier{Kind: "by-item-level", Unit: unit, Die: strings.ToLower(input.ModifierDice), Bands: coalesceBands(rows, values)}
+	return result, nil
+}
+
+func coalesceBands(rows []sourceModifier, values []float64) []contracts.EssenceCraftingModifierBand {
+	result := make([]contracts.EssenceCraftingModifierBand, 0, len(rows))
+	for index, row := range rows {
+		if len(result) != 0 && result[len(result)-1].Value == values[index] && result[len(result)-1].MaximumItemLevel+1 == row.Level {
+			result[len(result)-1].MaximumItemLevel = row.Level
+			continue
+		}
+		result = append(result, contracts.EssenceCraftingModifierBand{MinimumItemLevel: row.Level, MaximumItemLevel: row.Level, Value: values[index]})
+	}
+	return result
+}
+
+func transformSourceRecipe(input *sourceRecipe, binding string, ingredientNames map[string]struct{}, recipeOwners map[int]string, owner string) (contracts.EssenceCraftingRecipe, error) {
+	if input == nil {
+		return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe is required", owner, binding)
+	}
+	if input.RecipeID <= 0 {
+		return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe has invalid recipeId", owner, binding)
+	}
+	if previous, exists := recipeOwners[input.RecipeID]; exists {
+		return contracts.EssenceCraftingRecipe{}, fmt.Errorf("recipe source ID %d is shared by %s and %s", input.RecipeID, previous, owner)
+	}
+	recipeOwners[input.RecipeID] = owner
+	if input.Level <= 0 || input.Level > maximumCraftLevel {
+		return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe crafting level %d is outside 1-%d", owner, binding, input.Level, maximumCraftLevel)
+	}
+	if input.Essence <= 0 {
+		return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe has invalid Magic Item Essence quantity", owner, binding)
+	}
+	requirements := []contracts.EssenceCraftingRequirement{{Kind: "ingredient", IngredientID: opaqueID("ingredient", magicItemEssence), Quantity: input.Essence}}
+	seen := map[string]struct{}{magicItemEssence: {}}
+	for index, requirement := range input.Collectibles {
+		name := strings.TrimSpace(requirement.Name)
+		if name == "" || requirement.Quantity <= 0 {
+			return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe collectible[%d] has invalid name or quantity", owner, binding, index)
+		}
+		if _, exists := seen[name]; exists {
+			return contracts.EssenceCraftingRecipe{}, fmt.Errorf("%s %s recipe repeats ingredient %q", owner, binding, name)
+		}
+		seen[name] = struct{}{}
+		ingredientNames[name] = struct{}{}
+		requirements = append(requirements, contracts.EssenceCraftingRequirement{Kind: "ingredient", IngredientID: opaqueID("ingredient", name), Quantity: requirement.Quantity})
+	}
+	sortRequirements(requirements)
+	return contracts.EssenceCraftingRecipe{ID: "recipe-source-" + strconv.Itoa(input.RecipeID), Kind: "enhancement-shard", SourceRecipeID: strconv.Itoa(input.RecipeID), Binding: binding, CraftingLevel: input.Level, Requirements: requirements}, nil
+}
+
+func materializeMinimumLevelShards(ingredientNames map[string]struct{}) ([]contracts.EssenceCraftingMinimumShard, []contracts.EssenceCraftingRecipe) {
+	ingredientNames[purifiedFragment] = struct{}{}
+	shards := make([]contracts.EssenceCraftingMinimumShard, 0, maximumItemLevel)
+	recipes := make([]contracts.EssenceCraftingRecipe, 0, maximumItemLevel*2)
+	for level := minimumItemLevel; level <= maximumItemLevel; level++ {
+		boundCraftLevel := level * 10
+		if level == 1 {
+			boundCraftLevel = 1
+		}
+		boundID := fmt.Sprintf("recipe-minimum-level-bound-%02d", level)
+		unboundID := fmt.Sprintf("recipe-minimum-level-unbound-%02d", level)
+		unboundCraftLevel := max(150, (level+5)*10)
+		boundRequirements := []contracts.EssenceCraftingRequirement{{Kind: "ingredient", IngredientID: opaqueID("ingredient", magicItemEssence), Quantity: level * 10}}
+		unboundRequirements := []contracts.EssenceCraftingRequirement{{Kind: "ingredient", IngredientID: opaqueID("ingredient", magicItemEssence), Quantity: unboundCraftLevel * 2}}
+		if quantity := unboundPurifiedQuantity(level); quantity != 0 {
+			unboundRequirements = append(unboundRequirements, contracts.EssenceCraftingRequirement{Kind: "ingredient", IngredientID: opaqueID("ingredient", purifiedFragment), Quantity: quantity})
+		}
+		recipes = append(recipes,
+			contracts.EssenceCraftingRecipe{ID: boundID, Kind: "minimum-level-shard", ItemLevel: level, Binding: "bound", CraftingLevel: boundCraftLevel, Requirements: boundRequirements},
+			contracts.EssenceCraftingRecipe{ID: unboundID, Kind: "minimum-level-shard", ItemLevel: level, Binding: "unbound", CraftingLevel: unboundCraftLevel, Requirements: unboundRequirements},
+		)
+		shards = append(shards, contracts.EssenceCraftingMinimumShard{ItemLevel: level, Recipes: contracts.EssenceCraftingRecipePair{BoundRecipeID: boundID, UnboundRecipeID: unboundID}})
+	}
+	return shards, recipes
+}
+
+func unboundPurifiedQuantity(level int) int {
+	switch {
+	case level >= 31:
+		return 15
+	case level >= 26:
+		return 10
+	case level >= 21:
+		return 5
 	default:
 		return 0
 	}
 }
 
-func stringifyValue(v any) string {
-	switch t := v.(type) {
-	case nil:
-		return ""
-	case string:
-		return strings.TrimSpace(t)
+func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.EssenceCraftingAugment, map[string]string, map[string]string, error) {
+	result := make([]contracts.EssenceCraftingAugment, 0)
+	bonusNames, effectNames := map[string]string{}, map[string]string{}
+	seen := map[string]string{}
+	for _, record := range master.Augments {
+		if err := ctx.Err(); err != nil {
+			return nil, nil, nil, err
+		}
+		typeID, relevant := normalizeAugmentType(record.Augment.AugmentType)
+		if !relevant {
+			continue
+		}
+		name := strings.TrimSpace(record.Augment.Name)
+		if name == "" {
+			return nil, nil, nil, fmt.Errorf("augment %s has an empty name", record.Source())
+		}
+		if record.Augment.MinLevel == nil || *record.Augment.MinLevel < minimumItemLevel || *record.Augment.MinLevel > maximumItemLevel {
+			return nil, nil, nil, fmt.Errorf("augment %s has invalid minimum item level", record.Source())
+		}
+		id := opaqueID("augment", record.File+"\x00"+name)
+		if previous, exists := seen[id]; exists {
+			return nil, nil, nil, fmt.Errorf("augment ID %q duplicates master records %s and %s", id, previous, record.Source())
+		}
+		seen[id] = record.Source()
+		effects := make([]contracts.EssenceCraftingEffect, 0, len(record.Augment.EffectsAdded))
+		seenEffects := map[string]struct{}{}
+		for index, effect := range record.Augment.EffectsAdded {
+			transformed, err := transformAugmentEffect(effect)
+			if err != nil {
+				return nil, nil, nil, fmt.Errorf("augment %s effect[%d]: %w", record.Source(), index, err)
+			}
+			if _, exists := seenEffects[transformed.ID]; exists {
+				return nil, nil, nil, fmt.Errorf("augment %s repeats effect ID %q", record.Source(), transformed.ID)
+			}
+			seenEffects[transformed.ID] = struct{}{}
+			effects = append(effects, transformed)
+			if transformed.BonusTypeID != "" {
+				bonusNames[transformed.BonusTypeID] = strings.TrimSpace(effect.Bonus)
+			}
+			effectNames[transformed.ID] = transformed.DisplayName
+		}
+		sortEffects(effects)
+		result = append(result, contracts.EssenceCraftingAugment{ID: id, DisplayName: name, AugmentTypeID: typeID, MinimumItemLevel: *record.Augment.MinLevel, Effects: effects})
+	}
+	return result, bonusNames, effectNames, nil
+}
+
+func normalizeAugmentType(value string) (string, bool) {
+	value = strings.ToLower(strings.TrimSpace(value))
+	switch value {
+	case "red", "blue", "yellow", "green", "purple", "orange", "colorless":
+		return value, true
+	default:
+		return "", false
+	}
+}
+
+func transformAugmentEffect(input dataset.PartialEnhancementOut) (contracts.EssenceCraftingEffect, error) {
+	name, bonus := strings.TrimSpace(input.Name), strings.TrimSpace(input.Bonus)
+	if name == "" {
+		return contracts.EssenceCraftingEffect{}, fmt.Errorf("name is required")
+	}
+	result := contracts.EssenceCraftingEffect{ID: opaqueID("effect", strings.ToLower(bonus)+"\x00"+name), DisplayName: name, BonusTypeID: bonusID(bonus)}
+	if input.Modifier == nil {
+		return result, nil
+	}
+	switch value := input.Modifier.(type) {
 	case float64:
-		if t == float64(int(t)) {
-			return strconv.Itoa(int(t))
+		if math.IsNaN(value) || math.IsInf(value, 0) {
+			return result, fmt.Errorf("modifier is not finite")
 		}
-		return fmt.Sprintf("%v", t)
+		unit := "number"
+		if _, isPercent := percentEffects[name]; isPercent {
+			unit, value = "percent", value*100
+		}
+		result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: unit, Value: value}
 	case int:
-		return strconv.Itoa(t)
-	case []any:
-		parts := make([]string, 0, len(t))
-		for _, p := range t {
-			s := stringifyValue(p)
-			if s != "" {
-				parts = append(parts, s)
-			}
+		result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "number", Value: value}
+	case string:
+		value = strings.TrimSpace(value)
+		if value == "" {
+			return result, fmt.Errorf("modifier text is blank")
 		}
-		return strings.Join(parts, ", ")
-	case map[string]any:
-		keys := make([]string, 0, len(t))
-		for k := range t {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-
-		parts := make([]string, 0, len(keys))
-		for _, k := range keys {
-			s := stringifyValue(t[k])
-			if s != "" {
-				parts = append(parts, fmt.Sprintf("%s: %s", k, s))
-			}
-		}
-		return strings.Join(parts, "; ")
-	default:
-		b, _ := json.Marshal(t)
-		return string(b)
-	}
-}
-
-func buildEffectTiers(raw RawEnhancement, effectID string) EffectTiers {
-	out := EffectTiers{
-		EffectID: effectID,
-		Tiers:    []EffectTier{},
-	}
-
-	switch stat := raw.Stat.(type) {
-	case nil:
-		return out
-	case []any:
-		for i, entry := range stat {
-			out.Tiers = append(out.Tiers, EffectTier{
-				Tier:  i + 1,
-				Value: stringifyValue(entry),
-			})
-		}
-	case []int:
-		for i, entry := range stat {
-			out.Tiers = append(out.Tiers, EffectTier{
-				Tier:  i + 1,
-				Value: strconv.Itoa(entry),
-			})
-		}
-	case []float64:
-		for i, entry := range stat {
-			out.Tiers = append(out.Tiers, EffectTier{
-				Tier:  i + 1,
-				Value: stringifyValue(entry),
-			})
-		}
-	case map[string]any:
-		keys := make([]string, 0, len(stat))
-		for k := range stat {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-
-		tierNum := 1
-		for _, k := range keys {
-			out.Tiers = append(out.Tiers, EffectTier{
-				Tier:  tierNum,
-				Value: stringifyValue(stat[k]),
-			})
-			tierNum++
+		if match := regexp.MustCompile(`^([1-9][0-9]*)d([1-9][0-9]*)$`).FindStringSubmatch(strings.ToLower(value)); match != nil {
+			count, _ := strconv.Atoi(match[1])
+			result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "dice", Value: count, Die: "d" + match[2]}
+		} else {
+			result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "text", Value: value}
 		}
 	default:
-		out.Tiers = append(out.Tiers, EffectTier{
-			Tier:  1,
-			Value: stringifyValue(stat),
-		})
+		return result, fmt.Errorf("unsupported modifier type %T", input.Modifier)
 	}
-
-	applyMinLevelIncrease(&out, raw.MinLevelIncrease)
-	out.Tiers = compressEffectTiers(out.Tiers)
-
-	return out
+	return result, nil
 }
 
-func applyMinLevelIncrease(effectTiers *EffectTiers, minLevelIncrease any) {
-	if len(effectTiers.Tiers) == 0 || minLevelIncrease == nil {
-		return
+func ingredients(names map[string]struct{}) []contracts.EssenceCraftingIngredient {
+	result := make([]contracts.EssenceCraftingIngredient, 0, len(names))
+	for name := range names {
+		result = append(result, contracts.EssenceCraftingIngredient{ID: opaqueID("ingredient", name), DisplayName: name})
 	}
-
-	processMinimumLevelType(effectTiers, minLevelIncrease)
+	sort.Slice(result, func(i, j int) bool { return result[i].ID < result[j].ID })
+	return result
 }
 
-func processMinimumLevelType(effectTiers *EffectTiers, minLevelIncrease any) {
-	switch t := minLevelIncrease.(type) {
-	case float64, int, string:
-		val := intFromAny(t)
-		for i := range effectTiers.Tiers {
-			effectTiers.Tiers[i].MinLevelIncrease = val
-		}
-	case []any:
-		for i := range effectTiers.Tiers {
-			if i < len(t) {
-				effectTiers.Tiers[i].MinLevelIncrease = intFromAny(t[i])
-			}
-		}
-	case map[string]any:
-		keys := make([]string, 0, len(t))
-		for k := range t {
-			keys = append(keys, k)
-		}
-		sort.Strings(keys)
-
-		for i, k := range keys {
-			if i < len(effectTiers.Tiers) {
-				effectTiers.Tiers[i].MinLevelIncrease = intFromAny(t[k])
-			}
-		}
+func namedRecords(names map[string]string) []contracts.EssenceCraftingNamedRecord {
+	result := make([]contracts.EssenceCraftingNamedRecord, 0, len(names))
+	for id, name := range names {
+		result = append(result, contracts.EssenceCraftingNamedRecord{ID: id, DisplayName: name})
 	}
+	sort.Slice(result, func(i, j int) bool { return result[i].ID < result[j].ID })
+	return result
 }
 
-func compressEffectTiers(tiers []EffectTier) []EffectTier {
-	if len(tiers) == 0 {
-		return tiers
-	}
-
-	compressed := make([]EffectTier, 0, len(tiers))
-	var previous *EffectTier
-
-	for _, tier := range tiers {
-		if previous == nil {
-			t := tier
-			compressed = append(compressed, t)
-			previous = &compressed[len(compressed)-1]
-			continue
+func sortEffects(values []contracts.EssenceCraftingEffect) {
+	sort.Slice(values, func(i, j int) bool {
+		if values[i].DisplayName == values[j].DisplayName {
+			return values[i].ID < values[j].ID
 		}
-
-		sameValue := tier.Value == previous.Value
-		sameMLIncrease := tier.MinLevelIncrease == previous.MinLevelIncrease
-
-		if sameValue && sameMLIncrease {
-			continue
+		return values[i].DisplayName < values[j].DisplayName
+	})
+}
+func sortRequirements(values []contracts.EssenceCraftingRequirement) {
+	sort.Slice(values, func(i, j int) bool {
+		if values[i].Kind != values[j].Kind {
+			return values[i].Kind == "ingredient"
 		}
-
-		t := tier
-		compressed = append(compressed, t)
-		previous = &compressed[len(compressed)-1]
-	}
-
-	return compressed
+		if values[i].Kind == "ingredient" {
+			return values[i].IngredientID < values[j].IngredientID
+		}
+		return values[i].RecipeID < values[j].RecipeID
+	})
 }
 
-func buildPlannerEntries(raw RawEnhancement, effectID string) []PlannerEntry {
-	out := make([]PlannerEntry, 0)
-
-	enchantmentName := raw.Name
-	bonusType := ""
-	if len(raw.Enchantments) > 0 {
-		if strings.TrimSpace(raw.Enchantments[0].Name) != "" {
-			enchantmentName = raw.Enchantments[0].Name
-		}
-		bonusType = normalizeBonus(raw.Enchantments[0].Bonus)
-	}
-
-	group := normalizeGroup(raw.Group)
-
-	appendEntries := func(affixType string, slots []string) {
-		for _, slot := range uniqueSortedNormalized(slots) {
-			out = append(out, PlannerEntry{
-				ID:              fmt.Sprintf("essence-%s-%s-%s", effectID, affixType, slot),
-				SourceType:      "essence",
-				EffectID:        effectID,
-				EnchantmentName: enchantmentName,
-				BonusType:       bonusType,
-				SlotID:          slot,
-				AffixType:       affixType,
-				Group:           group,
-			})
-		}
-	}
-
-	appendEntries("prefix", raw.Prefix)
-	appendEntries("suffix", raw.Suffix)
-	appendEntries("extra", raw.Extra)
-
-	sort.Slice(out, func(i, j int) bool {
-		return out[i].ID < out[j].ID
+func sortDomain(result *contracts.EssenceCraftingDomain) {
+	sort.Slice(result.Enhancements, func(i, j int) bool { return result.Enhancements[i].ID < result.Enhancements[j].ID })
+	sort.Slice(result.Recipes, func(i, j int) bool { return result.Recipes[i].ID < result.Recipes[j].ID })
+	sort.Slice(result.MinimumLevelShards, func(i, j int) bool {
+		return result.MinimumLevelShards[i].ItemLevel < result.MinimumLevelShards[j].ItemLevel
 	})
-
-	return out
-}
-
-func transform(raw []RawEnhancement) (
-	[]EffectDefinition,
-	[]EffectEnchantment,
-	[]EffectPlacement,
-	[]EffectTiers,
-	[]EffectRecipe,
-	[]EffectDisplay,
-	[]PlannerEntry,
-) {
-	effects := make([]EffectDefinition, 0, len(raw))
-	enchantments := make([]EffectEnchantment, 0)
-	placements := make([]EffectPlacement, 0, len(raw))
-	tiers := make([]EffectTiers, 0, len(raw))
-	recipes := make([]EffectRecipe, 0, len(raw))
-	display := make([]EffectDisplay, 0, len(raw))
-	plannerEntries := make([]PlannerEntry, 0)
-
-	effects, enchantments, placements, tiers, recipes, display, plannerEntries = processRawEnchantments(raw)
-
-	sort.Slice(effects, func(i, j int) bool {
-		return effects[i].ID < effects[j].ID
-	})
-
-	sort.Slice(enchantments, func(i, j int) bool {
-		if enchantments[i].EffectID == enchantments[j].EffectID {
-			if enchantments[i].Name == enchantments[j].Name {
-				return enchantments[i].Bonus < enchantments[j].Bonus
-			}
-			return enchantments[i].Name < enchantments[j].Name
-		}
-		return enchantments[i].EffectID < enchantments[j].EffectID
-	})
-
-	sort.Slice(placements, func(i, j int) bool {
-		return placements[i].EffectID < placements[j].EffectID
-	})
-
-	sort.Slice(tiers, func(i, j int) bool {
-		return tiers[i].EffectID < tiers[j].EffectID
-	})
-
-	sort.Slice(recipes, func(i, j int) bool {
-		return recipes[i].EffectID < recipes[j].EffectID
-	})
-
-	sort.Slice(display, func(i, j int) bool {
-		return display[i].EffectID < display[j].EffectID
-	})
-
-	sort.Slice(plannerEntries, func(i, j int) bool {
-		return plannerEntries[i].ID < plannerEntries[j].ID
-	})
-
-	return effects, enchantments, placements, tiers, recipes, display, plannerEntries
-}
-
-func processRawEnchantments(raw []RawEnhancement) ([]EffectDefinition, []EffectEnchantment, []EffectPlacement, []EffectTiers, []EffectRecipe, []EffectDisplay, []PlannerEntry) {
-	effects := make([]EffectDefinition, 0, len(raw))
-	enchantments := make([]EffectEnchantment, 0)
-	placements := make([]EffectPlacement, 0, len(raw))
-	tiers := make([]EffectTiers, 0, len(raw))
-	recipes := make([]EffectRecipe, 0, len(raw))
-	display := make([]EffectDisplay, 0, len(raw))
-	plannerEntries := make([]PlannerEntry, 0)
-
-	for _, r := range raw {
-		if strings.TrimSpace(r.Name) == "" {
-			continue
-		}
-
-		effectID := slugify(r.Name)
-
-		effects = append(effects, EffectDefinition{
-			ID:    effectID,
-			Name:  r.Name,
-			Group: normalizeGroup(r.Group),
-		})
-
-		enchantments = processEnchantments(r, enchantments, effectID)
-
-		placements = append(placements, EffectPlacement{
-			EffectID:    effectID,
-			PrefixSlots: uniqueSortedNormalized(r.Prefix),
-			SuffixSlots: uniqueSortedNormalized(r.Suffix),
-			ExtraSlots:  uniqueSortedNormalized(r.Extra),
-		})
-
-		effectTiers := buildEffectTiers(r, effectID)
-		if len(effectTiers.Tiers) > 0 {
-			tiers = append(tiers, effectTiers)
-		}
-
-		if r.Bound != nil || r.Unbound != nil {
-			recipes = append(recipes, EffectRecipe{
-				EffectID: effectID,
-				Bound:    r.Bound,
-				Unbound:  r.Unbound,
-			})
-		}
-
-		if r.PrefixTitle != "" || r.SuffixTitle != "" {
-			display = append(display, EffectDisplay{
-				EffectID:    effectID,
-				PrefixTitle: r.PrefixTitle,
-				SuffixTitle: r.SuffixTitle,
-			})
-		}
-
-		plannerEntries = append(plannerEntries, buildPlannerEntries(r, effectID)...)
-	}
-	return effects, enchantments, placements, tiers, recipes, display, plannerEntries
-}
-
-func processEnchantments(r RawEnhancement, enchantments []EffectEnchantment, effectID string) []EffectEnchantment {
-	for _, ench := range r.Enchantments {
-		if strings.TrimSpace(ench.Name) == "" {
-			continue
-		}
-		enchantments = append(enchantments, EffectEnchantment{
-			EffectID: effectID,
-			Name:     ench.Name,
-			Bonus:    normalizeBonus(ench.Bonus),
-		})
-	}
-	return enchantments
+	sort.Slice(result.Augments, func(i, j int) bool { return result.Augments[i].ID < result.Augments[j].ID })
 }

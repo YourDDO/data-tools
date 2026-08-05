@@ -12,6 +12,7 @@ import (
 	"yourddo-data-tools/internal/domain/attunedbyheroism"
 	"yourddo-data-tools/internal/domain/catalystcrafting"
 	"yourddo-data-tools/internal/domain/dinosaurbone"
+	"yourddo-data-tools/internal/domain/essencecrafting"
 	"yourddo-data-tools/internal/domain/finishingtouch"
 	"yourddo-data-tools/internal/domain/fountain"
 	"yourddo-data-tools/internal/domain/gearplanner"
@@ -52,6 +53,7 @@ var registrations = []Registration{
 	{Generator: attunedbyheroism.New(), Aliases: []string{"attuned to heroism"}},
 	{Generator: dinosaurbone.New()},
 	{Generator: viktranium.New()},
+	{Generator: essencecrafting.New()},
 }
 
 func All() []Registration { return append([]Registration(nil), registrations...) }
