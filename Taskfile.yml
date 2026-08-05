@@ -105,6 +105,17 @@ tasks:
         --bucket="{{.DATA_BUCKET}}"
         --publish=true
 
+  deploy:codebuild:
+    desc: Start the production CodeBuild deployment
+    cmds:
+      - >-
+        aws codebuild start-build
+        --project-name yourddo-data-tools
+        --region us-east-2
+        --environment-variables-override
+        name=PUBLISH_ENABLED,value=true,type=PLAINTEXT
+        name=TRIGGER_SOURCE,value=manual-production-test,type=PLAINTEXT
+
   terraform:fmt:
     desc: Format Terraform configuration
     cmds:

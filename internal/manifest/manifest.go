@@ -18,7 +18,7 @@ type Latest = contracts.Latest
 // releaseFingerprintSchemaVersion changes whenever domain-generation behavior
 // changes without changing the canonical master or manual inputs. Bumping it
 // forces existing releases to be regenerated with the current output contract.
-const releaseFingerprintSchemaVersion = 3
+const releaseFingerprintSchemaVersion = 4
 
 // Candidate is deterministic, unpublished metadata. DataVersion is
 // intentionally absent and is added only when Publisher publishes it.
