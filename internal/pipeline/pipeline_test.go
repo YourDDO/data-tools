@@ -208,7 +208,7 @@ func TestExecuteTreatsPreviousOutputContractAsChanged(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	previousFingerprint := hashing.Combine(current.Candidate.MasterDatasetSHA256)
+	previousFingerprint := hashing.Combine("release-fingerprint-schema:3", current.Candidate.MasterDatasetSHA256)
 	client := &pipelineS3Client{objects: activeS3Objects(current.Candidate.MasterDatasetSHA256, previousFingerprint)}
 	store, err := publish.NewS3Store(client, "yourddo-data-prod")
 	if err != nil {
@@ -224,6 +224,21 @@ func TestExecuteTreatsPreviousOutputContractAsChanged(t *testing.T) {
 	}
 	if result.Outcome != contracts.PipelineOutcomePublished || !result.Changed {
 		t.Fatalf("result = %#v", result)
+	}
+
+	currentClient := &pipelineS3Client{objects: activeS3Objects(current.Candidate.MasterDatasetSHA256, current.Candidate.ReleaseFingerprint)}
+	currentStore, err := publish.NewS3Store(currentClient, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	dependencies.Active = currentStore
+	dependencies.Store = currentStore
+	noChange, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if noChange.Outcome != contracts.PipelineOutcomeNoChange || noChange.Changed || len(currentClient.puts) != 0 {
+		t.Fatalf("current output-contract result = %#v, writes = %d", noChange, len(currentClient.puts))
 	}
 }
 
