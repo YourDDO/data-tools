@@ -9,10 +9,12 @@ import (
 	"fmt"
 	"hash"
 	"io"
+	"log/slog"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 	"unicode"
 
 	"golang.org/x/sys/unix"
@@ -48,13 +50,20 @@ type Result struct {
 // canonical files and never receive this source dependency.
 type Generator struct {
 	source Source
+	logger *slog.Logger
 }
 
 func NewGenerator(source Source) (*Generator, error) {
+	return NewGeneratorWithLogger(source, nil)
+}
+
+// NewGeneratorWithLogger constructs a generator with optional category-level
+// progress logging. A nil logger leaves generation silent for library callers.
+func NewGeneratorWithLogger(source Source, logger *slog.Logger) (*Generator, error) {
 	if source == nil {
 		return nil, fmt.Errorf("Compendium source is required")
 	}
-	return &Generator{source: source}, nil
+	return &Generator{source: source, logger: logger}, nil
 }
 
 // Fetcher and NewFetcher remain as compatibility names for callers of the
@@ -154,14 +163,23 @@ func (g *Generator) generate(ctx context.Context, categories []string, outputRoo
 	}
 
 	for _, category := range expanded {
+		categoryStarted := time.Now()
+		g.logCategory(ctx, "category fetch started", category)
 		contents, err := g.fetchRaw(ctx, category)
 		if err != nil {
 			return Result{}, err
 		}
+		g.logCategory(ctx, "category fetch completed", category,
+			"source_record_count", len(contents), "elapsed", time.Since(categoryStarted))
+
+		normalizationStarted := time.Now()
+		g.logCategory(ctx, "category normalization started", category)
 		kind, value, records, err := normalize(category, contents)
 		if err != nil {
 			return Result{}, err
 		}
+		g.logCategory(ctx, "category normalization completed", category,
+			"normalized_record_count", len(records), "elapsed", time.Since(normalizationStarted))
 		for _, record := range records {
 			key := canonicalKey(kind, record.identifier)
 			if previous, exists := identifiers[key]; exists {
@@ -221,6 +239,16 @@ func (g *Generator) generate(ctx context.Context, categories []string, outputRoo
 		return Result{}, fmt.Errorf("load generated canonical master dataset: %w", err)
 	}
 	return Result{Master: master, SHA256: masterHash, OutputRoot: outputRoot}, nil
+}
+
+func (g *Generator) logCategory(ctx context.Context, message, category string, args ...any) {
+	if g.logger == nil {
+		return
+	}
+	attributes := make([]any, 0, len(args)+2)
+	attributes = append(attributes, "category", category)
+	attributes = append(attributes, args...)
+	g.logger.InfoContext(ctx, message, attributes...)
 }
 
 func (g *Generator) fetchRaw(ctx context.Context, category string) (map[string]string, error) {

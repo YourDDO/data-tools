@@ -1168,12 +1168,15 @@ func parseEnchBody(raw string) string {
 }
 
 func processEnchText(s string) string {
-	// Handle embedded templates
-	for {
-		start := strings.Index(s, "{{")
-		if start == -1 {
+	// Handle embedded templates. searchOffset always advances past preserved
+	// templates, while recognized replacements are re-scanned from their start
+	// so templates exposed by a replacement are handled as well.
+	for searchOffset := 0; searchOffset < len(s); {
+		relativeStart := strings.Index(s[searchOffset:], "{{")
+		if relativeStart == -1 {
 			break
 		}
+		start := searchOffset + relativeStart
 		// Use brace counter to find matching }}
 		openBraceCount := 0
 		endOfTemplate := -1
@@ -1193,11 +1196,13 @@ func processEnchText(s string) string {
 		}
 
 		if endOfTemplate == -1 {
+			// Preserve malformed or unclosed input unchanged.
 			break
 		}
 
 		fullTemplate := s[start : endOfTemplate+1]
-		replacement := fullTemplate
+		var replacement string
+		recognized := true
 
 		if strings.HasPrefix(fullTemplate, "{{SaveDC|") {
 			replacement = parseSaveDC(fullTemplate)
@@ -1208,9 +1213,25 @@ func processEnchText(s string) string {
 			replacement = parseEnchTitle(fullTemplate)
 		} else if strings.HasPrefix(fullTemplate, "{{EnchBody|") {
 			replacement = parseEnchBody(fullTemplate)
+		} else {
+			recognized = false
+		}
+
+		if !recognized {
+			// Keep unknown templates verbatim and continue searching after their
+			// closing braces. This is the explicit forward-progress path.
+			searchOffset = endOfTemplate + 1
+			continue
+		}
+		if replacement == fullTemplate {
+			// A recognized template with malformed parameters can decline to
+			// render. Preserve it and move past it just like unknown markup.
+			searchOffset = endOfTemplate + 1
+			continue
 		}
 
 		s = s[:start] + replacement + s[endOfTemplate+1:]
+		searchOffset = start
 	}
 
 	return stripWikitext(s)
