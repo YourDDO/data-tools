@@ -324,7 +324,7 @@ func parseTemplateHeroism(raw string) []*dataset.Enchantment {
 
 	// Skill Checks
 	allSkills := []string{
-		"Appraise", "Balance", "Bluff", "Concentration", "Diplomacy", "Disable Device",
+		"Balance", "Bluff", "Concentration", "Diplomacy", "Disable Device",
 		"Haggle", "Heal", "Hide", "Intimidate", "Jump", "Listen",
 		"Move Silently", "Open Lock", "Perform", "Repair", "Search",
 		"Spellcraft", "Spot", "Swim", "Tumble", "Use Magic Device",
