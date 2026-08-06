@@ -16,53 +16,62 @@ func TestParseTemplateIncite(t *testing.T) {
 			name: "default melee attack",
 			raw:  "{{Incite|10}}",
 			want: []*dataset.Enchantment{
-				{Name: "Melee Threat Generation", Amount: "10%"},
+				{Name: "Melee Threat", Amount: "0.1"},
 			},
 		},
 		{
-			name: "spell attack with custom title",
+			name: "spell attack ignores presentation title",
 			raw:  "{{Incite|-10|spell||Anathema}}",
 			want: []*dataset.Enchantment{
-				{Name: "Anathema", Amount: "-10%"},
+				{Name: "Spell Threat", Amount: "-0.1"},
 			},
 		},
 		{
-			name: "spell and ranged attacks with custom title",
+			name: "spell and ranged attacks retain distinct semantic identities",
 			raw:  "{{Incite|-15|spellranged||Stealth Strike}}",
 			want: []*dataset.Enchantment{
-				{Name: "Stealth Strike", Amount: "-15%"},
-				{Name: "Stealth Strike", Amount: "-15%"},
+				{Name: "Ranged Threat", Amount: "-0.15"},
+				{Name: "Spell Threat", Amount: "-0.15"},
 			},
 		},
 		{
 			name: "spell attack without custom title",
 			raw:  "{{Incite|-15|spell}}",
 			want: []*dataset.Enchantment{
-				{Name: "Spell Threat Generation", Amount: "-15%"},
+				{Name: "Spell Threat", Amount: "-0.15"},
 			},
 		},
 		{
 			name: "bonus type is the third parameter",
 			raw:  "{{Incite|9|melee|Quality}}",
 			want: []*dataset.Enchantment{
-				{Name: "Melee Threat Generation", Amount: "9%", BonusType: "Quality"},
+				{Name: "Melee Threat", Amount: "0.09", BonusType: "Quality"},
 			},
 		},
 		{
 			name: "spell and melee attacks",
 			raw:  "{{Incite|20|SpellMelee|Insight}}",
 			want: []*dataset.Enchantment{
-				{Name: "Melee Threat Generation", Amount: "20%", BonusType: "Insight"},
-				{Name: "Spell Threat Generation", Amount: "20%", BonusType: "Insight"},
+				{Name: "Melee Threat", Amount: "0.2", BonusType: "Insight"},
+				{Name: "Spell Threat", Amount: "0.2", BonusType: "Insight"},
 			},
 		},
 		{
 			name: "all attack types",
 			raw:  "{{Incite|25|All|Artifact}}",
 			want: []*dataset.Enchantment{
-				{Name: "Melee Threat Generation", Amount: "25%", BonusType: "Artifact"},
-				{Name: "Ranged Threat Generation", Amount: "25%", BonusType: "Artifact"},
-				{Name: "Spell Threat Generation", Amount: "25%", BonusType: "Artifact"},
+				{Name: "Melee Threat", Amount: "0.25", BonusType: "Artifact"},
+				{Name: "Ranged Threat", Amount: "0.25", BonusType: "Artifact"},
+				{Name: "Spell Threat", Amount: "0.25", BonusType: "Artifact"},
+			},
+		},
+		{
+			name: "explicit percent suffix is not scaled twice",
+			raw:  "{{Incite|-20%|All}}",
+			want: []*dataset.Enchantment{
+				{Name: "Melee Threat", Amount: "-0.2"},
+				{Name: "Ranged Threat", Amount: "-0.2"},
+				{Name: "Spell Threat", Amount: "-0.2"},
 			},
 		},
 	}

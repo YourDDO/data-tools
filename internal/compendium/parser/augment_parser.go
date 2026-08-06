@@ -531,9 +531,13 @@ func mapEnchantmentsToPartial(in []dataset.Enchantment) []dataset.PartialEnhance
 	for _, e := range in {
 		var mod any
 		if e.Amount != "" {
-			// try parse number, otherwise keep string
+			// Preserve integral values as ints, but retain decimal modifiers as
+			// numbers rather than text so downstream domain contracts can apply
+			// their unit semantics (for example, -0.2 means -20%).
 			if i, err := strconv.Atoi(e.Amount); err == nil {
 				mod = i
+			} else if f, err := strconv.ParseFloat(e.Amount, 64); err == nil {
+				mod = f
 			} else {
 				mod = e.Amount
 			}

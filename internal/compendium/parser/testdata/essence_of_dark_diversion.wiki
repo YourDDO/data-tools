@@ -1,0 +1,19 @@
+{{Template:Augment
+|name = Essence of Dark Diversion
+|color=Yellow
+|minlevel = 30
+|binding = btaoa
+|bagtype = Augment
+|description = This topaz carries the soul of Dark Diversion.
+|droplocation = {{CraftedAugment|Soulforge|Dark Diversion}}
+|enchantments = 
+* {{Incite|-20|All||Occultation}}
+|icon = Augment Yellow 4
+|weight = 0.01
+|basevalue = {{Price|500}}
+|notes = 
+|bagstacksize = 
+|inventorystacksize = 
+|image = 
+|update = 48
+}}
