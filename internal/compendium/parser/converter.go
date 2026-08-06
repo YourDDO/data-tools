@@ -387,6 +387,42 @@ func ConvertItemToJSON(pageTitle string, fields map[string]string) dataset.ItemD
 	if val, ok := fields["artifacttype"]; ok {
 		data.ArtifactType = val
 	}
+	if val, ok := fields["bagtype"]; ok {
+		data.BagType = val
+	}
+	if val, ok := fields["bagicon"]; ok {
+		data.BagIcon = val
+	}
+	if val, ok := fields["use"]; ok {
+		data.Use = val
+	}
+	if val, ok := fields["rarity"]; ok {
+		data.Rarity = val
+	}
+	if val, ok := fields["collectors"]; ok {
+		data.Collectors = val
+	}
+	if val, ok := fields["notes"]; ok {
+		data.Notes = val
+	}
+	if val, ok := fields["bagstacksize"]; ok {
+		data.BagStackSize = val
+	}
+	if val, ok := fields["inventorystacksize"]; ok {
+		data.InventoryStackSize = val
+	}
+	if val, ok := fields["options"]; ok {
+		data.Options = val
+	}
+	if val, ok := fields["doubleclickpurchase"]; ok {
+		data.DoubleClickPurchase = val
+	}
+	if val, ok := fields["otherversions"]; ok {
+		data.OtherVersions = val
+	}
+	if val, ok := fields["storedescription"]; ok {
+		data.StoreDescription = val
+	}
 	if val, ok := fields["update"]; ok {
 		data.Update = val
 	}

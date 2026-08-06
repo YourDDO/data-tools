@@ -314,6 +314,19 @@ type ItemData struct {
 	Weight       string    `json:"weight"`
 	BaseValue    PriceData `json:"baseValue"` // Structured Data
 	ArtifactType string    `json:"artifactType"`
+	// Material-specific metadata
+	BagType             string `json:"bagType,omitempty"`
+	BagIcon             string `json:"bagIcon,omitempty"`
+	Use                 string `json:"use,omitempty"`
+	Rarity              string `json:"rarity,omitempty"`
+	Collectors          string `json:"collectors,omitempty"`
+	Notes               string `json:"notes,omitempty"`
+	BagStackSize        string `json:"bagStackSize,omitempty"`
+	InventoryStackSize  string `json:"inventoryStackSize,omitempty"`
+	Options             string `json:"options,omitempty"`
+	DoubleClickPurchase string `json:"doubleClickPurchase,omitempty"`
+	OtherVersions       string `json:"otherVersions,omitempty"`
+	StoreDescription    string `json:"storeDescription,omitempty"`
 	// Quiver Specific
 	Capacity     string `json:"capacity,omitempty"`
 	MaxStackSize string `json:"maxStackSize,omitempty"`

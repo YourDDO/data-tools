@@ -1,8 +1,11 @@
 package parser
 
 import (
+	"reflect"
 	"strings"
 	"testing"
+
+	"yourddo-data-tools/internal/dataset"
 )
 
 func TestMasterExclusionReason(t *testing.T) {
@@ -66,5 +69,50 @@ func TestParseItemRecordIdentifiesExtraBraceAfterNestedTemplate(t *testing.T) {
 		!strings.Contains(err.Error(), "browser renderer may tolerate") ||
 		!strings.Contains(err.Error(), "at byte") || !strings.Contains(err.Error(), "near") {
 		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestParseItemRecordPreservesMaterialTemplateFields(t *testing.T) {
+	t.Parallel()
+	raw := `{{Template:Material
+|name = Pristine Gem
+|type = Gem
+|bagtype = Augment
+|bagicon = Custom Bag
+|use = [[Crafting]]
+|rarity = Rare
+|collectors = [[Gem Collector]]
+|notes = Valuable material.
+|bagstacksize = 1,000
+|inventorystacksize = 100
+|options = {{ItemOptions|test}}
+|doubleclickpurchase = {{VendorSale|Gem Merchant}}
+|otherversions = [[Flawed Gem]]
+|storedescription = A particularly pristine gem.
+}}`
+
+	item, err := ParseItemRecord("Pristine Gem", raw)
+	if err != nil {
+		t.Fatalf("ParseItemRecord() error = %v", err)
+	}
+	want := dataset.ItemData{
+		PageTitle:           "Pristine Gem",
+		Name:                "Pristine Gem",
+		Type:                "Gem",
+		BagType:             "Augment",
+		BagIcon:             "Custom Bag",
+		Use:                 "[[Crafting]]",
+		Rarity:              "Rare",
+		Collectors:          "[[Gem Collector]]",
+		Notes:               "Valuable material.",
+		BagStackSize:        "1,000",
+		InventoryStackSize:  "100",
+		Options:             "{{ItemOptions|test}}",
+		DoubleClickPurchase: "{{VendorSale|Gem Merchant}}",
+		OtherVersions:       "[[Flawed Gem]]",
+		StoreDescription:    "A particularly pristine gem.",
+	}
+	if !reflect.DeepEqual(item, want) {
+		t.Fatalf("ParseItemRecord() = %#v, want %#v", item, want)
 	}
 }
