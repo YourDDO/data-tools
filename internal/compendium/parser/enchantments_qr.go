@@ -10,33 +10,47 @@ import (
 	"golang.org/x/text/language"
 )
 
+// parseTemplateRuneArmBlast parses {{RuneArmBlast|Blast Type|Type|Maximum
+// Charge Tier|Additional Text}}.
 func parseTemplateRuneArmBlast(rawBlastValue string) *dataset.Enchantment {
 	const prefix = "{{RuneArmBlast|"
 	const suffix = "}}"
 
+	rawBlastValue = strings.TrimSpace(rawBlastValue)
 	if !strings.HasPrefix(rawBlastValue, prefix) || !strings.HasSuffix(rawBlastValue, suffix) {
 		return nil
 	}
 
 	paramList := rawBlastValue[len(prefix) : len(rawBlastValue)-len(suffix)]
-	parts := strings.Split(paramList, "|")
+	parts := splitParams(paramList)
 
-	// Documentation: (Blast Type)|(Type)|(Maximum Charge Tier)|(Additional Text)
-
-	blast := &dataset.Enchantment{}
-
-	if len(parts) >= 1 {
-		blast.Name = stripBrackets(parts[0])
-		blast.BlastType = stripBrackets(parts[0])
+	// Documentation: (Blast Type)|(Type)|(Maximum Charge Tier)|(Additional Text).
+	// The first three parameters are required by the template.
+	if len(parts) < 3 {
+		return nil
 	}
-	if len(parts) >= 2 {
-		blast.BlastDamageType = stripBrackets(parts[1])
-		if strings.ToLower(blast.BlastDamageType) == "aoe" {
-			blast.BlastDamageType = "Area of Effect"
+
+	blastType := stripBrackets(parts[0])
+	damageType := stripBrackets(parts[1])
+	maxChargeTier := strings.ToUpper(stripBrackets(parts[2]))
+	if blastType == "" || damageType == "" || maxChargeTier == "" {
+		return nil
+	}
+
+	if strings.EqualFold(damageType, "aoe") {
+		damageType = "Area of Effect"
+	}
+
+	blast := &dataset.Enchantment{
+		Name:            blastType,
+		BlastType:       blastType,
+		BlastDamageType: damageType,
+		MaxChargeTier:   maxChargeTier,
+	}
+	if len(parts) >= 4 {
+		if additionalText := processEnchText(parts[3]); additionalText != "" {
+			blast.Notes = new(additionalText)
 		}
-	}
-	if len(parts) >= 3 {
-		blast.MaxChargeTier = strings.ToUpper(stripBrackets(parts[2]))
 	}
 
 	return blast
