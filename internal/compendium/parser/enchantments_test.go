@@ -6,6 +6,31 @@ import (
 	"yourddo-data-tools/internal/dataset"
 )
 
+func TestProcessEnchText(t *testing.T) {
+	tests := []struct {
+		name  string
+		input string
+		want  string
+	}{
+		{name: "recognized dice", input: "{{Dice||1|4}}", want: "1d4"},
+		{name: "unknown template", input: "{{Unknown|value}}", want: "{{Unknown|value}}"},
+		{name: "unknown then recognized", input: "{{Unknown|value}} then {{Dice||1|4}}", want: "{{Unknown|value}} then 1d4"},
+		{name: "recognized then unknown", input: "{{Dice||1|4}} then {{Unknown|value}}", want: "1d4 then {{Unknown|value}}"},
+		{name: "nested template exposed by EnchBody", input: "{{EnchBody|Damage: {{Dice||1|4}}}}", want: "Damage: 1d4"},
+		{name: "unclosed template", input: "prefix {{Dice||1|4", want: "prefix {{Dice||1|4"},
+		{name: "empty text", input: "", want: ""},
+		{name: "ordinary text", input: "ordinary text", want: "ordinary text"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := processEnchText(tt.input); got != tt.want {
+				t.Errorf("processEnchText(%q) = %q, want %q", tt.input, got, tt.want)
+			}
+		})
+	}
+}
+
 func TestParseEnchantments(t *testing.T) {
 	tests := []struct {
 		name     string

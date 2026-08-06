@@ -154,7 +154,10 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	candidateRoot := filepath.Join(workspace, "candidate")
 	masterRoot := filepath.Join(candidateRoot, "master")
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageFetch, "game_version", cfg.GameVersion)
-	generator, err := compendium.NewGenerator(dependencies.Source)
+	generator, err := compendium.NewGeneratorWithLogger(dependencies.Source, logger.With(
+		"stage", StageFetch,
+		"game_version", cfg.GameVersion,
+	))
 	if err != nil {
 		return result, fail(StageFetch, err)
 	}

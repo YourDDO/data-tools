@@ -28,6 +28,14 @@ func TestParseTemplateRuneArmBlast(t *testing.T) {
 			},
 		},
 		{
+			name: "Machination of Madness preserves unrecognized lowercase dice markup",
+			raw:  "{{RuneArmBlast|Bee Shot|single|V|In addition, foes struck by the shot take a stack of enraged Bees, which deal {{dice||1|4}} Piercing Damage every 2 seconds with no save. Enraged Bees may stack up to 20 times, and scales with Spell Power.}}",
+			want: &dataset.Enchantment{
+				Name: "Bee Shot", BlastType: "Bee Shot", BlastDamageType: "single", MaxChargeTier: "V",
+				Notes: new("In addition, foes struck by the shot take a stack of enraged Bees, which deal {{dice||1|4}} Piercing Damage every 2 seconds with no save. Enraged Bees may stack up to 20 times, and scales with Spell Power."),
+			},
+		},
+		{
 			name: "aoe damage type is normalized",
 			raw:  "  {{RuneArmBlast|Lightning Blast|AOE|iv}}  ",
 			want: &dataset.Enchantment{
