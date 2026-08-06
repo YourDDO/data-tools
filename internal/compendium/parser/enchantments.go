@@ -788,6 +788,7 @@ var enchSingleHandlers = map[string]func(string) *dataset.Enchantment{
 	"PermanentEffect":               func(t string) *dataset.Enchantment { return parseTemplatePermanantEffect(t) },
 	"PermanantEffect":               func(t string) *dataset.Enchantment { return parseTemplatePermanantEffect(t) },
 	"MagicalEfficiency":             func(t string) *dataset.Enchantment { return parseTemplateMagicalEfficiency(t) },
+	"MeridianFragment":              func(t string) *dataset.Enchantment { return parseTemplateMeridianFragment(t) },
 	"TendonSlice":                   func(t string) *dataset.Enchantment { return parseTemplateTendonSlice(t) },
 	"Assassination":                 func(t string) *dataset.Enchantment { return parseTemplateAssassination(t) },
 	"WeaponEffect":                  func(t string) *dataset.Enchantment { return parseTemplateWeaponEffect(t) },

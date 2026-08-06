@@ -7,6 +7,73 @@ import (
 	"yourddo-data-tools/internal/dataset"
 )
 
+func TestParseTemplateMeridianFragment(t *testing.T) {
+	tests := []struct {
+		name string
+		raw  string
+		want *dataset.Enchantment
+	}{
+		{
+			name: "defaults",
+			raw:  "{{MeridianFragment}}",
+			want: &dataset.Enchantment{
+				Name:      "Spell Power: Universal",
+				Amount:    "8",
+				BonusType: "Psionic",
+				Notes:     new("Once every three seconds when you take physical damage, you gain a +8 Psionic bonus to Universal Spell Power. This effect can stack up to 3 times, and each stack lasts for 20 seconds."),
+			},
+		},
+		{
+			name: "explicit values",
+			raw:  "{{MeridianFragment|12.5|4|30.5}}",
+			want: &dataset.Enchantment{
+				Name:      "Spell Power: Universal",
+				Amount:    "12.5",
+				BonusType: "Psionic",
+				Notes:     new("Once every three seconds when you take physical damage, you gain a +12.5 Psionic bonus to Universal Spell Power. This effect can stack up to 4 times, and each stack lasts for 30.5 seconds."),
+			},
+		},
+		{
+			name: "empty parameters use defaults",
+			raw:  "{{MeridianFragment|||}}",
+			want: &dataset.Enchantment{
+				Name:      "Spell Power: Universal",
+				Amount:    "8",
+				BonusType: "Psionic",
+				Notes:     new("Once every three seconds when you take physical damage, you gain a +8 Psionic bonus to Universal Spell Power. This effect can stack up to 3 times, and each stack lasts for 20 seconds."),
+			},
+		},
+		{
+			name: "invalid maximum stacks",
+			raw:  "{{MeridianFragment|8|0|20}}",
+			want: nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseTemplateMeridianFragment(tt.raw)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Fatalf("parseTemplateMeridianFragment(%q) = %#v, want %#v", tt.raw, got, tt.want)
+			}
+		})
+	}
+}
+
+func TestParseEnchantmentsMeridianFragment(t *testing.T) {
+	want := []dataset.Enchantment{{
+		Name:      "Spell Power: Universal",
+		Amount:    "8",
+		BonusType: "Psionic",
+		Notes:     new("Once every three seconds when you take physical damage, you gain a +8 Psionic bonus to Universal Spell Power. This effect can stack up to 3 times, and each stack lasts for 20 seconds."),
+	}}
+
+	got := ParseEnchantments("{{MeridianFragment}}", "")
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
+
 func TestParseTemplateMagmaSurge(t *testing.T) {
 	defaultNotes := "This weapon stores the immeasurable heat of the planet's molten mantle. When this weapon is used, superheated magma occasionally surges to the surface, slowing an enemy down and inflicting massive fire damage over time."
 

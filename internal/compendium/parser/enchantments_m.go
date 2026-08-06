@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
@@ -104,6 +105,63 @@ func parseTemplateMagicalEfficiency(rawMEValue string) *dataset.Enchantment {
 		Amount:    amount,
 		BonusType: bonusType,
 		// No other fields are needed.
+	}
+}
+
+// parseTemplateMeridianFragment parses
+// `{{MeridianFragment|Universal Spell Power|Maximum Stacks|Duration}}`.
+func parseTemplateMeridianFragment(raw string) *dataset.Enchantment {
+	const (
+		template = "MeridianFragment"
+		prefix   = "{{" + template
+		suffix   = "}}"
+	)
+
+	s := strings.TrimSpace(raw)
+	if !strings.HasPrefix(s, prefix) || !strings.HasSuffix(s, suffix) {
+		return nil
+	}
+
+	inner := s[len(prefix) : len(s)-len(suffix)]
+	if inner != "" {
+		var hasParams bool
+		inner, hasParams = strings.CutPrefix(inner, "|")
+		if !hasParams {
+			return nil
+		}
+	}
+
+	amount, maximumStacks, duration := "8", "3", "20"
+	parts := splitParams(inner)
+	if len(parts) > 0 && strings.TrimSpace(parts[0]) != "" {
+		amount = strings.TrimSpace(stripBrackets(parts[0]))
+	}
+	if len(parts) > 1 && strings.TrimSpace(parts[1]) != "" {
+		maximumStacks = strings.TrimSpace(stripBrackets(parts[1]))
+	}
+	if len(parts) > 2 && strings.TrimSpace(parts[2]) != "" {
+		duration = strings.TrimSpace(stripBrackets(parts[2]))
+	}
+
+	amountValue, err := strconv.ParseFloat(amount, 64)
+	if err != nil || math.IsNaN(amountValue) || math.IsInf(amountValue, 0) {
+		return nil
+	}
+	stacks, err := strconv.Atoi(maximumStacks)
+	if err != nil || stacks <= 0 {
+		return nil
+	}
+	durationValue, err := strconv.ParseFloat(duration, 64)
+	if err != nil || math.IsNaN(durationValue) || math.IsInf(durationValue, 0) || durationValue <= 0 {
+		return nil
+	}
+
+	notes := fmt.Sprintf("Once every three seconds when you take physical damage, you gain a +%s Psionic bonus to Universal Spell Power. This effect can stack up to %s times, and each stack lasts for %s seconds.", amount, maximumStacks, duration)
+	return &dataset.Enchantment{
+		Name:      "Spell Power: Universal",
+		Amount:    amount,
+		BonusType: "Psionic",
+		Notes:     new(notes),
 	}
 }
 
