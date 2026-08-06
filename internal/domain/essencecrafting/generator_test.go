@@ -95,6 +95,27 @@ func TestGenerateUpdate81Domain(t *testing.T) {
 	}
 }
 
+func TestRulesUseAugmentCompatibility(t *testing.T) {
+	want := map[string][]string{
+		"blue":      {"blue", "colorless"},
+		"colorless": {"colorless"},
+		"green":     {"blue", "colorless", "green", "yellow"},
+		"orange":    {"colorless", "orange", "red", "yellow"},
+		"purple":    {"blue", "colorless", "purple", "red"},
+		"red":       {"colorless", "red"},
+		"yellow":    {"colorless", "yellow"},
+	}
+	for _, slot := range rules().AugmentSlotTypes {
+		if !reflect.DeepEqual(slot.AcceptsAugmentTypeIDs, want[slot.ID]) {
+			t.Fatalf("%s accepts %v, want %v", slot.ID, slot.AcceptsAugmentTypeIDs, want[slot.ID])
+		}
+		delete(want, slot.ID)
+	}
+	if len(want) != 0 {
+		t.Fatalf("missing slot rules: %v", want)
+	}
+}
+
 func TestBuildRejectsInvalidInputs(t *testing.T) {
 	base := sourceEnhancement{Name: "Test", MinimumLevel: 1, Prefix: []string{"Ring"}, Bound: &sourceRecipe{RecipeID: 1, Level: 1, Essence: 1}, Unbound: &sourceRecipe{RecipeID: 2, Level: 1, Essence: 1}, Effects: []sourceEffect{{Name: "Effect", Modifiers: fullScale(1)}}}
 	tests := []struct {
