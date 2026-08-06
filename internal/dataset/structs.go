@@ -127,6 +127,11 @@ type DropSourceData struct {
 	RandomOnlyType      string `json:"randomOnlyType,omitempty"`
 	RandomPageLink      string `json:"randomPageLink,omitempty"`
 
+	// NEW FIELDS from Template:CollectableNode
+	CollectableNodeType  string `json:"collectableNodeType,omitempty"`
+	CollectableNodeTier  string `json:"collectableNodeTier,omitempty"`
+	CollectableNodeEvent string `json:"collectableNodeEvent,omitempty"`
+
 	// NEW FIELDS from Template:AnniversaryPurchase
 	Anniversary      string `json:"anniversary,omitempty"`      // Which Anniversary (e.g., 16th)
 	AnniversaryCount string `json:"anniversaryCount,omitempty"` // How many party favors are required
@@ -309,6 +314,19 @@ type ItemData struct {
 	Weight       string    `json:"weight"`
 	BaseValue    PriceData `json:"baseValue"` // Structured Data
 	ArtifactType string    `json:"artifactType"`
+	// Material-specific metadata
+	BagType             string `json:"bagType,omitempty"`
+	BagIcon             string `json:"bagIcon,omitempty"`
+	Use                 string `json:"use,omitempty"`
+	Rarity              string `json:"rarity,omitempty"`
+	Collectors          string `json:"collectors,omitempty"`
+	Notes               string `json:"notes,omitempty"`
+	BagStackSize        string `json:"bagStackSize,omitempty"`
+	InventoryStackSize  string `json:"inventoryStackSize,omitempty"`
+	Options             string `json:"options,omitempty"`
+	DoubleClickPurchase string `json:"doubleClickPurchase,omitempty"`
+	OtherVersions       string `json:"otherVersions,omitempty"`
+	StoreDescription    string `json:"storeDescription,omitempty"`
 	// Quiver Specific
 	Capacity     string `json:"capacity,omitempty"`
 	MaxStackSize string `json:"maxStackSize,omitempty"`

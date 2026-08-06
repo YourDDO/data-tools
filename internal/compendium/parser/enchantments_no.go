@@ -197,6 +197,13 @@ func parseTemplateNightmares(raw string) *dataset.Enchantment {
 	}
 }
 
+func parseTemplateNotableTarget() *dataset.Enchantment {
+	return &dataset.Enchantment{
+		Name:  "Notable Target",
+		Notes: new("Once per minute, when you use Intimidate, you gain a +100% Profane bonus to threat generation with weapon strikes for 20 seconds."),
+	}
+}
+
 // Template: OffensiveDamage
 // Usage: {{OffensiveDamage|(Effect)|(Title)}}
 func parseTemplateOffensiveDamage(raw string) *dataset.Enchantment {

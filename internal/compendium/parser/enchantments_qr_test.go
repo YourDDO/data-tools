@@ -6,6 +6,62 @@ import (
 	"yourddo-data-tools/internal/dataset"
 )
 
+func TestParseTemplateRuneArmBlast(t *testing.T) {
+	tests := []struct {
+		name string
+		raw  string
+		want *dataset.Enchantment
+	}{
+		{
+			name: "documented force shot",
+			raw:  "{{RuneArmBlast|Force Shot|Force|II}}",
+			want: &dataset.Enchantment{
+				Name: "Force Shot", BlastType: "Force Shot", BlastDamageType: "Force", MaxChargeTier: "II",
+			},
+		},
+		{
+			name: "additional text retains nested template boundaries",
+			raw:  "{{RuneArmBlast|Bee Shot|Physical|V|In addition, foes take {{Dice||1|4}} Piercing Damage.}}",
+			want: &dataset.Enchantment{
+				Name: "Bee Shot", BlastType: "Bee Shot", BlastDamageType: "Physical", MaxChargeTier: "V",
+				Notes: new("In addition, foes take 1d4 Piercing Damage."),
+			},
+		},
+		{
+			name: "aoe damage type is normalized",
+			raw:  "  {{RuneArmBlast|Lightning Blast|AOE|iv}}  ",
+			want: &dataset.Enchantment{
+				Name: "Lightning Blast", BlastType: "Lightning Blast", BlastDamageType: "Area of Effect", MaxChargeTier: "IV",
+			},
+		},
+		{
+			name: "missing required charge tier is rejected",
+			raw:  "{{RuneArmBlast|Force Shot|Force}}",
+			want: nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseTemplateRuneArmBlast(tt.raw)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("parseTemplateRuneArmBlast() = %#v, want %#v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestParseEnchantmentsRuneArmBlast(t *testing.T) {
+	want := []dataset.Enchantment{{
+		Name: "Force Shot", BlastType: "Force Shot", BlastDamageType: "Force", MaxChargeTier: "II",
+	}}
+
+	got := ParseEnchantments("{{RuneArmBlast|Force Shot|Force|II}}", "Rune Arm")
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
+
 func TestParseTemplateRaging(t *testing.T) {
 	tests := []struct {
 		name string

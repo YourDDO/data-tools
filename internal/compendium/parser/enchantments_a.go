@@ -128,7 +128,7 @@ func parseTemplateAC(rawACValue string) *dataset.Enchantment {
 	// Determine BonusType (modifier) based on source and parameters
 	var calculatedBonusType string
 	switch normalizedSource {
-	case "deflection", "natural armor", "shield", "armor":
+	case "deflection", "natural armor", "shield", "armor", "armorpercent":
 		calculatedBonusType = bonusType
 	case "rough hide", "hardened exterior":
 		if len(parts) >= 3 && stripBrackets(parts[2]) != "" {
@@ -159,11 +159,19 @@ func parseTemplateAC(rawACValue string) *dataset.Enchantment {
 		calculatedBonusType = "Insight"
 	}
 
+	// The armorpercent branch of Template:AC renders its amount with a percent
+	// suffix while otherwise using the same Armor Class category as armor.
+	if normalizedSource == "armorpercent" && !strings.HasSuffix(amount, "%") {
+		amount += "%"
+	}
+
 	// Format Name as Armor Class (<source>)
 	// Use title case for source in name
 	var sourceForName string
 	if normalizedSource == "armor class" {
 		sourceForName = "Base"
+	} else if normalizedSource == "armorpercent" {
+		sourceForName = "Armor"
 	} else {
 		sourceForName = cases.Title(language.English).String(acSource)
 	}

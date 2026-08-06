@@ -130,13 +130,13 @@ var diversionStyles = map[string]struct {
 	Ranged bool
 	Spell  bool
 }{
-	"Melee":      {Melee: true},
-	"Ranged":     {Ranged: true},
-	"Spell":      {Spell: true},
-	"MeleeRange": {Melee: true, Ranged: true},
-	"MeleeSpell": {Melee: true, Spell: true},
-	"RangeSpell": {Ranged: true, Spell: true},
-	"All":        {Melee: true, Ranged: true, Spell: true},
+	"melee":      {Melee: true},
+	"ranged":     {Ranged: true},
+	"spell":      {Spell: true},
+	"meleerange": {Melee: true, Ranged: true},
+	"meleespell": {Melee: true, Spell: true},
+	"rangespell": {Ranged: true, Spell: true},
+	"all":        {Melee: true, Ranged: true, Spell: true},
 }
 
 var marksmanshipLookup = map[string]struct {
@@ -890,6 +890,7 @@ var enchSingleHandlers = map[string]func(string) *dataset.Enchantment{
 	"GhostTouch":                    func(t string) *dataset.Enchantment { return parseTemplateGhostTouch(t) },
 	"Suppressed":                    func(_ string) *dataset.Enchantment { return parseTemplateSuppressed() },
 	"Nightmares":                    func(t string) *dataset.Enchantment { return parseTemplateNightmares(t) },
+	"NotableTarget":                 func(_ string) *dataset.Enchantment { return parseTemplateNotableTarget() },
 	"AgainstTheSlaveLordsSetBonus":  func(_ string) *dataset.Enchantment { return parseTemplateAgainstTheSlaveLordsSetBonus() },
 	"VaultsofArtificersUpgradeable": func(t string) *dataset.Enchantment { return parseTemplateVaultsofArtificersUpgradeable(t) },
 	"DR":                            func(t string) *dataset.Enchantment { return parseTemplateDR(t) },
