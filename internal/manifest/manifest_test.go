@@ -87,7 +87,7 @@ func TestReleaseFingerprintIncludesDomainOutputContractVersion(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := hashing.Combine("release-fingerprint-schema:4", masterHash)
+	want := hashing.Combine("release-fingerprint-schema:5", masterHash)
 	if got != want {
 		t.Fatalf("release fingerprint = %s, want %s", got, want)
 	}
