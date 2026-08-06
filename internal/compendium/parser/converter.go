@@ -703,36 +703,39 @@ func isItemSetControl(value string) bool {
 	return strings.EqualFold(strings.TrimSpace(value), "true") || strings.EqualFold(strings.TrimSpace(value), "false")
 }
 
-// ... (include the unchanged parseTemplatePrice function here)
+// parseTemplatePrice parses the positional Price template parameters:
+// platinum, gold, silver, and copper.
 func parseTemplatePrice(rawPriceValue string) dataset.PriceData {
-	const prefix = "{{Price|"
+	const prefix = "{{Price"
 	const suffix = "}}"
 
+	rawPriceValue = strings.TrimSpace(rawPriceValue)
 	if !strings.HasPrefix(rawPriceValue, prefix) || !strings.HasSuffix(rawPriceValue, suffix) {
 		return dataset.PriceData{}
 	}
 
-	paramList := rawPriceValue[len(prefix) : len(rawPriceValue)-len(suffix)]
-	parts := strings.Split(paramList, "|")
+	paramList := strings.TrimSpace(rawPriceValue[len(prefix) : len(rawPriceValue)-len(suffix)])
+	if paramList == "" {
+		return dataset.PriceData{}
+	}
+	if !strings.HasPrefix(paramList, "|") {
+		return dataset.PriceData{}
+	}
+	parts := splitParams(paramList[1:])
 
 	price := dataset.PriceData{}
 
-	// Positional parsing for {{Price|(P)|(G)|(S)|(C)}}
-	if len(parts) == 1 && strings.TrimSpace(parts[0]) != "" {
+	if len(parts) >= 1 {
 		price.Platinum = strings.TrimSpace(parts[0])
-	} else {
-		if len(parts) >= 1 && strings.TrimSpace(parts[0]) != "" {
-			price.Platinum = strings.TrimSpace(parts[0])
-		}
-		if len(parts) >= 2 && strings.TrimSpace(parts[1]) != "" {
-			price.Gold = strings.TrimSpace(parts[1])
-		}
-		if len(parts) >= 3 && strings.TrimSpace(parts[2]) != "" {
-			price.Silver = strings.TrimSpace(parts[2])
-		}
-		if len(parts) >= 4 && strings.TrimSpace(parts[3]) != "" {
-			price.Copper = strings.TrimSpace(parts[3])
-		}
+	}
+	if len(parts) >= 2 {
+		price.Gold = strings.TrimSpace(parts[1])
+	}
+	if len(parts) >= 3 {
+		price.Silver = strings.TrimSpace(parts[2])
+	}
+	if len(parts) >= 4 {
+		price.Copper = strings.TrimSpace(parts[3])
 	}
 
 	return price

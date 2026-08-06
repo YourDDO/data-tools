@@ -293,3 +293,42 @@ func TestExtractSetBonusesHonorsTemplateControlParameters(t *testing.T) {
 		t.Fatalf("singular item set = %#v", singular)
 	}
 }
+
+func TestParseTemplatePrice(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name string
+		raw  string
+		want dataset.PriceData
+	}{
+		{
+			name: "all currencies",
+			raw:  "{{Price|1000|200|30|4}}",
+			want: dataset.PriceData{Platinum: "1000", Gold: "200", Silver: "30", Copper: "4"},
+		},
+		{
+			name: "sparse positional currencies",
+			raw:  "{{Price|1000|||4}}",
+			want: dataset.PriceData{Platinum: "1000", Copper: "4"},
+		},
+		{
+			name: "whitespace around template and values",
+			raw:  "  {{Price | 1000 | 200 | 30 | 4 }}  ",
+			want: dataset.PriceData{Platinum: "1000", Gold: "200", Silver: "30", Copper: "4"},
+		},
+		{
+			name: "empty template",
+			raw:  "{{Price}}",
+			want: dataset.PriceData{},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := parseTemplatePrice(tt.raw); !reflect.DeepEqual(got, tt.want) {
+				t.Fatalf("parseTemplatePrice(%q) = %#v, want %#v", tt.raw, got, tt.want)
+			}
+		})
+	}
+}
