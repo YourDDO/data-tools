@@ -1201,7 +1201,7 @@ func parseTemplateWounding(raw string) *dataset.Enchantment {
 		if n, err := strconv.Atoi(value); err == nil && n > 0 {
 			points = n
 		}
-		// keep name base; title may override
+		name = fmt.Sprintf("Critical Wounding %d", points)
 	default:
 		// basic (1 point)
 	}
@@ -1210,17 +1210,19 @@ func parseTemplateWounding(raw string) *dataset.Enchantment {
 		name = title
 	}
 
+	if typ == "critical" {
+		notes := fmt.Sprintf("%s: This deadly weapon saps the health from your enemies, dealing %d Constitution damage on each critical hit.", name, points)
+		return &dataset.Enchantment{
+			Name:  name,
+			Notes: new(notes),
+		}
+	}
+
 	pointWord := "point"
 	if points != 1 {
 		pointWord = "points"
 	}
-
-	whenText := "when it hits a creature"
-	if typ == "critical" {
-		whenText = "when it critically hits a creature"
-	}
-
-	notes := fmt.Sprintf("%s: A wounding weapons deals %d %s of Constitution damage from blood loss %s. Creatures immune to critical hits are immune to the Constitution damage dealt by this weapon.", name, points, pointWord, whenText)
+	notes := fmt.Sprintf("%s: A wounding weapon deals %d %s of Constitution damage from blood loss when it hits a creature. Creatures immune to critical hits are immune to the Constitution damage dealt by this weapon.", name, points, pointWord)
 
 	return &dataset.Enchantment{
 		Name:  name,

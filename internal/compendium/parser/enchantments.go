@@ -890,6 +890,7 @@ var enchSingleHandlers = map[string]func(string) *dataset.Enchantment{
 	"GhostTouch":                    func(t string) *dataset.Enchantment { return parseTemplateGhostTouch(t) },
 	"Suppressed":                    func(_ string) *dataset.Enchantment { return parseTemplateSuppressed() },
 	"Nightmares":                    func(t string) *dataset.Enchantment { return parseTemplateNightmares(t) },
+	"NotableTarget":                 func(_ string) *dataset.Enchantment { return parseTemplateNotableTarget() },
 	"AgainstTheSlaveLordsSetBonus":  func(_ string) *dataset.Enchantment { return parseTemplateAgainstTheSlaveLordsSetBonus() },
 	"VaultsofArtificersUpgradeable": func(t string) *dataset.Enchantment { return parseTemplateVaultsofArtificersUpgradeable(t) },
 	"DR":                            func(t string) *dataset.Enchantment { return parseTemplateDR(t) },

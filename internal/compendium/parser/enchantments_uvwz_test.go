@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 
@@ -214,5 +215,50 @@ func TestParseEnchantmentsWildFrenzyCustom(t *testing.T) {
 	got := ParseEnchantments("{{WildFrenzy|Custom|50}}", "")
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
+
+func TestParseTemplateWounding(t *testing.T) {
+	const onHitNotes = "A wounding weapon deals %d %s of Constitution damage from blood loss when it hits a creature. Creatures immune to critical hits are immune to the Constitution damage dealt by this weapon."
+
+	tests := []struct {
+		name string
+		raw  string
+		want *dataset.Enchantment
+	}{
+		{
+			name: "basic",
+			raw:  "{{Wounding}}",
+			want: &dataset.Enchantment{Name: "Wounding", Notes: new("Wounding: " + fmt.Sprintf(onHitNotes, 1, "point"))},
+		},
+		{
+			name: "greater",
+			raw:  "{{Wounding|Greater}}",
+			want: &dataset.Enchantment{Name: "Greater Wounding", Notes: new("Greater Wounding: " + fmt.Sprintf(onHitNotes, 3, "points"))},
+		},
+		{
+			name: "specific",
+			raw:  "{{Wounding|Specific|4}}",
+			want: &dataset.Enchantment{Name: "Wounding 4", Notes: new("Wounding 4: " + fmt.Sprintf(onHitNotes, 4, "points"))},
+		},
+		{
+			name: "critical",
+			raw:  "{{Wounding|Critical|4}}",
+			want: &dataset.Enchantment{Name: "Critical Wounding 4", Notes: new("Critical Wounding 4: This deadly weapon saps the health from your enemies, dealing 4 Constitution damage on each critical hit.")},
+		},
+		{
+			name: "custom title",
+			raw:  "{{Wounding|Critical|4|Bloodletter}}",
+			want: &dataset.Enchantment{Name: "Bloodletter", Notes: new("Bloodletter: This deadly weapon saps the health from your enemies, dealing 4 Constitution damage on each critical hit.")},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseTemplateWounding(tt.raw)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Fatalf("parseTemplateWounding(%q) = %#v, want %#v", tt.raw, got, tt.want)
+			}
+		})
 	}
 }
