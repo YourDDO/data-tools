@@ -18,6 +18,7 @@ import (
 type ActiveRelease struct {
 	LatestObjectKey    string
 	ActiveManifestKey  string
+	GameVersion        string
 	MasterSHA256       string
 	ReleaseFingerprint string
 }
@@ -64,6 +65,7 @@ func (s *LocalStore) ActiveReleaseFingerprint(ctx context.Context) (active Activ
 	if release.MasterDatasetSHA256 == "" {
 		return active, false, fmt.Errorf("active release manifest has no master dataset hash")
 	}
+	active.GameVersion = release.GameVersion
 	active.MasterSHA256 = release.MasterDatasetSHA256
 	active.ReleaseFingerprint = release.ReleaseFingerprint
 	return active, true, nil
@@ -101,6 +103,7 @@ func (s *S3Store) ActiveReleaseFingerprint(ctx context.Context) (active ActiveRe
 	if release.MasterDatasetSHA256 == "" {
 		return active, false, fmt.Errorf("active release manifest has no master dataset hash")
 	}
+	active.GameVersion = release.GameVersion
 	active.MasterSHA256 = release.MasterDatasetSHA256
 	active.ReleaseFingerprint = release.ReleaseFingerprint
 	return active, true, nil

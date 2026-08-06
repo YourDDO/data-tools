@@ -21,6 +21,7 @@ import (
 	"yourddo-data-tools/internal/config"
 	"yourddo-data-tools/internal/contracts"
 	"yourddo-data-tools/internal/hashing"
+	"yourddo-data-tools/internal/manifest"
 	"yourddo-data-tools/internal/publish"
 )
 
@@ -78,7 +79,7 @@ func (f fakeSource) FetchPageContent(context.Context, string) (string, error) {
 	return "", nil
 }
 
-func TestRunBuildsCandidateThenDetectsUnchangedSource(t *testing.T) {
+func TestRunChangeDetectionRequiresMatchingArtifactFingerprintAndGameVersion(t *testing.T) {
 	t.Parallel()
 	root := t.TempDir()
 	cfg := config.Defaults()
@@ -107,16 +108,28 @@ func TestRunBuildsCandidateThenDetectsUnchangedSource(t *testing.T) {
 	if second.Changed || second.Candidate.SourceSHA256 != first.Candidate.SourceSHA256 {
 		t.Fatalf("second result = %#v", second)
 	}
+	gameVersionChanged := cfg
+	gameVersionChanged.GameVersion = "81.3.1"
+	third, err := Run(context.Background(), gameVersionChanged, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !third.Changed || third.Candidate.GameVersion != gameVersionChanged.GameVersion {
+		t.Fatalf("game-version result = %#v", third)
+	}
+	if third.Candidate.ReleaseFingerprint != first.Candidate.ReleaseFingerprint {
+		t.Fatalf("game version changed artifact fingerprint: %s != %s", third.Candidate.ReleaseFingerprint, first.Candidate.ReleaseFingerprint)
+	}
 	dependencies.Source = fakeSource{pages: map[string]string{
 		"Test Item":            "{{Item|name=Test Item|type=Trinket|minlevel=3|enchantments={{ZhentarimAttuned}}}}",
 		"Test Item (Upgraded)": "{{Item|name=Test Item|type=Trinket|minlevel=2|enchantments={{Ability|Strength|2}}}}",
 	}}
-	third, err := Run(context.Background(), cfg, dependencies)
+	fourth, err := Run(context.Background(), cfg, dependencies)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !third.Changed || third.Candidate.SourceSHA256 == first.Candidate.SourceSHA256 {
-		t.Fatalf("third result after input change = %#v", third)
+	if !fourth.Changed || fourth.Candidate.SourceSHA256 == first.Candidate.SourceSHA256 || fourth.Candidate.ReleaseFingerprint == first.Candidate.ReleaseFingerprint {
+		t.Fatalf("input-change result = %#v", fourth)
 	}
 }
 
@@ -137,7 +150,7 @@ func TestExecutePreservesPrimaryFailureWhenCleanupFails(t *testing.T) {
 	}
 }
 
-func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
+func TestExecuteDoesNotCreateDataVersionForUnchangedArtifacts(t *testing.T) {
 	t.Parallel()
 	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
 	dependencies := OrchestratorDependencies{
@@ -165,7 +178,6 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 	}
 	var logs bytes.Buffer
 	dependencies.Logger = slog.New(slog.NewJSONHandler(&logs, nil))
-	cfg.Domains = []string{"must-not-be-resolved"}
 	second, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, dependencies)
 	if err != nil {
 		t.Fatal(err)
@@ -173,10 +185,17 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 	if second.Outcome != contracts.PipelineOutcomeNoChange || clockCalls != 0 || second.Release != nil || len(client.puts) != 0 {
 		t.Fatalf("result = %#v, clock calls = %d, PutObject calls = %d", second, clockCalls, len(client.puts))
 	}
+	foundGeneration := false
 	for _, stage := range second.Stages {
-		if stage.Name == StageGenerateDomains || stage.Name == StageAssembleRelease {
+		if stage.Name == StageGenerateDomains {
+			foundGeneration = true
+		}
+		if stage.Name == StageAssembleRelease {
 			t.Fatalf("unchanged pipeline executed stage %s", stage.Name)
 		}
+	}
+	if !foundGeneration {
+		t.Fatal("unchanged pipeline compared fingerprints before generating domain artifacts")
 	}
 	for _, field := range []string{
 		`"msg":"item-set definitions are missing from the manual payload"`,
@@ -191,6 +210,45 @@ func TestExecuteDoesNotCreateDataVersionForUnchangedMaster(t *testing.T) {
 		if !strings.Contains(logs.String(), field) {
 			t.Fatalf("comparison logs do not contain %s:\n%s", field, logs.String())
 		}
+	}
+}
+
+func TestExecutePublishesWhenGameVersionChangesWithIdenticalArtifacts(t *testing.T) {
+	t.Parallel()
+	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
+	dependencies := OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{
+			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+		}},
+		Clock:  func() time.Time { return time.Unix(1, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	}
+	first, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	client := &pipelineS3Client{objects: activeS3Objects(first.Candidate.MasterDatasetSHA256, first.Candidate.ReleaseFingerprint)}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	updated := cfg
+	updated.GameVersion = "81.3.1"
+	result, err := Execute(context.Background(), updated, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: dependencies.Source, Active: store, Store: store,
+		Clock: func() time.Time { return time.Unix(2, 0) }, Logger: dependencies.Logger,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Outcome != contracts.PipelineOutcomePublished || !result.Changed || result.Release == nil || result.Release.GameVersion != updated.GameVersion {
+		t.Fatalf("result = %#v", result)
+	}
+	if result.Candidate.ReleaseFingerprint != first.Candidate.ReleaseFingerprint {
+		t.Fatalf("game version changed artifact fingerprint: %s != %s", result.Candidate.ReleaseFingerprint, first.Candidate.ReleaseFingerprint)
+	}
+	if len(client.puts) == 0 {
+		t.Fatal("game version change did not publish a release")
 	}
 }
 
@@ -242,6 +300,62 @@ func TestExecuteTreatsPreviousOutputContractAsChanged(t *testing.T) {
 	}
 }
 
+func TestExecuteDetectsGeneratedDomainChangeWithIdenticalCanonicalInput(t *testing.T) {
+	t.Parallel()
+	cfg := testConfig(t.TempDir(), []string{"gear-planner"})
+	dependencies := OrchestratorDependencies{
+		Source: fakeSource{pages: map[string]string{
+			"Test Item": "{{Item|name=Test Item|type=Trinket|minlevel=1}}",
+		}},
+		Clock:  func() time.Time { return time.Unix(1, 0) },
+		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+	}
+	baseline, err := Execute(context.Background(), cfg, ExecuteOptions{DryRun: true, PreserveWork: true}, dependencies)
+	if err != nil {
+		t.Fatal(err)
+	}
+	candidateRoot := filepath.Join(baseline.OutputDir, "candidate")
+	var domainPath string
+	for _, file := range baseline.Candidate.GeneratedFiles {
+		if file.Domain == "gear-planner" {
+			domainPath = file.Path
+			break
+		}
+	}
+	if domainPath == "" {
+		t.Fatal("baseline candidate has no generated gear-planner artifact")
+	}
+	if err := os.WriteFile(filepath.Join(candidateRoot, filepath.FromSlash(domainPath)), []byte("{\"controlled\":\"generator-output-change\"}\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	changedOutputFingerprint, err := manifest.ArtifactFingerprint(candidateRoot, baseline.Candidate.GeneratedFiles, baseline.Candidate.ManualPayloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if changedOutputFingerprint == baseline.Candidate.ReleaseFingerprint {
+		t.Fatal("controlled generated domain change did not alter the artifact fingerprint")
+	}
+
+	client := &pipelineS3Client{objects: activeS3Objects(baseline.Candidate.MasterDatasetSHA256, changedOutputFingerprint)}
+	store, err := publish.NewS3Store(client, "yourddo-data-prod")
+	if err != nil {
+		t.Fatal(err)
+	}
+	result, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+		Source: dependencies.Source, Active: store, Store: store,
+		Clock: func() time.Time { return time.Unix(2, 0) }, Logger: dependencies.Logger,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if result.Candidate.MasterDatasetSHA256 != baseline.Candidate.MasterDatasetSHA256 {
+		t.Fatal("canonical master input changed during controlled generated-output check")
+	}
+	if result.Outcome != contracts.PipelineOutcomePublished || result.Candidate.ReleaseFingerprint != baseline.Candidate.ReleaseFingerprint || result.Candidate.ReleaseFingerprint == changedOutputFingerprint {
+		t.Fatalf("result = %#v, controlled fingerprint = %s", result, changedOutputFingerprint)
+	}
+}
+
 func TestExecuteManualPayloadChangeDetection(t *testing.T) {
 	t.Parallel()
 	root := t.TempDir()
@@ -270,9 +384,7 @@ func TestExecuteManualPayloadChangeDetection(t *testing.T) {
 		t.Fatal(err)
 	}
 	clockCalls := 0
-	formattedConfig := cfg
-	formattedConfig.Domains = []string{"must-not-be-resolved"}
-	formatted, err := Execute(context.Background(), formattedConfig, ExecuteOptions{Publish: true}, OrchestratorDependencies{
+	formatted, err := Execute(context.Background(), cfg, ExecuteOptions{Publish: true}, OrchestratorDependencies{
 		Source: dependencies.Source, Active: unchangedStore, Store: unchangedStore,
 		Clock:  func() time.Time { clockCalls++; return time.Unix(2, 0) },
 		Logger: dependencies.Logger,
@@ -458,7 +570,7 @@ func TestExecuteFailsActiveS3LookupWithoutPublishing(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			t.Parallel()
-			cfg := testConfig(t.TempDir(), []string{"must-not-be-resolved"})
+			cfg := testConfig(t.TempDir(), []string{"gear-planner"})
 			client := &pipelineS3Client{objects: test.objects, getErrors: test.getErrors}
 			store, err := publish.NewS3Store(client, "yourddo-data-prod")
 			if err != nil {

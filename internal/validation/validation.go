@@ -210,10 +210,10 @@ func validateCandidateContents(root, expectedMasterHash, expectedReleaseFingerpr
 	} else if hash != expectedMasterHash {
 		report.add(Error, "master", "master", "<file>", "master-hash-agreement", "master dataset hash does not match candidate metadata")
 	}
-	if fingerprint, err := manifest.ReleaseFingerprint(expectedMasterHash, payloads); err != nil {
+	if fingerprint, err := manifest.ArtifactFingerprint(root, files, payloads); err != nil {
 		report.add(Error, "release", "manifest.json", "<file>", "release-fingerprint-agreement", err.Error())
 	} else if fingerprint != expectedReleaseFingerprint {
-		report.add(Error, "release", "manifest.json", "<file>", "release-fingerprint-agreement", "release fingerprint does not match master and manual payload metadata")
+		report.add(Error, "release", "manifest.json", "<file>", "release-fingerprint-agreement", "release fingerprint does not match publishable artifact paths and contents")
 	}
 	report.merge(MasterReport(masterRoot))
 	master, err := dataset.LoadMaster(masterRoot)

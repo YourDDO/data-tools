@@ -12,7 +12,7 @@ import (
 
 // Assemble creates a complete, create-only local release. The caller assigns
 // dataVersion only after generation and validation have established that the
-// master dataset changed.
+// publishable artifacts changed.
 func Assemble(candidateRoot, releaseRoot string, candidate Candidate, dataVersion int64) (result Manifest, returnErr error) {
 	result, err := Release(candidate, dataVersion)
 	if err != nil {

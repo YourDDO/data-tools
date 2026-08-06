@@ -7,6 +7,28 @@ import (
 	"yourddo-data-tools/internal/dataset"
 )
 
+func TestParseTemplateEndlessNight(t *testing.T) {
+	want := &dataset.Enchantment{
+		Name:  "Endless Night",
+		Notes: new("On a Vorpal Hit, your target incurs one Negative Level."),
+	}
+
+	if got := parseTemplateEndlessNight("{{EndlessNight}}"); !reflect.DeepEqual(got, want) {
+		t.Errorf("parseTemplateEndlessNight() = %#v, want %#v", got, want)
+	}
+}
+
+func TestParseEnchantmentsEndlessNight(t *testing.T) {
+	want := []dataset.Enchantment{{
+		Name:  "Endless Night",
+		Notes: new("On a Vorpal Hit, your target incurs one Negative Level."),
+	}}
+
+	if got := ParseEnchantments("{{EndlessNight}}", ""); !reflect.DeepEqual(got, want) {
+		t.Errorf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
+
 func TestParseTemplateElementalAbsorb(t *testing.T) {
 	tests := []struct {
 		name string

@@ -167,6 +167,19 @@ func TestPublishedItemSetArtifactsMatchExactObjectBytes(t *testing.T) {
 	if len(release.ManualPayloads) != 1 {
 		t.Fatalf("manual payloads = %#v", release.ManualPayloads)
 	}
+	publishablePaths, err := manifest.PublishablePaths(release.GeneratedFiles, release.ManualPayloads)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(store.keys) != len(publishablePaths)+2 { // manifest.json and latest.json
+		t.Fatalf("published keys = %v, publishable artifact paths = %v", store.keys, publishablePaths)
+	}
+	for index, relative := range publishablePaths {
+		wantKey := "releases/81.3.0/10/" + relative
+		if store.keys[index] != wantKey {
+			t.Fatalf("published artifact keys = %v, publishable artifact paths = %v", store.keys, publishablePaths)
+		}
+	}
 	object := store.values["releases/81.3.0/10/manual/itemSets.enchantments.json"]
 	staged, err := os.ReadFile(filepath.Join(root, "manual", "itemSets.enchantments.json"))
 	if err != nil {

@@ -1449,6 +1449,11 @@ func parseTemplateEnervation() *dataset.Enchantment {
 	}
 }
 
+// parseTemplateEndlessNight parses `{{EndlessNight}}`.
+func parseTemplateEndlessNight(raw string) *dataset.Enchantment {
+	return parseSimpleTemplate(raw, "{{EndlessNight", "Endless Night", "On a Vorpal Hit, your target incurs one Negative Level.")
+}
+
 // parseTemplateVulnerabilityGuard handles Template:VulnerabilityGuard
 
 func parseTemplateElementalManipulation() []*dataset.Enchantment {

@@ -156,7 +156,7 @@ func TestS3StoreReadsActiveReleaseFingerprint(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !available || active.LatestObjectKey != latestKey || active.ActiveManifestKey != manifestKey || active.MasterSHA256 != masterHash || active.ReleaseFingerprint != fingerprint {
+	if !available || active.LatestObjectKey != latestKey || active.ActiveManifestKey != manifestKey || active.GameVersion != "81.3.0" || active.MasterSHA256 != masterHash || active.ReleaseFingerprint != fingerprint {
 		t.Fatalf("active = %#v, available = %t", active, available)
 	}
 	if len(client.getInputs) != 2 || aws.ToString(client.getInputs[0].Key) != latestKey || aws.ToString(client.getInputs[1].Key) != manifestKey {

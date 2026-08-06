@@ -72,24 +72,18 @@ func (p *Publisher) Upload(ctx context.Context, root string, release manifest.Ma
 
 func (p *Publisher) uploadGeneratedFiles(ctx context.Context, root string, release manifest.Manifest) error {
 	baseKey := releaseBaseKey(release)
-	for _, file := range release.GeneratedFiles {
-		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(file.Path)))
-		if err != nil {
-			return fmt.Errorf("read release file %s: %w", file.Path, err)
-		}
-		key := path.Join(baseKey, file.Path)
-		if err := p.store.Put(ctx, key, data, PutOptions{Immutable: true}); err != nil {
-			return fmt.Errorf("publish release file %s: %w", file.Path, err)
-		}
+	paths, err := manifest.PublishablePaths(release.GeneratedFiles, release.ManualPayloads)
+	if err != nil {
+		return err
 	}
-	for _, payload := range release.ManualPayloads {
-		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(payload.Path)))
+	for _, relative := range paths {
+		data, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(relative)))
 		if err != nil {
-			return fmt.Errorf("read manual payload %s: %w", payload.Path, err)
+			return fmt.Errorf("read release artifact %s: %w", relative, err)
 		}
-		key := path.Join(baseKey, payload.Path)
+		key := path.Join(baseKey, relative)
 		if err := p.store.Put(ctx, key, data, PutOptions{Immutable: true}); err != nil {
-			return fmt.Errorf("publish manual payload %s: %w", payload.Path, err)
+			return fmt.Errorf("publish release artifact %s: %w", relative, err)
 		}
 	}
 	return nil
