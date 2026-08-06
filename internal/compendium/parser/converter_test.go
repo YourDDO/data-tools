@@ -294,6 +294,22 @@ func TestExtractSetBonusesHonorsTemplateControlParameters(t *testing.T) {
 	}
 }
 
+func TestConvertItemToJSONPreservesItemSetBehavior(t *testing.T) {
+	t.Parallel()
+
+	item := ConvertItemToJSON("Example Set Ring", map[string]string{
+		"name":         "Example Set Ring",
+		"type":         "Ring",
+		"enchantments": "{{ItemSet|Example Set Name}}",
+	})
+	if !reflect.DeepEqual(item.SetBonus, []dataset.SetBonusOut{{Name: "Example Set Name"}}) {
+		t.Fatalf("SetBonus = %#v", item.SetBonus)
+	}
+	if len(item.Enchantments) != 0 {
+		t.Fatalf("Enchantments = %#v, want ItemSet to remain a set-bonus marker only", item.Enchantments)
+	}
+}
+
 func TestParseTemplatePrice(t *testing.T) {
 	t.Parallel()
 

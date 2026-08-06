@@ -50,6 +50,31 @@ func TestParseAugmentRecordIdentifiesUnrenderedNestedFieldTemplate(t *testing.T)
 	}
 }
 
+func TestParseAugmentRecordPreservesItemSetEnchantment(t *testing.T) {
+	t.Parallel()
+
+	raw := `{{Augment
+|name = Set Augment: Example Set Name
+|color = Colorless
+|minlevel = 1
+|enchantments = {{ItemSet|Example Set Name}}
+}}`
+	augment, err := ParseAugmentRecord("Set Augment: Example Set Name", raw)
+	if err != nil {
+		t.Fatalf("ParseAugmentRecord() error = %v", err)
+	}
+	want := []dataset.SetBonusOut{{Name: "Example Set Name"}}
+	if !reflect.DeepEqual(augment.SetBonus, want) {
+		t.Fatalf("SetBonus = %#v, want %#v", augment.SetBonus, want)
+	}
+	if len(augment.EffectsAdded) != 0 {
+		t.Fatalf("EffectsAdded = %#v, want ItemSet represented only by SetBonus", augment.EffectsAdded)
+	}
+	if augment.Name != "Set Augment: Example Set Name" || augment.AugmentType != "Colorless" || augment.MinLevel == nil || *augment.MinLevel != 1 {
+		t.Fatalf("unrelated canonical fields changed: %#v", augment)
+	}
+}
+
 func TestParseItemRecordIdentifiesUnclosedNestedTemplate(t *testing.T) {
 	t.Parallel()
 	raw := "{{Item|name=Broken Item|type=Ring|enchantments={{Ability|Strength|2"

@@ -85,3 +85,13 @@ func TestParseTemplateIncite(t *testing.T) {
 		})
 	}
 }
+
+func TestParseTemplateItemSet(t *testing.T) {
+	t.Parallel()
+
+	got := ParseEnchantments("{{ItemSet|Example Set Name}}", "")
+	want := []dataset.Enchantment{{Name: "Item Set: Example Set Name", SetBonusName: "Example Set Name"}}
+	if !reflect.DeepEqual(got, want) {
+		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
+	}
+}
