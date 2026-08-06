@@ -66,28 +66,12 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 	if err != nil {
 		return Result{}, fmt.Errorf("prepare manual payloads: %w", err)
 	}
-	releaseFingerprint, err := manifest.ReleaseFingerprint(masterHash, manualPayloads)
-	if err != nil {
-		return Result{}, err
-	}
-	sourceHash, err := sourceFingerprint(releaseFingerprint, cfg)
+	sourceHash, err := sourceFingerprint(masterHash, manualPayloads, cfg)
 	if err != nil {
 		return Result{}, err
 	}
 	candidateRoot := cfg.CandidateDir()
 	previous, previousErr := validation.DecodeCandidate(filepath.Join(candidateRoot, "candidate.json"))
-	if previousErr == nil && previous.SourceSHA256 == sourceHash {
-		report := validation.CandidateReport(candidateRoot, previous, validation.Options{WarningsAsErrors: cfg.WarningsAsErrors})
-		if err := report.Err(cfg.WarningsAsErrors); err != nil {
-			return Result{}, fmt.Errorf("validate unchanged candidate: %w", err)
-		}
-		stages = append(stages, contracts.PipelineStageResult{Name: "detect-changes", Status: "succeeded", Message: "source data is unchanged"})
-		return Result{
-			PipelineResult: contracts.PipelineResult{Outcome: contracts.PipelineOutcomeNoChange, Changed: false, OutputDir: candidateRoot, Stages: stages},
-			Root:           candidateRoot, Candidate: previous,
-		}, nil
-	}
-	stages = append(stages, contracts.PipelineStageResult{Name: "detect-changes", Status: "succeeded", Changed: true})
 	generated, err := GenerateDomains(ctx, GenerateOptions{Master: master.Master, OutputRoot: staging, Domains: cfg.Domains})
 	if err != nil {
 		return Result{}, err
@@ -114,6 +98,14 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 		return Result{}, fmt.Errorf("validate candidate release: %w", err)
 	}
 	stages = append(stages, contracts.PipelineStageResult{Name: "validate-candidate", Status: "succeeded"})
+	if previousErr == nil && previous.ReleaseFingerprint == candidate.ReleaseFingerprint && previous.GameVersion == candidate.GameVersion {
+		stages = append(stages, contracts.PipelineStageResult{Name: "detect-changes", Status: "succeeded", Message: "publishable artifacts and game version are unchanged"})
+		return Result{
+			PipelineResult: contracts.PipelineResult{Outcome: contracts.PipelineOutcomeNoChange, Changed: false, OutputDir: candidateRoot, Stages: stages},
+			Root:           candidateRoot, Candidate: previous,
+		}, nil
+	}
+	stages = append(stages, contracts.PipelineStageResult{Name: "detect-changes", Status: "succeeded", Changed: true})
 	generated.Warnings = append(generated.Warnings, report.Warnings()...)
 	sort.Strings(generated.Warnings)
 	if err := os.RemoveAll(candidateRoot); err != nil {
@@ -131,12 +123,17 @@ func Run(ctx context.Context, cfg config.Config, dependencies Dependencies) (res
 	}, nil
 }
 
-func sourceFingerprint(releaseFingerprint string, cfg config.Config) (string, error) {
+func sourceFingerprint(masterHash string, payloads []contracts.ManualPayloadMetadata, cfg config.Config) (string, error) {
 	domains := append([]string(nil), cfg.Domains...)
 	for index := range domains {
 		domains[index] = strings.ToLower(strings.TrimSpace(domains[index]))
 	}
 	sort.Strings(domains)
-	parts := []string{"pipeline-schema:4", "game-version:" + cfg.GameVersion, "release:" + releaseFingerprint, "domains:" + strings.Join(domains, ",")}
+	parts := []string{"pipeline-schema:5", "game-version:" + cfg.GameVersion, "master:" + masterHash, "domains:" + strings.Join(domains, ",")}
+	orderedPayloads := append([]contracts.ManualPayloadMetadata(nil), payloads...)
+	sort.Slice(orderedPayloads, func(i, j int) bool { return orderedPayloads[i].Path < orderedPayloads[j].Path })
+	for _, payload := range orderedPayloads {
+		parts = append(parts, "manual:"+payload.Name+":"+payload.Path+":"+payload.SHA256)
+	}
 	return hashing.Combine(parts...), nil
 }

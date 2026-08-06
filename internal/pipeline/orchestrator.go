@@ -198,37 +198,8 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 			"missing_sets", warning.missingSetNames,
 		)
 	}
-	releaseFingerprint, err := manifest.ReleaseFingerprint(masterHash, manualPayloads)
-	if err != nil {
-		return result, fail(StagePrepareManual, err)
-	}
-	result.Candidate.ReleaseFingerprint = releaseFingerprint
 	result.Candidate.ManualPayloads = manualPayloads
 	complete(StagePrepareManual, true, "")
-
-	logger.InfoContext(ctx, "pipeline stage started", "stage", StageCompare, "game_version", cfg.GameVersion, "master_sha256", masterHash, "release_fingerprint", releaseFingerprint)
-	if dependencies.Active != nil {
-		active, available, err := dependencies.Active.ActiveReleaseFingerprint(ctx)
-		if err != nil {
-			logger.ErrorContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "error")
-			return result, fail(StageCompare, err)
-		}
-		if !available {
-			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "initial-publication")
-		} else if active.ReleaseFingerprint == releaseFingerprint {
-			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "no-change")
-			complete(StageCompare, false, "active release inputs are unchanged")
-			result.Outcome = contracts.PipelineOutcomeNoChange
-			result.Changed = false
-			return result, nil
-		} else {
-			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
-		}
-	} else {
-		logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", "", "activeManifestKey", "", "activeMasterHash", "", "generatedMasterHash", masterHash, "activeReleaseFingerprint", "", "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
-	}
-	complete(StageCompare, true, "release inputs changed")
-	result.Changed = true
 
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageGenerateDomains, "game_version", cfg.GameVersion, "master_sha256", masterHash)
 	generated, err := GenerateDomains(ctx, GenerateOptions{
@@ -247,7 +218,7 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 	if err := validation.GeneratedFiles(candidateRoot, generated.Files); err != nil {
 		return result, fail(StageValidate, fmt.Errorf("validate domain datasets: %w", err))
 	}
-	sourceHash, err := sourceFingerprint(releaseFingerprint, cfg)
+	sourceHash, err := sourceFingerprint(masterHash, manualPayloads, cfg)
 	if err != nil {
 		return result, fail(StageValidate, err)
 	}
@@ -266,6 +237,31 @@ func Execute(ctx context.Context, cfg config.Config, options ExecuteOptions, dep
 		return result, fail(StageValidate, err)
 	}
 	complete(StageValidate, false, "")
+
+	releaseFingerprint := candidate.ReleaseFingerprint
+	logger.InfoContext(ctx, "pipeline stage started", "stage", StageCompare, "game_version", cfg.GameVersion, "master_sha256", masterHash, "release_fingerprint", releaseFingerprint)
+	if dependencies.Active != nil {
+		active, available, err := dependencies.Active.ActiveReleaseFingerprint(ctx)
+		if err != nil {
+			logger.ErrorContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "error")
+			return result, fail(StageCompare, err)
+		}
+		if !available {
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "initial-publication")
+		} else if active.ReleaseFingerprint == releaseFingerprint && active.GameVersion == candidate.GameVersion {
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "no-change")
+			complete(StageCompare, false, "publishable artifacts are unchanged")
+			result.Outcome = contracts.PipelineOutcomeNoChange
+			result.Changed = false
+			return result, nil
+		} else {
+			logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", active.LatestObjectKey, "activeManifestKey", active.ActiveManifestKey, "activeMasterHash", active.MasterSHA256, "generatedMasterHash", masterHash, "activeReleaseFingerprint", active.ReleaseFingerprint, "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
+		}
+	} else {
+		logger.InfoContext(ctx, "release fingerprint comparison", "stage", StageCompare, "latestObjectKey", "", "activeManifestKey", "", "activeMasterHash", "", "generatedMasterHash", masterHash, "activeReleaseFingerprint", "", "generatedReleaseFingerprint", releaseFingerprint, "comparisonResult", "changed")
+	}
+	complete(StageCompare, true, "publishable artifacts changed")
+	result.Changed = true
 
 	logger.InfoContext(ctx, "pipeline stage started", "stage", StageAssembleRelease, "game_version", cfg.GameVersion, "master_sha256", masterHash)
 	if dependencies.Clock == nil {

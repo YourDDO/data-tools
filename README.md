@@ -43,7 +43,7 @@ Stable JSON structures live in `internal/contracts`. JSON field names are lower 
 - `dataVersion` is a Unix timestamp assigned by the publisher only when it publishes a changed candidate snapshot.
 - Candidate metadata contains hashes and file metadata but no `dataVersion` or generation time, so repeated generation from identical inputs is deterministic.
 
-Manifest schema version 2 adds `releaseFingerprint` and sorted `manualPayloads` while retaining `masterDatasetSha256` as a separate diagnostic field. Each manual entry contains its logical `name`, release-relative `path`, canonical byte size, and SHA-256. The release fingerprint combines the canonical master hash with every sorted manual name, path, and hash. Existing schema-version-1 manifests have no fingerprint and therefore cause one changed release when first encountered.
+Manifest schema version 2 adds `releaseFingerprint` and sorted `manualPayloads` while retaining `masterDatasetSha256` as a separate diagnostic field. Each manual entry contains its logical `name`, release-relative `path`, canonical byte size, and SHA-256. The release fingerprint hashes a deterministic, path-sorted manifest of the publishable master, manual, and generated domain artifact bytes. Existing schema-version-1 manifests have no fingerprint and therefore cause one changed release when first encountered.
 
 Every JSON object published to the CDN is serialized as compact JSON with one trailing newline, including master files, generated domain data, manual payloads, release manifests, and `latest.json`. Manual JSON object keys are serialized deterministically, and source formatting does not affect hashes. Array order is always preserved because arrays may be semantically ordered. The exact compact canonical bytes that are hashed are assembled and published without reserialization.
 
@@ -243,10 +243,10 @@ task pipeline \
 ```
 
 `cmd/pipeline` is the primary executable. It creates an isolated work
-directory, fetches and normalizes the master dataset, canonicalizes and hashes
-manual payloads, compares the complete release fingerprint with the active local
-or S3 release when one is configured, generates domains
-only for changed data, validates and locally assembles the immutable release,
+directory, fetches and normalizes the master dataset, canonicalizes manual
+payloads, generates and validates all domains, then compares the publishable
+artifact fingerprint with the active local or S3 release when one is configured.
+Changed output is locally assembled into an immutable release,
 then cleans the work directory. Its JSON result reports one of `published`,
 `no-change`, `failed`, or `dry-run`; structured JSON logs are written to
 stderr. `--dry-run` performs generation, validation, and local assembly without

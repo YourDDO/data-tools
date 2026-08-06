@@ -1,6 +1,9 @@
 package manifest
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"path/filepath"
 	"sort"
@@ -15,10 +18,19 @@ type File = contracts.GeneratedFileMetadata
 type Manifest = contracts.ReleaseManifest
 type Latest = contracts.Latest
 
-// releaseFingerprintSchemaVersion changes whenever domain-generation behavior
-// changes without changing the canonical master or manual inputs. Bumping it
-// forces existing releases to be regenerated with the current output contract.
-const releaseFingerprintSchemaVersion = 6
+// releaseFingerprintSchemaVersion identifies the artifact-manifest format.
+// It changes only when the fingerprint algorithm or manifest format changes.
+const releaseFingerprintSchemaVersion = 7
+
+type artifactManifest struct {
+	SchemaVersion int                    `json:"schemaVersion"`
+	Files         []artifactManifestFile `json:"files"`
+}
+
+type artifactManifestFile struct {
+	Path   string `json:"path"`
+	SHA256 string `json:"sha256"`
+}
 
 // Candidate is deterministic, unpublished metadata. DataVersion is
 // intentionally absent and is added only when Publisher publishes it.
@@ -68,7 +80,7 @@ func BuildCandidate(gameVersion, sourceHash, masterHash, root string, manualPayl
 		}
 		return payloads[i].SHA256 < payloads[j].SHA256
 	})
-	releaseFingerprint, err := ReleaseFingerprint(masterHash, payloads)
+	releaseFingerprint, err := ArtifactFingerprint(root, files, payloads)
 	if err != nil {
 		return Candidate{}, err
 	}
@@ -102,31 +114,55 @@ func Release(candidate Candidate, dataVersion int64) (Manifest, error) {
 	}, nil
 }
 
-// ReleaseFingerprint hashes the output-contract version, canonical master
-// hash, and sorted manual payload identity tuples. Size is deliberately
-// diagnostic rather than part of release identity.
-func ReleaseFingerprint(masterHash string, payloads []contracts.ManualPayloadMetadata) (string, error) {
-	if strings.TrimSpace(masterHash) == "" {
-		return "", fmt.Errorf("master dataset hash is required")
+// PublishablePaths returns the release content objects uploaded by Publisher.
+// The release manifest itself is metadata containing the fingerprint and the
+// publication timestamp, so it is deliberately not part of this set.
+func PublishablePaths(files []contracts.GeneratedFileMetadata, payloads []contracts.ManualPayloadMetadata) ([]string, error) {
+	paths := make([]string, 0, len(files)+len(payloads))
+	for _, file := range files {
+		paths = append(paths, file.Path)
 	}
-	ordered := append([]contracts.ManualPayloadMetadata(nil), payloads...)
-	sort.Slice(ordered, func(i, j int) bool {
-		if ordered[i].Name != ordered[j].Name {
-			return ordered[i].Name < ordered[j].Name
-		}
-		if ordered[i].Path != ordered[j].Path {
-			return ordered[i].Path < ordered[j].Path
-		}
-		return ordered[i].SHA256 < ordered[j].SHA256
-	})
-	parts := []string{fmt.Sprintf("release-fingerprint-schema:%d", releaseFingerprintSchemaVersion), masterHash}
-	for _, payload := range ordered {
-		if strings.TrimSpace(payload.Name) == "" || strings.TrimSpace(payload.Path) == "" || strings.TrimSpace(payload.SHA256) == "" {
-			return "", fmt.Errorf("manual payload name, path, and hash are required")
-		}
-		parts = append(parts, hashing.Combine(payload.Name, payload.Path, payload.SHA256))
+	for _, payload := range payloads {
+		paths = append(paths, payload.Path)
 	}
-	return hashing.Combine(parts...), nil
+	seen := make(map[string]struct{}, len(paths))
+	for index, value := range paths {
+		cleaned := filepath.Clean(filepath.FromSlash(strings.ReplaceAll(value, `\`, "/")))
+		if cleaned == "." || filepath.IsAbs(cleaned) || cleaned == ".." || strings.HasPrefix(cleaned, ".."+string(filepath.Separator)) {
+			return nil, fmt.Errorf("publishable artifact path %q escapes the release root", value)
+		}
+		normalized := filepath.ToSlash(cleaned)
+		if _, exists := seen[normalized]; exists {
+			return nil, fmt.Errorf("publishable artifact path %q is duplicated", normalized)
+		}
+		seen[normalized] = struct{}{}
+		paths[index] = normalized
+	}
+	sort.Strings(paths)
+	return paths, nil
+}
+
+// ArtifactFingerprint hashes a deterministic manifest of release-relative
+// publishable paths and the SHA-256 digest of each file's bytes.
+func ArtifactFingerprint(root string, files []contracts.GeneratedFileMetadata, payloads []contracts.ManualPayloadMetadata) (string, error) {
+	paths, err := PublishablePaths(files, payloads)
+	if err != nil {
+		return "", err
+	}
+	value := artifactManifest{SchemaVersion: releaseFingerprintSchemaVersion, Files: make([]artifactManifestFile, 0, len(paths))}
+	for _, relative := range paths {
+		digest, _, err := hashing.File(filepath.Join(root, filepath.FromSlash(relative)))
+		if err != nil {
+			return "", fmt.Errorf("fingerprint publishable artifact %s: %w", relative, err)
+		}
+		value.Files = append(value.Files, artifactManifestFile{Path: relative, SHA256: digest})
+	}
+	data, err := json.Marshal(value)
+	if err != nil {
+		return "", fmt.Errorf("encode artifact manifest: %w", err)
+	}
+	digest := sha256.Sum256(data)
+	return hex.EncodeToString(digest[:]), nil
 }
 
 func summarize(files []contracts.GeneratedFileMetadata) []contracts.DatasetMetadata {
