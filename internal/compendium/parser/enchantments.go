@@ -849,6 +849,7 @@ var enchSingleHandlers = map[string]func(string) *dataset.Enchantment{
 	"ShieldedbyMoonlight":           func(_ string) *dataset.Enchantment { return parseTemplateShieldedbyMoonlight() },
 	"TheMummysGift":                 func(_ string) *dataset.Enchantment { return parseTemplateTheMummysGift() },
 	"Enervation":                    func(_ string) *dataset.Enchantment { return parseTemplateEnervation() },
+	"EndlessNight":                  func(t string) *dataset.Enchantment { return parseTemplateEndlessNight(t) },
 	"ForgedLightning":               func(_ string) *dataset.Enchantment { return parseTemplateForgedLightning() },
 	"Rebellion":                     func(_ string) *dataset.Enchantment { return parseTemplateRebellion() },
 	"Negation":                      func(t string) *dataset.Enchantment { return parseTemplateNegation(t) },
