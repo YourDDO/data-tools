@@ -7,7 +7,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"path/filepath"
-	"sort"
 	"strconv"
 	"strings"
 
@@ -157,11 +156,12 @@ func rules() contracts.EssenceCraftingRules {
 	colors := []string{"blue", "colorless", "green", "orange", "purple", "red", "yellow"}
 	slots := make([]contracts.EssenceCraftingAugmentSlotType, 0, len(colors))
 	for _, color := range colors {
-		accepted := []string{"colorless"}
-		if color != "colorless" {
-			accepted = append(accepted, color)
+		accepted := make([]string, 0, len(colors))
+		for _, augmentType := range colors {
+			if domain.AugmentTypesCompatible(color, augmentType) {
+				accepted = append(accepted, augmentType)
+			}
 		}
-		sort.Strings(accepted)
 		slots = append(slots, contracts.EssenceCraftingAugmentSlotType{ID: color, DisplayName: title(color), AcceptsAugmentTypeIDs: accepted})
 	}
 	return contracts.EssenceCraftingRules{

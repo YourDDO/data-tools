@@ -402,20 +402,7 @@ func augmentIdentity(augment dataset.AugmentItem) string {
 }
 
 func compatible(slotType, augmentType string) bool {
-	slotType, augmentType = strings.TrimSpace(slotType), strings.TrimSpace(augmentType)
-	colors := map[string]map[string]bool{
-		"Red":       {"Red": true, "Colorless": true},
-		"Blue":      {"Blue": true, "Colorless": true},
-		"Yellow":    {"Yellow": true, "Colorless": true},
-		"Green":     {"Green": true, "Blue": true, "Yellow": true, "Colorless": true},
-		"Orange":    {"Orange": true, "Red": true, "Yellow": true, "Colorless": true},
-		"Purple":    {"Purple": true, "Red": true, "Blue": true, "Colorless": true},
-		"Colorless": {"Colorless": true},
-	}
-	if allowed, exists := colors[slotType]; exists {
-		return allowed[augmentType]
-	}
-	return slotType != "" && slotType == augmentType
+	return domain.AugmentTypesCompatible(slotType, augmentType)
 }
 
 func validateAcyclic(graph map[int64][]int64) error {
