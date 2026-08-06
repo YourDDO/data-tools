@@ -201,62 +201,78 @@ func parseTemplateMemoryOfShatteredLife() *dataset.Enchantment {
 }
 
 func parseTemplateMaiming(rawMValue string) *dataset.Enchantment {
-	const prefix = "{{Maiming|"
-	const suffix = "}}"
-	const baseName = "Maiming"
+	const (
+		templateName = "Maiming"
+		prefix       = "{{" + templateName + "|"
+		suffix       = "}}"
+	)
 
-	if !strings.HasPrefix(rawMValue, prefix) || !strings.HasSuffix(rawMValue, suffix) {
-		// Handle argument-less case, defaults to "Normal"
-		if strings.TrimSpace(rawMValue) == "{{Maiming}}" {
-			return &dataset.Enchantment{Name: baseName + " (Normal)"}
+	rawMValue = strings.TrimSpace(rawMValue)
+	if rawMValue == "{{"+templateName+"}}" {
+		return &dataset.Enchantment{
+			Name:    templateName,
+			Element: "Untyped",
+			Notes:   new("On critical hit: x2 1d6, x3 2d6, or x4 3d6 untyped damage."),
 		}
+	}
+	if !strings.HasPrefix(rawMValue, prefix) || !strings.HasSuffix(rawMValue, suffix) {
 		return nil
 	}
 
-	paramList := rawMValue[len(prefix) : len(rawMValue)-len(suffix)]
-	parts := strings.Split(paramList, "|")
-
-	// Docs: (Type)|(Amount)
-
-	var enchType = "Normal" // Default type
-	var amount = ""
-	var name string
-
-	// Determine which field is which: Type is Index 0, Amount is Index 1
-	if len(parts) >= 1 {
-		enchType = stripBrackets(parts[0])
+	parts := strings.Split(rawMValue[len(prefix):len(rawMValue)-len(suffix)], "|")
+	maimingType := ""
+	if len(parts) > 0 {
+		maimingType = strings.ToLower(stripBrackets(parts[0]))
 	}
-	if len(parts) >= 2 {
+	amount := ""
+	if len(parts) > 1 {
 		amount = stripBrackets(parts[1])
 	}
 
-	if enchType == "" {
-		enchType = "Normal"
-	}
-
-	// --- CRITICAL NAME FORMATTING & DATA MAPPING ---
-
-	normalizedType := strings.ToLower(enchType)
-
-	if normalizedType == "greater" {
-		// Greater Maiming has complex, fixed dice damage and no input amount.
-		name = "Greater " + baseName
-	} else if normalizedType == "normal" {
-		// Normal Maiming also has complex, fixed dice damage and no input amount.
-		name = baseName
-	} else if normalizedType == "new" || normalizedType == "weapon" {
-		// New Maiming uses a fixed numerical input amount (e.g., +9d8 damage in example)
-		name = baseName + " " + amount
-		// Amount is the actual damage roll or multiplier (e.g., 9d8)
-	} else {
-		name = baseName
-	}
-
-	return &dataset.Enchantment{
-		Name:    name,
-		Amount:  amount + "d8", // Stores either the fixed dice roll type or the custom amount
-		Element: "Untyped",     // The core effect is untyped damage
-		// All other fields remain empty.
+	switch maimingType {
+	case "", "normal":
+		return &dataset.Enchantment{
+			Name:    templateName,
+			Element: "Untyped",
+			Notes:   new("On critical hit: x2 1d6, x3 2d6, or x4 3d6 untyped damage."),
+		}
+	case "greater":
+		return &dataset.Enchantment{
+			Name:    "Greater " + templateName,
+			Element: "Untyped",
+			Notes:   new("On critical hit: x2 4d6, x3 12d6, or x4 16d6 untyped damage."),
+		}
+	case "augment":
+		return &dataset.Enchantment{
+			Name:    "Greater " + templateName,
+			Element: "Untyped",
+			Notes:   new("On critical hit: x2 8d6, x3 12d6, or x4 16d6 untyped damage."),
+		}
+	case "new":
+		if amount == "" {
+			return nil
+		}
+		return &dataset.Enchantment{
+			Name:    templateName + " " + amount,
+			Amount:  amount + "d8",
+			Element: "Untyped",
+			Notes:   new("On critical hit: untyped damage."),
+		}
+	case "weapon":
+		if amount == "" {
+			return nil
+		}
+		return &dataset.Enchantment{
+			Name:  "Weapon's " + templateName + " Effect +" + amount,
+			Notes: new("Does additional damage on critical hits."),
+		}
+	default:
+		// The template's default branch renders regular Maiming for unrecognised types.
+		return &dataset.Enchantment{
+			Name:    templateName,
+			Element: "Untyped",
+			Notes:   new("On critical hit: x2 1d6, x3 2d6, or x4 3d6 untyped damage."),
+		}
 	}
 }
 

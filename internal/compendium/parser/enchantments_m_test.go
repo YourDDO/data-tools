@@ -85,3 +85,51 @@ func TestParseEnchantmentsMemoryOfAnimatedObjects(t *testing.T) {
 		t.Fatalf("ParseEnchantments() = %#v, want %#v", got, want)
 	}
 }
+
+func TestParseTemplateMaiming(t *testing.T) {
+	tests := []struct {
+		name string
+		raw  string
+		want *dataset.Enchantment
+	}{
+		{
+			name: "normal default",
+			raw:  "{{Maiming}}",
+			want: &dataset.Enchantment{Name: "Maiming", Element: "Untyped", Notes: new("On critical hit: x2 1d6, x3 2d6, or x4 3d6 untyped damage.")},
+		},
+		{
+			name: "greater",
+			raw:  "{{Maiming|Greater}}",
+			want: &dataset.Enchantment{Name: "Greater Maiming", Element: "Untyped", Notes: new("On critical hit: x2 4d6, x3 12d6, or x4 16d6 untyped damage.")},
+		},
+		{
+			name: "augment",
+			raw:  "{{Maiming|augment}}",
+			want: &dataset.Enchantment{Name: "Greater Maiming", Element: "Untyped", Notes: new("On critical hit: x2 8d6, x3 12d6, or x4 16d6 untyped damage.")},
+		},
+		{
+			name: "new style",
+			raw:  "{{Maiming|New|9}}",
+			want: &dataset.Enchantment{Name: "Maiming 9", Amount: "9d8", Element: "Untyped", Notes: new("On critical hit: untyped damage.")},
+		},
+		{
+			name: "weapon effect",
+			raw:  "{{Maiming|Weapon|9}}",
+			want: &dataset.Enchantment{Name: "Weapon's Maiming Effect +9", Notes: new("Does additional damage on critical hits.")},
+		},
+		{
+			name: "new style requires an amount",
+			raw:  "{{Maiming|New}}",
+			want: nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := parseTemplateMaiming(tt.raw)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Fatalf("parseTemplateMaiming(%q) = %#v, want %#v", tt.raw, got, tt.want)
+			}
+		})
+	}
+}
