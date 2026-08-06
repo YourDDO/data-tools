@@ -1464,9 +1464,10 @@ func parseTemplateDragonmark(raw string, itemType string) []*dataset.Enchantment
 			name = cases.Title(language.English).String(increaseType) + " " + name
 		}
 		enchantments = append(enchantments, &dataset.Enchantment{
-			Name:   name,
-			Amount: strconv.Itoa(useIncrease),
-			Notes:  new(fmt.Sprintf("This will increase the total number of Lesser Dragonmarks you can use by %d. However, these additional Lesser Dragonmarks will only take effect after the wielder rests.", useIncrease)),
+			Name:      name,
+			Amount:    strconv.Itoa(useIncrease),
+			BonusType: "Enhancement",
+			Notes:     new(fmt.Sprintf("This will increase the total number of Lesser Dragonmarks you can use by %d. However, these additional Lesser Dragonmarks will only take effect after the wielder rests.", useIncrease)),
 		})
 
 	case "greater":
@@ -1475,9 +1476,10 @@ func parseTemplateDragonmark(raw string, itemType string) []*dataset.Enchantment
 			name = cases.Title(language.English).String(increaseType) + " " + name
 		}
 		enchantments = append(enchantments, &dataset.Enchantment{
-			Name:   name,
-			Amount: strconv.Itoa(useIncrease),
-			Notes:  new(fmt.Sprintf("This will increase the total number of Greater Dragonmarks you can use by %d. However, these additional Greater Dragonmarks will only take effect after the wielder rests.", useIncrease)),
+			Name:      name,
+			Amount:    strconv.Itoa(useIncrease),
+			BonusType: "Enhancement",
+			Notes:     new(fmt.Sprintf("This will increase the total number of Greater Dragonmarks you can use by %d. However, these additional Greater Dragonmarks will only take effect after the wielder rests.", useIncrease)),
 		})
 
 	case "chimera's vitality":
