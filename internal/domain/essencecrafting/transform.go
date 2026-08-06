@@ -238,12 +238,41 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 			return nil, nil, nil, fmt.Errorf("augment ID %q duplicates master records %s and %s", id, previous, record.Source())
 		}
 		seen[id] = record.Source()
-		effects := make([]contracts.EssenceCraftingEffect, 0, len(record.Augment.EffectsAdded))
+		augmentEffects := append([]dataset.PartialEnhancementOut(nil), record.Augment.EffectsAdded...)
+		matchedSetMarkers := map[string]struct{}{}
+		for setIndex, set := range record.Augment.SetBonus {
+			setName := strings.TrimSpace(set.Name)
+			if setName == "" {
+				return nil, nil, nil, fmt.Errorf("augment %s setBonus[%d]: name is required", record.Source(), setIndex)
+			}
+			// ItemSet membership is stored canonically in SetBonus rather than
+			// EffectsAdded. Project it into the Essence Crafting effect list while
+			// avoiding duplication if older or externally supplied canonical data
+			// already contains the textual marker.
+			marker := "Item Set: " + setName
+			if _, alreadyMatched := matchedSetMarkers[marker]; alreadyMatched {
+				// Preserve duplicate-effect validation for malformed canonical input.
+				augmentEffects = append(augmentEffects, dataset.PartialEnhancementOut{Name: marker})
+				continue
+			}
+			found := false
+			for _, effect := range augmentEffects {
+				if strings.TrimSpace(effect.Name) == marker && strings.TrimSpace(effect.Bonus) == "" {
+					found = true
+					break
+				}
+			}
+			if !found {
+				augmentEffects = append(augmentEffects, dataset.PartialEnhancementOut{Name: marker})
+			}
+			matchedSetMarkers[marker] = struct{}{}
+		}
+		effects := make([]contracts.EssenceCraftingEffect, 0, len(augmentEffects))
 		seenEffects := map[string]struct {
 			index  int
 			effect dataset.PartialEnhancementOut
 		}{}
-		for index, effect := range record.Augment.EffectsAdded {
+		for index, effect := range augmentEffects {
 			transformed, err := transformAugmentEffect(effect)
 			if err != nil {
 				return nil, nil, nil, fmt.Errorf("augment %s effect[%d]: %w", record.Source(), index, err)
