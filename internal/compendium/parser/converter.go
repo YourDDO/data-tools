@@ -1609,6 +1609,33 @@ func parseTemplateRandomDrop(rawRDValue string) dataset.DropSourceData {
 	return drop
 }
 
+// parseTemplateCollectableNode extracts the positional values for
+// {{CollectableNode|Node Type|Tier|Special Event}}.
+func parseTemplateCollectableNode(rawValue string) dataset.DropSourceData {
+	const prefix = "{{CollectableNode"
+	const suffix = "}}"
+
+	if !strings.HasPrefix(rawValue, prefix) || !strings.HasSuffix(rawValue, suffix) {
+		return dataset.DropSourceData{SourceType: "Unknown"}
+	}
+
+	paramList := strings.TrimPrefix(rawValue[len(prefix):len(rawValue)-len(suffix)], "|")
+	parts := splitParams(paramList)
+	drop := dataset.DropSourceData{SourceType: "CollectableNode"}
+
+	if len(parts) >= 1 {
+		drop.CollectableNodeType = stripWikitext(parts[0])
+	}
+	if len(parts) >= 2 {
+		drop.CollectableNodeTier = stripWikitext(parts[1])
+	}
+	if len(parts) >= 3 {
+		drop.CollectableNodeEvent = stripWikitext(parts[2])
+	}
+
+	return drop
+}
+
 // ParseMultiTemplateDropLocation finds and parses all known drop/store templates.
 func ParseMultiTemplateDropLocation(rawContent string) []dataset.DropSourceData {
 	var locations []dataset.DropSourceData
@@ -1732,6 +1759,8 @@ func ParseMultiTemplateDropLocation(rawContent string) []dataset.DropSourceData 
 			dropData = parseTemplateCreatedViaCrafting(fullTemplate)
 		case "RandomDrop":
 			dropData = parseTemplateRandomDrop(fullTemplate)
+		case "CollectableNode":
+			dropData = parseTemplateCollectableNode(fullTemplate)
 		case "AnniversaryPurchase":
 			dropData = parseTemplateAnniversaryPurchase(fullTemplate)
 		case "TimelineFragmentPurchase":

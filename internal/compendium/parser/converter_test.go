@@ -332,3 +332,54 @@ func TestParseTemplatePrice(t *testing.T) {
 		})
 	}
 }
+
+func TestCollectableNodeDrop(t *testing.T) {
+	tests := []struct {
+		name string
+		raw  string
+		want dataset.DropSourceData
+	}{
+		{
+			name: "typed tier with special event",
+			raw:  "{{CollectableNode|Natural|1|Mabar}}",
+			want: dataset.DropSourceData{
+				SourceType:           "CollectableNode",
+				CollectableNodeType:  "Natural",
+				CollectableNodeTier:  "1",
+				CollectableNodeEvent: "Mabar",
+			},
+		},
+		{
+			name: "all node types",
+			raw:  "{{CollectableNode|all}}",
+			want: dataset.DropSourceData{
+				SourceType:          "CollectableNode",
+				CollectableNodeType: "all",
+			},
+		},
+		{
+			name: "nested link and surrounding templates",
+			raw:  "{{DropLocation|Quest A|Chest}}{{CollectableNode|[[Arcane Nodes|Arcane]]|2}}",
+			want: dataset.DropSourceData{
+				SourceType:          "CollectableNode",
+				CollectableNodeType: "Arcane",
+				CollectableNodeTier: "2",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := ParseMultiTemplateDropLocation(tt.raw)
+			if tt.name == "nested link and surrounding templates" {
+				if len(got) != 2 || !reflect.DeepEqual(got[1], tt.want) {
+					t.Fatalf("ParseMultiTemplateDropLocation() = %#v, want CollectableNode %#v", got, tt.want)
+				}
+				return
+			}
+			if len(got) != 1 || !reflect.DeepEqual(got[0], tt.want) {
+				t.Fatalf("ParseMultiTemplateDropLocation() = %#v, want %#v", got, tt.want)
+			}
+		})
+	}
+}

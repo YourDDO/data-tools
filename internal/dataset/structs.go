@@ -127,6 +127,11 @@ type DropSourceData struct {
 	RandomOnlyType      string `json:"randomOnlyType,omitempty"`
 	RandomPageLink      string `json:"randomPageLink,omitempty"`
 
+	// NEW FIELDS from Template:CollectableNode
+	CollectableNodeType  string `json:"collectableNodeType,omitempty"`
+	CollectableNodeTier  string `json:"collectableNodeTier,omitempty"`
+	CollectableNodeEvent string `json:"collectableNodeEvent,omitempty"`
+
 	// NEW FIELDS from Template:AnniversaryPurchase
 	Anniversary      string `json:"anniversary,omitempty"`      // Which Anniversary (e.g., 16th)
 	AnniversaryCount string `json:"anniversaryCount,omitempty"` // How many party favors are required
