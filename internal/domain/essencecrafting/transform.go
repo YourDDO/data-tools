@@ -26,7 +26,7 @@ var percentEffects = map[string]struct{}{
 	"Force Absorption": {}, "Force Spell Critical Chance": {}, "Fortification": {}, "Fortification Bypass": {}, "Light Absorption": {}, "Light Spell Critical Chance": {},
 	"Melee Attack Speed": {}, "Melee Threat": {}, "Movement Speed": {}, "Negative Absorption": {}, "Negative Spell Critical Chance": {}, "Offhand Shield Bash Chance": {},
 	"Poison Absorption": {}, "Poison Spell Critical Chance": {}, "Positive Spell Critical Chance": {}, "Ranged Alacrity": {}, "Repair Spell Critical Chance": {},
-	"Sonic Absorption": {}, "Sonic Spell Critical Chance": {},
+	"Ranged Threat": {}, "Sonic Absorption": {}, "Sonic Spell Critical Chance": {}, "Spell Threat": {},
 }
 
 var dicePattern = regexp.MustCompile(`^d([1-9][0-9]*)$`)
@@ -239,16 +239,25 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 		}
 		seen[id] = record.Source()
 		effects := make([]contracts.EssenceCraftingEffect, 0, len(record.Augment.EffectsAdded))
-		seenEffects := map[string]struct{}{}
+		seenEffects := map[string]struct {
+			index  int
+			effect dataset.PartialEnhancementOut
+		}{}
 		for index, effect := range record.Augment.EffectsAdded {
 			transformed, err := transformAugmentEffect(effect)
 			if err != nil {
 				return nil, nil, nil, fmt.Errorf("augment %s effect[%d]: %w", record.Source(), index, err)
 			}
-			if _, exists := seenEffects[transformed.ID]; exists {
-				return nil, nil, nil, fmt.Errorf("augment %s repeats effect ID %q", record.Source(), transformed.ID)
+			if first, exists := seenEffects[transformed.ID]; exists {
+				return nil, nil, nil, fmt.Errorf(
+					"augment %s repeats semantic effect %q with %s at effects[%d] and effects[%d]; generated ID %q; first modifier=%v, duplicate modifier=%v",
+					record.Source(), transformed.DisplayName, describeBonus(effect.Bonus), first.index, index, transformed.ID, first.effect.Modifier, effect.Modifier,
+				)
 			}
-			seenEffects[transformed.ID] = struct{}{}
+			seenEffects[transformed.ID] = struct {
+				index  int
+				effect dataset.PartialEnhancementOut
+			}{index: index, effect: effect}
 			effects = append(effects, transformed)
 			if transformed.BonusTypeID != "" {
 				bonusNames[transformed.BonusTypeID] = strings.TrimSpace(effect.Bonus)
@@ -259,6 +268,13 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 		result = append(result, contracts.EssenceCraftingAugment{ID: id, DisplayName: name, AugmentTypeID: typeID, MinimumItemLevel: *record.Augment.MinLevel, Effects: effects})
 	}
 	return result, bonusNames, effectNames, nil
+}
+
+func describeBonus(value string) string {
+	if strings.TrimSpace(value) == "" {
+		return "empty bonus"
+	}
+	return fmt.Sprintf("bonus %q", strings.TrimSpace(value))
 }
 
 func normalizeAugmentType(value string) (string, bool) {
@@ -300,6 +316,13 @@ func transformAugmentEffect(input dataset.PartialEnhancementOut) (contracts.Esse
 		if match := regexp.MustCompile(`^([1-9][0-9]*)d([1-9][0-9]*)$`).FindStringSubmatch(strings.ToLower(value)); match != nil {
 			count, _ := strconv.Atoi(match[1])
 			result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "dice", Value: count, Die: "d" + match[2]}
+		} else if _, isPercent := percentEffects[name]; isPercent {
+			percent, err := parsePercentModifier(value)
+			if err == nil {
+				result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "percent", Value: percent}
+			} else {
+				result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "text", Value: value}
+			}
 		} else {
 			result.Modifier = &contracts.EssenceCraftingModifier{Kind: "fixed", Unit: "text", Value: value}
 		}
@@ -307,6 +330,17 @@ func transformAugmentEffect(input dataset.PartialEnhancementOut) (contracts.Esse
 		return result, fmt.Errorf("unsupported modifier type %T", input.Modifier)
 	}
 	return result, nil
+}
+
+func parsePercentModifier(value string) (float64, error) {
+	if strings.HasSuffix(value, "%") {
+		return strconv.ParseFloat(strings.TrimSpace(strings.TrimSuffix(value, "%")), 64)
+	}
+	decimal, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return 0, err
+	}
+	return decimal * 100, nil
 }
 
 func ingredients(names map[string]struct{}) []contracts.EssenceCraftingIngredient {

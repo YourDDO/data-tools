@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 	"yourddo-data-tools/internal/dataset"
 
@@ -164,7 +165,6 @@ func parseTemplateIncite(rawIncValue string, itemType string) []*dataset.Enchant
 
 	attackStyle := "Melee"
 	var bonusType string
-	var title string
 
 	// 2. Attack Type (Optional, Index 1 - defaults to Melee)
 	if len(parts) >= 2 {
@@ -178,18 +178,11 @@ func parseTemplateIncite(rawIncValue string, itemType string) []*dataset.Enchant
 		bonusType = stripBrackets(parts[2])
 	}
 
-	// 4. Title (Optional, Index 3)
-	if len(parts) >= 4 {
-		title = stripBrackets(parts[3])
-	}
-
-	// --- CRITICAL PROCESSING ---
-
 	var enchantments []*dataset.Enchantment
-	finalAmount := amountRaw + "%"
-
-	// Determine base names for threat effects.
-	baseThreatName := "Threat Generation"
+	finalAmount, ok := normalizeThreatPercentage(amountRaw)
+	if !ok {
+		return nil
+	}
 
 	styleFlags := struct {
 		Melee  bool
@@ -215,33 +208,43 @@ func parseTemplateIncite(rawIncValue string, itemType string) []*dataset.Enchant
 		styleFlags.Melee = true
 	}
 
-	// Generator function for split enchantments
-	generateEnch := func(styleName string) *dataset.Enchantment {
-		finalName := title
-		if finalName == "" {
-			finalName = styleName + " " + baseThreatName
-		}
-
+	// Parameter four is a presentation title. It does not identify the
+	// independent melee, ranged, and spell threat mechanics represented by
+	// this template, so it is intentionally not used for the effect name.
+	generateEnch := func(name string) *dataset.Enchantment {
 		return &dataset.Enchantment{
-			Name:      finalName,
+			Name:      name,
 			Amount:    finalAmount,
 			BonusType: bonusType,
-			// AdditionalText could potentially be used for the base attack style if needed.
 		}
 	}
 
-	// 3. Generate enchantments for split styles
+	// Generate one semantic effect per affected threat type.
 	if styleFlags.Melee {
-		enchantments = append(enchantments, generateEnch("Melee"))
+		enchantments = append(enchantments, generateEnch("Melee Threat"))
 	}
 	if styleFlags.Ranged {
-		enchantments = append(enchantments, generateEnch("Ranged"))
+		enchantments = append(enchantments, generateEnch("Ranged Threat"))
 	}
 	if styleFlags.Spell {
-		enchantments = append(enchantments, generateEnch("Spell"))
+		enchantments = append(enchantments, generateEnch("Spell Threat"))
 	}
 
 	return enchantments
+}
+
+// normalizeThreatPercentage converts a source percentage into the canonical
+// decimal fraction used by partial enhancement modifiers. It accepts both the
+// template's usual whole-percent form ("-20") and an explicitly suffixed
+// source percentage ("-20%").
+func normalizeThreatPercentage(raw string) (string, bool) {
+	value := strings.TrimSpace(raw)
+	value = strings.TrimSpace(strings.TrimSuffix(value, "%"))
+	amount, err := strconv.ParseFloat(value, 64)
+	if err != nil {
+		return "", false
+	}
+	return strconv.FormatFloat(amount/100, 'f', -1, 64), true
 }
 
 func parseTemplateImbueDice(rawIDValue string) *dataset.Enchantment {
