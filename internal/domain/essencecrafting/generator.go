@@ -161,12 +161,40 @@ func rules() contracts.EssenceCraftingRules {
 			Position: "extra", ConsumedWhen: "extra-enhancement-applied",
 			MarkRequirement: contracts.EssenceCraftingRequirement{Kind: "ingredient", IngredientID: opaqueID("ingredient", markOfCannith), Quantity: 1},
 		},
-		AugmentSlotTypes: slots,
-		// Item-category slot placement rules remain empty until their gameplay
-		// policy is approved. The contract deliberately does not import the old
-		// frontend table as a surrogate source of truth.
-		AugmentSlotPlacements: []contracts.EssenceCraftingAugmentPlacement{},
+		AugmentSlotTypes:      slots,
+		AugmentSlotPlacements: augmentSlotPlacements(),
 	}
+}
+
+func augmentSlotPlacements() []contracts.EssenceCraftingAugmentPlacement {
+	values := []struct {
+		itemCategoryID string
+		slotTypeIDs    []string
+	}{
+		{"armor", []string{"colorless", "blue"}},
+		{"belt", []string{"colorless", "yellow", "green"}},
+		{"boots", []string{"colorless", "yellow", "green"}},
+		{"bracers", []string{"colorless", "yellow", "green"}},
+		{"cloak", []string{"colorless", "yellow", "green"}},
+		{"gloves", []string{"colorless", "yellow", "green"}},
+		{"goggles", []string{"colorless", "yellow", "green"}},
+		{"head", []string{"colorless", "yellow", "green"}},
+		{"necklace", []string{"colorless", "yellow", "green"}},
+		{"orb", []string{"colorless", "red", "blue", "purple", "orange"}},
+		{"ring", []string{"colorless", "yellow", "green"}},
+		{"rune-arm", []string{"colorless", "red", "blue", "purple", "orange"}},
+		{"shield", []string{"colorless", "red", "blue", "purple", "orange"}},
+		{"trinket", []string{"colorless", "yellow", "green"}},
+		{"weapon", []string{"colorless", "red", "purple", "orange"}},
+	}
+	placements := make([]contracts.EssenceCraftingAugmentPlacement, len(values))
+	for i, value := range values {
+		placements[i] = contracts.EssenceCraftingAugmentPlacement{
+			ItemCategoryID: value.itemCategoryID,
+			SlotTypeIDs:    value.slotTypeIDs,
+		}
+	}
+	return placements
 }
 
 func itemCategories() []contracts.EssenceCraftingNamedRecord {
