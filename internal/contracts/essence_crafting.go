@@ -49,7 +49,7 @@ type EssenceCraftingAugmentSlotType struct {
 
 type EssenceCraftingAugmentPlacement struct {
 	ItemCategoryID string   `json:"itemCategoryId"`
-	SlotTypeIDs    []string `json:"slotTypeIds"`
+	SlotTypeIDs    []string `json:"augmentSlotTypeIds"`
 }
 
 type EssenceCraftingEnhancement struct {

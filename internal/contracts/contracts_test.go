@@ -2,6 +2,7 @@ package contracts
 
 import (
 	"encoding/json"
+	"strings"
 	"testing"
 )
 
@@ -44,6 +45,23 @@ func TestLatestJSONContract(t *testing.T) {
 	want := `{"gameVersion":"81.3.0","dataVersion":1785175200,"baseUrl":"/releases/81.3.0/1785175200"}`
 	if string(data) != want {
 		t.Fatalf("latest JSON = %s, want %s", data, want)
+	}
+}
+
+func TestEssenceCraftingAugmentPlacementJSONContract(t *testing.T) {
+	t.Parallel()
+	data, err := json.Marshal(EssenceCraftingAugmentPlacement{
+		ItemCategoryID: "armor",
+		SlotTypeIDs:    []string{"colorless", "blue"},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"augmentSlotTypeIds"`) {
+		t.Fatalf("placement JSON = %s, missing augmentSlotTypeIds", data)
+	}
+	if strings.Contains(string(data), `"slotTypeIds"`) {
+		t.Fatalf("placement JSON = %s, contains deprecated slotTypeIds", data)
 	}
 }
 
