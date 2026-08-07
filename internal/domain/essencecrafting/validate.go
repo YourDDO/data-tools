@@ -87,6 +87,7 @@ func validateDomain(value contracts.EssenceCraftingDomain) error {
 	}
 	referencedRecipes := map[string]int{}
 	seenEnhancements := map[string]struct{}{}
+	seenEffectIDs := map[string]string{}
 	for _, enhancement := range value.Enhancements {
 		if enhancement.ID == "" || enhancement.DisplayName == "" || enhancement.MinimumItemLevel < minimumItemLevel || enhancement.MinimumItemLevel > maximumItemLevel {
 			return fmt.Errorf("enhancement has invalid identity or minimum item level")
@@ -122,10 +123,15 @@ func validateDomain(value contracts.EssenceCraftingDomain) error {
 			if err := validateEffect(enhancement.ID, enhancement.MinimumItemLevel, effect, value.BonusTypes); err != nil {
 				return err
 			}
-			if _, exists := seenEffects[effect.ID]; exists {
-				return fmt.Errorf("enhancement %q repeats effect %q", enhancement.ID, effect.ID)
+			semanticKey := effect.BonusTypeID + "\x00" + effect.DisplayName
+			if _, exists := seenEffects[semanticKey]; exists {
+				return fmt.Errorf("enhancement %q repeats semantic effect %q", enhancement.ID, effect.DisplayName)
 			}
-			seenEffects[effect.ID] = struct{}{}
+			seenEffects[semanticKey] = struct{}{}
+			if previous, exists := seenEffectIDs[effect.ID]; exists {
+				return fmt.Errorf("duplicate effect ID %q belongs to %s and enhancement %q", effect.ID, previous, enhancement.ID)
+			}
+			seenEffectIDs[effect.ID] = fmt.Sprintf("enhancement %q", enhancement.ID)
 		}
 		for _, pair := range []struct{ id, binding string }{{enhancement.Recipes.BoundRecipeID, "bound"}, {enhancement.Recipes.UnboundRecipeID, "unbound"}} {
 			recipe, exists := recipes[pair.id]
@@ -163,10 +169,20 @@ func validateDomain(value contracts.EssenceCraftingDomain) error {
 		if augment.MinimumItemLevel < minimumItemLevel || augment.MinimumItemLevel > maximumItemLevel {
 			return fmt.Errorf("augment %q has invalid minimum item level", augment.ID)
 		}
+		seenEffects := map[string]struct{}{}
 		for _, effect := range augment.Effects {
 			if err := validateEffect(augment.ID, augment.MinimumItemLevel, effect, value.BonusTypes); err != nil {
 				return err
 			}
+			semanticKey := effect.BonusTypeID + "\x00" + effect.DisplayName
+			if _, exists := seenEffects[semanticKey]; exists {
+				return fmt.Errorf("augment %q repeats semantic effect %q", augment.ID, effect.DisplayName)
+			}
+			seenEffects[semanticKey] = struct{}{}
+			if previous, exists := seenEffectIDs[effect.ID]; exists {
+				return fmt.Errorf("duplicate effect ID %q belongs to %s and augment %q", effect.ID, previous, augment.ID)
+			}
+			seenEffectIDs[effect.ID] = fmt.Sprintf("augment %q", augment.ID)
 		}
 	}
 	if _, exists := ingredients[value.Rules.ExtraAffix.MarkRequirement.IngredientID]; !exists {

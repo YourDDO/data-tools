@@ -90,6 +90,42 @@ func TestGenerateUpdate81Domain(t *testing.T) {
 			t.Fatalf("unexpected augment type %q", augment.AugmentTypeID)
 		}
 	}
+	effectOwners := map[string]string{}
+	enhancementEffectCount, augmentEffectCount := 0, 0
+	fireAbsorptionIDs := map[string]string{}
+	for _, enhancement := range output.Enhancements {
+		for _, effect := range enhancement.Effects {
+			enhancementEffectCount++
+			if previous, exists := effectOwners[effect.ID]; exists {
+				t.Fatalf("duplicate nested effect ID %q in %s and enhancement %q", effect.ID, previous, enhancement.DisplayName)
+			}
+			effectOwners[effect.ID] = "enhancement " + enhancement.DisplayName
+			if effect.DisplayName == "Fire Absorption" && contains([]string{"Flame Attuned", "Fire Absorption", "Firewarded", "Flame Absorbing"}, enhancement.DisplayName) {
+				fireAbsorptionIDs[enhancement.DisplayName] = effect.ID
+			}
+		}
+	}
+	for _, augment := range output.Augments {
+		for _, effect := range augment.Effects {
+			augmentEffectCount++
+			if previous, exists := effectOwners[effect.ID]; exists {
+				t.Fatalf("duplicate nested effect ID %q in %s and augment %q", effect.ID, previous, augment.DisplayName)
+			}
+			effectOwners[effect.ID] = "augment " + augment.DisplayName
+		}
+	}
+	if len(fireAbsorptionIDs) != 4 {
+		t.Fatalf("Fire Absorption IDs for expected enhancements = %v, want four distinct IDs", fireAbsorptionIDs)
+	}
+	seenFireAbsorptionIDs := map[string]string{}
+	for _, name := range []string{"Flame Attuned", "Fire Absorption", "Firewarded", "Flame Absorbing"} {
+		if previous, exists := seenFireAbsorptionIDs[fireAbsorptionIDs[name]]; exists {
+			t.Fatalf("%s and %s share Fire Absorption ID %q", previous, name, fireAbsorptionIDs[name])
+		}
+		seenFireAbsorptionIDs[fireAbsorptionIDs[name]] = name
+		t.Logf("%s Fire Absorption ID=%s", name, fireAbsorptionIDs[name])
+	}
+	t.Logf("generated nested effects: enhancements=%d augments=%d duplicates=0", enhancementEffectCount, augmentEffectCount)
 	if len(output.Ingredients) == 0 {
 		t.Fatal("ingredient catalog is empty")
 	}
@@ -128,6 +164,7 @@ func TestBuildRejectsInvalidInputs(t *testing.T) {
 		{"invalid quantity", func(v *sourceEnhancement) { v.Bound.Collectibles = []sourceRequirement{{Name: "Thing", Quantity: 0}} }, "invalid name or quantity"},
 		{"missing scale", func(v *sourceEnhancement) { v.Effects[0].Modifiers = nil }, "missing modifier scale"},
 		{"duplicate recipes", func(v *sourceEnhancement) { v.Unbound.RecipeID = 1 }, "shared"},
+		{"duplicate semantic effects", func(v *sourceEnhancement) { v.Effects = append(v.Effects, v.Effects[0]) }, "repeats semantic effect"},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
@@ -138,6 +175,43 @@ func TestBuildRejectsInvalidInputs(t *testing.T) {
 				t.Fatalf("error = %v, want %q", err, test.want)
 			}
 		})
+	}
+}
+
+func TestBuildScopesEffectIDsToEnhancements(t *testing.T) {
+	firstInput := sourceEnhancement{Name: "First Fire Enhancement", MinimumLevel: 1, Prefix: []string{"Ring"}, Bound: &sourceRecipe{RecipeID: 101, Level: 1, Essence: 1}, Unbound: &sourceRecipe{RecipeID: 102, Level: 1, Essence: 1}, Effects: []sourceEffect{{Name: "Fire Absorption", Bonus: "Enhancement", Modifiers: fullScale(1)}}}
+	secondInput := sourceEnhancement{Name: "Second Fire Enhancement", MinimumLevel: 1, Prefix: []string{"Ring"}, Bound: &sourceRecipe{RecipeID: 103, Level: 1, Essence: 1}, Unbound: &sourceRecipe{RecipeID: 104, Level: 1, Essence: 1}, Effects: []sourceEffect{{Name: "Fire Absorption", Bonus: "Enhancement", Modifiers: fullScale(1)}}}
+	for index := range secondInput.Effects[0].Modifiers {
+		secondInput.Effects[0].Modifiers[index].Value = json.Number("2")
+	}
+
+	first, err := build(context.Background(), dataset.Master{}, []sourceEnhancement{firstInput, secondInput})
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, err := build(context.Background(), dataset.Master{}, []sourceEnhancement{firstInput, secondInput})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(first, second) {
+		t.Fatal("build is not deterministic")
+	}
+	if len(first.Enhancements) != 2 {
+		t.Fatalf("enhancements = %#v", first.Enhancements)
+	}
+	firstEffect, secondEffect := first.Enhancements[0].Effects[0], first.Enhancements[1].Effects[0]
+	if firstEffect.ID == secondEffect.ID {
+		t.Fatalf("shared semantic enhancement effects use the same ID %q", firstEffect.ID)
+	}
+	wantModifierValues := map[string]float64{"First Fire Enhancement": 100, "Second Fire Enhancement": 200}
+	for _, enhancement := range first.Enhancements {
+		effect := enhancement.Effects[0]
+		if want := effectID(enhancement.ID, "Enhancement", "Fire Absorption"); effect.ID != want {
+			t.Fatalf("enhancement %q effect ID = %q, want %q", enhancement.DisplayName, effect.ID, want)
+		}
+		if effect.DisplayName != "Fire Absorption" || effect.Modifier == nil || effect.Modifier.Bands[0].Value != wantModifierValues[enhancement.DisplayName] {
+			t.Fatalf("enhancement %q effect = %#v", enhancement.DisplayName, effect)
+		}
 	}
 }
 
