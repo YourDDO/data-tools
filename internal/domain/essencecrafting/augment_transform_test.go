@@ -15,7 +15,7 @@ func TestTransformAugmentEffectThreatPercentModifiers(t *testing.T) {
 		{Name: "Ranged Threat", Modifier: "-0.2"},
 		{Name: "Spell Threat", Modifier: "-20%"},
 	} {
-		effect, err := transformAugmentEffect(input)
+		effect, err := transformAugmentEffect("augment-test", input)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -40,7 +40,7 @@ func TestTransformAugmentsRejectsDuplicateSemanticEffectsWithDetails(t *testing.
 		},
 	}}}
 
-	_, _, _, err := transformAugments(context.Background(), master)
+	_, _, err := transformAugments(context.Background(), master)
 	if err == nil {
 		t.Fatal("transformAugments() unexpectedly succeeded")
 	}
@@ -88,7 +88,7 @@ func TestTransformAugmentsIncludesItemSetMembership(t *testing.T) {
 	if effect.DisplayName != "Item Set: Example Set Name" || effect.BonusTypeID != "" || effect.Modifier != nil {
 		t.Fatalf("item set effect = %#v", effect)
 	}
-	wantID := opaqueID("effect", "\x00Item Set: Example Set Name")
+	wantID := effectID(first.Augments[0].ID, "", "Item Set: Example Set Name")
 	if effect.ID != wantID {
 		t.Fatalf("item set effect ID = %q, want %q", effect.ID, wantID)
 	}
@@ -109,7 +109,7 @@ func TestTransformAugmentsDoesNotDuplicateItemSetCompatibilityMarker(t *testing.
 		},
 	}}}
 
-	augments, _, _, err := transformAugments(context.Background(), master)
+	augments, _, err := transformAugments(context.Background(), master)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -133,8 +133,45 @@ func TestTransformAugmentsRejectsDuplicateItemSetMembership(t *testing.T) {
 		},
 	}}}
 
-	_, _, _, err := transformAugments(context.Background(), master)
+	_, _, err := transformAugments(context.Background(), master)
 	if err == nil || !strings.Contains(err.Error(), `repeats semantic effect "Item Set: Example Set Name"`) {
 		t.Fatalf("error = %v", err)
+	}
+}
+
+func TestTransformAugmentsScopesEffectIDsToAugments(t *testing.T) {
+	level := 30
+	master := dataset.Master{Augments: []dataset.AugmentRecord{
+		{File: "first.json", Augment: dataset.AugmentItem{Name: "First Fire Augment", AugmentType: "Red", MinLevel: &level, EffectsAdded: []dataset.PartialEnhancementOut{{Name: "Fire Absorption", Bonus: "Enhancement", Modifier: float64(10)}}}},
+		{File: "second.json", Augment: dataset.AugmentItem{Name: "Second Fire Augment", AugmentType: "Red", MinLevel: &level, EffectsAdded: []dataset.PartialEnhancementOut{{Name: "Fire Absorption", Bonus: "Enhancement", Modifier: float64(20)}}}},
+	}}
+
+	first, _, err := transformAugments(context.Background(), master)
+	if err != nil {
+		t.Fatal(err)
+	}
+	second, _, err := transformAugments(context.Background(), master)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(first, second) {
+		t.Fatalf("transformAugments() is not deterministic: %#v != %#v", first, second)
+	}
+	if len(first) != 2 || len(first[0].Effects) != 1 || len(first[1].Effects) != 1 {
+		t.Fatalf("augments = %#v", first)
+	}
+	firstEffect, secondEffect := first[0].Effects[0], first[1].Effects[0]
+	if firstEffect.ID == secondEffect.ID {
+		t.Fatalf("shared semantic augment effects use the same ID %q", firstEffect.ID)
+	}
+	wantModifierValues := map[string]float64{"First Fire Augment": 1000, "Second Fire Augment": 2000}
+	for _, augment := range first {
+		effect := augment.Effects[0]
+		if want := effectID(augment.ID, "Enhancement", "Fire Absorption"); effect.ID != want {
+			t.Fatalf("augment %q effect ID = %q, want %q", augment.DisplayName, effect.ID, want)
+		}
+		if effect.Modifier.Value != wantModifierValues[augment.DisplayName] {
+			t.Fatalf("augment %q modifier = %#v", augment.DisplayName, effect.Modifier)
+		}
 	}
 }

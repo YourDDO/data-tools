@@ -80,13 +80,13 @@ func normalizePlacements(input sourceEnhancement) ([]contracts.EssenceCraftingPl
 	return result, nil
 }
 
-func transformScaledEffect(parent sourceEnhancement, input sourceEffect) (contracts.EssenceCraftingEffect, error) {
+func transformScaledEffect(parentID string, parent sourceEnhancement, input sourceEffect) (contracts.EssenceCraftingEffect, error) {
 	name := strings.TrimSpace(input.Name)
 	if name == "" {
 		return contracts.EssenceCraftingEffect{}, fmt.Errorf("name is required")
 	}
 	bonus := strings.TrimSpace(input.Bonus)
-	result := contracts.EssenceCraftingEffect{ID: opaqueID("effect", strings.ToLower(bonus)+"\x00"+name), DisplayName: name, BonusTypeID: bonusID(bonus)}
+	result := contracts.EssenceCraftingEffect{ID: effectID(parentID, bonus, name), DisplayName: name, BonusTypeID: bonusID(bonus)}
 	if len(input.Modifiers) == 0 {
 		if (parent.Name != "Necromantic" || name != "Deathblock") && name != parent.Name {
 			return result, fmt.Errorf("missing modifier scale")
@@ -214,13 +214,13 @@ func unboundPurifiedQuantity(level int) int {
 	}
 }
 
-func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.EssenceCraftingAugment, map[string]string, map[string]string, error) {
+func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.EssenceCraftingAugment, map[string]string, error) {
 	result := make([]contracts.EssenceCraftingAugment, 0)
-	bonusNames, effectNames := map[string]string{}, map[string]string{}
+	bonusNames := map[string]string{}
 	seen := map[string]string{}
 	for _, record := range master.Augments {
 		if err := ctx.Err(); err != nil {
-			return nil, nil, nil, err
+			return nil, nil, err
 		}
 		typeID, relevant := normalizeAugmentType(record.Augment.AugmentType)
 		if !relevant {
@@ -228,14 +228,14 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 		}
 		name := strings.TrimSpace(record.Augment.Name)
 		if name == "" {
-			return nil, nil, nil, fmt.Errorf("augment %s has an empty name", record.Source())
+			return nil, nil, fmt.Errorf("augment %s has an empty name", record.Source())
 		}
 		if record.Augment.MinLevel == nil || *record.Augment.MinLevel < minimumItemLevel || *record.Augment.MinLevel > maximumItemLevel {
-			return nil, nil, nil, fmt.Errorf("augment %s has invalid minimum item level", record.Source())
+			return nil, nil, fmt.Errorf("augment %s has invalid minimum item level", record.Source())
 		}
 		id := opaqueID("augment", record.File+"\x00"+name)
 		if previous, exists := seen[id]; exists {
-			return nil, nil, nil, fmt.Errorf("augment ID %q duplicates master records %s and %s", id, previous, record.Source())
+			return nil, nil, fmt.Errorf("augment ID %q duplicates master records %s and %s", id, previous, record.Source())
 		}
 		seen[id] = record.Source()
 		augmentEffects := append([]dataset.PartialEnhancementOut(nil), record.Augment.EffectsAdded...)
@@ -243,7 +243,7 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 		for setIndex, set := range record.Augment.SetBonus {
 			setName := strings.TrimSpace(set.Name)
 			if setName == "" {
-				return nil, nil, nil, fmt.Errorf("augment %s setBonus[%d]: name is required", record.Source(), setIndex)
+				return nil, nil, fmt.Errorf("augment %s setBonus[%d]: name is required", record.Source(), setIndex)
 			}
 			// ItemSet membership is stored canonically in SetBonus rather than
 			// EffectsAdded. Project it into the Essence Crafting effect list while
@@ -273,17 +273,18 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 			effect dataset.PartialEnhancementOut
 		}{}
 		for index, effect := range augmentEffects {
-			transformed, err := transformAugmentEffect(effect)
+			transformed, err := transformAugmentEffect(id, effect)
 			if err != nil {
-				return nil, nil, nil, fmt.Errorf("augment %s effect[%d]: %w", record.Source(), index, err)
+				return nil, nil, fmt.Errorf("augment %s effect[%d]: %w", record.Source(), index, err)
 			}
-			if first, exists := seenEffects[transformed.ID]; exists {
-				return nil, nil, nil, fmt.Errorf(
+			semanticKey := effectSemanticKey(effect.Bonus, effect.Name)
+			if first, exists := seenEffects[semanticKey]; exists {
+				return nil, nil, fmt.Errorf(
 					"augment %s repeats semantic effect %q with %s at effects[%d] and effects[%d]; generated ID %q; first modifier=%v, duplicate modifier=%v",
 					record.Source(), transformed.DisplayName, describeBonus(effect.Bonus), first.index, index, transformed.ID, first.effect.Modifier, effect.Modifier,
 				)
 			}
-			seenEffects[transformed.ID] = struct {
+			seenEffects[semanticKey] = struct {
 				index  int
 				effect dataset.PartialEnhancementOut
 			}{index: index, effect: effect}
@@ -291,12 +292,11 @@ func transformAugments(ctx context.Context, master dataset.Master) ([]contracts.
 			if transformed.BonusTypeID != "" {
 				bonusNames[transformed.BonusTypeID] = strings.TrimSpace(effect.Bonus)
 			}
-			effectNames[transformed.ID] = transformed.DisplayName
 		}
 		sortEffects(effects)
 		result = append(result, contracts.EssenceCraftingAugment{ID: id, DisplayName: name, AugmentTypeID: typeID, MinimumItemLevel: *record.Augment.MinLevel, Effects: effects})
 	}
-	return result, bonusNames, effectNames, nil
+	return result, bonusNames, nil
 }
 
 func describeBonus(value string) string {
@@ -316,12 +316,12 @@ func normalizeAugmentType(value string) (string, bool) {
 	}
 }
 
-func transformAugmentEffect(input dataset.PartialEnhancementOut) (contracts.EssenceCraftingEffect, error) {
+func transformAugmentEffect(parentID string, input dataset.PartialEnhancementOut) (contracts.EssenceCraftingEffect, error) {
 	name, bonus := strings.TrimSpace(input.Name), strings.TrimSpace(input.Bonus)
 	if name == "" {
 		return contracts.EssenceCraftingEffect{}, fmt.Errorf("name is required")
 	}
-	result := contracts.EssenceCraftingEffect{ID: opaqueID("effect", strings.ToLower(bonus)+"\x00"+name), DisplayName: name, BonusTypeID: bonusID(bonus)}
+	result := contracts.EssenceCraftingEffect{ID: effectID(parentID, bonus, name), DisplayName: name, BonusTypeID: bonusID(bonus)}
 	if input.Modifier == nil {
 		return result, nil
 	}

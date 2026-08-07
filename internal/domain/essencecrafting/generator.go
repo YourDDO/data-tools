@@ -62,7 +62,6 @@ func build(ctx context.Context, master dataset.Master, source []sourceEnhancemen
 	bonusNames := map[string]string{}
 	recipeOwners := map[int]string{}
 	enhancementIDs := map[string]string{}
-	effectNames := map[string]string{}
 
 	for index, input := range source {
 		if err := ctx.Err(); err != nil {
@@ -89,20 +88,17 @@ func build(ctx context.Context, master dataset.Master, source []sourceEnhancemen
 			return contracts.EssenceCraftingDomain{}, fmt.Errorf("%s: %w", context, err)
 		}
 		effects := make([]contracts.EssenceCraftingEffect, 0, len(input.Effects))
-		seenEffectIDs := map[string]struct{}{}
+		seenEffectKeys := map[string]struct{}{}
 		for effectIndex, inputEffect := range input.Effects {
-			effect, err := transformScaledEffect(input, inputEffect)
+			effect, err := transformScaledEffect(id, input, inputEffect)
 			if err != nil {
 				return contracts.EssenceCraftingDomain{}, fmt.Errorf("%s effect[%d]: %w", context, effectIndex, err)
 			}
-			if _, exists := seenEffectIDs[effect.ID]; exists {
-				return contracts.EssenceCraftingDomain{}, fmt.Errorf("%s: duplicate effect ID %q", context, effect.ID)
+			semanticKey := effectSemanticKey(inputEffect.Bonus, inputEffect.Name)
+			if _, exists := seenEffectKeys[semanticKey]; exists {
+				return contracts.EssenceCraftingDomain{}, fmt.Errorf("%s: repeats semantic effect %q with %s", context, effect.DisplayName, describeBonus(inputEffect.Bonus))
 			}
-			seenEffectIDs[effect.ID] = struct{}{}
-			if previous, exists := effectNames[effect.ID]; exists && previous != effect.DisplayName {
-				return contracts.EssenceCraftingDomain{}, fmt.Errorf("%s: effect ID %q has display names %q and %q", context, effect.ID, previous, effect.DisplayName)
-			}
-			effectNames[effect.ID] = effect.DisplayName
+			seenEffectKeys[semanticKey] = struct{}{}
 			if effect.BonusTypeID != "" {
 				bonusNames[effect.BonusTypeID] = strings.TrimSpace(inputEffect.Bonus)
 			}
@@ -129,18 +125,12 @@ func build(ctx context.Context, master dataset.Master, source []sourceEnhancemen
 	minimumShards, minimumRecipes := materializeMinimumLevelShards(ingredientNames)
 	result.MinimumLevelShards = minimumShards
 	result.Recipes = append(result.Recipes, minimumRecipes...)
-	augments, augmentBonusNames, augmentEffectNames, err := transformAugments(ctx, master)
+	augments, augmentBonusNames, err := transformAugments(ctx, master)
 	if err != nil {
 		return contracts.EssenceCraftingDomain{}, err
 	}
 	for id, displayName := range augmentBonusNames {
 		bonusNames[id] = displayName
-	}
-	for id, displayName := range augmentEffectNames {
-		if previous, exists := effectNames[id]; exists && previous != displayName {
-			return contracts.EssenceCraftingDomain{}, fmt.Errorf("effect ID %q has display names %q and %q", id, previous, displayName)
-		}
-		effectNames[id] = displayName
 	}
 	result.Augments = augments
 	result.BonusTypes = namedRecords(bonusNames)
@@ -219,4 +209,14 @@ func bonusID(value string) string {
 		return ""
 	}
 	return opaqueID("bonus", strings.ToLower(value))
+}
+
+// effectSemanticKey preserves the original semantic identity for detecting
+// duplicate effects within one parent. It deliberately excludes the parent ID.
+func effectSemanticKey(bonus, displayName string) string {
+	return strings.ToLower(strings.TrimSpace(bonus)) + "\x00" + strings.TrimSpace(displayName)
+}
+
+func effectID(parentID, bonus, displayName string) string {
+	return opaqueID("effect", parentID+"\x00"+bonusID(bonus)+"\x00"+strings.TrimSpace(displayName))
 }
