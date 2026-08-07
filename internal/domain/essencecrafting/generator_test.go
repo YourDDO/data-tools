@@ -47,6 +47,9 @@ func TestGenerateUpdate81Domain(t *testing.T) {
 	if err := json.Unmarshal(firstBytes, &output); err != nil {
 		t.Fatal(err)
 	}
+	if err := validateDomain(output); err != nil {
+		t.Fatalf("generated domain validation failed: %v", err)
+	}
 	if len(output.Enhancements) != 368 || len(output.Recipes) != 808 || len(output.MinimumLevelShards) != 36 || len(output.Augments) != 7 {
 		t.Fatalf("record counts = enhancements:%d recipes:%d ML:%d augments:%d", len(output.Enhancements), len(output.Recipes), len(output.MinimumLevelShards), len(output.Augments))
 	}
@@ -149,6 +152,57 @@ func TestRulesUseAugmentCompatibility(t *testing.T) {
 	}
 	if len(want) != 0 {
 		t.Fatalf("missing slot rules: %v", want)
+	}
+}
+
+func TestRulesPublishCanonicalAugmentSlotPlacements(t *testing.T) {
+	want := map[string][]string{
+		"weapon":   {"colorless", "red", "purple", "orange"},
+		"shield":   {"colorless", "red", "blue", "purple", "orange"},
+		"orb":      {"colorless", "red", "blue", "purple", "orange"},
+		"rune-arm": {"colorless", "red", "blue", "purple", "orange"},
+		"armor":    {"colorless", "blue"},
+		"belt":     {"colorless", "yellow", "green"},
+		"boots":    {"colorless", "yellow", "green"},
+		"bracers":  {"colorless", "yellow", "green"},
+		"cloak":    {"colorless", "yellow", "green"},
+		"gloves":   {"colorless", "yellow", "green"},
+		"goggles":  {"colorless", "yellow", "green"},
+		"head":     {"colorless", "yellow", "green"},
+		"necklace": {"colorless", "yellow", "green"},
+		"ring":     {"colorless", "yellow", "green"},
+		"trinket":  {"colorless", "yellow", "green"},
+	}
+	rules := rules()
+	slotTypes := map[string]struct{}{}
+	for _, slotType := range rules.AugmentSlotTypes {
+		slotTypes[slotType.ID] = struct{}{}
+	}
+	seen := map[string]struct{}{}
+	for _, placement := range rules.AugmentSlotPlacements {
+		if _, exists := seen[placement.ItemCategoryID]; exists {
+			t.Fatalf("%q has more than one placement record", placement.ItemCategoryID)
+		}
+		seen[placement.ItemCategoryID] = struct{}{}
+		if placement.ItemCategoryID == "helmet" {
+			t.Fatal("placement uses legacy helmet category instead of head")
+		}
+		if !reflect.DeepEqual(placement.SlotTypeIDs, want[placement.ItemCategoryID]) {
+			t.Fatalf("%s slots = %v, want %v", placement.ItemCategoryID, placement.SlotTypeIDs, want[placement.ItemCategoryID])
+		}
+		for _, slotTypeID := range placement.SlotTypeIDs {
+			if _, exists := slotTypes[slotTypeID]; !exists {
+				t.Fatalf("%s references missing slot type %q", placement.ItemCategoryID, slotTypeID)
+			}
+		}
+	}
+	if len(seen) != len(want) {
+		t.Fatalf("placement records = %d, want one for each of %d canonical categories", len(seen), len(want))
+	}
+	for category := range want {
+		if _, exists := seen[category]; !exists {
+			t.Fatalf("missing placement for canonical category %q", category)
+		}
 	}
 }
 

@@ -25,6 +25,9 @@ func validateDomain(value contracts.EssenceCraftingDomain) error {
 		return err
 	}
 	categories, augmentTypes := namedSet(value.ItemCategories), namedSet(value.AugmentTypes)
+	if err := validateAugmentSlotRules(value.Rules, categories, augmentTypes); err != nil {
+		return err
+	}
 	ingredients, recipes := map[string]struct{}{}, map[string]contracts.EssenceCraftingRecipe{}
 	for _, ingredient := range value.Ingredients {
 		if ingredient.ID == "" || ingredient.DisplayName == "" {
@@ -187,6 +190,51 @@ func validateDomain(value contracts.EssenceCraftingDomain) error {
 	}
 	if _, exists := ingredients[value.Rules.ExtraAffix.MarkRequirement.IngredientID]; !exists {
 		return fmt.Errorf("extra-affix Mark references a missing ingredient")
+	}
+	return nil
+}
+
+func validateAugmentSlotRules(rules contracts.EssenceCraftingRules, categories, augmentTypes map[string]struct{}) error {
+	slotTypes := map[string]struct{}{}
+	for _, slotType := range rules.AugmentSlotTypes {
+		if slotType.ID == "" || slotType.DisplayName == "" {
+			return fmt.Errorf("augment slot type has blank ID or display name")
+		}
+		if _, exists := slotTypes[slotType.ID]; exists {
+			return fmt.Errorf("duplicate augment slot type ID %q", slotType.ID)
+		}
+		slotTypes[slotType.ID] = struct{}{}
+		for _, augmentTypeID := range slotType.AcceptsAugmentTypeIDs {
+			if _, exists := augmentTypes[augmentTypeID]; !exists {
+				return fmt.Errorf("augment slot type %q references missing augment type %q", slotType.ID, augmentTypeID)
+			}
+		}
+	}
+	seenCategories := map[string]struct{}{}
+	for _, placement := range rules.AugmentSlotPlacements {
+		if _, exists := categories[placement.ItemCategoryID]; !exists {
+			return fmt.Errorf("augment slot placement references missing item category %q", placement.ItemCategoryID)
+		}
+		if _, exists := seenCategories[placement.ItemCategoryID]; exists {
+			return fmt.Errorf("duplicate augment slot placement for item category %q", placement.ItemCategoryID)
+		}
+		seenCategories[placement.ItemCategoryID] = struct{}{}
+		if len(placement.SlotTypeIDs) == 0 {
+			return fmt.Errorf("augment slot placement for item category %q has no slot types", placement.ItemCategoryID)
+		}
+		seenSlotTypes := map[string]struct{}{}
+		for _, slotTypeID := range placement.SlotTypeIDs {
+			if _, exists := slotTypes[slotTypeID]; !exists {
+				return fmt.Errorf("augment slot placement for item category %q references missing slot type %q", placement.ItemCategoryID, slotTypeID)
+			}
+			if _, exists := seenSlotTypes[slotTypeID]; exists {
+				return fmt.Errorf("augment slot placement for item category %q repeats slot type %q", placement.ItemCategoryID, slotTypeID)
+			}
+			seenSlotTypes[slotTypeID] = struct{}{}
+		}
+	}
+	if len(seenCategories) != len(categories) {
+		return fmt.Errorf("augment slot placements cover %d item categories, want %d", len(seenCategories), len(categories))
 	}
 	return nil
 }
